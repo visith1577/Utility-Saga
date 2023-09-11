@@ -1,29 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../CSS/login/user/electrcitydshbaord.css">
 
     <title>Dashboard</title>
 </head>
+
 <body>
-    <div class="side-panel-buttons">
-        
-    </div>
-    <div class="side-panel">
-        <div class="top-buttons">
-            <button><iconify-icon icon="mdi:home-outline" style="font-size: 30px;"></iconify-icon>&nbsp;&nbsp;Home</button>
-            <button><iconify-icon icon="eos-icons:service-plan" style="font-size: 30px;"></iconify-icon>&nbsp;&nbsp;Service</button>
-            <button><iconify-icon icon="healthicons:i-schedule-school-date-time" style="font-size: 30px;"></iconify-icon>&nbsp;&nbsp;Bills</button>
-            <button><iconify-icon icon="streamline:money-graph-analytics-business-product-graph-data-chart-analysis" style="font-size: 30px;"></iconify-icon></iconify-icon>&nbsp;&nbsp;Analysis</button>
-            <button><iconify-icon icon="healthicons:i-schedule-school-date-time" style="font-size: 30px;"></iconify-icon>&nbsp;&nbsp;Reports</button>
-        </div>
-        <div class="bottom-buttons">
-            <button class="bottom-button"><iconify-icon icon="tabler:settings" style="font-size: 30px;"></iconify-icon></button>
-            <button class="bottom-button"><iconify-icon icon="material-symbols:help-outline" style="font-size: 30px;"></iconify-icon></button>
+    <div class="dashboard">
+        <div class="container">
+            <aside class="sidebar">
+                <ul class="menu-list">
+                    <li>
+                        <div class="menu-container">
+                            <button class="icon" id="menu">
+                                <img src="../images/round-menu.svg" alt="menu" />
+                            </button>
+                        </div>
+                    </li>
+                    <div class="top-buttons">
+                        <li>
+                            <button class="icon" id="home">
+                                <img src="../images/home-outline.svg" alt="home" />
+                            </button>
+                        </li>
+                        <li>
+                            <button class="icon" id="service">
+                                <img src="../images/service-plan.svg" alt="service" />
+                            </button>
+                        </li>
+                        <li>
+                            <button class="icon" id="bills">
+                                <img src="../images/bill.svg" alt="bills" />
+                            </button>
+                        </li>
+                        <li>
+                            <button class="icon" id="analysis">
+                                <img src="../images/report.svg" alt="analysis" />
+                            </button>
+                        </li>
+                        <li>
+                            <button class="icon" id="report">
+                                <img src="../images/event-schedule.svg" alt="report" />
+                            </button>
+                        </li>
+                    </div>
+                    <div class="bottom-buttons">
+                        <li>
+                            <button class="icon" id="settings">
+                                <img src="../images/settings-outline.svg" alt="settings" />
+                            </button>
+                        </li>
+                        <li>
+                            <button class="icon" id="help">
+                                <img src="../images/help-outline.svg" alt="help" />
+                            </button>
+                        </li>
+                    </div>
+                </ul>
+            </aside>
         </div>
     </div>
 </body>
+<script src="../JS/electricitydash.js"></script>
+
 </html>
