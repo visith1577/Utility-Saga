@@ -1,0 +1,66 @@
+.side-panel {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #EAEAEA;
+    padding: 20px;
+}
+
+
+.side-panel button {
+    display: block; 
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    background-color: #b4c4c8;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.side-panel button:hover {
+    background-color: #555;
+}
+
+.side-panel button.active {
+    background-color: #464141;
+}
+
+.side-panel .bottom-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width:fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.side-panel .bottom-buttons button {
+    width: 5%fit-content; 
+    background-color: #b4c4c8;
+    color: #fff;
+    margin: 10px;
+     
+}
+
+.side-panel .bottom-buttons button.active {
+    background-color: #007bff;
+}
+
+.side-panel .top-buttons{
+    margin-top: 150px;
+}
+
+.side-panel .top-buttons button{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+
+
