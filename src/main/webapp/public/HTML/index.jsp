@@ -3,13 +3,12 @@
 <html>
     <head>
         <title>JSP - Hello World</title>
-        <link rel="stylesheet" href="../CSS/login/user/styles.css">
+        <link rel="stylesheet">
     </head>
     <body>
         <h1>
             Login page
         </h1>
         <br/>
-
     </body>
 </html>
