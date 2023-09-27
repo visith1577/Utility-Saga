@@ -10,7 +10,7 @@
 <body>
     <div class="side-panel">
         <button>Home</button>
-        <button>Serivce</button>
+        <button>Service</button>
         <button>Bills</button>
         <button>Analysis</button>
         <button>Reports</button>

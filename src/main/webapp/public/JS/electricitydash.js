@@ -16,6 +16,8 @@ const help = document.querySelector("#help");
 let previousToggled = null;
 let currentToggled = null;
 
+
+
 home.addEventListener("click", (e) => {
   toggleMenu(home);
 });
@@ -39,6 +41,7 @@ report.addEventListener("click", (e) => {
 settings.addEventListener("click", (e) => {
   toggleMenu(settings);
 });
+
 help.addEventListener("click", (e) => {
   toggleMenu(help);
 });
@@ -73,7 +76,7 @@ const openMenu = () => {
 
   let menu_logo = document.createElement("img");
   menu_logo.id = "menu-logo";
-  menu_logo.src = "../images/round-menu.svg";
+  menu_logo.src = "";
   menu_logo.style.width = "60px";
   menu_container.style.paddingLeft = "15px";
   menu_container.insertBefore(menu_logo, menu_container.childNodes[0]);
@@ -128,7 +131,7 @@ const openMenu = () => {
   help.appendChild(p_help);
 
 
-  main.style.width = "calc(100% - 250px)";
+  icon_logout.style.width = "25%";
 };
 
 const closeMenu = () => {
