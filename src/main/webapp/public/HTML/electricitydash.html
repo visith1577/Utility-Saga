@@ -1,105 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="../CSS/login/user/electrcitydshbaord.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Document</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="../CSS/login/user/electrcitydshbaord.css" rel="stylesheet">
+    </head>
 
-<body>
-  <div class="wrapper">
+    <body>
+        <div class="wrapper">
 
-    <div class="top_navbar">
-      <div class="hamburger">
-        <div class="one"></div>
-        <div class="two"></div>
-        <div class="three"></div>
-      </div>
-      <div class="top_menu">
-        <div class="logo">
-          <img src="../images/utility_saga.svg" alt="Utility Saga" height="50px">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                </div>
+                <div class="top_menu">
+                    <div class="logo">
+                        <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
+                    </div>
+                    <ul>
+                        <li><a href="#">
+                            <img alt="Cart" src="../images/cart.svg">
+                        </a></li>
+                        <li><a href="#">
+                            <img alt="Notification" src="../images/notification-line.svg">
+                        </a></li>
+                        <li><a href="#">
+                            <img alt="User" src="../images/user.svg">
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-middle">
+                <div class="sidebar" id="sidebar">
+                    <ul>
+                        <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="home" src="../images/home-outline.svg"/></span>
+                            <span class="title">Home<img alt="service" class="right_arrow"
+                                                         height="20px"
+                                                         src="../images/arrow-right-s-line.svg" width="20px"/></span>
+                        </a></li>
+                        <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="service" src="../images/service-plan.svg"/></span>
+                            <span class="title">Service<img alt="service" class="right_arrow"
+                                                            height="20px"
+                                                            src="../images/arrow-right-s-line.svg" width="20px"/></span>
+                        </a></li>
+                        <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="bills" src="../images/bill.svg"/></span>
+                            <span class="title">Bills<img alt="service" class="right_arrow"
+                                                          height="20px"
+                                                          src="../images/arrow-right-s-line.svg" width="20px"/></span>
+                        </a></li>
+                        <li class="list_button"><a class="active" href="#">
+                            <span class="icon"><img alt="analysis" src="../images/report.svg"/></span>
+                            <span class="title">Analysis<img alt="service" class="right_arrow"
+                                                             height="20px"
+                                                             src="../images/arrow-right-s-line.svg"
+                                                             width="20px"/></span>
+                        </a></li>
+                        <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="report" src="../images/event-schedule.svg"/></span>
+                            <span class="title">Report<img alt="service" class="right_arrow"
+                                                           height="20px"
+                                                           src="../images/arrow-right-s-line.svg" width="20px"/></span>
+                        </a></li>
+                        <li class="list_button"><a href="#">
+                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg"/></span>
+                            <span class="title">Settings<img alt="service" class="right_arrow"
+                                                             height="20px"
+                                                             src="../images/arrow-right-s-line.svg"
+                                                             width="20px"/></span>
+                        </a></li>
+                        <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="help" src="../images/help-outline.svg"/></span>
+                            <span class="title">Help<img alt="service" class="right_arrow"
+                                                         height="20px"
+                                                         src="../images/arrow-right-s-line.svg" width="20px"/></span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="intro">
+                    <h2>Ceylon Electricity Board</h2><br>
+                    <img alt="Electricity Board" src="../images/electricity_board.png"><br><br>
+                    <p>
+                        The Ceylon Electricity Board - CEB,
+                        is the largest electricity company in Sri Lanka.
+                        With a market share of nearly 100%, it controls
+                        all major functions of electricity generation,
+                        transmission, distribution and retailing in Sri Lanka.
+                    </p>
+                </div>
+                <div class="about">
+                    <h2><b>About Electricity Companies</b></h2>
+                </div>
+                <div class="contact-us">
+
+                </div>
+            </div>
+
+
         </div>
-        <ul>
-          <li><a href="#">
-              <img src="../images/cart.svg" alt="Cart">
-            </a></li>
-          <li><a href="#">
-              <img src="../images/notification-line.svg" alt="Notification">
-            </a></li>
-          <li><a href="#">
-              <img src="../images/user.svg" alt="User">
-            </a></li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="content-middle">
-      <div class="sidebar">
-        <ul>
-          <li class="list_button"><a href="#">
-              <span class="icon"><img src="../images/home-outline.svg" alt="home" /></span>
-              <span class="title">Home<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-          <li class="list_button"><a href="#">
-              <span class="icon"><img src="../images/service-plan.svg" alt="service" /></span>
-              <span class="title">Service<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-          <li class="list_button"><a href="#">
-              <span class="icon"><img src="../images/bill.svg" alt="bills" /></span>
-              <span class="title">Bills<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-          <li class="list_button"><a href="#" class="active">
-              <span class="icon"><img src="../images/report.svg" alt="analysis" /></span>
-              <span class="title">Analysis<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-          <li class="list_button"><a href="#">
-              <span class="icon"><img src="../images/event-schedule.svg" alt="report" /></span>
-              <span class="title">Report<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-          <li class="list_button"><a href="#">
-              <span class="icon"> <img src="../images/settings-outline.svg" alt="settings" /></span>
-              <span class="title">Settings<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-          <li class="list_button"><a href="#">
-              <span class="icon"><img src="../images/help-outline.svg" alt="help" /></span>
-              <span class="title">Help<img src="../images/arrow-right-s-line.svg" alt="service" width="20px"
-                  height="20px" class="right_arrow" /></span>
-            </a></li>
-        </ul>
-      </div>
+    </body>
+    <script src="../JS/electricitydash.js"></script>
+    <script>
+        window.onscroll = function () {
+            scrollFunction()
+        }
 
-      <div class="intro">
-        <h2>Ceylon Electricity Board</h2><br>
-        <img src="../images/electricity_board.png" alt="Electricity Board"><br><br>
-        <p>
-          The Ceylon Electricity Board - CEB,
-          is the largest electricity company in Sri Lanka.
-          With a market share of nearly 100%, it controls
-          all major functions of electricity generation,
-          transmission, distribution and retailing in Sri Lanka.
-        </p>
-      </div>
-      <div class="about">
-        <h2><b>About Electricity Companies</b></h2>
-      </div>
-      <div class="contact-us">
-        
-      </div>
-    </div>
-
-
-  </div>
-
-</body>
-<script src="../JS/electricitydash.js"></script>
-
+        function scrollFunction() {
+            if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+                document.getElementById("sidebar").style.height = "80%";
+            } else {
+                document.getElementById("sidebar").style.height = "85%";
+            }
+        }
+    </script>
 </html>
