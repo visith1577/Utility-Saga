@@ -10,6 +10,7 @@
 body {
     background: #e1ecf2;
     height: 100vh;
+    /* position: fixed; */
 }
 
 .wrapper {
@@ -83,11 +84,36 @@ body {
     color: #fff;
 }
 
+.wrapper .top_navbar .top_menu .item1{
+    width: 30px;
+    height: 30px;
+    margin: 2px 100px 0px 2px;
+}
+
+.wrapper .top_navbar .top_menu .item2{
+    width: 30px;
+    height: 30px;
+    margin: 2px 100px 100px 10px;
+}
+
+.wrapper .top_navbar .top_menu .item3{
+    width: 30px;
+    height: 30px;
+    margin: 2px 100px 10px 2px;
+}
+
+.wrapper .content-middle {
+    display: flex;
+    margin-top: 80px;
+    background-color: #fff; 
+    height: calc(110vh);
+}
+
 .wrapper .content-middle .sidebar {
     position: fixed;
     margin-top: 40px;
-    margin-bottom: 20px;
-    top: 70px;
+    margin-bottom: px;
+    top: 50px;
     left: 20px;
     bottom: 0;
     background: #F5F4F4;
@@ -96,16 +122,6 @@ body {
     border-radius: 10px 10px 10px 20px;
     transition: all 0.3s ease;
     padding-top: 20px;
-}
-
-/* .list_button .right_arrow{
-} */
-
-.content-middle {
-    margin-top: 100px;
-    background-color: #fff;
-    border-radius: 2%;
-    height: calc(100vh - 20px);
 }
 
 .wrapper .content-middle .sidebar ul li a {
@@ -149,8 +165,10 @@ body {
 }
 
 .wrapper .content-middle .intro {
-    width: calc(100% - 1100px);
-    margin-top: 70px;
+    width: calc(100% - 900px);
+    max-width: 400px;
+    height: 360px;
+    margin-top: 0px;
     margin-left: 220px;
     padding: 20px;
     transition: all 0.3s ease;
@@ -175,21 +193,65 @@ body {
 }
 
 .wrapper .content-middle .about {
-    width: calc(100% - 1200px);
+    width: calc(100% - 900px);
+    max-width: 400px;
+    height: 360px;
+    border-radius: 10%;
     background-color: #b0bdcb;
-    margin-top: 70px;
-    margin-left: 600px;
+    margin-top: 10px;
+    margin-left: 50px;
     padding: 20px;
     transition: all 0.3s ease;
 }
 
 .wrapper .content-middle .contact-us {
-    width: calc(100% - 1200px);
+    width: calc(100% - 900px);
+    max-width: 400px;
+    height: 360px;
+    border-radius: 10%;
     background-color: #b0bdcb;
-    margin-left: 1000px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 10px;
     padding: 20px;
     transition: all 0.3s ease;
 }
+
+.wrapper .content-middle .hotline{
+    height: 50px;
+    padding: 5px;
+    background-color: greenyellow;
+    border-radius: 30%;
+    align-content: center;
+    
+}
+.wrapper .content-middle .hotline h2{
+    margin-top: -35px;
+}
+
+.wrapper .content-middle .hotline img{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.wrapper .content-middle .contact-us .notification{
+    background-color: white;
+    height: 250px;
+    border-radius: 10%;
+    padding: 10px;
+}
+.wrapper .content-middle .contact-us .notification .powercut{
+    background-color: rgb(221, 125, 125);
+    height: 60px;
+    text-align: justify;
+    padding: 4px;
+}
+.wrapper .content-middle .contact-us .notification .powercut .b1{
+    align-items: center;
+}
+
 
 
 .wrapper.collapse .sidebar {
@@ -217,3 +279,66 @@ body {
 .icon {
     fill: white;
 }
+
+
+.wrapper .content-middle .elec-usage{
+    display: flex;
+    max-width: 400px;
+    border-radius: 10%;
+    background-color: #b0bdcb;
+    height: 380px;
+    margin-top: 60px;
+    margin-left: -870px;
+    padding: 20px;
+    transition: all 0.3s ease;
+ 
+}
+
+.drp-down-button{
+    margin-top: 20px;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.drp-down{
+    position: relative;
+    display: inline-block;
+}
+
+ .drp-down:hover .drp-list{
+    display: block;
+}
+
+.drp-list{
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.drp-list a{
+    text-decoration: none;
+    display: block;
+}
+
+ /* .drp-down .drp-list a:hover{
+    display: block;
+} */
+
+.wrapper .content-middle .suggestions{
+    display: flex;
+    max-width: 840px;
+    border-radius: 10%;
+    background-color: #b0bdcb;
+    height: 380px;
+    margin-top: -380px;
+    margin-left: -400px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+
+
+
