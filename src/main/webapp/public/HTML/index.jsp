@@ -6,9 +6,12 @@
         <link rel="stylesheet" href="../CSS/login/user/styles.css">
     </head>
     <body>
-        <h1>
-            Login page
-        </h1>
+        <form action="add">
+            Enter 1st Number: <input type="text" name="num1"><br>
+            Enter 2nd Number: <input type="text" name="num2"><br>
+            <input type="submit">
+        </form>
+
         <br/>
 
     </body>

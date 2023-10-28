@@ -1,126 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>Document</title>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link href="../CSS/login/user/electrcitydshbaord.css" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="../CSS/login/user/electrcitydshbaord.css" rel="stylesheet">
+</head>
 
-    <body>
-        <div class="wrapper">
+<body>
+    <div class="wrapper">
 
-            <div class="top_navbar">
-                <div class="hamburger">
-                    <div class="one"></div>
-                    <div class="two"></div>
-                    <div class="three"></div>
-                </div>
-                <div class="top_menu">
-                    <div class="logo">
-                        <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
-                    </div>
-                    <ul>
-                        <li><a href="#">
-                            <img alt="Cart" src="../images/cart.svg">
-                        </a></li>
-                        <li><a href="#">
-                            <img alt="Notification" src="../images/notification-line.svg">
-                        </a></li>
-                        <li><a href="#">
-                            <img alt="User" src="../images/user.svg">
-                        </a></li>
-                    </ul>
-                </div>
+        <div class="top_navbar">
+            <div class="hamburger">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
             </div>
-
-            <div class="content-middle">
-                <div class="sidebar" id="sidebar">
-                    <ul>
-                        <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="home" src="../images/home-outline.svg"/></span>
-                            <span class="title">Home<img alt="service" class="right_arrow"
-                                                         height="20px"
-                                                         src="../images/arrow-right-s-line.svg" width="20px"/></span>
-                        </a></li>
-                        <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="service" src="../images/service-plan.svg"/></span>
-                            <span class="title">Service<img alt="service" class="right_arrow"
-                                                            height="20px"
-                                                            src="../images/arrow-right-s-line.svg" width="20px"/></span>
-                        </a></li>
-                        <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="bills" src="../images/bill.svg"/></span>
-                            <span class="title">Bills<img alt="service" class="right_arrow"
-                                                          height="20px"
-                                                          src="../images/arrow-right-s-line.svg" width="20px"/></span>
-                        </a></li>
-                        <li class="list_button"><a class="active" href="#">
-                            <span class="icon"><img alt="analysis" src="../images/report.svg"/></span>
-                            <span class="title">Analysis<img alt="service" class="right_arrow"
-                                                             height="20px"
-                                                             src="../images/arrow-right-s-line.svg"
-                                                             width="20px"/></span>
-                        </a></li>
-                        <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="report" src="../images/event-schedule.svg"/></span>
-                            <span class="title">Report<img alt="service" class="right_arrow"
-                                                           height="20px"
-                                                           src="../images/arrow-right-s-line.svg" width="20px"/></span>
-                        </a></li>
-                        <li class="list_button"><a href="#">
-                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg"/></span>
-                            <span class="title">Settings<img alt="service" class="right_arrow"
-                                                             height="20px"
-                                                             src="../images/arrow-right-s-line.svg"
-                                                             width="20px"/></span>
-                        </a></li>
-                        <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="help" src="../images/help-outline.svg"/></span>
-                            <span class="title">Help<img alt="service" class="right_arrow"
-                                                         height="20px"
-                                                         src="../images/arrow-right-s-line.svg" width="20px"/></span>
-                        </a></li>
-                    </ul>
+            <div class="top_menu">
+                <div class="logo">
+                    <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
                 </div>
-
-                <div class="intro">
-                    <h2>Ceylon Electricity Board</h2><br>
-                    <img alt="Electricity Board" src="../images/electricity_board.png"><br><br>
-                    <p>
-                        The Ceylon Electricity Board - CEB,
-                        is the largest electricity company in Sri Lanka.
-                        With a market share of nearly 100%, it controls
-                        all major functions of electricity generation,
-                        transmission, distribution and retailing in Sri Lanka.
-                    </p>
-                </div>
-                <div class="about">
-                    <h2><b>About Electricity Companies</b></h2>
-                </div>
-                <div class="contact-us">
-
-                </div>
+                <ul>
+                    <li><a href="#">
+                            <img alt="Cart" src="../images/cart.svg" class="item1">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="Notification" src="../images/notification-line.svg" class="item2">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="User" src="../images/user.svg" class="item3">
+                        </a></li>
+                </ul>
             </div>
-
-
         </div>
 
-    </body>
-    <script src="../JS/electricitydash.js"></script>
-    <script>
-        window.onscroll = function () {
-            scrollFunction()
-        }
+        <div class="content-middle">
+            <div class="sidebar" id="sidebar">
+                <ul>
+                    <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
+                            <span class="title">Home<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
+                            <span class="title">Service<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
+                            <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a class="active" href="#">
+                            <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
+                            <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="report" src="../images/event-schedule.svg" /></span>
+                            <span class="title">Report<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="#">
+                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
+                            <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="#">
+                            <span class="icon"><img alt="help" src="../images/help-outline.svg" /></span>
+                            <span class="title">Help<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                </ul>
+            </div>
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
-                document.getElementById("sidebar").style.height = "80%";
-            } else {
-                document.getElementById("sidebar").style.height = "85%";
-            }
+            <div class="intro">
+                <h2>Ceylon Electricity Board</h2><br>
+                <img alt="Electricity Board" src="../images/electricity_board.png"><br><br>
+                <p>
+                    The Ceylon Electricity Board - CEB,
+                    is the largest electricity company in Sri Lanka.
+                    With a market share of nearly 100%, it controls
+                    all major functions of electricity generation,
+                    transmission, distribution and retailing in Sri Lanka.
+                </p>
+            </div>
+            <div class="about">
+                <h2><b>About Electricity Companies</b></h2>
+                <img src="../images/MinistryofPower&Energy.png" alt="Ministry of Power & Energy">
+                <img src="../images/LECO.png" alt="LECO">
+                <img src="../images/LTL.png" alt="LTL">
+            </div>
+            <div class="contact-us">
+                <div class="hotline">
+                    <img src="../images/baseline-call.svg" alt="Call">
+                    <center>
+                        <h2><b>Hotline:&nbsp;&nbsp;&nbsp;&nbsp;1987</b></h2>
+                    </center>
+                </div><br>
+                <div class="notification">
+                    <h2>Notifications</h2>
+                    <div class="powercut">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sapiente, repellat fugiat
+                            iure veniam assumenda distincti</p><br>
+                        <p>No scheduled power cuts this week.</p>
+                        <center><button class="b1">Schedule</button></center><br>
+                        <p>Your electricity bill for the month: </p>
+                        <h3>BALANCE: Rs.1500.00</h3>
+                        <center><button class="b1">View Bill</button></center><br>
+                    </div>
+                </div>
+                <div class="elec-usage">
+                    <h3>Electricity Usage</h3>
+                    <div class="drp-down">
+                        <button class="drp-down-button">Choose</button>
+                        <div class="drp-list">
+                            <a href="#">Monthly</a>
+                            <a href="#">Weekly</a>
+                            <a href="#">Daily</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="suggestions">
+                    <h3>View Suggestions:</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../JS/electricitydash.js"></script>
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    }
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+            document.getElementById("sidebar").style.height = "80%";
+        } else {
+            document.getElementById("sidebar").style.height = "85%";
         }
-    </script>
+    }
+</script>
+
 </html>
