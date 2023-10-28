@@ -252,35 +252,6 @@ body {
     align-items: center;
 }
 
-
-
-.wrapper.collapse .sidebar {
-    width: 70px;
-}
-
-.wrapper.collapse .sidebar ul li a {
-    text-align: center;
-}
-
-.wrapper.collapse .sidebar ul li a span.icon {
-    margin: 0;
-    color: #FFF;
-}
-
-.wrapper.collapse .sidebar ul li a span.title {
-    display: none;
-}
-
-.wrapper.collapse .intro {
-    width: calc(100% - 70px);
-    margin-left: 70px;
-}
-
-.icon {
-    fill: white;
-}
-
-
 .wrapper .content-middle .elec-usage{
     display: flex;
     max-width: 400px;
@@ -338,6 +309,37 @@ body {
     padding: 20px;
     transition: all 0.3s ease;
 }
+
+
+
+
+.wrapper.collapse .sidebar {
+    width: 70px;
+}
+
+.wrapper.collapse .sidebar ul li a {
+    text-align: center;
+}
+
+.wrapper.collapse .sidebar ul li a span.icon {
+    margin: 0;
+    color: #FFF;
+}
+
+.wrapper.collapse .sidebar ul li a span.title {
+    display: none;
+}
+
+.wrapper.collapse .intro {
+    width: calc(100% - 70px);
+    margin-left: 70px;
+}
+
+.icon {
+    fill: white;
+}
+
+
 
 
 
