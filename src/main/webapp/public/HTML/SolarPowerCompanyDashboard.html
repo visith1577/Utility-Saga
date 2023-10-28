@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/solarPanal/SolarPowerCompanyDashboard.css">
+    <title>Solar Power Company Dashboard</title>
+</head>
+
+<body>
+    
+    <div class="outer">
+        <div class="sideBar">
+
+        </div>
+        <div class="listItem">
+            <div class="item" onclick="openPopup()">
+                <div class="imgBox">
+                    <img src="https://img.freepik.com/free-photo/3d-rendered-solar-panel-isolated-white-background_181624-57019.jpg?w=2000" alt="" onclick="openPopup">
+                </div>
+                <div class="discript">
+                    Trino Solar Panel Systems <br>30000W | 18V 
+                </div>
+            </div>
+            <div class="item">
+                <div class="imgBox">
+                    <img src="../images/Solar-Panel.jpg" alt="">
+                </div>
+                <div class="discript">
+                    Trino Solar Panel Systems <br>30000W | 18V 
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        <!-- <div class="top-header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+                <defs>
+                    <linearGradient id="gradient">
+                        <stop offset="0%" stop-color="#B04BC4"></stop>
+                        <stop offset="100%" stop-color="#E48C76"></stop>
+                    </linearGradient>
+                </defs>
+                
+                <path fill="url(#gradient)" d="M0,120L60,126.7C120,133,240,149.5,360,138.65C480,127.8,600,96,720,74.65C840,53.3,960,42.5,1080,56C1200,69.5,1320,106.5,1380,125.35L1440,144L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+            </svg>
+        </div> -->
+    </div>
+    <div class="popUp" id="popUp">
+        <div class="popItem">
+            <img src="https://img.freepik.com/free-photo/3d-rendered-solar-panel-isolated-white-background_181624-57019.jpg?w=2000" alt="">
+          <button onclick="closePopup()">X</button>
+          <p>Trino Solar Panel Systems <br>30000W | 18V <br>
+        Rs. 150 050</p>
+        </div>
+    </div> 
+    <script>
+let popup = document.getElementById("popUp");
+
+function openPopup(){
+    popup.classList.add("open-popUp")
+}
+function closePopup(){
+    popup.classList.remove("open-popUp")
+}
+    </script>
+</body>
+
+</html>
