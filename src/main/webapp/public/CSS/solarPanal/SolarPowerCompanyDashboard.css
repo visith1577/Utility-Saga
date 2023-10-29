@@ -28,7 +28,7 @@ body {
 
 .sideBar {
     margin: 10px;
-    height: 97vh;
+    height: 98vh;
     background-color: #EAEAEA;
     width: 20%;
 }
@@ -43,7 +43,7 @@ body {
 
 .listItem {
     margin: 10px;
-    height: 97vh;
+    height: 98vh;
     background-color: #EAEAEA;
     display: flex;
     flex-wrap: wrap;
