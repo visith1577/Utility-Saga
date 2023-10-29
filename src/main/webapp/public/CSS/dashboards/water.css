@@ -4,7 +4,7 @@
 .dashboard {
   display: flex;
    flex-direction: column;
-   gap: 17px;
+   gap: 12px;
    align-items: flex-start;
    justify-content: flex-start;
    position: relative;
@@ -14,8 +14,8 @@
   background: #f7f7f7;
    border-radius: 20px;
    flex-shrink: 0;
-   width: 1810px;
-   height: 76px;
+   width: 1350px;
+   height: 66px;
    position: relative;
    overflow: hidden;
   }
@@ -24,8 +24,8 @@
   background: #f7f7f7;
    border-radius: 20px;
    flex-shrink: 0;
-   width: 1810px;
-   height: 820px;
+   width: 1350px;
+   height: 720px;
    position: relative;
   }
 
@@ -34,14 +34,14 @@
 .notifications {
   background: #e3e4e5;
    border-radius: 18.41px;
-   font: 500 16px "Roboto", sans-serif;
+   font: 500 12px "Roboto", sans-serif;
 
    padding: 15.46px;
-   width: 425px;
-   height: 380px;
+   width: 275px;
+   height: 360px;
    position: absolute;
-   left: 1355px;
-   top: 100px;
+   left: 1065px;
+   top: 60px;
    overflow: hidden;
   }
 
@@ -50,17 +50,17 @@
   .servicetitle {
    color: #2a2d30;
    text-align: center;
-   font: 500 16px "Roboto", sans-serif;
+   font: 500 12px "Roboto", sans-serif;
    position: relative;
  }
 
   .buttons {
    display: flex;
    flex-direction: column;
-   top: 25px;
-   gap: 45px;
-   align-items: flex-start;
-   justify-content: flex-start;
+   top: 10px;
+   gap: 30px;
+   align-items: center;
+   justify-content: center;
    flex-shrink: 0;
    position: relative;
  }
@@ -68,10 +68,10 @@
        border: 0;
        background: #B9EEFF;
        color: #1a1919;
-       width: 320px;
-       font: 500 16px "Roboto", sans-serif;
-       padding: 18px;
-       font-size: 15px;
+       width: 220px;
+       font: 500 12px "Roboto", sans-serif;
+       padding: 15px;
+       font-size: 12px;
        border-radius: 40px;
        cursor: pointer;
        box-shadow: 0 0 10px rgba(205, 202, 202, 0.25);
@@ -101,11 +101,11 @@
   background: #e3e4e5;
    border-radius: 18.41px;
    padding: 32px;
-   width: 391px;
-   height: 380px;
+   width: 265px;
+   height: 360px;
    position: absolute;
-   left: 935px;
-  top: 100px;
+   left: 785px;
+  top: 60px;
    overflow: hidden;
   }
 
@@ -126,19 +126,19 @@
   .introduction {
    display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 25px;
     align-items: center;
     justify-content: flex-start;
     position: absolute;
-    left: 356px;
-   top: 25px;
+    left: 406px;
+   top: 5px;
    }
 
 .national-water-supply-and-drainage-board {
    color: #2a2d30;
     text-align: center;
     top: 45px;
-    font: 750 24px 'Roboto', sans-serif;
+    font: 750 16px 'Roboto', sans-serif;
     position: relative;
    }
 
@@ -154,9 +154,9 @@
    color: #000000;
     text-align: justified;
     top: 45px;
-    font: 400 18px 'Roboto', sans-serif;
+    font: 400 12px 'Roboto', sans-serif;
     position: relative;
-    width: 552px;
+    width: 322px;
     height: 108px;
    }
 
@@ -164,33 +164,33 @@
    .usage {
       background: #e3e4e5;
       border-radius: 23.93px;
-      padding: 12.29px;
-      width: 575px;
-      height: 300px;
+      padding: 12.09px;
+      width: 375px;
+      height: 275px;
       position: absolute;
-      left: 338px;
-      top: 506px;
+      left: 400px;
+      top: 434px;
       overflow: hidden;
      }
    
      .usagetitle {
       color: #2a2d30;
       text-align: center;
-      font: 500 16px "Roboto", sans-serif;
+      font: 500 11px "Roboto", sans-serif;
       position: relative;
     }
 
    .dropdown {
       position: relative;
       display: inline-block;
-      font: 400 18px 'Roboto', sans-serif;
+      font: 400 11px 'Roboto', sans-serif;
 
       margin-right: 20px;
     }
     
     .dropdown select {
       width: 100px;
-      font: 400 16px 'Roboto', sans-serif;
+      font: 400 11px 'Roboto', sans-serif;
       border: 2px solid #000000;
       border-radius: 12px;
     }
@@ -207,11 +207,11 @@
    background: #e3e4e5;
    border-radius: 23.93px;
    padding: 38.29px;
-   width: 850px;
-   height: 300px;
+   width: 550px;
+   height: 270px;
    position: absolute;
-   left: 930px;
-  top: 504px;
+   left: 790px;
+  top: 434px;
    overflow: hidden;
   }
 
@@ -231,7 +231,7 @@
 .suggestion-text {
    color: #2a2d30;
     text-align: center;
-    font: 800 16.75px 'Roboto', sans-serif;
+    font: 500 12px 'Roboto', sans-serif;
     position: relative;
    }
 
@@ -245,7 +245,7 @@
     align-items: center;
     justify-content: flex-start;
     flex-shrink: 0;
-    width: 750px;
+    width: 480px;
     position: relative;
    }
 
@@ -253,16 +253,16 @@
    color: #000000;
     text-align: left;
     position: relative;
-    width: 690 px;
+    width: 380 px;
    }
 
 .text-1-span {
            color: #000000;
-           font:500 16.75px 'Roboto', sans-serif;   
+           font:500 11.5px 'Roboto', sans-serif;   
        }
 .text-1-span2 {
            color: #000000;
-           font: 400 15px 'Roboto', sans-serif;    
+           font: 400 11.5px 'Roboto', sans-serif;    
            
        }
 
