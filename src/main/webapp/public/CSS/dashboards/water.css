@@ -1,0 +1,291 @@
+.dashboard, .dashboard * {
+   box-sizing: border-box;
+   }
+.dashboard {
+  display: flex;
+   flex-direction: column;
+   gap: 17px;
+   align-items: flex-start;
+   justify-content: flex-start;
+   position: relative;
+  }
+
+.headerframe {
+  background: #f7f7f7;
+   border-radius: 20px;
+   flex-shrink: 0;
+   width: 1810px;
+   height: 76px;
+   position: relative;
+   overflow: hidden;
+  }
+
+.body-frame {
+  background: #f7f7f7;
+   border-radius: 20px;
+   flex-shrink: 0;
+   width: 1810px;
+   height: 820px;
+   position: relative;
+  }
+
+
+
+.notifications {
+  background: #e3e4e5;
+   border-radius: 18.41px;
+   font: 500 16px "Roboto", sans-serif;
+
+   padding: 15.46px;
+   width: 425px;
+   height: 380px;
+   position: absolute;
+   left: 1355px;
+   top: 100px;
+   overflow: hidden;
+  }
+
+
+
+  .servicetitle {
+   color: #2a2d30;
+   text-align: center;
+   font: 500 16px "Roboto", sans-serif;
+   position: relative;
+ }
+
+  .buttons {
+   display: flex;
+   flex-direction: column;
+   top: 25px;
+   gap: 45px;
+   align-items: flex-start;
+   justify-content: flex-start;
+   flex-shrink: 0;
+   position: relative;
+ }
+ .buttons button{
+       border: 0;
+       background: #B9EEFF;
+       color: #1a1919;
+       width: 320px;
+       font: 500 16px "Roboto", sans-serif;
+       padding: 18px;
+       font-size: 15px;
+       border-radius: 40px;
+       cursor: pointer;
+       box-shadow: 0 0 10px rgba(205, 202, 202, 0.25);
+ 
+ }
+ .buttons button:hover{
+       background: #0187b3;
+       cursor: pointer;
+ }
+
+ .buttons button2{
+   border: 0;
+   background: #010443;
+   color: #f8f7f7;
+   width: 320px;
+   font: 500 16px "Roboto", sans-serif;
+   padding: 18px;
+   font-size: 15px;
+   border-radius: 40px;
+   cursor: pointer;
+   box-shadow: 0 0 10px rgba(205, 202, 202, 0.25);
+
+}
+ 
+
+.select-services {
+  background: #e3e4e5;
+   border-radius: 18.41px;
+   padding: 32px;
+   width: 391px;
+   height: 380px;
+   position: absolute;
+   left: 935px;
+  top: 100px;
+   overflow: hidden;
+  }
+
+
+.left-sidebar {
+  background: #e3e4e5;
+   border-radius: 17.54px;
+   padding: 28.06px;
+   width: 310px;
+   height: 799px;
+   position: absolute;
+   left: 10px;
+  top: 6px;
+   overflow: hidden;
+  }
+
+
+  .introduction {
+   display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    left: 356px;
+   top: 25px;
+   }
+
+.national-water-supply-and-drainage-board {
+   color: #2a2d30;
+    text-align: center;
+    top: 45px;
+    font: 750 24px 'Roboto', sans-serif;
+    position: relative;
+   }
+
+.water-logo {
+   flex-shrink: 0;
+   top: 45px;
+    width: 224px;
+    height: 196px;
+    position: relative;
+   }
+
+.text {
+   color: #000000;
+    text-align: justified;
+    top: 45px;
+    font: 400 18px 'Roboto', sans-serif;
+    position: relative;
+    width: 552px;
+    height: 108px;
+   }
+
+/*------------------------------------------USAGE-----------------------------------------*/
+   .usage {
+      background: #e3e4e5;
+      border-radius: 23.93px;
+      padding: 12.29px;
+      width: 575px;
+      height: 300px;
+      position: absolute;
+      left: 338px;
+      top: 506px;
+      overflow: hidden;
+     }
+   
+     .usagetitle {
+      color: #2a2d30;
+      text-align: center;
+      font: 500 16px "Roboto", sans-serif;
+      position: relative;
+    }
+
+   .dropdown {
+      position: relative;
+      display: inline-block;
+      font: 400 18px 'Roboto', sans-serif;
+
+      margin-right: 20px;
+    }
+    
+    .dropdown select {
+      width: 100px;
+      font: 400 16px 'Roboto', sans-serif;
+      border: 2px solid #000000;
+      border-radius: 12px;
+    }
+    
+    .dropdown select:focus {
+      outline: none;
+      border-color: #043364;
+      
+    }
+    /*-----------------------------------------------------------------------------*/
+
+     
+.suggestions {
+   background: #e3e4e5;
+   border-radius: 23.93px;
+   padding: 38.29px;
+   width: 850px;
+   height: 300px;
+   position: absolute;
+   left: 930px;
+  top: 504px;
+   overflow: hidden;
+  }
+
+
+  
+ .content-suggesions {
+   display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    left: 32px;
+   top: 18px;
+   }
+
+.suggestion-text {
+   color: #2a2d30;
+    text-align: center;
+    font: 800 16.75px 'Roboto', sans-serif;
+    position: relative;
+   }
+
+.suggesion {
+   background: #ffffff;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 750px;
+    position: relative;
+   }
+
+.text-1 {
+   color: #000000;
+    text-align: left;
+    position: relative;
+    width: 690 px;
+   }
+
+.text-1-span {
+           color: #000000;
+           font:500 16.75px 'Roboto', sans-serif;   
+       }
+.text-1-span2 {
+           color: #000000;
+           font: 400 15px 'Roboto', sans-serif;    
+           
+       }
+
+
+
+       .call-button {
+         background: #b0fea3;
+          border-radius: 15px;
+          padding: 10px;
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          left: 1646px;
+         top: 40px;
+         }
+     
+      .hotline-1939 {
+         color: #000000;
+          text-align: center;
+          font: 400 18.89px 'Roboto', sans-serif;
+          position: relative;
+         }
+     
