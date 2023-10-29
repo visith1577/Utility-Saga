@@ -1,19 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
 body {
     background: #e1ecf2;
     height: 100vh;
     /* position: fixed; */
 }
-
-
 
 .wrapper .content-middle .intro {
     width: calc(100% - 900px);

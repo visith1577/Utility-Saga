@@ -6,13 +6,12 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electricity-contact.css" rel="stylesheet">
+    <link href="../CSS/login/user/electrcity-billing.css" rel="stylesheet">
     <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="wrapper">
-
         <div class="top_navbar">
             <div class="hamburger">
                 <div class="one"></div>
@@ -37,7 +36,7 @@
             </div>
         </div>
 
-        <div class="content-middle" id="content-middle">
+        <div class="content-middle">
             <div class="sidebar" id="sidebar">
                 <ul>
                     <li class="list_button"><a href="./electricitydash.html">
@@ -50,12 +49,12 @@
                             <span class="title">Service<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="#">
+                    <li class="list_button"><a href="./electricty-billing.html">
                             <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="#">
+                    <li class="list_button"><a class="active" href="#">
                             <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -78,21 +77,38 @@
                 </ul>
             </div>
 
-            <div class="grid">
-                <div id="left-top" class="grid-element">
-                    
+            <div class="intro">
+                <h3>Tariff System</h3><br>
+                <p>You can now select your Bill Calcualtion method <br>
+                    Fixed Tariff &nbsp;&nbsp;|&nbsp;&nbsp;Variable Tariff <br><br>
+                    <a href="#">Learn More about them</a><br><br>
+                <div class="tariff">
+                    <a href="">
+                        <div class="tar" id="tar1">Fixed Tariff</div>
+                    </a>
+                    <a href="">
+                        <div class="tar" id="tar2">Variable Tariff</div>
+                    </a>
                 </div>
-                <div id="left-bottom" class="grid-element">
-
-                </div>
-                <div id="right-top" class="grid-element">
-
-                </div>
-                <div id="right-bottom" class="grid-element">
-
+                </p>
+            </div>
+            <div class="monthly">
+                <div class="prices">
+                    <div class="price">
+                        <h3>Bill Calcualtor</h3><br>
+                        <form action="">
+                            <label for="units">Units: </label>
+                            <input type="text" name=""><br><br>
+                            <label for="days">Days: </label>
+                            <input type="text" name=""><br><br>
+                            <button class="btn">Generate</button>
+                        </form>
+                    </div>
+                    <div class="price" id="pr">
+                        <h3>Price will be: </h3>
+                    </div>
                 </div>
             </div>
-        </div>
 
 </body>
 <script src="../JS/dashboard.js"></script>
