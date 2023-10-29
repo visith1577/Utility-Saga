@@ -40,22 +40,22 @@
         <div class="content-middle">
             <div class="sidebar" id="sidebar">
                 <ul>
-                    <li class="list_button"><a href="#">
+                    <li class="list_button"><a href="./electricitydash.html">
                             <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
                             <span class="title">Home<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="#">
+                    <li class="list_button"><a href="./electricity-service.html">
                             <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
                             <span class="title">Service<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="#">
+                    <li class="list_button"><a href="./electricity-service.html">
                             <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a class="active" href="#">
+                    <li class="list_button"><a  href="#">
                             <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -116,12 +116,14 @@
                 </div>
                 <div class="elec-usage">
                     <h3>Electricity Usage</h3>
-                    <div class="drp-down">
-                        <button class="drp-down-button">Choose</button>
-                        <div class="drp-list">
-                            <a href="#">Monthly</a>
-                            <a href="#">Weekly</a>
-                            <a href="#">Daily</a>
+                    <div class="dropdown">
+                        <button onmouseover="Appear()" class="dropbtn" id="selectedItem">Choose</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="#" onclick="selectItem('September 2023')">September 2023</a>
+                            <a href="#" onclick="selectItem('August 2023')">August 2023</a>
+                            <a href="#" onclick="selectItem('July 2023')">July 2023</a>
+                            <a href="#" onclick="selectItem('June 2023')">June 2023</a>
+                            <a href="#" onclick="selectItem('May 2023')">May 2023</a>
                         </div>
                     </div>
                 </div>
@@ -139,12 +141,35 @@
         scrollFunction()
     }
 
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
     function scrollFunction() {
         if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
             document.getElementById("sidebar").style.height = "80%";
         } else {
             document.getElementById("sidebar").style.height = "85%";
         }
+    }
+
+    function Appear() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function selectItem(itemText) {
+        document.getElementById("selectedItem").innerHTML = itemText;
+        document.getElementById("myDropdown").classList.remove("show");
     }
 </script>
 

@@ -4,6 +4,10 @@ body {
     /* position: fixed; */
 }
 
+ #content-middle{
+    height: 120vh;
+}
+
 .wrapper .content-middle .intro {
     width: calc(100% - 900px);
     margin-top: 20px;
@@ -35,7 +39,7 @@ body {
     margin-left: 100px;
 }
 
-.wrapper .content-middle .intro .tariff{
+.wrapper .content-middle .intro .tariff {
     display: inline;
     border: solid;
     width: fit-content;
@@ -43,27 +47,28 @@ body {
 }
 
 
-.wrapper .content-middle .intro .tariff a{
+.wrapper .content-middle .intro .tariff a {
     text-decoration: none;
     color: inherit;
     text-align: center;
 }
 
-.wrapper .content-middle .intro .tariff .tar{
+.wrapper .content-middle .intro .tariff .tar {
     display: inline-block;
     margin-top: 10px;
     width: fit-content;
 }
-#tar1{
+
+#tar1 {
     background-color: aqua;
     margin-right: 10px;
 }
 
-#tar2{
+#tar2 {
     background-color: aquamarine;
 }
 
-.wrapper .content-middle .monthly{
+.wrapper .content-middle .calculator {
     width: calc(100% - 900px);
     margin-top: 20px;
     background-color: #dae5f1;
@@ -75,18 +80,18 @@ body {
     border-radius: 10%;
 }
 
-.wrapper.collapse .monthly{
+.wrapper.collapse .calculator {
     width: calc(100%);
     margin-left: 200px;
 }
 
-.wrapper .content-middle .monthly .btn{
-    margin-left:auto;
+.wrapper .content-middle .calculator .btn {
+    margin-left: auto;
     width: 100px;
     height: 30px;
 }
 
-.wrapper .content-middle .monthly input{
+.wrapper .content-middle .calculator input {
     border-radius: 10%;
     height: 40px;
     background-color: #d0e6fd;
@@ -94,24 +99,165 @@ body {
     max-width: 100px;
 }
 
-.wrapper .content-middle .monthly .price{
+.wrapper .content-middle .calculator .price {
     width: 50%;
     float: left;
     margin-top: 20px;
 }
-#pr{
+
+#pr {
     height: 100px;
     margin-top: 50px;
     border: 2px solid;
 }
 
+.wrapper .content-middle .calculator .acc-balance{
+    margin-top: 250px;
+    margin-left: 150px;
+    border-radius: 10%;
+    width: 250px;
+    height: 100px;
+    background-color: #9acef1;
+    padding: 10px;
+}
 
+.wrapper .content-middle .calculator .acc-balance .pay{
+    margin-left: 80px;
+    background-color: #3498DB;
+    width: 80px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+}
+.wrapper .content-middle .calculator .acc-balance a{
+    text-decoration: none;
+    color: white;
+}
 
+.wrapper .content-middle .monthly {
+    width: calc(100% - 900px);
+    margin-top: 300px;
+    background-color: #dae5f1;
+    max-width: 500px;
+    height: 180px;
+    margin-left: -1150px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
 
+.wrapper.collapse .monthly {
+    width: calc(100%);
+    margin-left: -1300px;
+}
 
+.dropbtn {
+    background-color: #3498DB;
+    border-radius: 10%;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
 
+.dropdown-content a:hover {
+    background-color: #3498DB;
+}
 
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980B9;
+}
 
+.dropdown-content a {
+    color: inherit;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
 
+.show {
+    display: block;
+}
+
+.wrapper .content-middle .monthly .buttons .button-child{
+    display: inline-block;
+    margin-left: 80px;
+    background-color: #3498DB;
+    width: 80px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+.wrapper .content-middle .monthly .buttons  a{
+    text-decoration: none;
+    color: white;
+}
+
+.wrapper .content-middle .summary {
+    width: calc(100% - 900px);
+    margin-top: 520px;
+    background-color: #dae5f1;
+    max-width: 500px;
+    height: 350px;
+    margin-left: -500px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+.wrapper.collapse .summary {
+    width: calc(100%);
+    margin-left: -500px;
+}
+
+.wrapper .content-middle .status {
+    width: calc(100% - 900px);
+    margin-top: 450px;
+    background-color: #dae5f1;
+    max-width: 600px;
+    height: 420px;
+    margin-left: 100px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+.wrapper.collapse .status {
+    width: calc(100%);
+    margin-left: 200px;
+}
+
+.wrapper .content-middle .status table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.wrapper .content-middle .status td, .wrapper .content-middle .status th{
+    border: 3px solid #6e6ef2;
+    padding: 8px;
+}
+
+.wrapper .content-middle .status tr:nth-child(even){
+    background-color: #d0e6fd;
+}
+
+.wrapper .content-middle .status tr:nth-child(odd){
+    background-color: #78afe9;
+}

@@ -105,38 +105,50 @@ body {
  
 }
 
-.drp-down-button{
-    margin-top: 20px;
-    padding: 5px;
+.dropbtn {
+    background-color: #3498DB;
+    border-radius: 10%;
+    color: white;
+    margin-top: 50px;
+    padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
 }
 
-.drp-down{
+.dropdown {
     position: relative;
     display: inline-block;
 }
 
- .drp-down:hover .drp-list{
-    display: block;
-}
-
-.drp-list{
+.dropdown-content {
     display: none;
     position: absolute;
+    background-color: #f1f1f1;
     min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-.drp-list a{
+.dropdown-content a:hover {
+    background-color: #3498DB;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown-content a {
+    color: inherit;
+    padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
- /* .drp-down .drp-list a:hover{
+.show {
     display: block;
-} */
+}
 
 .wrapper .content-middle .suggestions{
     display: flex;
