@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/WaterServices/WaterComplaint.css" rel="stylesheet">
+    <link href="../CSS/WaterServices/waterviewcomplaints.css" rel="stylesheet">
 </head>
 
 <body>
@@ -95,85 +95,72 @@
                       <button class="button">Online Bill Payment</button>
                     </div>
                   </div>
-            
-                  <div class="formbox">
-                    <div class="section1">
-                      <div class="servicetitle">Select the service you need</div>
-                      <form class="form1">
-                        <div class="textbox">
-                          <label for="acc">Account Number</label>
-                          <input type="text1" id="acc" name="acc">
-                        </div>
-                        <div class="phone">
-                          <label for="phone">phone number:</label>
-                          <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-                        </div>
-                        <div class="date">
-                          <label for="day">Date:</label>
-                          <input type="date" id="day" name="day">
-                        </div>
-                      </form>
-                      <form class="form1">
-                        <div class="dropdown">
-                          <label for="Catogary">Catogary:</label>
-                          <select id="Catogary" name="Catogary">
-                            <option value="operational">Operational</option>
-                            <option value="commercial">Commercial</option>
-                          </select>
-                        </div>
-                        <div class="dropdown">
-                          <label for="type">Commercial Complaint Type:</label>
-                          <select id="type" name="type">
-                            <option value="MainLeak">Main Leak</option>
-                            <option value="ConnectionLeak">Connection Leak</option>
-                            <option value="Nowater">No water</option>
-                            <option value="LowPressure">Low Pressure</option>
-                            <option value="LeakNearMeter">Leak Near Meter</option>
-                            <option value="WaterQualityProblem">Water Quality Problem</option>
-                            <option value="Other">Other</option>
-                          </select>
-                        </div>
-                    </div>
-                    <div class="formbox1">
-            
-                        <div class="Complainttitle">Complaint Details</div>
-                        <div class="ComplaintNumbox">
-                          <div class="compaintNumbtn">
-                            <button class="button">Generate Complaint Number</button>
-                          </div>
-                          <div class="ComplaintNumberbox">
-                            <label for="complaintnum">Complaint Number: </label>
-                            <input type="text" id="complaintnum" name="complaintnum">
-                          </div>
-                        </div>
-                        <form class="form1">
-                          <div class="textbox">
-                            <label for="acc">Customer Name: </label>
-                            <input type="text" id="acc" name="acc">
-                          </div>
-                          <div class="textbox">
-                            <label for="description">Description: </label>
-                            <textarea id="description" name="description" rows="4"></textarea>
-                          </div>
-                          <div class="textbox">
-                            <label for="nic">NIC: </label>
-                            <input type="text" id="nic" name="nic">
-                          </div>
-                          <div class="textbox">
-                            <label for="address">Customer Address: </label>
-                            <input type="text" id="address" name="address">
-                          </div>
-                        </form>
-                        <div class="savecompbutn">
-                          <button class="button">Save Details</button>
-                        </div>
-            
-                      </div>
-                    </div>
+                  <div class="viewcomplaint_Box">
+                    
+              <h4>View Complaint</h4>
+
+              <table>
+                  <tr>
+                      <th>Complaint ID</th>
+                      <td>001</td>
+                  </tr>
+                  <tr>
+                      <th>Date</th>
+                      <td>2023-10-30</td>
+                  </tr>
+                  <tr>
+                      <th>Complainant Name</th>
+                      <td>John Doe</td>
+                  </tr>
+                  <tr>
+                      <th>Subject</th>
+                      <td>Internet Connectivity Issue</td>
+                  </tr>
+                  <tr>
+                      <th>Description</th>
+                      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</td>
+                  </tr>
+                  <tr>
+                      <th>Status</th>
+                      <td>In Progress</td>
+                  </tr>
+              </table>
+
+              <table>
+                <tr>
+                    <th>Complaint ID</th>
+                    <td>001</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>2023-10-30</td>
+                </tr>
+                <tr>
+                    <th>Complainant Name</th>
+                    <td>John Doe</td>
+                </tr>
+                <tr>
+                    <th>Subject</th>
+                    <td>Internet Connectivity Issue</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>In Progress</td>
+                </tr>
+            </table>
+
+                  </div>
+                  
+                  
+
+
                   </div>        
               </div>
               
-
 
 
 
