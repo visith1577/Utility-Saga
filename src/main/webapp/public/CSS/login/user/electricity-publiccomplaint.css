@@ -8,12 +8,18 @@ body {
     height: 120vh;
 }
 
-.box {
-    display: flex;
+.wrapper .content-middle .box {
+    width: calc(100% - 600px);
     height: 90%;
     margin-left: 20%;
-    margin-top: 1%;
+    margin-top: 2%;
     gap: 10px;
+}
+
+
+.wrapper.collapse .content-middle .box{
+    width: calc(80%-70px);
+    margin-left: 350px;
 }
 
 .wrapper .content-middle .box .formbox {
