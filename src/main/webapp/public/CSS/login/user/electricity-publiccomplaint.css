@@ -8,17 +8,14 @@ body {
     height: 120vh;
 }
 
-.box {
-    display: flex;
+.wrapper .content-middle .box {
+    width: calc(100% - 600px);
     height: 90%;
     margin-left: 20%;
-    margin-top: 1%;
+    margin-top: 2%;
     gap: 10px;
 }
 
-.wrapper.collapse .box{
-    margin-left: 30%;
-}
 
 .wrapper .content-middle .box .formbox {
     background: #f5f4f4;
