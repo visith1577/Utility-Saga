@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electricity-newconnection.css" rel="stylesheet">
+    <link href="../CSS/login/user/settings.css" rel="stylesheet">
     <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
@@ -72,41 +72,43 @@
                 </ul>
             </div>
 
-            <div class="reg-details" id="reg-details">
-                <h3>New Connection Details</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-            </div>
-            <div class="reg-form">
-                <h3>New Connection Request</h3>
+            <div class="change-password">
+                <h3>Change Password</h3>
                 <form action="">
                     <div class="row">
                         <div class="label-prop">
-                            <label for="address">Address:</label>
+                            <label for="address">Enter Password:</label>
                         </div>
                         <div class="input-prop">
-                            <input type="text" name="name">
+                            <input type="password" name="e-password">
                         </div>
                     </div>
                     <div class="row">
                         <div class="label-prop">
-                            <label for="name">District:</label>
+                            <label for="address">New Password: </label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="password" name="n-password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Confirm Password: </label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="password" name="c-password">
+                        </div><br><br><br>
+                        <div class="row">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+            </div>
+            <div class="help-form">
+                <h3>Help Form</h3>
+                <form action="">
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Subject:</label>
                         </div>
                         <div class="input-prop">
                             <input type="text" name="name">
@@ -118,28 +120,10 @@
                         </div>
                         <div class="input-prop">
                             <select name="connection-type">
-                                <option value="household">Household</option>
-                                <option value="smallscale">Small Scale Business</option>
-                                <option value="largescale">Large Scale Business</option>
-                                <option value="industrial">Industrial</option>
-                                <option value="organizational">Organizational</option>
+                                <option value="electricity">Electricity</option>
+                                <option value="water">Water</option>
+                                <option value="fuel">Fuel</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="label-prop">
-                            <label for="name">Expected Date:</label>
-                        </div>
-                        <div class="input-prop" id="date-input">
-                            <input type="date" name="name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="label-prop">
-                            <label for="name">Name</label>
-                        </div>
-                        <div class="input-prop">
-                            <input type="text" name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -155,6 +139,55 @@
                         <input type="submit" value="Submit">
                     </div>
             </div>
+
+            <div class="notifications">
+                <h3>Subscribe Settings</h3>
+                <div class="notfication">
+                    <div class="notify">
+                        <p>Suggestions: <p>
+                    </div>
+                    <div class="notify" style="padding-left: 60px;">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="notfication">
+                    <div class="notify">
+                        <p>E- Bills: <p>
+                    </div>
+                    <div class="notify" style="padding-left: 100px;">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="notfication">
+                    <div class="notify">
+                        <p>Email Alerts: <p>
+                    </div>
+                    <div class="notify" style="padding-left: 65px;">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="notfication">
+                    <div class="notify">
+                        <p>SMS Alerts: <p>
+                    </div>
+                    <div class="notify" style="padding-left: 70px;">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 </body>
@@ -171,15 +204,6 @@
             document.getElementById("sidebar").style.height = "85%";
         }
     }
-
-    <!-- function openForm() {
-        document.getElementById("bform").style.display = "block";
-        document.getElementsById("reg-details").setAttribute("class", "narrow");
-    }
-
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    } -->
 
 </script>
 
