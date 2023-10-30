@@ -36,11 +36,12 @@ body {
     text-align: center;
     width: fit-content;
     height: 25px;
-    margin-left: 80px;
+    margin-left: 45%;
     padding: 2px;
 }
 
 #reg-child2{
+    margin-left: 10%;
     width: 160px;
     height: 30px;
     padding-top: 5px; 
