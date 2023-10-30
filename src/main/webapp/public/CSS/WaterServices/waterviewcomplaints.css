@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: #e1ecf2;
+    height: 100vh;
+    /* position: fixed; */
+}
+
+.wrapper {
+    margin: 10px;
+    height: auto;
+}
+
+.wrapper .top_navbar {
+    width: calc(100% - 40px);
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 60px;
+    display: flex;
+    position: fixed;
+    top: 10px;
+}
+
+.wrapper .top_navbar .hamburger {
+    width: 70px;
+    height: 100%;
+    background: #F5F4F4;
+    padding: 15px 17px;
+    border-top-left-radius: 20px;
+    cursor: pointer;
+}
+
+.wrapper .top_navbar .hamburger div {
+    width: 35px;
+    height: 4px;
+    background: #92a6e2;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.wrapper .top_navbar .top_menu {
+    width: calc(100% - 70px);
+    height: 100%;
+    background: #fff;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .top_navbar .top_menu .logo {
+    color: #2e4ead;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: 20px;
+}
+
+.wrapper .top_navbar .top_menu ul {
+    display: flex;
+}
+
+.wrapper .top_navbar .top_menu ul li a {
+    display: block;
+    margin: 0 10px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #414549;
+}
+
+.wrapper .top_navbar .top_menu ul li a:hover {
+    background: #F5F4F4;
+    color: #fff;
+}
+
+.wrapper .top_navbar .top_menu .item1{
+    width: 30px;
+    height: 30px;
+    margin: 2px 100px 0px 2px;
+}
+
+.wrapper .top_navbar .top_menu .item2{
+    width: 30px;
+    height: 30px;
+    margin: 2px 100px 100px 10px;
+}
+
+.wrapper .top_navbar .top_menu .item3{
+    width: 30px;
+    height: 30px;
+    margin: 2px 100px 10px 2px;
+}
+
+.wrapper .content-middle {
+    display: flex;
+    margin-top: 80px;
+    background-color: #fff; 
+    height: calc(110vh);
+}
+
+.wrapper .content-middle .sidebar {
+    position: fixed;
+    margin-top: 40px;
+    margin-bottom: px;
+    top: 50px;
+    left: 20px;
+    bottom: 0;
+    background: #F5F4F4;
+    width: 200px;
+    height: 85%;
+    border-radius: 10px 10px 10px 20px;
+    transition: all 0.3s ease;
+    padding-top: 20px;
+}
+
+.wrapper .content-middle .sidebar ul li a {
+    display: block;
+    padding: 20px;
+    position: relative;
+    margin-bottom: 1px;
+    color: #92a6e2;
+    white-space: nowrap;
+}
+
+.wrapper .content-middle .sidebar ul li a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: #92a6e2;
+    display: none;
+}
+
+.wrapper .content-middle .sidebar ul li a span.icon {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.wrapper .content-middle .sidebar ul li a span.title {
+    display: inline-block;
+}
+
+.wrapper .content-middle .sidebar ul li a:hover,
+.wrapper .content-middle .sidebar ul li a.active {
+    background: #4b4c4d;
+    color: #fff;
+}
+
+.wrapper .content-middle .sidebar ul li a:hover:before,
+.wrapper .content-middle .sidebar ul li a.active:before {
+    display: block;
+}
+
+.wrapper .content-middle .box {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 250px;
+    margin-top: 50px;
+    position: relative;
+  }
+  /* Servise .................................................................................*/
+  
+  .wrapper .content-middle .select-services1 {
+    background: #f5f4f4;
+    border-radius: 18.41px;
+    padding: 30px 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+  .wrapper .content-middle .servicetitle {
+    color: #2a2d30;
+    text-align: center;
+    font: 500 16px "Roboto", sans-serif;
+    position: relative;
+  }
+  
+  .Complainttitle {
+    color: #2a2d30;
+    text-align: start;
+    font: 500 16px "Roboto", sans-serif;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .wrapper .content-middle .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .wrapper .content-middle .buttons button{
+        border: 0;
+        background: #006A8C;
+        color: #f8f8f8;
+        width: 150px;
+        font-family: inherit;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  
+  }
+  .buttons button:hover{
+        background: #002a38;
+        cursor: pointer;
+  }
+  
+  /* complaintmain..................................... */
+  .complaintmain {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  /* complaintmain option..................................... */
+  .select-complaint-option {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items:center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .compainbtn {
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+    align-items: center; 
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+
+
+  .compainbtn button{
+        border: 0;
+        background: #006A8C;
+        color: #f8f8f8;
+        width: 150px;
+        font-family: inherit;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  
+  }
+  .compainbtn button:hover{
+        background: rgb(5, 42, 47);
+        cursor: pointer;
+  }
+ 
+ .viewcomplaint_Box{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+ }
+
+ .viewcomplaint_Box table {
+    border-collapse: collapse;
+    font: 500 12px 'Roboto', sans-serif;
+    width: 170%;
+    margin: 20px auto;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
