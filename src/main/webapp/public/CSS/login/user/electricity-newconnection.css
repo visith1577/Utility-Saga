@@ -1,0 +1,116 @@
+body {
+    background: #e1ecf2;
+    height: 100vh;
+    /* position: fixed; */
+}
+
+#content-middle {
+    height: 100vh;
+}
+
+.wrapper .content-middle .reg-details {
+    width: calc(85%);
+    margin-top: 20px;
+    background-color: #dae5f1;
+    max-width: 40%;
+    height: 90%;
+    margin-left: 15.2%;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+
+
+.wrapper .content-middle .reg-details p {
+    text-align: justify;
+    padding: 10px;
+}
+
+.wrapper .content-middle .reg-details h3 {
+    padding: 10px;
+}
+
+.wrapper.collapse .reg-details {
+    width: calc(100% - 70px);
+    margin-left: 150px;
+}
+
+.wrapper .content-middle .reg-form {
+    width: calc(85%);
+    margin-top: 20px;
+    background-color: #dae5f1;
+    max-width: 40%;
+    height: 90%;
+    margin-left: 4%;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+.wrapper.collapse .reg-form {
+    margin-left: 8%;
+}
+
+.wrapper .content-middle .reg-form h3 {
+    padding: 10px;
+}
+
+
+input[type=text],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #3778f2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.label-prop {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.input-prop {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#date-input {
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .label-prop,
+    .input-prop,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
