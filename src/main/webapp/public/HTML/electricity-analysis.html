@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electricity-newconnection.css" rel="stylesheet">
+    <link href="../CSS/login/user/electricity-analysis.css" rel="stylesheet">
     <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
@@ -72,41 +72,12 @@
                 </ul>
             </div>
 
-            <div class="reg-details" id="reg-details">
-                <h3>New Connection Details</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
-                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
-                    quam placeat magnam.</p>
-            </div>
-            <div class="reg-form">
-                <h3>New Connection Request</h3>
+            <div class="intro">
+                <h3>Report Generation</h3><br>
                 <form action="">
                     <div class="row">
                         <div class="label-prop">
-                            <label for="address">Address:</label>
-                        </div>
-                        <div class="input-prop">
-                            <input type="text" name="name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="label-prop">
-                            <label for="name">District:</label>
+                            <label for="address">Report Name:</label>
                         </div>
                         <div class="input-prop">
                             <input type="text" name="name">
@@ -118,17 +89,15 @@
                         </div>
                         <div class="input-prop">
                             <select name="connection-type">
-                                <option value="household">Household</option>
-                                <option value="smallscale">Small Scale Business</option>
-                                <option value="largescale">Large Scale Business</option>
-                                <option value="industrial">Industrial</option>
-                                <option value="organizational">Organizational</option>
+                                <option value="comparison">Comparison</option>
+                                <option value="bill-summary">Bill Summary</option>
+                                <option value="suggestions">Suggestions</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="label-prop">
-                            <label for="name">Expected Date:</label>
+                            <label for="name">Start Date:</label>
                         </div>
                         <div class="input-prop" id="date-input">
                             <input type="date" name="name">
@@ -136,7 +105,24 @@
                     </div>
                     <div class="row">
                         <div class="label-prop">
-                            <label for="name">Name</label>
+                            <label for="name">End Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Generate">
+                    </div>
+                </form>
+            </div>
+
+            <div class="budget">
+                <h3>Budget Setting</h3>
+                <form action="">
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Budget Name:</label>
                         </div>
                         <div class="input-prop">
                             <input type="text" name="name">
@@ -144,24 +130,122 @@
                     </div>
                     <div class="row">
                         <div class="label-prop">
-                            <label for="comments">Comments:</label>
+                            <label for="name">Start Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">End Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Expected Units:</label>
                         </div>
                         <div class="input-prop">
-                            <textarea id="subject" name="subject" placeholder="Write something.."
-                                style="height:200px"></textarea>
+                            <input type="number" name="name" style="margin-top: 10px;">
                         </div>
                     </div>
                     <div class="row">
                         <input type="submit" value="Submit">
                     </div>
+                </form>
+                <table>
+                    <tr>
+                        <th>Budget Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Expected Units</th>
+                    </tr>
+                    <tr>
+                        <td>October</td>
+                        <td>1/10/2023</td>
+                        <td>1/10/2023</td>
+                        <td>130</td>
+                    </tr>
+                    <tr>
+                        <td>September</td>
+                        <td>1/9/2023</td>
+                        <td>1/9/2023</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>August</td>
+                        <td>1/8/2023</td>
+                        <td>1/8/2023</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>1/7/2023</td>
+                        <td>1/7/2023</td>
+                        <td>120</td>
+                    </tr>
+                </table>
             </div>
+
+            <div class="div3">
+                <h3>Suggestions</h3>
+                <div class="content-suggesions">
+                    <div class="suggesion">
+                        <div class="text-1">
+                            <span>
+                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
+                                </span>
+                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-suggesions">
+                    <div class="suggesion">
+                        <div class="text-1">
+                            <span>
+                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
+                                </span>
+                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+    </div>
 
 </body>
 <script src="../JS/dashboard.js"></script>
 <script>
     window.onscroll = function () {
         scrollFunction()
+    }
+
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
     }
 
     function scrollFunction() {
@@ -172,14 +256,14 @@
         }
     }
 
-    <!-- function openForm() {
-        document.getElementById("bform").style.display = "block";
-        document.getElementsById("reg-details").setAttribute("class", "narrow");
+    function Appear() {
+        document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    } -->
+    function selectItem(itemText) {
+        document.getElementById("selectedItem").innerHTML = itemText;
+        document.getElementById("myDropdown").classList.remove("show");
+    }
 
 </script>
 
