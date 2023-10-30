@@ -21,6 +21,11 @@ body {
     border-radius: 10%;
 }
 
+.wrapper.collapse .content-middle .grid-container .new-cust{
+    width: calc(40%-70px);
+    margin-left: 120px;
+}
+
 .wrapper .content-middle .grid-container .new-cust p {
     text-align: justify;
     padding: 10px;
@@ -69,4 +74,41 @@ body {
 .wrapper .content-middle .grid-container .new-cust .reg a{
     text-decoration: none;
     color: inherit;
+}
+.wrapper .content-middle .grid-container .new-cust2 .reg a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.wrapper .content-middle .grid-container .new-cust2 {
+    margin-left: 300px;
+    margin-top: 20px;
+    background-color: #b0bdcb;
+    width: 400px;
+    height: 200px;
+    border-radius: 10%;
+}
+
+.wrapper .content-middle .grid-container .new-cust2 p {
+    text-align: justify;
+    padding: 10px;
+}
+.wrapper .content-middle .grid-container .new-cust2 h3{
+    padding: 15px;
+}
+
+.wrapper .content-middle .grid-container .new-cust2 .reg .reg-child{
+    display: inline-block;
+    margin-right: 20px;
+    background-color: #9aa4ae;
+    text-align: center;
+    width: fit-content;
+    height: 25px;
+    margin-left: 45%;
+    padding: 2px;
+}
+
+.wrapper.collapse .content-middle .grid-container .new-cust2{
+    width: calc(40%-70px);
+    margin-left: 350px;
 }
