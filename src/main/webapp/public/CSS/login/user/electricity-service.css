@@ -1,0 +1,71 @@
+
+body {
+    background: #e1ecf2;
+    height: 100vh;
+    /* position: fixed; */
+}
+
+.wrapper .content-middle .grid-container{
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-column: 50px;
+    grid-gap: 20px;
+}
+
+.wrapper .content-middle .grid-container .new-cust {
+    margin-left: 300px;
+    margin-top: 20px;
+    background-color: #b0bdcb;
+    width: 400px;
+    height: 200px;
+    border-radius: 10%;
+}
+
+.wrapper .content-middle .grid-container .new-cust p {
+    text-align: justify;
+    padding: 10px;
+}
+.wrapper .content-middle .grid-container .new-cust h3{
+    padding: 15px;
+}
+
+.wrapper .content-middle .grid-container .new-cust .reg .reg-child{
+    display: inline-block;
+    margin-right: 20px;
+    background-color: #9aa4ae;
+    text-align: center;
+    width: fit-content;
+    height: 25px;
+    margin-left: 80px;
+    padding: 2px;
+}
+
+#reg-child2{
+    width: 160px;
+    height: 30px;
+    padding-top: 5px; 
+}
+
+#grid3 .reg .reg-child{
+    margin-left: 12px;
+    margin-right: 5px;
+}
+
+#grid4 .reg .reg-child{
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 40px;
+}
+
+#grid5 .reg .reg-child{
+    margin-left: 150px;
+}
+
+#grid6 .reg .reg-child{
+    margin-left: 150px;
+}
+
+.wrapper .content-middle .grid-container .new-cust .reg a{
+    text-decoration: none;
+    color: inherit;
+}

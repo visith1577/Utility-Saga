@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electrcitydshbaord.css" rel="stylesheet">
+    <link href="../CSS/login/user/electricity-service.css" rel="stylesheet">
     <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
@@ -50,12 +50,12 @@
                             <span class="title">Service<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="./electricity-service.html">
+                    <li class="list_button"><a href="./electricty-billing.html">
                             <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a  href="#">
+                    <li class="list_button"><a href="#">
                             <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -77,62 +77,77 @@
                         </a></li>
                 </ul>
             </div>
-
-            <div class="intro">
-                <h2>Ceylon Electricity Board</h2><br>
-                <img alt="Electricity Board" src="../images/electricity_board.png"><br><br>
-                <p>
-                    The Ceylon Electricity Board - CEB,
-                    is the largest electricity company in Sri Lanka.
-                    With a market share of nearly 100%, it controls
-                    all major functions of electricity generation,
-                    transmission, distribution and retailing in Sri Lanka.
-                </p>
-            </div>
-            <div class="about">
-                <h2><b>About Electricity Companies</b></h2>
-                <img src="../images/MinistryofPower&Energy.png" alt="Ministry of Power & Energy">
-                <img src="../images/LECO.png" alt="LECO">
-                <img src="../images/LTL.png" alt="LTL">
-            </div>
-            <div class="contact-us">
-                <div class="hotline">
-                    <img src="../images/baseline-call.svg" alt="Call">
-                    <center>
-                        <h2><b>Hotline:&nbsp;&nbsp;&nbsp;&nbsp;1987</b></h2>
-                    </center>
-                </div><br>
-                <div class="notification">
-                    <h2>Notifications</h2>
-                    <div class="powercut">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sapiente, repellat fugiat
-                            iure veniam assumenda distincti</p><br>
-                        <p>No scheduled power cuts this week.</p>
-                        <center><button class="b1">Schedule</button></center><br>
-                        <p>Your electricity bill for the month: </p>
-                        <h3>BALANCE: Rs.1500.00</h3>
-                        <center><button class="b1">View Bill</button></center><br>
+            <div class="grid-container">
+                <div class="new-cust" id="grid1">
+                    <h3>New Customer</h3><br>
+                    <p>Are You a New Customer? <br>
+                        Pre Requisites?&nbsp;&nbsp;|&nbsp;&nbsp;Documents Required? <br>
+                        How to Apply?&nbsp;&nbsp;|&nbsp;&nbsp;Other Instructions <br><br>
+                    <div class="reg">
+                        <a href="">
+                            <div class="reg-child">Form</div>
+                        </a>
+                        <a href="">
+                            <div class="reg-child">Details</div>
+                        </a>
+                    </div>
+                    </p>
+                </div>
+                <div class="new-cust" id="grid2">
+                    <h3>Public Complaints</h3><br>
+                    <p>Capture a Complaint <br><br>
+                        Check the Status<br><br>
+                    </p>
+                    <div class="reg">
+                        <a href="">
+                            <center>
+                                <div class="reg-child" id="reg-child2">Public Complain</div>
+                            </center>
+                        </a>
                     </div>
                 </div>
-                <div class="elec-usage">
-                    <h3>Electricity Usage</h3>
-                    <div class="dropdown">
-                        <button onmouseover="Appear()" class="dropbtn" id="selectedItem">Choose</button>
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="#" onclick="selectItem('September 2023')">September 2023</a>
-                            <a href="#" onclick="selectItem('August 2023')">August 2023</a>
-                            <a href="#" onclick="selectItem('July 2023')">July 2023</a>
-                            <a href="#" onclick="selectItem('June 2023')">June 2023</a>
-                            <a href="#" onclick="selectItem('May 2023')">May 2023</a>
+                <div class="new-cust" id="grid3">
+                    <h3>Bill Details</h3><br>
+                    <p>Bill Calculation &nbsp;&nbsp; | &nbsp;&nbsp; Download Bill <br>
+                        Instant Bill Payment <br>
+                        Get Tariff Details <br><br>
+                    </p>
+                    <div class="reg">
+                        <a href=""><div class="reg-child">Pay the Bill</div></a>
+                        <a href=""><div class="reg-child">Select the Tariff</div></a>
+                        <a href=""><div class="reg-child">Download the BIll</div></a>
+                    </div>
+                </div>
+                <div class="new-cust" id="grid4">
+                    <h3>IoT Devices</h3><br>
+                    <p>Add Devices <br>
+                        Energy Monitoring <br>
+                        Energy Efficiency Tips <br><br>
+                        <div class="reg">
+                            <a href=""><div class="reg-child">Register Device</div></a>
+                            <a href=""><div class="reg-child">Suggestions</div></a>
                         </div>
+                    </p>
+                </div>
+                <div class="new-cust" id="grid5">
+                    <h3>Save Electricity</h3>
+                    <p>Here are some personalized tips for you on how to save electricity</p><br>
+                    <div class="reg">
+                        <a href=""><div class="reg-child">Suggestions</div></a>
                     </div>
                 </div>
-                <div class="suggestions">
-                    <h3>View Suggestions:</h3>
+                <div class="new-cust" id="grid6">
+                    <h3>Customer Service</h3>
+                    <p>Contact Customer Support <br><br>
+                        &nbsp;&nbsp;-Call Customer Service <br>
+                        &nbsp;&nbsp;-Message with Us <br>
+                        &nbsp;&nbsp;-Email to Us <br>
+                    </p>
+                    <div class="reg">
+                        <a href=""><div class="reg-child">Contact Us</div></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 </body>
 <script src="../JS/dashboard.js"></script>
@@ -141,35 +156,12 @@
         scrollFunction()
     }
 
-
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
-
     function scrollFunction() {
         if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
             document.getElementById("sidebar").style.height = "80%";
         } else {
             document.getElementById("sidebar").style.height = "85%";
         }
-    }
-
-    function Appear() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    function selectItem(itemText) {
-        document.getElementById("selectedItem").innerHTML = itemText;
-        document.getElementById("myDropdown").classList.remove("show");
     }
 </script>
 
