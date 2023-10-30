@@ -16,6 +16,10 @@ body {
     gap: 10px;
 }
 
+.wrapper.collapse .box{
+    margin-left: 30%;
+}
+
 .wrapper .content-middle .box .formbox {
     background: #f5f4f4;
     border-radius: 18.41px;
