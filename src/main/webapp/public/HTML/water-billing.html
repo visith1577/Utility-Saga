@@ -82,6 +82,14 @@
                         <td>00012322</td>
                         <td>47, abc, abc </td>
                     </tr>
+                    <tr>
+                        <td>00012322</td>
+                        <td>47, abc, abc </td>
+                    </tr>
+                    <tr>
+                        <td>00012322</td>
+                        <td>47, abc, abc </td>
+                    </tr>
                 </table>
             </div>
             <div class="calculator">
@@ -103,13 +111,13 @@
 
                 <div class="acc-balance">
                     <h3>Your account balance is:</h3><br><br>
-                    <a href=""><div class="pay">Pay</div></a>
+                    <a href=""><div class="pay">Pay Now</div></a>
                 </div>
             </div>
 
             <div class="monthly">
                 <h3>Monthly Bills</h3><br>
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                     <button onmouseover="Appear()" class="dropbtn" id="selectedItem">Choose</button>
                     <div id="myDropdown" class="dropdown-content">
                         <a href="#" onclick="selectItem('September 2023')">September 2023</a>
@@ -118,7 +126,15 @@
                         <a href="#" onclick="selectItem('June 2023')">June 2023</a>
                         <a href="#" onclick="selectItem('May 2023')">May 2023</a>
                     </div>
-                </div>
+                </div> -->
+
+                <label for="Dropdown">Select Month</label>
+                <select id="Months">
+                    <option value="September 2023">September-2023</option>
+                    <option value="October 2023">October-2023</option>
+                    <option value="November 2023">November-2023</option>
+                        </select>
+            
                 <br><br>
                 <div class="buttons">
                     <a href=""><div class="button-child">Download</div></a>
@@ -126,9 +142,8 @@
                 </div>
             </div>
 
-            <div class="summary">
-
-            </div>
+            <!-- <div class="summary">
+            </div> -->
 
             <div class="status">
                 <h3>Payment Status</h3><br>
