@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+Created by IntelliJ IDEA.
+User: visithkumarapperuma
+Date: 2023-10-31
+Time: 19:52
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html lang="en">
 
 <head>
@@ -6,8 +13,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electrcitydshbaord.css" rel="stylesheet">
-    <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/login/user/electricitydashbaord.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,17 +28,17 @@
             </div>
             <div class="top_menu">
                 <div class="logo">
-                    <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
+                    <img alt="Utility Saga" height="50px" src="<%= request.getContextPath() %>/public/images/utility_saga.svg">
                 </div>
                 <ul>
                     <li><a href="#">
-                            <img alt="Cart" src="../images/cart.svg" class="item1">
+                            <img alt="Cart" src="<%= request.getContextPath() %>/public/images/cart.svg" class="item1">
                         </a></li>
                     <li><a href="#">
-                            <img alt="Notification" src="../images/notification-line.svg" class="item2">
+                            <img alt="Notification" src="<%= request.getContextPath() %>/public/images/notification-line.svg" class="item2">
                         </a></li>
                     <li><a href="#">
-                            <img alt="User" src="../images/user.svg" class="item3">
+                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" class="item3">
                         </a></li>
                 </ul>
             </div>
@@ -40,33 +47,33 @@
         <div class="content-middle">
             <div class="sidebar" id="sidebar">
                 <ul>
-                    <li class="list_button"><a href="./electricitydash.html">
-                            <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
+                    <li class="list_button"><a href="./electricityDashboard.jsp">
+                            <span class="icon"><img alt="home" src="<%= request.getContextPath() %>/public/images/home-outline.svg" /></span>
                             <span class="title">Home<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                     <li class="list_button"><a href="./electricity-service.html">
-                            <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
+                            <span class="icon"><img alt="service" src="<%= request.getContextPath() %>/public/images/service-plan.svg" /></span>
                             <span class="title">Service<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                     <li class="list_button"><a href="./electricity-service.html">
-                            <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
+                            <span class="icon"><img alt="bills" src="<%= request.getContextPath() %>/public/images/bill.svg" /></span>
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                     <li class="list_button"><a href="./electricity-analysis.html">
-                            <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
+                            <span class="icon"><img alt="analysis" src="<%= request.getContextPath() %>/public/images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                     <li class="list_button"><a href="./electricity-iot.html">
-                            <span class="icon"><img alt="report" src="../images/iot.svg" /></span>
+                            <span class="icon"><img alt="report" src="<%= request.getContextPath() %>/public/images/iot.svg" /></span>
                             <span class="title">IOT Devices<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                     <li class="list_button"><a href="./settings.html">
-                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
+                            <span class="icon"> <img alt="settings" src="<%= request.getContextPath() %>/public/images/settings-outline.svg" /></span>
                             <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
@@ -75,7 +82,7 @@
 
             <div class="intro">
                 <h2>Ceylon Electricity Board</h2><br>
-                <img alt="Electricity Board" src="../images/electricity_board.png"><br><br>
+                <img alt="Electricity Board" src="<%= request.getContextPath() %>/public/images/electricity_board.png"><br><br>
                 <p>
                     The Ceylon Electricity Board - CEB,
                     is the largest electricity company in Sri Lanka.
@@ -86,16 +93,16 @@
             </div>
             <div class="about">
                 <h2><b>About Electricity Companies</b></h2>
-                <img src="../images/MinistryofPower&Energy.png" alt="Ministry of Power & Energy">
-                <img src="../images/LECO.png" alt="LECO">
-                <img src="../images/LTL.png" alt="LTL">
+                <img src="<%= request.getContextPath() %>/public/images/MinistryofPower&Energy.png" alt="Ministry of Power & Energy">
+                <img src="<%= request.getContextPath() %>/public/images/LECO.png" alt="LECO">
+                <img src="<%= request.getContextPath() %>/public/images/LTL.png" alt="LTL">
             </div>
             <div class="contact-us">
                 <div class="hotline">
-                    <img src="../images/baseline-call.svg" alt="Call">
-                    <center>
+                    <img src="<%= request.getContextPath() %>/public/images/baseline-call.svg" alt="Call">
+                    <div style="text-align: center;">
                         <h2><b>Hotline:&nbsp;&nbsp;&nbsp;&nbsp;1987</b></h2>
-                    </center>
+                    </div>
                 </div><br>
                 <div class="notification">
                     <h2>Notifications</h2>
@@ -103,10 +110,10 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sapiente, repellat fugiat
                             iure veniam assumenda distincti</p><br>
                         <p>No scheduled power cuts this week.</p>
-                        <center><button class="b1">Schedule</button></center><br>
+                        <div style="text-align: center;"><button class="b1">Schedule</button></div><br>
                         <p>Your electricity bill for the month: </p>
                         <h3>BALANCE: Rs.1500.00</h3>
-                        <center><button class="b1">View Bill</button></center><br>
+                        <div style="text-align: center;"><button class="b1">View Bill</button></div><br>
                     </div>
                 </div>
                 <div class="elec-usage">
@@ -130,7 +137,7 @@
     </div>
 
 </body>
-<script src="../JS/dashboard.js"></script>
+<script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
 <script>
     window.onscroll = function () {
         scrollFunction()
@@ -139,10 +146,10 @@
 
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            let i;
             for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
+                const openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
                 }
