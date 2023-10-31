@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="wrapper" >
+    <div class="wrapper">
         <div class="top_navbar">
             <div class="hamburger">
                 <div class="one"></div>
@@ -54,7 +54,7 @@
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a  href="./electricity-analysis.html">
+                    <li class="list_button"><a href="./electricity-analysis.html">
                             <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -62,6 +62,11 @@
                     <li class="list_button"><a href="./electricity-iot.html">
                             <span class="icon"><img alt="report" src="../images/iot.svg" /></span>
                             <span class="title">IOT Devices<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-contact.html">
+                            <span class="icon"> <img alt="settings" src="../images/call.svg" /></span>
+                            <span class="title">Contact Us<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                     <li class="list_button"><a href="./settings.html">
@@ -105,7 +110,9 @@
 
                 <div class="acc-balance">
                     <h3>Your account balance is:</h3><br><br>
-                    <a href=""><div class="pay">Pay</div></a>
+                    <a href="">
+                        <div class="pay">Pay</div>
+                    </a>
                 </div>
             </div>
 
@@ -123,8 +130,12 @@
                 </div>
                 <br><br>
                 <div class="buttons">
-                    <a href=""><div class="button-child">Download</div></a>
-                    <a href=""><div class="button-child">Pay</div></a>
+                    <a href="">
+                        <div class="button-child">Download</div>
+                    </a>
+                    <a href="">
+                        <div class="button-child">Pay</div>
+                    </a>
                 </div>
             </div>
 
