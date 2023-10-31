@@ -39,7 +39,7 @@
         <div class="content-middle" id="content-middle">
             <div class="sidebar" id="sidebar">
                 <ul>
-                    <li class="list_button"><a href="./dashboard/water.html">
+                    <li class="list_button"><a href="dashboard/waterDashboard.jsp">
                             <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
                             <span class="title">Home<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -174,10 +174,10 @@
 
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            let i;
             for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
+                const openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
                 }
