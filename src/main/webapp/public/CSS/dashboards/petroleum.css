@@ -1,0 +1,111 @@
+*{
+    margin: 0;   
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    
+    
+    overflow: hidden;
+    /* position: fixed; */
+}
+.dash-cover {
+    
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100vw;
+    height: 40vh;
+}
+
+.cover2{
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100vw;
+    height: 40vh;
+}
+
+.dash-cover .dash-petroleum{
+    border: 1px solid red;
+    border-radius: 3px;
+    margin-left: 15vw;
+    
+    width: 35vw;
+    height: 45vh;
+
+}
+.dash-cover .dash-petroleum .dash-details .dash-logo{
+    display: flex;
+    justify-content: center;
+    
+}
+.dash-cover .dash-petroleum .dash-details .dash-logo img{
+    margin-top: 10px;
+    width: 8vw;
+    
+}
+
+.dash-cover .dash-petroleum .dash-details .fuel-content p{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 1.2vw;
+    font-weight: 500;
+    color: #000000;
+}
+
+.dash-cover .dash-petroleum .link-pages{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.dash-cover .dash-petroleum .link-pages button{
+    margin-top: 30px;
+    margin-left: 50px;
+    width: 12vw;
+    height: 5vh;
+    border-radius: 10px;
+    border: none;
+    background-color: #F97A7A;
+    color: rgb(0, 0, 0);
+    font-size: 1.1vw;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+.style-bar {
+    margin: 0;
+    position: absolute;
+    height: 10vh;
+    width: 100%;
+    bottom: 0;
+}
+
+.dash-cover .QR{
+    border: 1px solid red;
+    display: flex;
+    padding : 20px;
+    flex-direction: column;
+    font-weight: 600;
+    height: 45vh;
+
+}
+.dash-cover .QR img{
+    margin-top: 10px 0px 0px 10px;
+    width: 15vw;
+    height: 15vw;
+
+}
+
+.dash-cover .QR a{
+    flex-direction: flex-end; ;
+    color: #000000;
+}
+

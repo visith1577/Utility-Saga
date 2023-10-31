@@ -23,7 +23,7 @@
                     Centralized platform that offers a combination of water, fuel, <br>
                     and electricity services in one place.
                 </h2>
-                <img src="../resources/login_img.png" width="400px" alt="utility-saga">
+                <img src="../resources/FuleLogin.svg" width="400px" alt="utility-saga" >
             </aside>
             <%--            <div class="empty-div">--%>
             <%--            </div>--%>
