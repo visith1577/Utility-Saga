@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="../CSS/login/user/electricity-newconnection.css" rel="stylesheet">
+    <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+            </div>
+            <div class="top_menu">
+                <div class="logo">
+                    <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
+                </div>
+                <ul>
+                    <li><a href="#">
+                            <img alt="Cart" src="../images/cart.svg" class="item1">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="Notification" src="../images/notification-line.svg" class="item2">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="User" src="../images/user.svg" class="item3">
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-middle" id="content-middle">
+            <div class="sidebar" id="sidebar">
+                <ul>
+                    <li class="list_button"><a href="electricityDashboard.jsp">
+                            <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
+                            <span class="title">Home<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-service.html">
+                            <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
+                            <span class="title">Service<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricty-billing.html">
+                            <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
+                            <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-analysis.html">
+                            <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
+                            <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-iot.html">
+                            <span class="icon"><img alt="report" src="../images/iot.svg" /></span>
+                            <span class="title">IOT Devices<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./settings.html">
+                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
+                            <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="reg-details" id="reg-details">
+                <h3>New Connection Details</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
+                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
+                    quam placeat magnam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
+                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
+                    quam placeat magnam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
+                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
+                    quam placeat magnam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
+                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
+                    quam placeat magnam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
+                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
+                    quam placeat magnam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sed dolore temporibus quibusdam
+                    doloribus debitis, quos repudiandae, eligendi necessitatibus velit nemo et eum dolorum modi quo, ea
+                    quam placeat magnam.</p>
+            </div>
+            <div class="reg-form">
+                <h3>New Connection Request</h3>
+                <form action="">
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Address:</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">District:</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Type:</label>
+                        </div>
+                        <div class="input-prop">
+                            <select name="connection-type">
+                                <option value="household">Household</option>
+                                <option value="smallscale">Small Scale Business</option>
+                                <option value="largescale">Large Scale Business</option>
+                                <option value="industrial">Industrial</option>
+                                <option value="organizational">Organizational</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Expected Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="comments">Comments:</label>
+                        </div>
+                        <div class="input-prop">
+                            <textarea id="subject" name="subject" placeholder="Write something.."
+                                style="height:200px"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Submit">
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../JS/dashboard.js"></script>
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    }
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+            document.getElementById("sidebar").style.height = "80%";
+        } else {
+            document.getElementById("sidebar").style.height = "85%";
+        }
+    }
+
+    <!-- function openForm() {
+        document.getElementById("bform").style.display = "block";
+        document.getElementsById("reg-details").setAttribute("class", "narrow");
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    } -->
+
+</script>
+
+</html>
