@@ -5,7 +5,7 @@
   Time: 1:55 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +23,7 @@
                     Centralized platform that offers a combination of water, fuel, <br>
                     and electricity services in one place.
                 </h2>
-                <img src="../resources/login_img.png" width="400px" alt="utility-saga">
+                <img src="../resources/water_login.png" width="400px" alt="utility-saga">
             </aside>
             <%--            <div class="empty-div">--%>
             <%--            </div>--%>

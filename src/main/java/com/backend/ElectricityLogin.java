@@ -8,17 +8,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet("/login")
-public class UserLogin extends HttpServlet{
-    private static final long serialVersionUID = 2L;
+@WebServlet("/elogin")
+public class ElectricityLogin extends HttpServlet{
+    private static final long serialVersionUID = 3L;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "userDashboard.jsp", "userLogin.jsp");
+        loginDriverUtility(req, resp, "electricityDashboard.jsp", "electricityLogin.jsp");
     }
 
-    static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
+    static void loginDriverUtility(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
         String uname = req.getParameter("Uname");
         String pwd = req.getParameter("Pwd");
         HttpSession session = req.getSession();

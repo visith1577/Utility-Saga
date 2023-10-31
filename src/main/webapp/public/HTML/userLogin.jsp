@@ -13,9 +13,9 @@
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/login/login.css">
     </head>
     <body>
-        <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
         <img src="<%= request.getContextPath() %>/public/resources/purple_bar.png" alt="" class="style-bar">
         <div class="container">
+            <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
             <aside class="side-panel">
                 <h1 class="side-panel__title side-panel__main">
                     UTILITY SAGA
