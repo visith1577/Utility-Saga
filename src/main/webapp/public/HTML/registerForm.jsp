@@ -66,9 +66,9 @@
                 <div class="gender-selection">
                   <p class="field-heading">Gender : </p>
                   <label for="male">
-                    <input type="radio" name="gender" id="male">Male
+                    <input type="radio" name="gender" id="male" value="M">Male
                   </label>
-                  <label for="female"><input type="radio" name="gender" id="female">Female</label>
+                  <label for="female"><input type="radio" name="gender" id="female" value="F">Female</label>
                 </div>
               </div>
               <div class="button-container">
@@ -131,19 +131,19 @@
                 <p>Service that you require</p>
                 <div class="list-container">
                     <label for="electricity">
-                      <input type="checkbox" name="service" id="electricity">
+                      <input type="checkbox" name="service" id="electricity" value="electricity">
                       Electricity
                     </label>
                 </div>
                 <div class="list-container">
                     <label for="water">
-                      <input type="checkbox" name="service" id="water">
+                      <input type="checkbox" name="service" id="water" value="water">
                       Water
                     </label>
                 </div>
                 <div class="list-container">
                     <label for="fuel">
-                      <input type="checkbox" name="service" id="fuel">
+                      <input type="checkbox" name="service" id="fuel" value="fuel">
                       Fuel
                     </label>
                 </div>
@@ -157,9 +157,9 @@
                 <div class="provider-selection">
                   <p class="field-heading">Provider : </p>
                   <label for="ceb">
-                    <input type="radio" name="provider" id="ceb">CEB
+                    <input type="radio" name="provider" id="ceb" value="ceb">CEB
                   </label>
-                  <label for="leco"><input type="radio" name="provider" id="leco">LECO</label>
+                  <label for="leco"><input type="radio" name="provider" id="leco" value="leco">LECO</label>
                 </div>
               </div>
               <div class="list-container">
