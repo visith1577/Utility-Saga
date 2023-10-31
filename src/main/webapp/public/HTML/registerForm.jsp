@@ -5,18 +5,21 @@
   Time: 11:38
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+  <title>Registration page</title>
   <link rel="stylesheet" href="../CSS/login/register.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
   <img src="../resources/purple_bar.png" alt="" class="style-bar">
     <div class="container">
+      <div class="error-message-container">
+        <p id="error-message">err</p>
+      </div>
       <section class="register">
-        <form action="" class="reg-form signup-form-container">
+        <form method="post" action="${pageContext.request.contextPath}/register" class="reg-form signup-form-container">
           <h1 class="reg-panel__title reg-panel__main">
             Welcome To Utility Saga
           </h1>
@@ -89,11 +92,23 @@
               <div class="button-container">
                 <div class="text-fields phone">
                   <label for="phone"><i class='bx bx-phone' ></i></label>
-                  <input type="text" name="phone" id="phone" placeholder="phone number">
+                  <input
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          placeholder="phone number"
+<%--                          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"--%>
+                  >
                 </div>
                 <div class="text-fields phone">
                   <label for="home-phone"><i class='bx bx-phone' ></i></label>
-                  <input type="text" name="phone" id="home-phone" placeholder="home phone number">
+                  <input
+                          type="text"
+                          name="home-phone"
+                          id="home-phone"
+                          placeholder="home phone number"
+<%--                          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"--%>
+                  >
                 </div>
               </div>
               <div class="text-fields email">
@@ -137,7 +152,7 @@
                 <p style="margin: 20px;">Electricity services</p>
                 <div class="text-fields bill">
                   <label for="eBill"><i class='bx bx-power-off'></i></label>
-                  <input type="text" name="phone" id="eBill" placeholder="electricity bill no.">
+                  <input type="text" name="eBill" id="eBill" placeholder="electricity bill no.">
                 </div>
                 <div class="provider-selection">
                   <p class="field-heading">Provider : </p>
@@ -151,7 +166,7 @@
                 <p style="margin: 20px">Water Services</p>
                 <div class="text-fields bill">
                   <label for="wBill"><i class='bx bx-water' ></i></label>
-                  <input type="text" name="phone" id="wBill" placeholder="water bill no.">
+                  <input type="text" name="wBill" id="wBill" placeholder="water bill no.">
                 </div>
               </div>
               <div class="tc-container">
@@ -215,6 +230,24 @@
     signupContent1.style.display = "none"
     signupContent3.style.display = "none"
     signupContent2.style.display = "block"
+  }
+
+  function showErrorMessage(message, duration) {
+    let errorMessage = document.getElementById("error-message");
+    let errorMessageContainer = document.querySelector(".error-message-container");
+    errorMessage.innerText = message;
+    errorMessage.style.display = "block";
+    errorMessageContainer.style.display = "block";
+    setTimeout(function() {
+      errorMessage.style.display = "none";
+      errorMessageContainer.style.display = "none";
+    }, duration);
+  }
+
+  // Check if an error message should be displayed (you can set this using JSP)
+  let error = "<%= request.getParameter("error") %>";
+  if (error === "passwordMismatch") {
+    showErrorMessage("Passwords do not match", 5000); // Display for 5 seconds
   }
 </script>
 </html>
