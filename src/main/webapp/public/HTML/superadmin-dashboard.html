@@ -48,7 +48,7 @@
                 </ul>
                 </div>
                 <div class="buttons">
-                    <button class="button">Edit Administrator Details</button>
+                    <button id="button1">Edit Administrator Details</button>
                   </div>
             </div>
             <div class="container" id="container">
@@ -61,7 +61,7 @@
                 </ul>
                 </div>
                 <div class="buttons">
-                    <button class="button">Edit Solar Company details</button>
+                    <button id="button2">Edit Solar Company details</button>
                   </div>
             </div>
             </div>
@@ -71,6 +71,19 @@
     </div>
 
 </body>
+
+<script>
+    var button = document.getElementById("button1");
+    button.addEventListener("click", function() {
+        window.location.href = "../HTML/Superadmin-editadmin.html";
+    });
+    var button = document.getElementById("button2");
+    button.addEventListener("click", function() {
+        window.location.href = "../HTML/superadmin-editsolarcompany.html";
+    });
+</script>
+
+
 <script src="../JS/dashboard.js"></script>
 <script>
     window.onscroll = function () {
