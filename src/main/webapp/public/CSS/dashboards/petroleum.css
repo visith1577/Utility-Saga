@@ -14,7 +14,14 @@ body {
 a{
     color: #000000;
 }
+a:hover{
+    color: #ffffff;
+}
 
+hr{
+    border: 1px solid #000000;
+    
+}
 .style-bar {
     margin: 0;
     position: absolute;
@@ -38,20 +45,29 @@ a{
 
 }
 
+#home-sideBar{
+    margin-top: 30vh;
+}
 .sideBar .item {
-
     margin: 5px 5px 0px 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
     height: 5vh;
     background-color: #E5E4EC;
     color: #000000;
     font-size: 1.2vw;
-    font-weight: 500;
+    font-weight: 550;
     cursor: pointer;
     border-radius: 10px;
+    
 }
+
+.sideBar .item:hover {
+    background-color: #807979;
+    color: #ffffff;
+}
+
 
 
 
@@ -68,15 +84,26 @@ a{
     background-color: rgb(255, 255, 255);
 }
 
+.cover2{
+    border: 1px solid #000000;
+}
+.side-1{
+    display: flex;
+    flex-direction: raw;
+}
+.side-2{
+    display: flex;
+    flex-direction: raw;
+}
 .content-fuel {
     
     border-radius: 10px;
     margin-top: 2vh;
     margin-left: 17vw;
     display: flex;
-    flex-direction: space-evenly;
+    flex-direction: column;
     font-weight: 600;
-    
+    /* border: 1px solid #000000; */
     width: 80vw;
 }
 
@@ -91,19 +118,19 @@ a{
 
 }
 
-.dash-details .dash-logo {
+.dash-logo {
     display: flex;
     justify-content: center;
 
 }
 
-.dash-details .dash-logo img {
+.dash-logo img {
     margin-top: 10px;
     width: 8vw;
 
 }
 
-.dash-cover .dash-petroleum .dash-details .fuel-content p {
+.fuel-content p {
     margin-top: 20px;
     margin-left: 20px;
     font-size: 1.2vw;
@@ -111,15 +138,15 @@ a{
     color: #000000;
 }
 
-.dash-cover .dash-petroleum .link-pages {
+.link-pages {
     display: flex;
     justify-content: space-around;
 }
 
 
 
-.dash-cover .dash-petroleum .link-pages button {
-    margin-top: 30px;
+.link-pages button {
+    margin-top: 10px;
     margin-left: 50px;
     width: 12vw;
     height: 5vh;
@@ -134,9 +161,10 @@ a{
 }
 
 
-.dash-cover .QR {
-    margin-top: 2vh;
-    margin-left: 20vw;
+.QR {
+    
+    margin-top: 10px;
+    margin-left: 10vw;
 
     display: flex;
     padding: 20px;
@@ -146,14 +174,14 @@ a{
 
 }
 
-.dash-cover .QR img {
+ .QR img {
     margin-top: 10px 0px 0px 10px;
     width: 15vw;
     height: 15vw;
 
 }
 
-.dash-cover .QR a {
+.QR a {
     flex-direction: flex-end;
     ;
     color: #000000;
@@ -161,7 +189,6 @@ a{
 
 
 .vision{
-    border: 1px solid #000000;
     border-radius: 10px;
     width: 80vw;
     padding: 10px;
@@ -179,8 +206,36 @@ a{
 }
 
 .vision img{
-    height: 50vh;
+    height: 40vh;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
+.contact{
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin: 5px 5px 5px 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(164, 165, 206);
+
+}
+
+.contact h3{
+    margin: 5px 0px 5px 0px;
+    font-size: 30px;
+    color: rgb(176, 7, 7);
+}
+.contact p{
+    margin: 5px 0px 5px 0px;
+    font-size: 20px;
+    
+}
+
