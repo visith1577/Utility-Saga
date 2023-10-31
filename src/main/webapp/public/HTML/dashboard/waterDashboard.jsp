@@ -41,17 +41,17 @@
                   <div class="content-middle">
                         <div class="sidebar" id="sidebar">
                               <ul>
-                                  <li class="list_button"><a href="./electricitydash.html">
+                                  <li class="list_button"><a href="./electricityDashboard.jsp">
                                           <span class="icon"><img alt="home" src="../../images/home-outline.svg" /></span>
                                           <span class="title">Home<img alt="service" class="right_arrow" height="20px"
                                                   src="../../images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
-                                  <li class="list_button"><a href="./electricity-service.html">
+                                  <li class="list_button"><a href="#">
                                           <span class="icon"><img alt="service" src="../../images/service-plan.svg" /></span>
                                           <span class="title">Service<img alt="service" class="right_arrow" height="20px"
                                                   src="../../images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
-                                  <li class="list_button"><a href="./electricity-service.html">
+                                  <li class="list_button"><a href="#">
                                           <span class="icon"><img alt="bills" src="../../images/bill.svg" /></span>
                                           <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                                   src="../../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -85,7 +85,7 @@
                         <div class="introduction">
                               <div class="national-water-supply-and-drainage-board">
                                     National Water Supply and Drainage Board </div>
-                              <img class="water-logo" src="../../../images/Waterboardlogo.png" />
+                              <img class="water-logo" src="<%= request.getContextPath() %>/public/images/Waterboardlogo.png" />
 
                               <div class="text">
                                     The NWSDB, initially a sub-department, now operates under the Ministry of Water
@@ -124,14 +124,17 @@
                                                 <li>Location: [Affected Area/Neighborhood]</li>
                                                 <li>Reason: Routine maintenance to improve water quality and
                                                       infrastructure</li>
+                                          </ul>
                                     </li>
                               </ul>
-
+                              <ul>
                               <li>Due to emergency repairs, water service in your area will be temporarily interrupted
                                     from 10 AM to 2 PM today; we apologize for any inconvenience</li>
-                              <div class="buttons">
-                                    <button class="button2">Your Bill: Rs. 5000</button>
-                              </div>
+                                    <li>
+                                          <div class="buttons">
+                                                <button class="button2">Your Bill: Rs. 5000</button>
+                                          </div>
+                                    </li>
                               </ul>
                         </div>
                         <div class="select-services">
@@ -201,11 +204,11 @@
 
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
+              const dropdowns = document.getElementsByClassName("dropdown-content");
+              let i;
+              for (i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
                 }
             }

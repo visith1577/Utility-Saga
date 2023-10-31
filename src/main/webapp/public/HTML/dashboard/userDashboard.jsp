@@ -44,7 +44,7 @@
                 <li class="b-item1"><a href="electricityDashboard.jsp">
                     <div>Electricity Service</div>
                 </a></li>
-                <li class="b-item2"><a href="./dashboard/water.html">
+                <li class="b-item2"><a href="waterDashboard.jsp">
                     <div>Water Service</div>
                 </a></li>
                 <li class="b-item3"><a href="">
@@ -57,7 +57,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">New Connection</button>
                         <div class="dropdown-content">
-                            <a href="./electricity-newconnection.html">Electricity Connection</a>
+                            <a href="../electricity-newconnection.html">Electricity Connection</a>
                             <a href="#">Water Connection</a>
                         </div>
                     </div>
