@@ -37,7 +37,7 @@ body {
     margin: 10px;
     height: 250px;
     background-color: rgb(255, 255, 255);
-    width: 250px;
+    width: 245px;
     border-radius: 20px;
 }
 
@@ -122,7 +122,7 @@ font-size: 18px;
 
 
 .imgBox {
-    width: 200px;
+    width: 190px;
     background-color: #ffffff;
     margin: auto;
     margin-top: 10px;

@@ -5,7 +5,7 @@
   Time: 2:48 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
     <head>
         <title>JSP - Hello World</title>
@@ -45,16 +45,20 @@
                     <h1 class="login-panel__title login-panel__sub" style="margin-bottom: 15px;">
                         Select Admin Space
                     </h1>
+                    <button class="login-selector__btn super_admin-btn">
+                        <a href="administratorLogin.jsp"> Main Administrator </a>
+                    </button>
+
                     <button class="login-selector__btn admin-btn">
-                        Electricity
+                        <a href="electricityLogin.jsp"> Electricity </a>
                     </button>
 
                     <button class="login-selector__btn cst-btn">
-                        Water
+                        <a href="waterLogin.jsp">Water</a>
                     </button>
 
                     <button class="login-selector__btn cmp-btn">
-                        Fuel
+                        <a href="fuelLogin.jsp">Fuel</a>
                     </button>
                 </div>
             </section>

@@ -6,12 +6,12 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electricity-iot.css" rel="stylesheet">
+    <link href="../CSS/login/user/water-analysis.css" rel="stylesheet">
     <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" >
         <div class="top_navbar">
             <div class="hamburger">
                 <div class="one"></div>
@@ -39,22 +39,17 @@
         <div class="content-middle" id="content-middle">
             <div class="sidebar" id="sidebar">
                 <ul>
-                    <li class="list_button"><a href="electricityDashboard.jsp">
+                    <li class="list_button"><a href="./dashboard/water.html">
                             <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
                             <span class="title">Home<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="./electricity-service.html">
-                            <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
-                            <span class="title">Service<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="electricty-billing.jsp">
+                    <li class="list_button"><a href="./water-billing.html">
                             <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="./electricity-analysis.html">
+                    <li class="list_button"><a  href="./water-analysis.html">
                             <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -73,11 +68,11 @@
             </div>
 
             <div class="intro">
-                <h3>Device Registration: </h3><br>
+                <h3>Report Generation</h3><br>
                 <form action="">
                     <div class="row">
                         <div class="label-prop">
-                            <label for="address">Device Name:</label>
+                            <label for="address">Report Name:</label>
                         </div>
                         <div class="input-prop">
                             <input type="text" name="name">
@@ -85,91 +80,139 @@
                     </div>
                     <div class="row">
                         <div class="label-prop">
-                            <label for="name">Device Type:</label>
+                            <label for="name">Type:</label>
                         </div>
                         <div class="input-prop">
                             <select name="connection-type">
-                                <option value="Industrial-Tool">Industrial Tool</option>
-                                <option value="Home-Tool">Home Tool</option>
+                                <option value="comparison">Comparison</option>
+                                <option value="bill-summary">Bill Summary</option>
+                                <option value="suggestions">Suggestions</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Start Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">End Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Generate">
+                    </div>
+                </form>
+            </div>
+
+            <div class="budget">
+                <h3>Budget Setting</h3>
+                <form action="">
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Budget Name:</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Start Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">End Date:</label>
+                        </div>
+                        <div class="input-prop" id="date-input">
+                            <input type="date" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Expected Units:</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="number" name="name" style="margin-top: 10px;">
                         </div>
                     </div>
                     <div class="row">
                         <input type="submit" value="Submit">
                     </div>
                 </form>
-            </div>
-
-            <div class="budget">
-                <h3>Devices</h3>
                 <table>
                     <tr>
-                        <th>Device Name</th>
-                        <th>Device Serial Number</th>
-                        <th>Device Type</th>
+                        <th>Budget Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Expected Units</th>
                     </tr>
                     <tr>
-                        <td>Refrigerator</td>
-                        <td>Ref0001</td>
-                        <td>Home Tool</td>
+                        <td>October</td>
+                        <td>1/10/2023</td>
+                        <td>1/10/2023</td>
+                        <td>130</td>
                     </tr>
                     <tr>
-                        <td>AC</td>
-                        <td>AC0001</td>
-                        <td>Home Tool</td>
+                        <td>September</td>
+                        <td>1/9/2023</td>
+                        <td>1/9/2023</td>
+                        <td>180</td>
                     </tr>
                     <tr>
-                        <td>Light</td>
-                        <td>L0001</td>
-                        <td>Home Tool</td>
+                        <td>August</td>
+                        <td>1/8/2023</td>
+                        <td>1/8/2023</td>
+                        <td>90</td>
                     </tr>
                     <tr>
-                        <td>Fan</td>
-                        <td>F0001</td>
-                        <td>Home Tool</td>
+                        <td>July</td>
+                        <td>1/7/2023</td>
+                        <td>1/7/2023</td>
+                        <td>120</td>
                     </tr>
                 </table>
             </div>
 
             <div class="div3">
                 <h3>Suggestions</h3>
-                <div class="content-suggesions">
-                    <div class="suggesion">
-                        <div class="text-1">
-                            <span>
-                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
-                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
-                                </span>
-                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
-                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
-                            </span>
+                    <div class="content-suggesions">
+                        <div class="suggesion" >
+                              <div class="text-1" >
+                                    <span>
+                                          <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br/>
+                                    </span>
+                                    <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                              </span>
                         </div>
-                    </div>
-                </div>
-                <div class="content-suggesions">
-                    <div class="suggesion">
-                        <div class="text-1">
-                            <span>
-                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
-                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
-                                </span>
-                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
-                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
-                            </span>
+                  </div>
+                    <div class="content-suggesions">
+                        <div class="suggesion" >
+                              <div class="text-1" >
+                                    <span>
+                                          <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br/>
+                                    </span>
+                                    <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                              </span>
                         </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="div4">
-                
-            </div>
+                  </div>
 
         </div>
+
+    </div>
+
+    </div>
     </div>
 
 </body>

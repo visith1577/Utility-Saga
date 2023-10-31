@@ -1,0 +1,192 @@
+body {
+    background: #e1ecf2;
+    height: 100vh;
+    /* position: fixed; */
+}
+
+#content-middle {
+    height: 120vh;
+}
+
+.wrapper .content-middle .intro {
+    width: calc(100% - 600px);
+    margin-top: 20px;
+    background-color: #dae5f1;
+    max-width: 30%;
+    height: 40%;
+    margin-left: 15.2%;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+
+.wrapper .intro p {
+    text-align: center;
+}
+
+
+.wrapper.collapse .intro {
+    width: calc(100%);
+    margin-left: 150px;
+}
+
+
+
+input[type=text],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    margin-top: 20px;
+    background-color: #3778f2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.label-prop {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.input-prop {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#date-input {
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .label-prop,
+    .input-prop,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+.wrapper .content-middle .budget {
+    width: calc(100% - 600px);
+    margin-top: 5%;
+    background-color: #dae5f1;
+    max-width: 45%;
+    height: 80%;
+    margin-left: 8%;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+.wrapper.collapse .content-middle .budget {
+    margin-left: 12%;
+}
+
+.wrapper .content-middle .budget h3 {
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.wrapper .content-middle .budget table {
+    margin-top: 5%;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.wrapper .content-middle .budget td,
+.wrapper .content-middle .budget th {
+    border: 3px solid #6e6ef2;
+    padding: 8px;
+}
+
+.wrapper .content-middle .budget tr:nth-child(even) {
+    background-color: #d0e6fd;
+}
+
+.wrapper .content-middle .budget tr:nth-child(odd) {
+    background-color: #78afe9;
+}
+
+.wrapper .content-middle .div3 {
+    width: calc(100% - 600px);
+    margin-top: 30%;
+    background-color: #dae5f1;
+    max-width: 30%;
+    height: 40%;
+    margin-left: -82%;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+}
+
+.wrapper.collapse .content-middle .div3 {
+    margin-left: -87.5%;
+}
+
+
+
+
+
+.content-suggesions {
+    /* display: flex; */
+    /* flex-direction: column; */
+    gap: 10px;
+    left: 32px;
+    top: 18px;
+}
+
+
+.suggesion {
+    margin-top: 10px;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: fit-content;
+}
+
+.text-1 {
+    color: #000000;
+    text-align: left;
+    position: relative;
+    width: 380 px;
+}
+
+.text-1-span {
+    color: #000000;
+    font: 500 11.5px 'Roboto', sans-serif;
+}
+
+.text-1-span2 {
+    color: #000000;
+    font: 400 11.5px 'Roboto', sans-serif;
+
+}

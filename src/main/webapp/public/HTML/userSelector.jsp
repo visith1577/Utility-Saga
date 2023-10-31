@@ -5,7 +5,7 @@
   Time: 2:47 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
     <head>
         <title>JSP - Hello World</title>
@@ -46,15 +46,15 @@
                         Select Your User Type
                     </h1>
                     <button class="login-selector__btn admin-btn">
-                        Administrator
+                        <a href="adminSelector.jsp">Administrator</a>
                     </button>
 
                     <button class="login-selector__btn cst-btn">
-                        Customer
+                        <a href="userSelector.jsp">Customer</a>
                     </button>
 
                     <button class="login-selector__btn cmp-btn">
-                        Company
+                        <a href="solarLogin.jsp">Company</a>
                     </button>
                 </div>
             </section>
