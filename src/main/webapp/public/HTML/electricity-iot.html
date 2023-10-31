@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electrcity-billing.css" rel="stylesheet">
+    <link href="../CSS/login/user/electricity-iot.css" rel="stylesheet">
     <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
 </head>
 
@@ -73,101 +73,100 @@
             </div>
 
             <div class="intro">
-                <h3>Tariff System</h3><br>
-                <p>You can now select your Bill Calcualtion method <br>
-                    Fixed Tariff &nbsp;&nbsp;|&nbsp;&nbsp;Variable Tariff <br><br>
-                    <a href="#">Learn More about them</a><br><br>
-                <div class="tariff">
-                    <a href="">
-                        <div class="tar" id="tar1">Fixed Tariff</div>
-                    </a>
-                    <a href="">
-                        <div class="tar" id="tar2">Variable Tariff</div>
-                    </a>
-                </div>
-                </p>
-            </div>
-            <div class="calculator">
-                <div class="prices">
-                    <div class="price">
-                        <h3>Bill Calcualtor</h3><br>
-                        <form action="">
-                            <label for="units">Units: </label>
-                            <input type="text" name=""><br><br>
-                            <label for="days">Days: </label>
-                            <input type="text" name=""><br><br>
-                            <button class="btn">Generate</button>
-                        </form>
+                <h3>Device Registration: </h3><br>
+                <form action="">
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Device Name:</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="text" name="name">
+                        </div>
                     </div>
-                    <div class="price" id="pr">
-                        <h3>Estimated Price will be: </h3>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Device Type:</label>
+                        </div>
+                        <div class="input-prop">
+                            <select name="connection-type">
+                                <option value="Industrial-Tool">Industrial Tool</option>
+                                <option value="Home-Tool">Home Tool</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-
-                <div class="acc-balance">
-                    <h3>Your account balance is:</h3><br><br>
-                    <a href="">
-                        <div class="pay">Pay</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="monthly">
-                <h3>Monthly Bills</h3><br>
-                <div class="dropdown">
-                    <button onmouseover="Appear()" class="dropbtn" id="selectedItem">Choose</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#" onclick="selectItem('September 2023')">September 2023</a>
-                        <a href="#" onclick="selectItem('August 2023')">August 2023</a>
-                        <a href="#" onclick="selectItem('July 2023')">July 2023</a>
-                        <a href="#" onclick="selectItem('June 2023')">June 2023</a>
-                        <a href="#" onclick="selectItem('May 2023')">May 2023</a>
+                    <div class="row">
+                        <input type="submit" value="Submit">
                     </div>
-                </div>
-                <br><br>
-                <div class="buttons">
-                    <a href="">
-                        <div class="button-child">Download</div>
-                    </a>
-                    <a href="">
-                        <div class="button-child">Pay</div>
-                    </a>
-                </div>
+                </form>
             </div>
 
-            <div class="summary">
-
-            </div>
-
-            <div class="status">
-                <h3>Payment Status</h3><br>
+            <div class="budget">
+                <h3>Devices</h3>
                 <table>
                     <tr>
-                        <th>Month</th>
-                        <th>Bill Amount</th>
-                        <th>Status</th>
+                        <th>Device Name</th>
+                        <th>Device Serial Number</th>
+                        <th>Device Type</th>
                     </tr>
                     <tr>
-                        <td>September</td>
-                        <td>1500.00</td>
-                        <td>Paid</td>
+                        <td>Refrigerator</td>
+                        <td>Ref0001</td>
+                        <td>Home Tool</td>
                     </tr>
                     <tr>
-                        <td>August</td>
-                        <td>1500.00</td>
-                        <td>Paid</td>
+                        <td>AC</td>
+                        <td>AC0001</td>
+                        <td>Home Tool</td>
                     </tr>
                     <tr>
-                        <td>July</td>
-                        <td>1500.00</td>
-                        <td>Paid</td>
+                        <td>Light</td>
+                        <td>L0001</td>
+                        <td>Home Tool</td>
                     </tr>
                     <tr>
-                        <td>June</td>
-                        <td>1500.00</td>
-                        <td>Paid</td>
+                        <td>Fan</td>
+                        <td>F0001</td>
+                        <td>Home Tool</td>
                     </tr>
                 </table>
+            </div>
+
+            <div class="div3">
+                <h3>Suggestions</h3>
+                <div class="content-suggesions">
+                    <div class="suggesion">
+                        <div class="text-1">
+                            <span>
+                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
+                                </span>
+                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-suggesions">
+                    <div class="suggesion">
+                        <div class="text-1">
+                            <span>
+                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
+                                </span>
+                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="div4">
+                
             </div>
 
         </div>

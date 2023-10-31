@@ -17,11 +17,6 @@ body {
 }
 
 
-.wrapper.collapse .content-middle .box{
-    width: calc(80%-70px);
-    margin-left: 350px;
-}
-
 .wrapper .content-middle .box .formbox {
     background: #f5f4f4;
     border-radius: 18.41px;
