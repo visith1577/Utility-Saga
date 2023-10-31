@@ -59,7 +59,7 @@
             </section>
         </div>
     </body>
-<script>
+<script type="text/javascript">
     let status = document.getElementById("status").value;
     if (status === "success") {
         swal("Congrats", "Account created successfully", "success");

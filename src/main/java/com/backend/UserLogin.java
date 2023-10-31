@@ -1,11 +1,9 @@
 package com.backend;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -19,6 +17,7 @@ public class UserLogin extends HttpServlet{
 
         String uname = req.getParameter("Uname");
         String pwd = req.getParameter("Pwd");
+        HttpSession session = req.getSession();
 
 
         try {
@@ -30,8 +29,25 @@ public class UserLogin extends HttpServlet{
             );
 
             PreparedStatement pst = connection.prepareStatement(
-                    "select * from users where email = ? and pwd = ?"
+                    "select * from users where uname = ? and pwd = ?"
             );
+            pst.setString(1, uname);
+            pst.setString(2, pwd);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                session.setAttribute("name", rs.getString("uname"));
+                RequestDispatcher dispatcher = req.getRequestDispatcher(
+                        "/public/HTML/electricitydashboard.jsp"
+                );
+                dispatcher.forward(req, resp);
+            } else {
+                session.setAttribute("status", "failed");
+                RequestDispatcher dispatcher = req.getRequestDispatcher(
+                        "/public/HTML/userLogin.jsp"
+                );
+                dispatcher.forward(req, resp);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
