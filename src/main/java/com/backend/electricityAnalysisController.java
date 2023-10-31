@@ -1,4 +1,4 @@
-package backend.controller;
+package com.backend;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -47,8 +47,9 @@ public class electricityAnalysisController {
 
                     try {
                         preparedStatement.setString(1, entryobj.getBudgetName());
-                        preparedStatement.setString(2, entryobj.getStart().getTime());
-                        preparedStatement.setString(3, entryobj.getEnd().getTime());
+                        preparedStatement.setDate(2, entryobj.getStart().getTime());
+                        preparedStatement.setDate(3, entryobj.getEnd().getTime());
+                        preparedStatement.setInt(4, entryobj.getUnits());
                         System.out.println(preparedStatement);
                         preparedStatement.executeUpdate();
                     } finally {
