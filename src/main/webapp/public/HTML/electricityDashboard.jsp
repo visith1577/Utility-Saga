@@ -5,7 +5,7 @@ Date: 2023-10-31
 Time: 19:52
 To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
 <head>
@@ -50,32 +50,32 @@ To change this template use File | Settings | File Templates.
                     <li class="list_button"><a href="electricityDashboard.jsp">
                             <span class="icon"><img alt="home" src="<%= request.getContextPath() %>/public/images/home-outline.svg" /></span>
                             <span class="title">Home<img alt="service" class="right_arrow" height="20px"
-                                                         src="../../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                         src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="../electricity-service.html">
+                    <li class="list_button"><a href="electricity-service.html">
                             <span class="icon"><img alt="service" src="<%= request.getContextPath() %>/public/images/service-plan.svg" /></span>
                             <span class="title">Service<img alt="service" class="right_arrow" height="20px"
-                                                            src="../../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                            src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="../electricity-service.html">
+                    <li class="list_button"><a href="electricity-service.html">
                             <span class="icon"><img alt="bills" src="<%= request.getContextPath() %>/public/images/bill.svg" /></span>
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
-                                                          src="../../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                          src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="../electricity-analysis.html">
+                    <li class="list_button"><a href="electricity-analysis.html">
                             <span class="icon"><img alt="analysis" src="<%= request.getContextPath() %>/public/images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
-                                                             src="../../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                             src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="../electricity-iot.html">
+                    <li class="list_button"><a href="electricity-iot.html">
                             <span class="icon"><img alt="report" src="<%= request.getContextPath() %>/public/images/iot.svg" /></span>
                             <span class="title">IOT Devices<img alt="service" class="right_arrow" height="20px"
-                                                                src="../../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                                src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="../settings.html">
+                    <li class="list_button"><a href="settings.html">
                             <span class="icon"> <img alt="settings" src="<%= request.getContextPath() %>/public/images/settings-outline.svg" /></span>
                             <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
-                                                             src="../../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                             src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                 </ul>
             </div>
