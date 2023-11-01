@@ -6,8 +6,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>WaterDashboard</title>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <link href="../../CSS/dashboards/water.css" rel="stylesheet" type="text/css">
-      <link href="../../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet" type="text/css">
+      <link href="<%= request.getContextPath() %>/public/CSS/dashboards/water.css" rel="stylesheet" type="text/css">
+      <link href="<%= request.getContextPath() %>/public/CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet" type="text/css">
 
 <body>
       <div class="dashboard">
@@ -20,18 +20,18 @@
                         </div>
                         <div class="top_menu">
                               <div class="logo">
-                                    <img alt="Utility Saga" height="50px" src="../../images/utility_saga.svg">
+                                    <img alt="Utility Saga" height="50px" src="<%= request.getContextPath() %>/public/images/utility_saga.svg">
                               </div>
                               <ul>
                                     <li><a href="#">
-                                                <img alt="Cart" src="../../images/cart.svg" class="item1">
+                                                <img alt="Cart" src="<%= request.getContextPath() %>/public/images/cart.svg" class="item1">
                                           </a></li>
                                     <li><a href="#">
-                                                <img alt="Notification" src="../../images/notification-line.svg"
+                                                <img alt="Notification" src="<%= request.getContextPath() %>/public/images/notification-line.svg"
                                                       class="item2">
                                           </a></li>
                                     <li><a href="#">
-                                                <img alt="User" src="../../images/user.svg" class="item3">
+                                                <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" class="item3">
                                           </a></li>
                               </ul>
                         </div>
@@ -41,30 +41,40 @@
                   <div class="content-middle">
                         <div class="sidebar" id="sidebar">
                               <ul>
-                                    <li class="list_button"><a href="dashboard/waterDashboard.jsp">
-                                          <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
+                                  <li class="list_button"><a href="<%= request.getContextPath() %>/public/HTML/electricityDashboard.jsp">
+                                          <span class="icon"><img alt="home" src="<%= request.getContextPath() %>/public/images/home-outline.svg" /></span>
                                           <span class="title">Home<img alt="service" class="right_arrow" height="20px"
-                                                  src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
-                                  <li class="list_button"><a href="./water-billing.html">
-                                          <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
+                                  <li class="list_button"><a href="#">
+                                          <span class="icon"><img alt="service" src="<%= request.getContextPath() %>/public/images/service-plan.svg" /></span>
+                                          <span class="title">Service<img alt="service" class="right_arrow" height="20px"
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
+                                      </a></li>
+                                  <li class="list_button"><a href="#">
+                                          <span class="icon"><img alt="bills" src="<%= request.getContextPath() %>/public/images/bill.svg" /></span>
                                           <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
-                                                  src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
-                                  <li class="list_button"><a  href="./water-analysis.html">
-                                          <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
+                                  <li class="list_button"><a  href="#">
+                                          <span class="icon"><img alt="analysis" src="<%= request.getContextPath() %>/public/images/report.svg" /></span>
                                           <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
-                                                  src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
-                                  <li class="list_button"><a href="./water-contact.html">
-                                          <span class="icon"><img alt="report" src="../images/call.svg" /></span>
-                                          <span class="title">Contact Us<img alt="service" class="right_arrow" height="20px"
-                                                  src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                                  <li class="list_button"><a href="#">
+                                          <span class="icon"><img alt="report" src="<%= request.getContextPath() %>/public/images/event-schedule.svg" /></span>
+                                          <span class="title">Report<img alt="service" class="right_arrow" height="20px"
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
-                                  <li class="list_button"><a href="./settings.html">
-                                          <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
+                                  <li class="list_button"><a href="#">
+                                          <span class="icon"> <img alt="settings" src="<%= request.getContextPath() %>/public/images/settings-outline.svg" /></span>
                                           <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
-                                                  src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
+                                      </a></li>
+                                  <li class="list_button"><a href="#">
+                                          <span class="icon"><img alt="help" src="<%= request.getContextPath() %>/public/images/help-outline.svg" /></span>
+                                          <span class="title">Help<img alt="service" class="right_arrow" height="20px"
+                                                  src="<%= request.getContextPath() %>/public/images/arrow-right-s-line.svg" width="20px" /></span>
                                       </a></li>
                               </ul>
                           </div>
@@ -185,7 +195,7 @@
             </div>
       </div>
 </body>
-<script src="../../JS/dashboard.js"></script>
+<script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
 <script>
     window.onscroll = function () {
         scrollFunction()
