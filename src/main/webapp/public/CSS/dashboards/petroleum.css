@@ -66,6 +66,7 @@ hr{
 .sideBar .item:hover {
     background-color: #807979;
     color: #ffffff;
+    
 }
 
 
@@ -212,30 +213,5 @@ hr{
     margin-right: auto;
 }
 
-.contact{
-    padding: 10px 10px 10px 10px;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    margin: 5px 5px 5px 5px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    
-    height: 30vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: rgb(164, 165, 206);
 
-}
-
-.contact h3{
-    margin: 5px 0px 5px 0px;
-    font-size: 30px;
-    color: rgb(176, 7, 7);
-}
-.contact p{
-    margin: 5px 0px 5px 0px;
-    font-size: 20px;
-    
-}
 
