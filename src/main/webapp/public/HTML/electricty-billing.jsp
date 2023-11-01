@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="wrapper" >
+    <div class="wrapper">
         <div class="top_navbar">
             <div class="hamburger">
                 <div class="one"></div>
@@ -39,7 +39,7 @@
         <div class="content-middle" id="content-middle">
             <div class="sidebar" id="sidebar">
                 <ul>
-                    <li class="list_button"><a href="./electricitydash.html">
+                    <li class="list_button"><a href="electricityDashboard.jsp">
                             <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
                             <span class="title">Home<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
@@ -54,24 +54,24 @@
                             <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a  href="#">
+                    <li class="list_button"><a href="./electricity-analysis.html">
                             <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
                             <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="report" src="../images/event-schedule.svg" /></span>
-                            <span class="title">Report<img alt="service" class="right_arrow" height="20px"
+                    <li class="list_button"><a href="./electricity-iot.html">
+                            <span class="icon"><img alt="report" src="../images/iot.svg" /></span>
+                            <span class="title">IOT Devices<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
-                    <li class="list_button"><a href="#">
+                    <li class="list_button"><a href="./electricity-contact.html">
+                            <span class="icon"> <img alt="settings" src="../images/call.svg" /></span>
+                            <span class="title">Contact Us<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./settings.html">
                             <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
                             <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="help" src="../images/help-outline.svg" /></span>
-                            <span class="title">Help<img alt="service" class="right_arrow" height="20px"
                                     src="../images/arrow-right-s-line.svg" width="20px" /></span>
                         </a></li>
                 </ul>
@@ -90,7 +90,6 @@
                         <div class="tar" id="tar2">Variable Tariff</div>
                     </a>
                 </div>
-                </p>
             </div>
             <div class="calculator">
                 <div class="prices">
@@ -111,7 +110,9 @@
 
                 <div class="acc-balance">
                     <h3>Your account balance is:</h3><br><br>
-                    <a href=""><div class="pay">Pay</div></a>
+                    <a href="">
+                        <div class="pay">Pay</div>
+                    </a>
                 </div>
             </div>
 
@@ -129,8 +130,12 @@
                 </div>
                 <br><br>
                 <div class="buttons">
-                    <a href=""><div class="button-child">Download</div></a>
-                    <a href=""><div class="button-child">Pay</div></a>
+                    <a href="">
+                        <div class="button-child">Download</div>
+                    </a>
+                    <a href="">
+                        <div class="button-child">Pay</div>
+                    </a>
                 </div>
             </div>
 

@@ -2,21 +2,141 @@ body {
     background: #e1ecf2;
     height: 100vh;
     /* position: fixed; */
-}
-
-#content-middle {
+  }
+  
+  #content-middle {
     height: 120vh;
-}
-
-.box {
-    display: flex;
-    height: 90%;
-    margin-left: 20%;
-    margin-top: 1%;
+  }
+  
+  .wrapper .content-middle .box {
+    margin-left: 500px;
+    margin-top: 40px;
+    /* display: flex;
+    flex-direction: row;
     gap: 10px;
-}
-
-.wrapper .content-middle .box .formbox {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 20%;
+    position: relative;
+    height: 80%;
+    margin-left: 15%;
+    margin-top: 2%;
+    gap: 20px; */
+  }
+  
+  .wrapper.collapse .content-middle .box {
+    width: calc(80%-70px);
+    margin-left: 400px;
+  }
+  /* Servise .................................................................................*/
+  
+  .wrapper .content-middle .select-services1 {
+    background: #f5f4f4;
+    border-radius: 18.41px;
+    padding: 30px 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+  .wrapper .content-middle .servicetitle {
+    color: #2a2d30;
+    text-align: center;
+    font: 500 16px "Roboto", sans-serif;
+    position: relative;
+  }
+  
+  .Complainttitle {
+    color: #2a2d30;
+    text-align: start;
+    font: 500 16px "Roboto", sans-serif;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .wrapper .content-middle .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .wrapper .content-middle .buttons button{
+        border: 0;
+        background: #006A8C;
+        color: #f8f8f8;
+        width: 150px;
+        font-family: inherit;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  
+  }
+  .buttons button:hover{
+        background: #002a38;
+        cursor: pointer;
+  }
+  
+  /* complaintmain..................................... */
+  .complaintmain {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  /* complaintmain option..................................... */
+  .select-complaint-option {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .compainbtn {
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .compainbtn button{
+        border: 0;
+        background: #006A8C;
+        color: #f8f8f8;
+        width: 150px;
+        font-family: inherit;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  
+  }
+  .compainbtn button:hover{
+        background: rgb(5, 42, 47);
+        cursor: pointer;
+  }
+  
+  
+  /* form............................................... */
+  .formbox {
     background: #f5f4f4;
     border-radius: 18.41px;
     padding: 30px 50px 50px 30px;
@@ -26,113 +146,113 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    /* position: relative; */
+    position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
-
-.section1 {
+  }
+  .section1 {
     display: flex;
     flex-direction: column;
     gap: 30px;
     align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
-    /* position: relative; */
-}
-
-.form1 {
+    position: relative;
+  }
+  
+  .form1{
     display: flex;
     flex-direction: row;
     gap: 18px;
     align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
-    /* position: relative; */
-}
-
-.servicetitle {
+    position: relative;
+  }
+  
+  .servicetitle {
     color: #000000;
     text-align: center;
     font: 500 16px "Roboto", sans-serif;
-    /* position: relative; */
+    position: relative;
     font-weight: bold;
     align-self: center;
-}
-
-.textbox {
+  }
+  
+  .textbox{
     display: flex;
     /* gap: 10px; */
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    /* position: relative; */
-}
-
-label {
+    position: relative;
+  }
+  label {
     font-weight: bold;
     width: 120px;
-}
-
-input[type="text1"] {
+  }
+  
+  input[type="text1"]
+  {
     padding: 5px;
     height: 20px;
     width: 200px;
     border-radius: 12px;
-
-}
-
-input[type="text"] {
+    
+  }
+  
+  input[type="text"]
+  {
     padding: 5px;
     height: 30px;
     width: 500px;
     border-radius: 12px;
-
-}
-
-textarea {
+    
+  }
+  textarea
+  {
     padding: 15px;
     /* height: 20px; */
     border-radius: 12px;
     width: 500px;
     max-width: 500px;
     border: 2px solid #000000;
-}
-
-input[type="tel"] {
+  }
+  
+  input[type="tel"]{
     padding: 5px;
     height: 20px;
     width: 120px;
     border-radius: 12px;
-}
-
-input[type="date"] {
+  }
+  
+  input[type="date"]{
     padding: 5px;
     height: 20px;
     width: 100px;
     border-radius: 12px;
-}
-
-.dropdown {
+  }
+  
+  .dropdown {
     position: relative;
     display: inline-block;
     margin-right: 20px;
-}
-
-.dropdown select {
+  }
+  
+  .dropdown select {
     width: 100px;
     padding: 2px;
     border: 2px solid #000000;
     border-radius: 12px;
-}
-
-.dropdown select:focus {
+  }
+  
+  .dropdown select:focus {
     outline: none;
     border-color: #007bff;
-
-}
-
-.formbox1 {
+    
+  }
+  
+  .formbox1 {
     background: #f5f4f4;
     border-radius: 18.41px;
     padding: 30px 50px 50px 30px;
@@ -143,37 +263,34 @@ input[type="date"] {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    /* position: relative; */
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
-
-.savecompbutn,
-.compaintNumbtn {
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .savecompbutn, .compaintNumbtn {
     display: flex;
     flex-direction: row;
     gap: 200px;
     align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
-    /* position: relative; */
-}
-
-.savecompbutn button {
-    border: 0;
-    background: #006A8C;
-    color: #f8f8f8;
-    width: 150px;
-    font-family: inherit;
-    padding: 8px;
-    font-size: 12px;
-    border-radius: 40px;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-
-}
-
-.compaintNumbtn button {
+    position: relative;
+  }
+  .savecompbutn  button{
+        border: 0;
+        background: #006A8C;
+        color: #f8f8f8;
+        width: 150px;
+        font-family: inherit;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: 40px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  
+  }
+  .compaintNumbtn button{
     border: 0;
     background: #72DDFF;
     color: #000000;
@@ -185,32 +302,32 @@ input[type="date"] {
     border-radius: 40px;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-
-}
-
-.savecompbutn button:hover {
-    background: #092833;
-    cursor: pointer;
-}
-
-.ComplaintNumbox {
+  
+  }
+  .savecompbutn button:hover {
+        background: #092833;
+        cursor: pointer;
+  }
+  
+  .ComplaintNumbox{
     display: flex;
     flex-direction: row;
     gap: 18px;
     align-items: center;
     justify-content: flex-start;
     flex-shrink: 0;
-    /* position: relative; */
-}
-
-.ComplaintNumberbox input[type="text"] {
+    position: relative;
+  }
+  
+  .ComplaintNumberbox input[type="text"]
+  {
     padding: 5px;
     height: 30px;
     width: 100px;
     border-radius: 12px;
-
-}
-
-.ComplaintNumberbox {
+    
+  }
+  .ComplaintNumberbox{
     align-self: flex-end;
-}
+  }
+  

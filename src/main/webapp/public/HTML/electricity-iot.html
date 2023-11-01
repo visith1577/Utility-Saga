@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="../CSS/login/user/electricity-iot.css" rel="stylesheet">
+    <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+            </div>
+            <div class="top_menu">
+                <div class="logo">
+                    <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
+                </div>
+                <ul>
+                    <li><a href="#">
+                            <img alt="Cart" src="../images/cart.svg" class="item1">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="Notification" src="../images/notification-line.svg" class="item2">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="User" src="../images/user.svg" class="item3">
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-middle" id="content-middle">
+            <div class="sidebar" id="sidebar">
+                <ul>
+                    <li class="list_button"><a href="electricityDashboard.jsp">
+                            <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
+                            <span class="title">Home<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-service.html">
+                            <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
+                            <span class="title">Service<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="electricty-billing.jsp">
+                            <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
+                            <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-analysis.html">
+                            <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
+                            <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-iot.html">
+                            <span class="icon"><img alt="report" src="../images/iot.svg" /></span>
+                            <span class="title">IOT Devices<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./electricity-contact.html">
+                            <span class="icon"> <img alt="settings" src="../images/call.svg" /></span>
+                            <span class="title">Contact Us<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                    <li class="list_button"><a href="./settings.html">
+                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
+                            <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
+                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="intro">
+                <h3>Device Registration: </h3><br>
+                <form action="">
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="address">Device Name:</label>
+                        </div>
+                        <div class="input-prop">
+                            <input type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-prop">
+                            <label for="name">Device Type:</label>
+                        </div>
+                        <div class="input-prop">
+                            <select name="connection-type">
+                                <option value="Industrial-Tool">Industrial Tool</option>
+                                <option value="Home-Tool">Home Tool</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+
+            <div class="budget">
+                <h3>Devices</h3>
+                <table>
+                    <tr>
+                        <th>Device Name</th>
+                        <th>Device Serial Number</th>
+                        <th>Device Type</th>
+                    </tr>
+                    <tr>
+                        <td>Refrigerator</td>
+                        <td>Ref0001</td>
+                        <td>Home Tool</td>
+                    </tr>
+                    <tr>
+                        <td>AC</td>
+                        <td>AC0001</td>
+                        <td>Home Tool</td>
+                    </tr>
+                    <tr>
+                        <td>Light</td>
+                        <td>L0001</td>
+                        <td>Home Tool</td>
+                    </tr>
+                    <tr>
+                        <td>Fan</td>
+                        <td>F0001</td>
+                        <td>Home Tool</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="div3">
+                <h3>Suggestions</h3>
+                <div class="content-suggesions">
+                    <div class="suggesion">
+                        <div class="text-1">
+                            <span>
+                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
+                                </span>
+                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-suggesions">
+                    <div class="suggesion">
+                        <div class="text-1">
+                            <span>
+                                <span class="text-1-span">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Inventore qui vel hic, odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.<br />
+                                </span>
+                                <span class="text-1-span2">odio beatae deleniti maxime nulla provident natus quod, quos
+                                    quasi molestias aut nostrum. Deleniti corporis itaque quos nulla.</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="div4">
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script src="../JS/dashboard.js"></script>
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    }
+
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+            document.getElementById("sidebar").style.height = "80%";
+        } else {
+            document.getElementById("sidebar").style.height = "85%";
+        }
+    }
+
+    function Appear() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function selectItem(itemText) {
+        document.getElementById("selectedItem").innerHTML = itemText;
+        document.getElementById("myDropdown").classList.remove("show");
+    }
+
+</script>
+
+</html>
