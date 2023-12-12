@@ -23,6 +23,7 @@ public class UserLogin extends HttpServlet{
         String pwd = req.getParameter("Pwd");
         HttpSession session = req.getSession();
 
+        Cookie c = new Cookie("user_name" ,uname);
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -45,6 +46,7 @@ public class UserLogin extends HttpServlet{
                         "/public/HTML/" +
                                 dash
                 );
+                resp.addCookie(c);
                 dispatcher.forward(req, resp);
             } else {
                 session.setAttribute("status", "failed");
