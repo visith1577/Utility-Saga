@@ -30,7 +30,7 @@ public class UserLogin extends HttpServlet{
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
                     "root",
-                    "root"
+                    "Eranda2001"
             );
 
             PreparedStatement pst = connection.prepareStatement(
