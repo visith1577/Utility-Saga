@@ -52,7 +52,7 @@
                     <button name="login-btn" class="login-btn">
                         Log In
                     </button>
-                    <a href="registerForm.jsp" class="register">
+                    <a href="<%= request.getContextPath() %>/public/HTML/registerForm.jsp" class="register">
                         Register
                     </a>
                 </form>
