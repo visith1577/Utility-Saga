@@ -15,14 +15,14 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.Level;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 @WebServlet("/register")
 public class RegisterUser extends HttpServlet{
-    private static final long serialVersionUID = 1L;
-    private static final Logger logger = LogManager.getLogger(RegisterUser.class); // logger setup
+//    private static final long serialVersionUID = 1L;
+//    private static final Logger logger = LogManager.getLogger(RegisterUser.class); // logger setup
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -49,7 +49,7 @@ public class RegisterUser extends HttpServlet{
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
                     "root",
-                    "root"
+                    "Eranda2001"
             );
 
             PreparedStatement pst = connection.prepareStatement(
