@@ -23,13 +23,61 @@
             <ul class="menu-items">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Category</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Testimonial</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
-            <h1 class="logo">Navbar</h1>
+            <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </nav>
+
+    <section class="plan2" id="plan2">
+        <ul class="plan2__items">
+            <li>
+                <div class="plan2__item">
+
+                </div>
+                <p class="plan2__para">New Connections</p>
+            </li>
+            <li>
+                <div class="plan2__item">
+
+                </div>
+                <p class="plan2__para">Public Complaints</p>
+            </li>
+            <li>
+                <div class="plan2__item">
+
+                </div>
+                <p class="plan2__para">Analysis</p>
+            </li>
+        </ul>
+    </section>
+    <section class="plan2">
+        <h1 class="plan2__heading">Bill Details</h1>
+        <div class="element">
+            <h3 class="plan2__heading3">Your Total Balance</h3>
+            <p class="plan2__price">1500/=</p>
+        </div>
+        <div class="element">
+            <button class="btn__plan2">Pay Now</button>
+        </div>
+        <div class="element">
+            <button class="btn__plan2">View Bill</button>
+        </div>
+    </section>
+    <section class="plan2">
+        <h1 class="plan2__heading">Your Usage</h1>
+        <div class="element">
+            <h3 class="plan2__heading3">Select Your Account</h3>
+
+            <div class="dropdown">
+                <button class="dropbtn">Account Number</button>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        </div>
+    </section>
     </body>
 </html>
