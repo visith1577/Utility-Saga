@@ -9,12 +9,13 @@
 <html>
     <head>
         <title>Title</title>
-        <link rel="stylesheet" href="../../CSS/dashboards/dashbaord.css">
+        <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
     </head>
     <body>
     <nav class="navbar">
         <div class="navbar-container container">
-            <input type="checkbox" name="" id="">
+            <label for="hamburger"></label>
+            <input type="checkbox" name="hamburger" id="hamburger">
             <div class="hamburger-lines">
                 <span class="line line1"></span>
                 <span class="line line2"></span>
@@ -29,55 +30,143 @@
         </div>
     </nav>
 
-    <section class="plan2" id="plan2">
-        <ul class="plan2__items">
-            <li>
-                <div class="plan2__item">
-
+    <main class="component-container">
+        <header class="water-dashboard__header">
+            <div class="component header-component">
+                <div class="water-dashboard__title">
+                    National Water Supply and Drainage Board
                 </div>
-                <p class="plan2__para">New Connections</p>
-            </li>
-            <li>
-                <div class="plan2__item">
-
+                <div class="water-dashboard__description">
+                    We provide safe drinking water and facilitate the provision of
+                    sanitation to the people in Sri Lanka.
                 </div>
-                <p class="plan2__para">Public Complaints</p>
-            </li>
-            <li>
-                <div class="plan2__item">
-
-                </div>
-                <p class="plan2__para">Analysis</p>
-            </li>
-        </ul>
-    </section>
-    <section class="plan2">
-        <h1 class="plan2__heading">Bill Details</h1>
-        <div class="element">
-            <h3 class="plan2__heading3">Your Total Balance</h3>
-            <p class="plan2__price">1500/=</p>
-        </div>
-        <div class="element">
-            <button class="btn__plan2">Pay Now</button>
-        </div>
-        <div class="element">
-            <button class="btn__plan2">View Bill</button>
-        </div>
-    </section>
-    <section class="plan2">
-        <h1 class="plan2__heading">Your Usage</h1>
-        <div class="element">
-            <h3 class="plan2__heading3">Select Your Account</h3>
-
-            <div class="dropdown">
-                <button class="dropbtn">Account Number</button>
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                <div class="water-dashboard__sub">Water Services</div>
+                <div class="water-dashboard__btn">f
+                    <div class="about-us">About Us</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
+
+        <section class="plan2" id="plan2">
+            <ul class="plan2__items">
+                <li>
+                    <div class="plan2__item">
+
+                    </div>
+                    <p class="plan2__para">New Connections</p>
+                </li>
+                <li>
+                    <div class="plan2__item">
+
+                    </div>
+                    <p class="plan2__para">Public Complaints</p>
+                </li>
+                <li>
+                    <div class="plan2__item">
+
+                    </div>
+                    <p class="plan2__para">Analysis</p>
+                </li>
+            </ul>
+        </section>
+        <section class="plan2 component">
+            <h1 class="plan2__heading">Bill Details</h1>
+            <div class="element">
+                <h3 class="plan2__heading3">Your Total Balance</h3>
+                <p class="plan2__price">1500/=</p>
+            </div>
+            <div class="element">
+                <button class="btn__plan2">Pay Now</button>
+            </div>
+            <div class="element">
+                <button class="btn__plan2">View Bill</button>
+            </div>
+        </section>
+        <section class="plan2 component">
+            <h1 class="plan2__heading">Your Usage</h1>
+            <div class="element">
+                <h3 class="plan2__heading3">Select Your Account</h3>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Account Number</button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+            </div>
+            <div class="graph">
+
+            </div>
+        </section>
+        <section class="suggestion-component component">
+            <table class="wrapper">
+                <tbody>
+                <tr>
+                    <td class="td">
+                        <h1 class="suggestions-head">Suggestions</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <div class="suggestion-1-parent">
+                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <div class="description-the-water-container">
+                                <span class="description">Description: </span>
+                                <span class="the-water-coming"
+                                >The water coming out of our taps is consistently
+                        discolored, appearing brown and murky. This is concerning as
+                        it affects the usability and safety of the water for
+                        drinking, cooking, and general household use.</span
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <div class="suggestion-1-parent">
+                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <div class="description-the-water-container">
+                                <span class="description">Description: </span>
+                                <span class="the-water-coming"
+                                >The water coming out of our taps is consistently
+                        discolored, appearing brown and murky. This is concerning as
+                        it affects the usability and safety of the water for
+                        drinking, cooking, and general household use.</span
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <div class="suggestion-1-parent">
+                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <div class="description-the-water-container">
+                                <span class="description">Description: </span>
+                                <span class="the-water-coming"
+                                >The water coming out of our taps is consistently
+                        discolored, appearing brown and murky. This is concerning as
+                        it affects the usability and safety of the water for
+                        drinking, cooking, and general household use.</span
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-btn">
+                        <button class="see-more">See more</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <footer>
+
+        </footer>
+    </main>
     </body>
 </html>
