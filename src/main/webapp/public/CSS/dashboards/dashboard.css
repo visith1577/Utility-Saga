@@ -63,9 +63,13 @@ html{
     margin-top: 10px;
 }
 
+.menu-items-li{
+    margin-left: 5rem;
+    margin-top: 2.5rem;
+}
+
 .menu-items li{
     list-style: none;
-    margin-left: 1.5rem;
     font-size: 2rem;
 }
 
@@ -164,7 +168,6 @@ html{
     }
 
     .navbar .menu-items li{
-        margin-bottom: 1.8rem;
         font-size: 1.1rem;
         font-weight: 500;
     }
@@ -280,10 +283,12 @@ html{
 
 .dropdown {
     /*position: relative;*/
-    margin-top: 5vh;
+    margin-top: 3vh;
+    /*margin-bottom: 5vh;*/
     margin-left: 20vh;
     display: inline-block;
 }
+
 
 .dropdown-content {
     display: none;
