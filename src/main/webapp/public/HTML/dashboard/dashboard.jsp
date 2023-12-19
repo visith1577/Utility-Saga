@@ -23,9 +23,23 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li class="menu-items-li"><a href="#">Home</a></li>
+                <li class="menu-items-li"><a href="#">About</a></li>
+                <li class="menu-items-li"><a href="#">Contact Us</a></li>
+                <div class="dropdown">
+                <li class="img_user">
+                    <a href="">
+                        <button>
+                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </a>
+                </li>
+                </div>
             </ul>
             <div class="toggle-switch">
                 <label>
