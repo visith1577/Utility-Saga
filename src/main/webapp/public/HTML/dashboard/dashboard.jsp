@@ -10,6 +10,7 @@
     <head>
         <title>Title</title>
         <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     </head>
     <body>
     <nav class="navbar">
@@ -26,6 +27,12 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
+            <div class="toggle-switch">
+                <label>
+                    <input type="checkbox">
+                </label>
+                <div class="slider"></div>
+            </div>
             <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </nav>
@@ -33,17 +40,6 @@
     <main class="component-container">
         <header class="water-dashboard__header">
             <div class="component header-component">
-                <div class="water-dashboard__title">
-                    National Water Supply and Drainage Board
-                </div>
-                <div class="water-dashboard__description">
-                    We provide safe drinking water and facilitate the provision of
-                    sanitation to the people in Sri Lanka.
-                </div>
-                <div class="water-dashboard__sub">Water Services</div>
-                <div class="water-dashboard__btn">f
-                    <div class="about-us">About Us</div>
-                </div>
             </div>
         </header>
 

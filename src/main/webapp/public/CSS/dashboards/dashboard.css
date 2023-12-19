@@ -50,7 +50,7 @@ html{
 .navbar-container{
     display: flex;
     justify-content: space-between;
-    height: calc(100vh - 680px);
+    height: 10vh;
     align-items: center;
 }
 
@@ -61,7 +61,6 @@ html{
 .logo{
     order: 1;
     margin-top: 10px;
-
 }
 
 .menu-items li{
@@ -350,6 +349,7 @@ html{
     background-color: #EDEDED;
     font-size: small;
 }
+
 
 .dropdown-content a:hover {background-color: #ddd;}
 
