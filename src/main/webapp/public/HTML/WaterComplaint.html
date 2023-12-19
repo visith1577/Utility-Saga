@@ -1,201 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/WaterServices/WaterComplaint.css" rel="stylesheet">
-    <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link  type="text/css" rel="stylesheet" href="../CSS/forms.css">
+  <title>Form</title>
 </head>
-
 <body>
-    <div class="wrapper">
-        <div class="top_navbar">
-            <div class="hamburger">
-                <div class="one"></div>
-                <div class="two"></div>
-                <div class="three"></div>
-            </div>
-            <div class="top_menu">
-                <div class="logo">
-                    <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
-                </div>
-                <ul>
-                    <li><a href="#">
-                            <img alt="Cart" src="../images/cart.svg" class="item1">
-                        </a></li>
-                    <li><a href="#">
-                            <img alt="Notification" src="../images/notification-line.svg" class="item2">
-                        </a></li>
-                    <li><a href="#">
-                            <img alt="User" src="../images/user.svg" class="item3">
-                        </a></li>
-                </ul>
-            </div>
+  <div class="formbox water">
+    <form>
+      <h2>Water Services - Public complains</h2>
+      <div class="formbody">
+        <div class="forminput">
+          <select name="Catogery" id="Cateogry" required>
+              <option value="Operational">Operational</option>
+              <option value="Commercial">Commercial</option>
+          </select>
+          <label for="ComplainCategory">Complain Cateogry</label>
         </div>
 
-        <div class="content-middle" id="content-middle">
-            <div class="sidebar" id="sidebar">
-                <ul>
-                    <li class="list_button"><a href="electricityDashboard.jsp">
-                            <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
-                            <span class="title">Home<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="./electricity-service.html">
-                            <span class="icon"><img alt="service" src="../images/service-plan.svg" /></span>
-                            <span class="title">Service<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="./electricty-billing.html">
-                            <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
-                            <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
-                            <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="report" src="../images/event-schedule.svg" /></span>
-                            <span class="title">Report<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="#">
-                            <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
-                            <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                    <li class="list_button"><a href="#">
-                            <span class="icon"><img alt="help" src="../images/help-outline.svg" /></span>
-                            <span class="title">Help<img alt="service" class="right_arrow" height="20px"
-                                    src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                        </a></li>
-                </ul>
-            </div>
-
-            <div class="box">
-                <!-- Select the service -->
-                <div class="select-services1">
-                  <div class="servicetitle">Select the service you need:</div>
-                  <div class="buttons">
-                    <button class="button">Public Complaints</button>
-                    <button class="button">Online Bill Payment</button>
-                    <button class="button">New Connection</button>
-                  </div>
-                </div>
-            
-                <div class="complaintmain">
-                  <div class="select-complaint-option">
-                    <div class="compainbtn">
-                      <button class="button">Public Complaints</button>
-                      <button class="button">Online Bill Payment</button>
-                    </div>
-                  </div>
-            
-                  <div class="formbox">
-                    <div class="section1">
-                      <div class="servicetitle">Select the service you need</div>
-                      <form class="form1">
-                        <div class="textbox">
-                          <label for="cacc">Account Number</label>
-                          <input type="text" id="cacc" name="acc">
-                        </div>
-                        <div class="phone">
-                          <label for="phone">phone number:</label>
-                          <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-                        </div>
-                        <div class="date">
-                          <label for="day">Date:</label>
-                          <input type="date" id="day" name="day">
-                        </div>
-                      </form>
-                      <form class="form1">
-                        <div class="dropdown">
-                          <label for="Catogary">Catogary:</label>
-                          <select id="Catogary" name="Catogary">
-                            <option value="operational">Operational</option>
-                            <option value="commercial">Commercial</option>
-                          </select>
-                        </div>
-                        <div class="dropdown">
-                          <label for="type">Commercial Complaint Type:</label>
-                          <select id="type" name="type">
-                            <option value="MainLeak">Main Leak</option>
-                            <option value="ConnectionLeak">Connection Leak</option>
-                            <option value="Nowater">No water</option>
-                            <option value="LowPressure">Low Pressure</option>
-                            <option value="LeakNearMeter">Leak Near Meter</option>
-                            <option value="WaterQualityProblem">Water Quality Problem</option>
-                            <option value="Other">Other</option>
-                          </select>
-                        </div>
-                    </div>
-                    <div class="formbox1">
-            
-                        <div class="Complainttitle">Complaint Details</div>
-                        <div class="ComplaintNumbox">
-                          <div class="compaintNumbtn">
-                            <button class="button">Generate Complaint Number</button>
-                          </div>
-                          <div class="ComplaintNumberbox">
-                            <label for="complaintnum">Complaint Number: </label>
-                            <input type="text" id="complaintnum" name="complaintnum">
-                          </div>
-                        </div>
-                        <form class="form1">
-                          <div class="textbox">
-                            <label for="acc">Customer Name: </label>
-                            <input type="text" id="acc" name="acc">
-                          </div>
-                          <div class="textbox">
-                            <label for="description">Description: </label>
-                            <textarea id="description" name="description" rows="4"></textarea>
-                          </div>
-                          <div class="textbox">
-                            <label for="nic">NIC: </label>
-                            <input type="text" id="nic" name="nic">
-                          </div>
-                          <div class="textbox">
-                            <label for="address">Customer Address: </label>
-                            <input type="text" id="address" name="address">
-                          </div>
-                        </form>
-                        <div class="savecompbutn">
-                          <button class="button">Save Details</button>
-                        </div>
-            
-                      </div>
-                    </div>
-                  </div>        
-              </div>
-              
-
-
-
-
-
-            </div>
+        <div class="forminput">
+          <select name="complaint_type" id="complaint_type" required>
+              <option value="MainLeak">Main Leak</option>
+              <option value="ConnectionLeak">Connection Leak</option>
+              <option value="NoWater">No Water</option>
+              <option value="LowPressure">Low Pressure</option>
+              <option value="LeakNearMeter">Leak Near Meter</option>
+              <option value="WeakQuality">Weak Weak Quality Problem</option>
+              <option value="Others">Others</option>
+          </select>
+          <label for="complaint_type">Complaint Type</label>
         </div>
-    </div>
+        
+        <div class="forminput">
+          <input type="text" required>
+          <label for="CustomerName">Customer Name</label>
+        </div>
 
+        <div class="forminput">
+          <input type="text" required>
+          <!-- <div class="underline"></div> -->
+          <label for="AccountNum">Account Number</label>
+        </div>
+
+        <div class="forminput">
+          <input type="text" required>
+          <!-- <div class="underline"></div> -->
+          <label for="CusNIC">NIC</label>
+        </div>
+
+        <div class="forminput">
+          <input type="email" required>
+          <!-- <div class="underline"></div> -->
+          <label for="Email">Email Address</label>
+        </div>
+        
+        <div class="forminput">
+          <input type="tel" required>
+          <!-- <div class="underline"></div> -->
+          <label for="Telnum">Telephone Number</label>
+        </div>
+
+        <div class="forminput">
+          <textarea rows="1" cols="1" required></textarea>
+          <label for="">Complaint Description</label>
+          <br />
+        </div>
+      </div>
+      <div class="formbtn">
+        <button type="submit" class="submitbtn waterbtn">Submit</button>
+      </div>
+    </form>
+  </div>
 </body>
-<script src="../JS/dashboard.js"></script>
-<script>
-    window.onscroll = function () {
-        scrollFunction()
-    }
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
-            document.getElementById("sidebar").style.height = "80%";
-        } else {
-            document.getElementById("sidebar").style.height = "85%";
-        }
-    }
-</script>
-
 </html>
