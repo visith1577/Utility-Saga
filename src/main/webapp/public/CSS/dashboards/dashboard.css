@@ -67,7 +67,7 @@ html{
 .menu-items li{
     list-style: none;
     margin-left: 1.5rem;
-    font-size: 1.3rem;
+    font-size: 2rem;
 }
 
 .navbar a{
@@ -168,6 +168,10 @@ html{
         margin-bottom: 1.8rem;
         font-size: 1.1rem;
         font-weight: 500;
+    }
+
+    .navbar .menu-items li a{
+        font-size: 50px;
     }
 
     .logo{
@@ -308,6 +312,8 @@ html{
     background: #EDEDED;
     padding: 2vh;
     margin-top: 5vh;
+    /*margin-left: 2%;*/
+    /*margin-right: 2%;*/
 }
 
 .suggestions-head {
@@ -326,6 +332,12 @@ html{
     margin: 2vh 2vh 2vh 8vh;
     padding: 2vh;
     border-radius: 20px;
+}
+
+.wrapper{
+    /*margin-left: 20%;*/
+    /*margin-right: 20%;*/
+    width: 100%;
 }
 
 .td-btn {
