@@ -26,8 +26,7 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="#">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
-                <div class="dropdown">
-                <li class="img_user">
+                <li class="img_user dropdown">
                     <a href="">
                         <button>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
@@ -39,14 +38,7 @@
                         </div>
                     </a>
                 </li>
-                </div>
             </ul>
-            <div class="toggle-switch">
-                <label>
-                    <input type="checkbox">
-                </label>
-                <div class="slider"></div>
-            </div>
             <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </nav>
