@@ -216,6 +216,10 @@ html{
     background: white;
 }
 
+ul {
+    padding-inline-start: 8vw;
+}
+
 .plan2__items li{
     display: inline-block;
     width: 30%;
