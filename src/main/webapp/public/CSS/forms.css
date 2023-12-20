@@ -1,0 +1,210 @@
+*{
+    margin: 0;
+    padding:0;
+  }
+  
+  :root{
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --electricity-color: #c7ba03;
+    --electricity-color2: #8c7400;
+    --electricity-color3: #8c7400;
+  
+    --warning-color: #ffff00;
+    --info-color: #00ffff;
+    --border-radius: 10px;
+    --box-shadow: 0 0 05px rgba(0,0,0,0.9);
+  }
+  
+  .body{
+    background-color:var(--tertiary-color);
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .formbox{
+    /* width: 80%; */
+    height: 100%;
+    position: relative;
+    margin: 20px 70px 20px 70px;
+    background: #fff;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 05px rgba(135, 134, 134, 0.9);
+  }
+  .formbox h2{
+    text-align: center;
+    font-size: 30px;
+    color: var(water-color);
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  .formbox .formbody{
+    padding: 10px 20px 10px 20px;
+    position: relative;
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  .formbox .formbody .forminput{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .formbox .formbody .forminput label{
+    margin-top: 5px;
+    font-size: 15px;
+    /* color: var(--water-color); */
+  }
+  
+  .formbox .formbody .forminput select{
+    width: 100%;
+    height: 30px;
+    /* border: 0.5px solid #1e1c1c; */
+    border:none;
+    border-bottom: 1px solid #1e1c1c;
+    /* border-radius: 5px;
+    padding: 5px; */
+    color: #000;
+    font-size: 15px;
+    outline: none;
+    }
+  .formbox .formbody .forminput input{
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #1e1c1c;
+    font-size: 15px;
+    color: var(--dark-color);
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+  }
+  
+  .formbox .formbody .forminput input:focus{
+    border-bottom: 2px solid var(--water-color);
+  }
+  
+  .formbox .formbody .forminput textarea{
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #1e1c1c;
+    font-size: 15px;
+    color: var(--dark-color);
+    font-family: 'Roboto', sans-serif;
+    resize: none /*remove the resize handle on the bottom right*/;
+    outline: none;
+  }
+  
+  form .formbody .forminput textarea:focus
+  form .formbody .forminput input:focus
+  form .formbody .forminput select:focus
+  {
+    border-bottom: 2px solid var(--water-color2);
+   
+  }
+  
+  .formbox .formbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .formbox .formbtn .submitbtn{
+    width: 30%;
+    height: 40px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 15px;
+    /* background: var(--water-color); */
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+  }
+  
+  .formbox .formbtn .submitbtn:hover{
+    background: #000;
+  }
+  
+  
+  /* electricity - new & complaint */
+  .electricity label{
+      color: var(--electricity-color2);
+  }
+  
+  .formbox .formbtn .electricitybtn{
+    background-color: var(--electricity-color);
+  }
+  
+  .formbox .formbtn .electricitybtn:hover{
+    background-color: var(--electricity-color2);
+  }
+  
+  /* water - new & complaint*/
+  .water label{
+      color: var(--water-color);
+  }
+  .formbox .formbtn .waterbtn{
+    background-color: var(--water-color2);
+  }
+  
+  .formbox .formbtn .waterbtn:hover{
+    background-color: var(--water-color);
+  }
+  
+  /* Media Quaries */
+  
+  @media screen and (max-width: 768px){
+    .formbox{
+      margin: 10px;
+      padding: 10px;   
+    }
+    .formbox h2{
+      font-size: 25px;
+    }
+    .formbox .formbody{
+      grid-template-columns:1fr;
+      gap: 15px;
+    }
+    .formbox .formbody .forminput select{
+      font-size: 12px;
+    }
+    .formbox .formbtn{
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .container-contact{
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  }
+  
+  @media  screen and (max-width: 480px){
+    .formbox{
+      padding: 20px;   
+    }
+    .formbox h2{
+      font-size: 20px;
+    }
+    .formbox .formbody .forminput select{
+      font-size: 12px;
+    }
+    .container-contact{
+      padding: 20px;
+      /* font-size: 12px; */
+    }
+    .container-contact map{
+      width: 100%;
+      height: 100%;
+    }
+  }
