@@ -1,10 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/solarPanal/SolarPowerCompanyDashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solarPanal/SolarPowerCompanyDashboard.css">
     <title>Solar Power Company Dashboard</title>
 </head>
 
@@ -25,7 +26,7 @@
             </div>
             <div class="item" >
                 <div class="imgBox">
-                    <img src="../images/Solar-Panel.jpg" alt="">
+                    <img src="<%= request.getContextPath() %>/public/images/Solar-Panel.jpg" alt="">
                 </div>
                 <div class="discript">
                     Trino Solar Panel Systems <br>30000W | 18V 
@@ -43,7 +44,7 @@
             </div>
             <div class="item" >
                 <div class="imgBox">
-                    <img src="../images/Solar-Panel.jpg" alt="">
+                    <img src="<%= request.getContextPath() %>/public/images/Solar-Panel.jpg" alt="">
                 </div>
                 <div class="discript">
                     Trino Solar Panel Systems <br>30000W | 18V 
@@ -53,7 +54,7 @@
 
             <div class="item" >
                 <div class="imgBox">
-                    <img src="../images/Solar-Panel.jpg" alt="">
+                    <img src="<%= request.getContextPath() %>/public/images/Solar-Panel.jpg" alt="">
                 </div>
                 <div class="discript">
                     Trino Solar Panel Systems <br>30000W | 18V 
@@ -71,7 +72,7 @@
            </div>
            <div class="item" onclick="openPopup()">
             <div class="imgBox">
-                <img src="https://img.freepik.com/free-photo/3d-rendered-solar-panel-isolated-white-background_181624-57019.jpg?w=2000" alt="" onclick="openPopup">
+                <img src="https://img.freepik.com/free-photo/3d-rendered-solar-panel-isolated-white-background_181624-57019.jpg?w=2000" alt="" onclick="openPopup()">
             </div>
             <div class="discript">
                 Trino Solar Panel Systems <br>30000W | 18V 

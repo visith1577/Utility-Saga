@@ -28,8 +28,8 @@ public class ElectricityLogin extends HttpServlet{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
-                    "root",
-                    "root"
+                    System.getenv("DB_NAME"),
+                    System.getenv("DB_PWD")
             );
 
             PreparedStatement pst = connection.prepareStatement(

@@ -23,13 +23,14 @@ public class UserLogin extends HttpServlet{
         String pwd = req.getParameter("Pwd");
         HttpSession session = req.getSession();
 
+        Cookie c = new Cookie("user_name" ,uname);
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
                     "root",
-                    "root"
+                    "Eranda2001"
             );
 
             PreparedStatement pst = connection.prepareStatement(
@@ -45,6 +46,7 @@ public class UserLogin extends HttpServlet{
                         "/public/HTML/" +
                                 dash
                 );
+                resp.addCookie(c);
                 dispatcher.forward(req, resp);
             } else {
                 session.setAttribute("status", "failed");

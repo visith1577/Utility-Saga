@@ -5,7 +5,7 @@
   Time: 17:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
 <head>
@@ -41,10 +41,10 @@
         <div class="sidebar" id="sidebar">
             <h3>Select the Service</h3><br><br>
             <ul class="b-list">
-                <li class="b-item1"><a href="electricityDashboard.jsp">
+                <li class="b-item1"><a href="<%= request.getContextPath() %>/public/HTML/electricityDashboard.jsp">
                     <div>Electricity Service</div>
                 </a></li>
-                <li class="b-item2"><a href="./dashboard/water.html">
+                <li class="b-item2"><a href="<%= request.getContextPath() %>/public/HTML/waterDashboard.jsp">
                     <div>Water Service</div>
                 </a></li>
                 <li class="b-item3"><a href="">
@@ -57,7 +57,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">New Connection</button>
                         <div class="dropdown-content">
-                            <a href="./electricity-newconnection.html">Electricity Connection</a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/electricity-newconnection.html">Electricity Connection</a>
                             <a href="#">Water Connection</a>
                         </div>
                     </div>

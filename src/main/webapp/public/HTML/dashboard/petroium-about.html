@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="../../CSS/login/user/electricity-contact.css" rel="stylesheet">
+    <link href="../../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
+    <link href="../../CSS/dashboards/petroleum.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+
+    <style>
+       
+
+       
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="top_navbar">
+            <div class="hamburger">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+            </div>
+            <div class="top_menu">
+                <div class="logo">
+                    <img alt="Utility Saga" height="50px" src="../../images/utility_saga.svg">
+                </div>
+                <ul>
+                    <li><a href="#">
+                            <img alt="Cart" src="../../images/cart.svg" class="item1">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="Notification" src="../../images/notification-line.svg" class="item2">
+                        </a></li>
+                    <li><a href="#">
+                            <img alt="User" src="../../images/user.svg" class="item3">
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+        
+
+        <div class="dash-cover">
+            <div class="sideBar">
+                <div class="item" id="home-sideBar"> <a href="./petroleum.html"  > Home</a>
+
+                </div>
+                <div class="item">
+                    <a href="./petrolium-qr.html"> Get the QR</a>
+                </div>
+                <div class="item">
+                    <a href="./petrolium-quota.html"> Fule Quota info</a>
+                </div>
+                <div class="item">
+                    <a href="./petroium-about.html"> About Us</a>
+                </div>
+                <div class="item">
+                    <a href="./petrolium-contact.html"> Contact Us</a>
+                </div>
+            </div>  
+            <div class="content-fuel">
+                <div class="vision">
+                    <h1>OUR VISION</h1>
+                    <p>To be a sustainable entity in the petroleum and related industries; pioneer new opportunities and deliver value to our stakeholders.</p>
+                    <h1>OUR MISSION</h1>
+                    <p>Competitiveness:  Strive to be a market leader by procuring and supplying petroleum and related products at competitive prices. <br>
+
+                        Sustainability:  Be a financially, socially, and environmentally sustainable business that places emphasis in long run gains. <br>
+                        
+                        Continuous Improvement:  Drive growth through continuous improvement of process and people. Always monitor the Corporation's growth for potential areas of improvement. <br>
+                        
+                        Integrity: Act in a reliable manner ensuring the Corporation's best interest at all times. <br>
+                        
+                        Public Focus:  Aim to support the growth of the country. <br></p>
+                        
+                </div>
+            </div>
+        
+    </div>
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <img src="../../resources/purple_bar.png" alt="" class="style-bar">
+
+
+
+</body>
+
+<script src="../../JS/dashboard.js"></script>
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    }
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+            document.getElementById("sidebar").style.height = "80%";
+        } else {
+            document.getElementById("sidebar").style.height = "85%";
+        }
+    }
+</script>
+
+</html>
