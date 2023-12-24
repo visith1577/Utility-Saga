@@ -1,0 +1,32 @@
+
+
+.popup {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.cart-data {
+    margin: auto;
+    border-radius: 10px;
+    width: 70vw;
+    height: 70vh;
+    border: 1px solid rgb(150, 15, 15);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 5px rgb(133, 129, 129);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+    
+    
+}
+
+.cartMain{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+justify-content: center;
+}
