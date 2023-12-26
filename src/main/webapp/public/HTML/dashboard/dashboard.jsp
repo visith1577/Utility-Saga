@@ -26,7 +26,9 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="#">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
-                <li class="img_user dropdown">
+                <li class="menu-items-li nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
+                <li class="menu-items-li nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
+                <li class="menu-items-li img_user dropdown">
                     <a href="">
                         <button>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
@@ -84,7 +86,7 @@
                 <button class="btn__plan2">View Bill</button>
             </div>
         </section>
-        <section class="plan2 component">
+        <section class="plan2 component water">
             <h1 class="plan2__heading">Your Usage</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Select Your Account</h3>
@@ -93,6 +95,24 @@
                     <button class="dropbtn">Account Number</button>
                     <div class="dropdown-content">
                         <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+            </div>
+            <div class="graph">
+
+            </div>
+        </section>
+        <section class="plan2 component electricity">
+            <h1 class="plan2__heading">Your Usage</h1>
+            <div class="element">
+                <h3 class="plan2__heading3">Select Your Account</h3>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Account Number</button>
+                    <div class="dropdown-content">
+                        <a href="#">Link elec</a>
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
                     </div>
@@ -171,4 +191,30 @@
         </footer>
     </main>
     </body>
+    <script>
+        let nxt = document.querySelector(".nxt-page").textContent.trim();
+
+        function toggle() {
+            const water_list = Array.from(document.getElementsByClassName("water"));
+            const electricity_list = Array.from(document.getElementsByClassName("electricity"));
+
+            if (nxt === "Electricity") {
+                water_list.forEach(element => element.style.display = 'none');
+                electricity_list.forEach(element => {
+                    if (element.style.display === 'none' || element.style.display === '') {
+                        element.style.display = 'block';
+                    }
+                });
+                nxt = "Water"
+            } else {
+                water_list.forEach(element => {
+                    if (element.style.display === 'none' || element.style.display === '') {
+                        element.style.display = 'block';
+                    }
+                });
+                electricity_list.forEach(element => element.style.display = 'none');
+                nxt = "Electricity"
+            }
+        }
+    </script>
 </html>
