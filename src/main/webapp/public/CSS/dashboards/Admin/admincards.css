@@ -1,0 +1,114 @@
+:root{
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --electricity-color: #c7ba03;
+    --electricity-color2: #8c7400;
+    --electricity-color3: #8c7400;
+    --warning-color: #ffff00;
+    --info-color: #00ffff;
+    --border-radius: 10px;
+    --box-shadow: 0 0 05px rgba(0,0,0,0.9);
+}
+
+/* ======================= Cards ====================== */
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+  }
+  
+  .cardBox .card {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    height: 150px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+
+  }
+  .cardBox .card .infor{
+    align-self: center;
+  }
+  
+  .cardBox .card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+  }
+  
+  .cardBox .card .cardName {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-decoration: none;
+  }
+  
+  .cardBox .card .iconBx {
+    font-size: 3.5rem;
+    color: var(--water-color2);
+    align-self: center;
+  }
+  
+  .cardBox .card:hover {
+    background: var(--water-color2);
+  }
+  .cardBox .card:hover .numbers,
+  .cardBox .card:hover .cardName,
+  .cardBox .card:hover .iconBx {
+    color: var(--tertiary-color);
+  }
+
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 1200px) {
+    .cardBox {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px){
+    .cardBox {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 610px) {
+    .cardBox {
+
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: space-between;
+    }
+    .cardBox .card {
+      padding: 10px;
+      height: 100%;
+      border-radius: 10px;  
+      justify-content: space-between;
+    }
+    .cardBox .card .numbers {
+      position: relative;
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .cardBox .card .cardName {
+      font-size: 0.8rem;
+      margin-top: 3px;
+    }
+    
+    .cardBox .card .iconBx {
+      margin-left: 10px;
+      font-size: 2rem;
+    }
+}
