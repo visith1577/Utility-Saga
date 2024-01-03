@@ -46,12 +46,17 @@
     </nav>
 
     <main class="component-container">
-        <header class="water-dashboard__header">
-            <div class="component header-component">
+        <header class="water-dashboard__header water">
+            <div class="component header-component-water">
             </div>
         </header>
 
-        <section class="plan2" id="plan2">
+        <header class="electricity-dashboard__header electricity">
+            <div class="component header-component-elec">
+            </div>
+        </header>
+
+        <section class="plan2 water" id="plan2">
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
@@ -73,6 +78,30 @@
                 </li>
             </ul>
         </section>
+
+        <section class="plan2 electricity" id="plan2e">
+            <ul class="plan2__items">
+                <li>
+                    <div class="plan2__item">
+
+                    </div>
+                    <p class="plan2__para">New Connections</p>
+                </li>
+                <li>
+                    <div class="plan2__item">
+
+                    </div>
+                    <p class="plan2__para">Public Complaints</p>
+                </li>
+                <li>
+                    <div class="plan2__item">
+
+                    </div>
+                    <p class="plan2__para">Analysis</p>
+                </li>
+            </ul>
+        </section>
+
         <section class="plan2 component">
             <h1 class="plan2__heading">Bill Details</h1>
             <div class="element">
@@ -86,6 +115,22 @@
                 <button class="btn__plan2">View Bill</button>
             </div>
         </section>
+
+        <section class="plan2 component">
+            <h1 class="plan2__heading">Bill Details</h1>
+            <div class="element">
+                <h3 class="plan2__heading3">Your Total Balance</h3>
+                <p class="plan2__price">1500/=</p>
+            </div>
+            <div class="element">
+                <button class="btn__plan2">Pay Now</button>
+            </div>
+            <div class="element">
+                <button class="btn__plan2">View Bill</button>
+            </div>
+        </section>
+
+
         <section class="plan2 component water">
             <h1 class="plan2__heading">Your Usage</h1>
             <div class="element">
@@ -94,7 +139,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">Account Number</button>
                     <div class="dropdown-content">
-                        <a href="#">Link 1</a>
+                        <a href="#">Link Water</a>
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
                     </div>
@@ -122,7 +167,72 @@
 
             </div>
         </section>
-        <section class="suggestion-component component">
+        <section class="suggestion-component component water">
+            <table class="wrapper">
+                <tbody>
+                <tr>
+                    <td class="td">
+                        <h1 class="suggestions-head">Suggestions</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <div class="suggestion-1-parent">
+                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <div class="description-the-water-container">
+                                <span class="description">Description: </span>
+                                <span class="the-water-coming"
+                                >The water coming out of our taps is consistently
+                        discolored, appearing brown and murky. This is concerning as
+                        it affects the usability and safety of the water for
+                        drinking, cooking, and general household use.</span
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <div class="suggestion-1-parent">
+                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <div class="description-the-water-container">
+                                <span class="description">Description: </span>
+                                <span class="the-water-coming"
+                                >The water coming out of our taps is consistently
+                        discolored, appearing brown and murky. This is concerning as
+                        it affects the usability and safety of the water for
+                        drinking, cooking, and general household use.</span
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-item">
+                        <div class="suggestion-1-parent">
+                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <div class="description-the-water-container">
+                                <span class="description">Description: </span>
+                                <span class="the-water-coming"
+                                >The water coming out of our taps is consistently
+                        discolored, appearing brown and murky. This is concerning as
+                        it affects the usability and safety of the water for
+                        drinking, cooking, and general household use.</span
+                                >
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-btn">
+                        <button class="see-more">See more</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="suggestion-component component electricity">
             <table class="wrapper">
                 <tbody>
                 <tr>

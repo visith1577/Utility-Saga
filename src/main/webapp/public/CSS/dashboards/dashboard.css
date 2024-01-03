@@ -28,15 +28,25 @@ html{
     margin: 2vh;
 }
 
-.header-component
+.header-component-water
 {
     width: 100%;
-    background: url("../../images/water_board_main.png") no-repeat fixed;
     -o-background-size: cover;
+    background: url("../../images/water_board_main.png") no-repeat fixed;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     height: 800px;
 }
+
+.header-component-elec{
+    width: 100%;
+    -o-background-size: cover;
+    background: url("../../images/electricity_board_main.png") no-repeat fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    height: 800px;
+}
+
 
 .navbar input[type="checkbox"],
 .navbar .hamburger-lines{
@@ -302,7 +312,11 @@ html{
 }
 
 #plan2{
-    background: white;
+    background: lightblue;
+}
+
+#plan2e{
+    background: #FCC7C7;
 }
 
 ul {
@@ -399,6 +413,7 @@ ul {
     text-decoration: none;
     display: block;
     border-radius: 2vh;
+    font-size: 14px;
 }
 
 .component {
@@ -446,6 +461,7 @@ ul {
     border: none;
     background-color: #EDEDED;
     font-size: small;
+    color: blue;
 }
 
 
