@@ -20,6 +20,10 @@ html{
     display: none;
 }
 
+.nxt-page {
+    margin: 12px 0 0 50px;
+}
+
 .component-container {
     margin: 2vh;
 }
@@ -53,6 +57,7 @@ html{
     opacity: 0.85;
     z-index: 100;
     position: relative;
+    padding-bottom: 10px;
 }
 
 .navbar-container{
@@ -371,9 +376,9 @@ ul {
 
 .dropdown {
     /*position: relative;*/
-    margin-top: 3vh;
+    margin-top: 2vh;
     /*margin-bottom: 5vh;*/
-    margin-left: 20vh;
+    margin-left: 4vw;
     display: inline-block;
 }
 
