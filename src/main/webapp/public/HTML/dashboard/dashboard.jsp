@@ -26,9 +26,9 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="#">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
-                <li class="menu-items-li nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
-                <li class="menu-items-li nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
-                <li class="menu-items-li img_user dropdown">
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
+                <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
+                <li class="img_user dropdown">
                     <a href="">
                         <button>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
