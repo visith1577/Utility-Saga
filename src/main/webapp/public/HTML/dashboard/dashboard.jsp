@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     </head>
     <body>
-    <nav class="navbar">
+    <header class="navbar">
         <div class="navbar-container container">
             <label for="hamburger"></label>
             <input type="checkbox" name="hamburger" id="hamburger">
@@ -28,6 +28,7 @@
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
                 <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
+
                 <li class="img_user dropdown">
                     <a href="">
                         <button>
@@ -43,7 +44,7 @@
             </ul>
             <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
-    </nav>
+    </header>
 
     <main class="component-container">
         <header class="water-dashboard__header water">
@@ -102,36 +103,36 @@
             </ul>
         </section>
 
-        <section class="plan2 component">
+        <section class="plan2 component water" style="background: lightblue">
             <h1 class="plan2__heading">Bill Details</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Your Total Balance</h3>
                 <p class="plan2__price">1500/=</p>
             </div>
             <div class="element">
-                <button class="btn__plan2">Pay Now</button>
+                <button class="btn__plan2" style="background: #1a1d86">Pay Now</button>
             </div>
             <div class="element">
-                <button class="btn__plan2">View Bill</button>
+                <button class="btn__plan2" style="background: #1a1d86">View Bill</button>
             </div>
         </section>
 
-        <section class="plan2 component">
+        <section class="plan2 component electricity" style="background: #FCC7C7">
             <h1 class="plan2__heading">Bill Details</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Your Total Balance</h3>
                 <p class="plan2__price">1500/=</p>
             </div>
             <div class="element">
-                <button class="btn__plan2">Pay Now</button>
+                <button class="btn__plan2" style="background: red">Pay Now</button>
             </div>
             <div class="element">
-                <button class="btn__plan2">View Bill</button>
+                <button class="btn__plan2" style="background: red">View Bill</button>
             </div>
         </section>
 
 
-        <section class="plan2 component water">
+        <section class="plan2 component water" style="background: lightblue">
             <h1 class="plan2__heading">Your Usage</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Select Your Account</h3>
@@ -149,7 +150,7 @@
 
             </div>
         </section>
-        <section class="plan2 component electricity">
+        <section class="plan2 component electricity" style="background: #FCC7C7">
             <h1 class="plan2__heading">Your Usage</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Select Your Account</h3>
@@ -167,7 +168,7 @@
 
             </div>
         </section>
-        <section class="suggestion-component component water">
+        <section class="suggestion-component component water" style="background: lightblue">
             <table class="wrapper">
                 <tbody>
                 <tr>
@@ -225,14 +226,14 @@
                 </tr>
                 <tr>
                     <td class="td-btn">
-                        <button class="see-more">See more</button>
+                        <button class="see-more" style="color: darkblue; background: lightblue">See more</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </section>
 
-        <section class="suggestion-component component electricity">
+        <section class="suggestion-component component electricity" style="background: #FCC7C7">
             <table class="wrapper">
                 <tbody>
                 <tr>
@@ -290,7 +291,7 @@
                 </tr>
                 <tr>
                     <td class="td-btn">
-                        <button class="see-more">See more</button>
+                        <button class="see-more" style="color: darkred; background: #FCC7C7">See more</button>
                     </td>
                 </tr>
                 </tbody>

@@ -66,9 +66,13 @@ html{
     color: #000;
     opacity: 0.85;
     z-index: 100;
-    position: relative;
+    display: block;
+    position: fixed;
     padding-bottom: 10px;
 }
+
+
+
 
 .navbar-container{
     display: flex;
@@ -358,7 +362,7 @@ ul {
     margin-left: 20vh;
     width: 15vh;
     height: 4vh;
-    background: #1a1d86;
+    /*background: #1a1d86;*/
     color: white;
     border-radius: 5%;
 }
@@ -390,7 +394,7 @@ ul {
 
 .dropdown {
     /*position: relative;*/
-    margin-top: 2vh;
+    margin-top: 2.5vh;
     /*margin-bottom: 5vh;*/
     margin-left: 4vw;
     display: inline-block;
@@ -459,7 +463,6 @@ ul {
 
 .see-more {
     border: none;
-    background-color: #EDEDED;
     font-size: small;
     color: blue;
 }
