@@ -18,6 +18,16 @@ body {
     --color-gray-200: #202020;
     --color-black: #000;
 
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --electricity-color: #c7ba03;
+    --electricity-color2: #8c7400;
+    --electricity-color3: #8c7400;
+
+
     /* Gaps */
     --gap-9xl: 28px;
     --gap-21xl: 40px;
