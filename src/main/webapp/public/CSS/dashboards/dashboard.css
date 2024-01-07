@@ -28,15 +28,25 @@ html{
     margin: 2vh;
 }
 
-.header-component
+.header-component-water
 {
     width: 100%;
-    background: url("../../images/water_board_main.png") no-repeat fixed;
     -o-background-size: cover;
+    background: url("../../images/water_board_main.png") no-repeat fixed;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     height: 800px;
 }
+
+.header-component-elec{
+    width: 100%;
+    -o-background-size: cover;
+    background: url("../../images/electricity_board_main.png") no-repeat fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    height: 800px;
+}
+
 
 .navbar input[type="checkbox"],
 .navbar .hamburger-lines{
@@ -56,9 +66,13 @@ html{
     color: #000;
     opacity: 0.85;
     z-index: 100;
-    position: relative;
+    display: block;
+    position: fixed;
     padding-bottom: 10px;
 }
+
+
+
 
 .navbar-container{
     display: flex;
@@ -302,7 +316,11 @@ html{
 }
 
 #plan2{
-    background: white;
+    background: lightblue;
+}
+
+#plan2e{
+    background: #FCC7C7;
 }
 
 ul {
@@ -344,7 +362,7 @@ ul {
     margin-left: 20vh;
     width: 15vh;
     height: 4vh;
-    background: #1a1d86;
+    /*background: #1a1d86;*/
     color: white;
     border-radius: 5%;
 }
@@ -376,7 +394,7 @@ ul {
 
 .dropdown {
     /*position: relative;*/
-    margin-top: 2vh;
+    margin-top: 2.5vh;
     /*margin-bottom: 5vh;*/
     margin-left: 4vw;
     display: inline-block;
@@ -399,6 +417,7 @@ ul {
     text-decoration: none;
     display: block;
     border-radius: 2vh;
+    font-size: 14px;
 }
 
 .component {
@@ -444,8 +463,8 @@ ul {
 
 .see-more {
     border: none;
-    background-color: #EDEDED;
     font-size: small;
+    color: blue;
 }
 
 
