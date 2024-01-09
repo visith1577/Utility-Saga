@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Title</title>
+        <title>Dashboard</title>
         <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     </head>
     <body>
+    <div class="navv">
     <header class="navbar">
         <div class="navbar-container container">
             <label for="hamburger"></label>
@@ -45,6 +46,7 @@
             <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </header>
+    </div>
 
     <main class="component-container">
         <header class="water-dashboard__header water">
@@ -61,19 +63,19 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-
+                        <a href=""><img src="../../images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-
+                        <a href=""><img src="../../images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-
+                        <a href=""><img src="../../images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
@@ -84,19 +86,19 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-
+                        <a href=""><img src="../../images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-
+                        <a href=""><img src="../../images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-
+                        <a href=""><img src="../../images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
