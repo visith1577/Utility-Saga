@@ -12,6 +12,10 @@ html{
     max-width: 100%;
 }
 
+.user-profile{
+    border-radius: 2px;
+}
+
 .water {
     display: block;
 }
@@ -25,7 +29,7 @@ html{
 }
 
 .component-container {
-    margin: 2vh;
+    margin: 12vh 2vh 2vh;
 }
 
 .header-component-water
@@ -69,9 +73,8 @@ html{
     display: block;
     position: fixed;
     padding-bottom: 10px;
+    top: 0;
 }
-
-
 
 
 .navbar-container{
