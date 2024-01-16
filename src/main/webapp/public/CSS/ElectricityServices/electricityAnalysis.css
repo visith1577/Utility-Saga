@@ -173,7 +173,7 @@ html {
 
 .product-name .icon {
     margin: 0;
-    background: #ff8bb4;
+    background: #d6ff8b;
     border-radius: 50%;
     color: #291623;
     font-size: 3rem;
@@ -186,6 +186,8 @@ html {
 .product-name.windows .icon {
     background: #dc9afc;
 }
+
+
 
 @media (max-width: 1500px) {
     .dashboard {

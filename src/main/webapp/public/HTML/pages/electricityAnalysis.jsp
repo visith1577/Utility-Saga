@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="../../CSS/ElectricityServices/electricityAnalysis.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="../../CSS/forms.css">
 </head>
 <body>
 <div class="navv">
@@ -28,8 +29,6 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="#">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
-                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
-                <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
 
                 <li class="img_user dropdown">
                     <a href="">
@@ -70,124 +69,69 @@
                 </div>
             </div>
 
-            <!-- Product Stats -->
             <div class="product-stats flex">
                 <div class="product-sales stats-box">
-                    <h2 class="heading">Sales</h2>
+                    <h2 class="heading">IOT Devices</h2>
                     <canvas id="iot"></canvas>
                 </div>
 
                 <div class="top-selling stats-box">
-                    <h2 class="heading">Top Selling Product</h2>
+                    <h2 class="heading">Usages</h2>
                     <table class="top-selling-products" height="100%" width="100%">
                         <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Sold</th>
+                            <th>Device</th>
+                            <th>Usage</th>
+                            <th>Power Consumption </th>
+                        </tr>
+                        <tr>
+                            <td>AC</td>
+                            <td>25</td>
+                            <td>3000W</td>
+                        </tr>
+                        <tr>
+                            <td>Fan 1</td>
+                            <td>5</td>
+                            <td>250 W</td>
                         </tr>
 
                         <tr>
-                            <td>68231</td>
-                            <td>
-                                <div class="product-name flex">
-                                    <div class="icon">
-                                        <ion-icon name="logo-amazon"></ion-icon>
-                                    </div>
-                                    <p>Amazon Kindle 4th Gen</p>
-                                </div>
-                            </td>
-                            <td>$1900</td>
-                            <td>351</td>
+                            <td>Fan 2</td>
+                            <td>10</td>
+                            <td>250 W</td>
                         </tr>
 
-                        <tr>
-                            <td>68231</td>
-                            <td>
-                                <div class="product-name iphone flex">
-                                    <div class="icon">
-                                        <ion-icon name="logo-apple"></ion-icon>
-                                    </div>
-                                    <p>Iphone 11 Pro</p>
-                                </div>
-                            </td>
-                            <td>$1300</td>
-                            <td>121</td>
-                        </tr>
 
-                        <tr>
-                            <td>68231</td>
-                            <td>
-                                <div class="product-name windows flex">
-                                    <div class="icon">
-                                        <ion-icon name="logo-microsoft"></ion-icon>
-                                    </div>
-                                    <p>Windows 11</p>
-                                </div>
-                            </td>
-                            <td>$180</td>
-                            <td>195</td>
-                        </tr>
+
                     </table>
                 </div>
             </div>
 
             <div class="product-stats flex">
                 <div class="product-sales stats-box">
-                    <h2 class="heading">Sales</h2>
-                    <canvas id="products"></canvas>
+                    <h2 class="heading">Budget</h2>
                 </div>
 
                 <div class="top-selling stats-box">
-                    <h2 class="heading">Top Selling Product</h2>
                     <table class="top-selling-products" height="100%" width="100%">
                         <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Sold</th>
+                            <th>Month</th>
+                            <th>Expected Units</th>
+                            <th>Expected Price</th>
                         </tr>
-
                         <tr>
-                            <td>68231</td>
-                            <td>
-                                <div class="product-name flex">
-                                    <div class="icon">
-                                        <ion-icon name="logo-amazon"></ion-icon>
-                                    </div>
-                                    <p>Amazon Kindle 4th Gen</p>
-                                </div>
-                            </td>
-                            <td>$1900</td>
-                            <td>351</td>
+                            <td>January</td>
+                            <td>150</td>
+                            <td>5000</td>
                         </tr>
-
                         <tr>
-                            <td>68231</td>
-                            <td>
-                                <div class="product-name iphone flex">
-                                    <div class="icon">
-                                        <ion-icon name="logo-apple"></ion-icon>
-                                    </div>
-                                    <p>Iphone 11 Pro</p>
-                                </div>
-                            </td>
-                            <td>$1300</td>
-                            <td>121</td>
+                            <td>February</td>
+                            <td>140</td>
+                            <td>4000</td>
                         </tr>
-
                         <tr>
-                            <td>68231</td>
-                            <td>
-                                <div class="product-name windows flex">
-                                    <div class="icon">
-                                        <ion-icon name="logo-microsoft"></ion-icon>
-                                    </div>
-                                    <p>Windows 11</p>
-                                </div>
-                            </td>
-                            <td>$180</td>
-                            <td>195</td>
+                            <td>March</td>
+                            <td>150</td>
+                            <td>5000</td>
                         </tr>
                     </table>
                 </div>
