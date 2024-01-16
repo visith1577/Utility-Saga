@@ -32,7 +32,7 @@
 
                 <li class="img_user dropdown">
                     <a href="">
-                        <button>
+                        <button class="user-profile">
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">
@@ -49,15 +49,15 @@
     </div>
 
     <main class="component-container">
-        <header class="water-dashboard__header water">
+        <div class="water-dashboard__header water">
             <div class="component header-component-water">
             </div>
-        </header>
+        </div>
 
-        <header class="electricity-dashboard__header electricity">
+        <div class="electricity-dashboard__header electricity">
             <div class="component header-component-elec">
             </div>
-        </header>
+        </div>
 
         <section class="plan2 water" id="plan2">
             <ul class="plan2__items">
@@ -306,6 +306,9 @@
     </body>
     <script>
         let nxt = document.querySelector(".nxt-page").textContent.trim();
+        let expires = new Date();
+        expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
+        document.cookie = 'nxt='+ nxt + ';expires=' + expires.toUTCString();
 
         function toggle() {
             const water_list = Array.from(document.getElementsByClassName("water"));
@@ -319,6 +322,7 @@
                     }
                 });
                 nxt = "Water"
+                document.cookie = 'nxt=Water' + ';path=/';
             } else {
                 water_list.forEach(element => {
                     if (element.style.display === 'none' || element.style.display === '') {
@@ -327,6 +331,7 @@
                 });
                 electricity_list.forEach(element => element.style.display = 'none');
                 nxt = "Electricity"
+                document.cookie = 'nxt=Electricity' + ';path=/';
             }
         }
     </script>
