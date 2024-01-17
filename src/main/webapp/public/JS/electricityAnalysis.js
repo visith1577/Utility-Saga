@@ -12,7 +12,7 @@ new Chart(bills, {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"],
         datasets: [
             {
-                label: "My Revenue",
+                label: "Usage",
                 data: [380, 200, 500, 300, 150, 400, 100],
                 backgroundColor: ["rgba(255, 104, 0, 1)"],
                 hoverBackgroundColor: "#FF90B8",
@@ -55,11 +55,11 @@ new Chart(fluct, {
 new Chart(iot, {
     type: "doughnut",
     data: {
-        labels: ["Fashion", "Gadjet", "Other"],
+        labels: ["AC", "Fan1", "Fan2"],
         datasets: [
             {
                 label: "My Revenue",
-                data: [380, 200, 500],
+                data: [25, 5, 10],
                 backgroundColor: [
                     "rgba(155,128,151,1)",
                     "rgba(254,111,162,1)",
@@ -72,4 +72,14 @@ new Chart(iot, {
     options: {
         responsive: true,
     },
+});
+
+function placeholderIsSupported() {
+    test = document.createElement('input');
+    return ('placeholder' in test);
+}
+
+$(document).ready(function(){
+    placeholderSupport = placeholderIsSupported() ? 'placeholder' : 'no-placeholder';
+    $('html').addClass(placeholderSupport);
 });
