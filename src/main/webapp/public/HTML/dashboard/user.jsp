@@ -29,7 +29,7 @@
             <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
             <script>
                 function toggle() {
-                    window.location.href = "dashboard.jsp"
+                    window.location.href = "userDashboard.jsp"
                 }
             </script>
             <li class="img_user dropdown">
@@ -45,7 +45,7 @@
                 </a>
             </li>
         </ul>
-        <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
+        <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
     </div>
 </header>
 <main class="component-container profile-component__main">
