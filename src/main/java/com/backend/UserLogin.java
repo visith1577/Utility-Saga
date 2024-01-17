@@ -43,7 +43,7 @@ public class UserLogin extends HttpServlet{
             if (rs.next()) {
                 session.setAttribute("name", rs.getString("uname"));
                 RequestDispatcher dispatcher = req.getRequestDispatcher(
-                        "/public/HTML/" +
+                        "/public/HTML/dashboard" +
                                 dash
                 );
                 resp.addCookie(c);

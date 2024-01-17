@@ -43,7 +43,7 @@
                     </a>
                 </li>
             </ul>
-            <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </header>
     </div>
