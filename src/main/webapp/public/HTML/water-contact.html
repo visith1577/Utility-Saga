@@ -1,103 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../CSS/login/user/electricity-contact.css" rel="stylesheet">
-    <link href="../CSS/login/user/electricity_navbar_sidebar.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us-Water</title>
+    <link  type="text/css" rel="stylesheet" href="../CSS/forms.css">
+    <link  type="text/css" rel="stylesheet" href="../CSS/contactpg.css">
 </head>
-
 <body>
-    <div class="wrapper">
-
-        <div class="top_navbar">
-            <div class="hamburger">
-                <div class="one"></div>
-                <div class="two"></div>
-                <div class="three"></div>
-            </div>
-            <div class="top_menu">
-                <div class="logo">
-                    <img alt="Utility Saga" height="50px" src="../images/utility_saga.svg">
+    <section>
+        <div class="contact-contaiter">
+            <div class="detail-container">
+                <h2>Contact us</h2>
+                <p>Visit our office or simply send us an email anytime you want. 
+                    If you have any questions, please feel free to contact us.
+                </p>
+            </br><div class="Detail"><strong>Address:</strong></br>National Water Supply and Drainage Board,
+                    Galle Road,</br> Ratmalana.
+                    Sri Lanka 
                 </div>
-                <ul>
-                    <li><a href="#">
-                            <img alt="Cart" src="../images/cart.svg" class="item1">
-                        </a></li>
-                    <li><a href="#">
-                            <img alt="Notification" src="../images/notification-line.svg" class="item2">
-                        </a></li>
-                    <li><a href="#">
-                            <img alt="User" src="../images/user.svg" class="item3">
-                        </a></li>
-                </ul>
+            </br><div class="Detail">
+                    <strong>Telephone number:</strong> </br>+94 11 2638999</br>+94 11 2611589
+                </div>
+            </br><div class="Detail">
+                <strong>Fax number:</strong></br>+94 11 2636449
+            </div>
+        </br><div class="Detail">
+            <strong>Website: </strong> </br>info@waterboard.lk
+        </div>
+            </div>
+            
+            <div class="form-container">
+            <h3>Message us</h3>
+            <form action="" class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Telephone Number" required>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Write message here" required></textarea>
+                <input type="submit" value="Send" class="send-button">
+            </form>
+            </div>
+            <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4055948.1569436!2d75.46817172499998!3d6.904129700000017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2452dd1d7c82f%3A0xc26a5b990d9590ff!2sNational%20Water%20Supply%20%26%20Drainage%20Board%20-%20Head%20Office!5e0!3m2!1sen!2slk!4v1704545938129!5m2!1sen!2slk"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-
-        <div class="content-middle" id="content-middle">
-            <div class="sidebar" id="sidebar">
-                <ul>
-                    <li class="list_button"><a href="dashboard/waterDashboard.jsp">
-                        <span class="icon"><img alt="home" src="../images/home-outline.svg" /></span>
-                        <span class="title">Home<img alt="service" class="right_arrow" height="20px"
-                                src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                    </a></li>
-                <li class="list_button"><a href="./water-billing.html">
-                        <span class="icon"><img alt="bills" src="../images/bill.svg" /></span>
-                        <span class="title">Bills<img alt="service" class="right_arrow" height="20px"
-                                src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                    </a></li>
-                <li class="list_button"><a  href="./water-analysis.html">
-                        <span class="icon"><img alt="analysis" src="../images/report.svg" /></span>
-                        <span class="title">Analysis<img alt="service" class="right_arrow" height="20px"
-                                src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                    </a></li>
-                <li class="list_button"><a href="./water-contact.html">
-                        <span class="icon"><img alt="report" src="../images/call.svg" /></span>
-                        <span class="title">Contact Us<img alt="service" class="right_arrow" height="20px"
-                                src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                    </a></li>
-                <li class="list_button"><a href="./settings.html">
-                        <span class="icon"> <img alt="settings" src="../images/settings-outline.svg" /></span>
-                        <span class="title">Settings<img alt="service" class="right_arrow" height="20px"
-                                src="../images/arrow-right-s-line.svg" width="20px" /></span>
-                    </a></li>
-                </ul>
-            </div>
-
-            <div class="grid">
-                <div id="left-top" class="grid-element">
-
-                </div>
-                <div id="left-bottom" class="grid-element">
-
-                </div>
-                <div id="right-top" class="grid-element">
-
-                </div>
-                <div id="right-bottom" class="grid-element">
-
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 </body>
-<script src="../JS/dashboard.js"></script>
-<script>
-    window.onscroll = function () {
-        scrollFunction()
-    }
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
-            document.getElementById("sidebar").style.height = "80%";
-        } else {
-            document.getElementById("sidebar").style.height = "85%";
-        }
-    }
-</script>
-
 </html>
