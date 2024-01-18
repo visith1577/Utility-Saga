@@ -31,7 +31,7 @@
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
 
                 <li class="img_user dropdown">
-                    <a href="">
+                    <a href="<%= request.getContextPath() %>/public/HTML/dashboard/user.jsp">
                         <button>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
             </ul>
-            <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </header>
 </div>

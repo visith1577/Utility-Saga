@@ -25,13 +25,13 @@
             </div>
             <ul class="menu-items">
                 <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="#">About</a></li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
                 <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
 
                 <li class="img_user dropdown">
-                    <a href="">
+                    <a href="<%= request.getContextPath() %>/public/HTML/dashboard/user.jsp">
                         <button class="user-profile">
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
@@ -63,19 +63,19 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-                        <a href=""><img src="../../images/four-point-connection.svg" alt="New Connection"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/water-newconnection.html"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href=""><img src="../../images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/water-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href=""><img src="../../images/analysis.svg" alt="Analysis"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/pages/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
@@ -86,19 +86,19 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-                        <a href=""><img src="../../images/four-point-connection.svg" alt="New Connection"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity-newconnection.html"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href=""><img src="../../images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href=""><img src="../../images/analysis.svg" alt="Analysis"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/pages/electricityAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
