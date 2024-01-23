@@ -30,7 +30,7 @@ public class UserLogin extends HttpServlet{
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
                     "root",
-                    "Eranda2001"
+                    "root"
             );
 
             PreparedStatement pst = connection.prepareStatement(
@@ -43,7 +43,7 @@ public class UserLogin extends HttpServlet{
             if (rs.next()) {
                 session.setAttribute("name", rs.getString("uname"));
                 RequestDispatcher dispatcher = req.getRequestDispatcher(
-                        "/public/HTML/" +
+                        "/public/HTML/dashboard" +
                                 dash
                 );
                 resp.addCookie(c);
