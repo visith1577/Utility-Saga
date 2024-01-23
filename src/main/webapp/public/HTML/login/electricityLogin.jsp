@@ -10,10 +10,10 @@
 <html>
     <head>
         <title>JSP - Hello World</title>
-        <link rel="stylesheet" href="../CSS/login/login.css">
+        <link rel="stylesheet" href="../../CSS/login/login.css">
     </head>
     <body>
-        <img src="../resources/purple_bar.png" alt="" class="style-bar">
+        <img src="../../resources/purple_bar.png" alt="" class="style-bar">
         <div class="container">
             <aside class="side-panel">
                 <h1 class="side-panel__title side-panel__main">
@@ -23,12 +23,12 @@
                     Centralized platform that offers a combination of water, fuel, <br>
                     and electricity services in one place.
                 </h2>
-                <img src="../resources/fuel_login.png" width="400px" alt="utility-saga">
+                <img src="../../resources/electricity_login.png" width="400px" alt="utility-saga">
             </aside>
             <%--            <div class="empty-div">--%>
             <%--            </div>--%>
             <section class="login">
-                <div class="login-form">
+                <form action="${pageContext.request.contextPath}/elogin" method="post" class="login-form">
                     <h1 class="login-panel__title login-panel__main">
                         Welcome To Utility Saga
                     </h1>
@@ -51,10 +51,10 @@
                     <button class="login-btn">
                         Log In
                     </button>
-                    <a href="#" class="register">
+                    <a href="registerForm.jsp" class="register">
                         Register
                     </a>
-                </div>
+                </form>
             </section>
         </div>
     </body>

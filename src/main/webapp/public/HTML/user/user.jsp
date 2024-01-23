@@ -33,7 +33,7 @@
                 }
             </script>
             <li class="img_user dropdown">
-                <a href="<%= request.getContextPath() %>/public/HTML/dashboard/user.jsp">
+                <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
                     <button class="user-profile">
                         <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                     </button>

@@ -9,12 +9,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSP - Hello World</title>
-        <link rel="stylesheet" href="../CSS/login/login.css">
+        <title>User Login</title>
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/login/login.css">
     </head>
     <body>
-        <img src="../resources/purple_bar.png" alt="" class="style-bar">
+        <img src="<%= request.getContextPath() %>/public/resources/purple_bar.png" alt="" class="style-bar">
         <div class="container">
+            <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
             <aside class="side-panel">
                 <h1 class="side-panel__title side-panel__main">
                     UTILITY SAGA
@@ -23,12 +24,12 @@
                     Centralized platform that offers a combination of water, fuel, <br>
                     and electricity services in one place.
                 </h2>
-                <img src="../resources/electricity_login.png" width="400px" alt="utility-saga">
+                <img src="<%= request.getContextPath() %>/public/resources/login_img.png" width="400px" alt="utility-saga">
             </aside>
             <%--            <div class="empty-div">--%>
             <%--            </div>--%>
             <section class="login">
-                <form action="${pageContext.request.contextPath}/elogin" method="post" class="login-form">
+                <form method="post" action="${pageContext.request.contextPath}/login" class="login-form">
                     <h1 class="login-panel__title login-panel__main">
                         Welcome To Utility Saga
                     </h1>
@@ -48,14 +49,21 @@
                     <a href="#" class="fgt-pwd">
                         Forget Password
                     </a>
-                    <button class="login-btn">
+                    <button name="login-btn" class="login-btn">
                         Log In
                     </button>
-                    <a href="registerForm.jsp" class="register">
+                    <a href="<%= request.getContextPath() %>/public/HTML/login/registerForm.jsp" class="register">
                         Register
                     </a>
                 </form>
             </section>
         </div>
     </body>
+<script type="text/javascript">
+    let status = document.getElementById("status").value;
+    if (status === "success") {
+        swal("Congrats", "Account created successfully", "success");
+    }
+</script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </html>

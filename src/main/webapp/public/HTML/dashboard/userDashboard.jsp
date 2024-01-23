@@ -31,7 +31,7 @@
                 <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
 
                 <li class="img_user dropdown">
-                    <a href="<%= request.getContextPath() %>/public/HTML/dashboard/user.jsp">
+                    <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
                         <button class="user-profile">
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
@@ -69,7 +69,7 @@
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/water-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/water-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
@@ -92,7 +92,7 @@
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/electricity-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>

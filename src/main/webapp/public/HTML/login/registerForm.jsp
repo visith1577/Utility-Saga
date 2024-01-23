@@ -9,11 +9,11 @@
 <html>
 <head>
   <title>Registration page</title>
-  <link rel="stylesheet" href="../CSS/login/register.css">
+  <link rel="stylesheet" href="../../CSS/login/register.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-  <img src="../resources/purple_bar.png" alt="" class="style-bar">
+  <img src="../../resources/purple_bar.png" alt="" class="style-bar">
     <div class="container">
       <div class="error-message-container">
         <p id="error-message">err</p>
