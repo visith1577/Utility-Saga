@@ -2,14 +2,14 @@
   Created by IntelliJ IDEA.
   User: visit
   Date: 9/28/2023
-  Time: 2:48 PM
+  Time: 2:47 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
         <title>JSP - Hello World</title>
-        <link rel="stylesheet" href="../CSS/login/login.css">
+        <link rel="stylesheet" href="../../CSS/login/login.css">
         <style>
             .login-selector__btn {
                 height: 60px;
@@ -26,7 +26,7 @@
         </style>
     </head>
     <body>
-        <img src="../resources/purple_bar.png" alt="" class="style-bar">
+        <img src="../../resources/purple_bar.png" alt="" class="style-bar">
         <div class="container">
             <aside class="side-panel">
                 <h1 class="side-panel__title side-panel__main">
@@ -36,29 +36,25 @@
                     Centralized platform that offers a combination of water, fuel, <br>
                     and electricity services in one place.
                 </h2>
-                <img src="../resources/login_img.png" width="400px" alt="utility-saga">
+                <img src="../../resources/login_img.png" width="400px" alt="utility-saga">
             </aside>
             <%--            <div class="empty-div">--%>
             <%--            </div>--%>
             <section class="login-selector">
                 <div class="login-form" style="position: absolute; top: 50px; width: 600px">
                     <h1 class="login-panel__title login-panel__sub" style="margin-bottom: 15px;">
-                        Select Admin Space
+                        Select Your User Type
                     </h1>
-                    <button class="login-selector__btn super_admin-btn">
-                        <a href="administratorLogin.jsp"> Main Administrator </a>
-                    </button>
-
                     <button class="login-selector__btn admin-btn">
-                        <a href="electricityLogin.jsp"> Electricity </a>
+                        <a href="adminSelector.jsp">Administrator</a>
                     </button>
 
                     <button class="login-selector__btn cst-btn">
-                        <a href="waterLogin.jsp">Water</a>
+                        <a href="userSelector.jsp">Customer</a>
                     </button>
 
                     <button class="login-selector__btn cmp-btn">
-                        <a href="fuelLogin.jsp">Fuel</a>
+                        <a href="solarLogin.jsp">Company</a>
                     </button>
                 </div>
             </section>

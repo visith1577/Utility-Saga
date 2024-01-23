@@ -10,10 +10,10 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <link rel="stylesheet" href="../CSS/login/login.css">
+    <link rel="stylesheet" href="../../CSS/login/login.css">
 </head>
 <body>
-<img src="../resources/purple_bar.png" alt="" class="style-bar">
+<img src="../../resources/purple_bar.png" alt="" class="style-bar">
 <div class="container">
     <aside class="side-panel">
         <h1 class="side-panel__title side-panel__main">
@@ -23,7 +23,7 @@
             Centralized platform that offers a combination of water, fuel, <br>
             and electricity services in one place.
         </h2>
-        <img src="../resources/login_img.png" width="400px" alt="utility-saga">
+        <img src="../../resources/login_img.png" width="400px" alt="utility-saga">
     </aside>
     <%--            <div class="empty-div">--%>
     <%--            </div>--%>
