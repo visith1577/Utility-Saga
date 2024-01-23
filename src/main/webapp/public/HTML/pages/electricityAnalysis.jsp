@@ -26,8 +26,8 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="#">About</a></li>
+                <li class="menu-items-li"><a href="../dashboard/dashboard.jsp">Home</a></li>
+                <li class="menu-items-li"><a href="../pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
 
                 <li class="img_user dropdown">
