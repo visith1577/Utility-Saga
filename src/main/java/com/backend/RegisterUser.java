@@ -49,7 +49,7 @@ public class RegisterUser extends HttpServlet{
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
                     "root",
-                    "Eranda2001"
+                    "root"
             );
 
             PreparedStatement pst = connection.prepareStatement(
