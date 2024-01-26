@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -21,6 +21,25 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/database/user.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/water_bill.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/water_complaint.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="new1" />
+    <mapping file-url="file://$PROJECT_DIR$/database/ebill_list.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/solar_bill.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/solar_company.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/solar_company_products.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/wbill_list.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/customer-bill.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/electricity_bill.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/solar_products.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/electricity_complaint.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/solar_bill_items.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -524,5 +543,9 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+    <execution-variable-types />
   </component>
 </project>
