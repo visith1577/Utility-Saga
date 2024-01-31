@@ -11,43 +11,46 @@
     <title>user Dashboard</title>
     <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="../../CSS/dashboards/user.css">
+    <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
 </head>
 <body>
-<header class="navbar">
-    <div class="navbar-container container">
-        <label for="hamburger"></label>
-        <input type="checkbox" name="hamburger" id="hamburger">
-        <div class="hamburger-lines">
-            <span class="line line1"></span>
-            <span class="line line2"></span>
-            <span class="line line3"></span>
+<div class="navv">
+    <header class="navbar">
+        <div class="navbar-container container">
+            <label for="hamburger"></label>
+            <input type="checkbox" name="hamburger" id="hamburger">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <li class="menu-items-li"><a href="#">Home</a></li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
+                <li class="menu-items-li"><a href="#">Contact Us</a></li>
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
+                <script>
+                    function toggle() {
+                        window.location.href = "../dashboard/userDashboard.jsp"
+                    }
+                </script>
+                <li class="img_user dropdown">
+                    <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
+                        <button class="user-profile">
+                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
-        <ul class="menu-items">
-            <li class="menu-items-li"><a href="#">Home</a></li>
-            <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
-            <li class="menu-items-li"><a href="#">Contact Us</a></li>
-            <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
-            <script>
-                function toggle() {
-                    window.location.href = "userDashboard.jsp"
-                }
-            </script>
-            <li class="img_user dropdown">
-                <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
-                    <button class="user-profile">
-                        <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </a>
-            </li>
-        </ul>
-        <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
-    </div>
-</header>
+    </header>
+</div>
 <main class="component-container profile-component__main">
     <section class="user-profile__main card">
         <form action="" method="post" id="user-profile">
@@ -81,8 +84,73 @@
     </section>
 
     <section class="user-profile__sub">
-        <div class="user-profile__top card">
-
+        <div class="user-profile__top card" style="padding: 0">
+            <div class="tbl-header">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>account No.</th>
+                        <th>amount</th>
+                        <th>due date</th>
+                        <th>status</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbl-content">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                        <tr>
+                            <td>1223456779</td>
+                            <td>2500.00</td>
+                            <td>2024/2/13</td>
+                            <td>pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="user-profile__bottom card">
