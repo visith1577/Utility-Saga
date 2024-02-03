@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings</title>
+    <link href="../CSS/setting_user.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="setting-container">
+        <div class="profile-setting">
+            <h2>Account Setting</h2>
+            <p>Username: <strong>JohnDoe</strong></p>
+            <p>Email:johndoe@gmail.com</p>
+            <button>Go to Edit profile</button> 
+            <button>Log out</button>
+        </div>
+        <div class="theme-setting">
+            <h2>Theme</h2>
+            <div class="divbox">
+                <p>Dark mode: <strong>On</strong></p>
+                <button>Turn off</button>
+            </div>
+        </div>
+        <div class="language-setting">
+            <h2>Language</h2>
+            <label for="dropdown">Select your Prefered Language:</label>
+        <select id="language-selection" class="dropdown" required>
+          <option value="english">English</option>
+          <option value="sinhala">Sinhala</option>
+          <option value="tamil">Tamil</option>
+        </select>
+        </div> 
+        <div class="notification-setting">
+            <h2>Notification Preferences</h2>
+            <div class="divbox">
+                <p>Allow message notification: <strong>Yes</strong></p>
+                <button>Turn off</button>
+            </div>
+            <div class="divbox">
+                <p>Allow email notification: <strong>No</strong></p>
+                <button>Turn on</button>
+        </div>
+        <div class="privacy-setting">
+            <h2>Privacy</h2>
+                <div class="divbox">
+                    <p>Allow location: <strong>Yes</strong></p>
+                    <button>Turn off</button>
+                </div>
+            <p>Allow location: 
+                <div class="toggle-button">
+                </div>
+            </p>
+        </div>
+        <div class="help_support">
+            <h2>Help & Support</h2>
+            <p>FAQ</p>
+            <button>Contact us</button>
+        </div>
+        <div class="feedback_ratings">
+            <h2>Feedback & Ratings</h2>
+            <p>Rate us</p>
+            <form action="/submit-feedback" method="POST">
+                <label for="feedback">Your Feedback:</label>
+                <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="legal_terms">
+            <h2>Legal & Terms</h2>
+            <p>By using this app, you agree to comply with and be bound by these terms and conditions</p>
+            <ul>
+                <li>Users acknowledge that all intellectual property, including trademarks, copyrights, and 
+                    proprietary information, associated with the app is owned by the app provider. Users are 
+                    not permitted to reproduce, modify, or distribute any content without explicit permission.</li>
+                <li>The app provider is not liable for any direct, indirect, or consequential damages resulting from the use or 
+                    inability to use the app. This includes, but is not limited to, 
+                    loss of data, interruption of services, or any other financial or personal loss.</li>
+            </ul>
+            <button>See more: Terms & Conditions</button>
+        </div>
+    </div>
+</body>
+</html>
