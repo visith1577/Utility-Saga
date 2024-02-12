@@ -69,7 +69,7 @@
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/user/water-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/water-publiccomplaint.jsp"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
