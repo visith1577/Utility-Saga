@@ -1,4 +1,4 @@
-package com.backend;
+package utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -21,7 +21,6 @@ public class CryptoUtils {
                 }
                 hexString.append(hex);
             }
-
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Password encryption error", e);
