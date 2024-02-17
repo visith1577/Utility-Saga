@@ -22,12 +22,12 @@
   .body{
     background-color:var(--tertiary-color);
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
   }
   
   .formbox{
     /* width: 80%; */
-    height: 100%;
-    position: relative;
+    height: 90vh;
     margin: 20px 70px 20px 70px;
     background: #fff;
     padding: 10px;
@@ -82,7 +82,7 @@
     border: none;
     border-bottom: 1px solid #1e1c1c;
     font-size: 15px;
-    color: var(--electricity-color);
+    color: black;
     font-family: 'Roboto', sans-serif;
     outline: none;
   }
@@ -97,7 +97,7 @@
     border: none;
     border-bottom: 1px solid #1e1c1c;
     font-size: 15px;
-    color: var(--electricity-color3);
+    color: black;
     font-family: 'Roboto', sans-serif;
     resize: none /*remove the resize handle on the bottom right*/;
     outline: none;
@@ -157,9 +157,17 @@
   .formbox .formbtn .waterbtn{
     background-color: var(--water-color2);
   }
-  
+
   .formbox .formbtn .waterbtn:hover{
     background-color: var(--water-color);
+  }
+
+  .button-error {
+    background-color: #ff3860;
+  }
+
+  .button-success {
+    background-color: #09c372;
   }
   
   /* Media Quaries */
@@ -208,3 +216,44 @@
       height: 100%;
     }
   }
+
+.forminput input:focus {
+  outline: 0;
+}
+
+.forminput.success label {
+  color: #09c372;
+}
+
+.forminput.error label{
+  color: #ff3860;
+}
+
+.forminput .error {
+  color: #ff3860;
+  font-size: 9px;
+  height: 13px;
+}
+
+.toastify {
+  padding: 18px 30px;
+  font-size: 16px;
+  text-align: right;
+  border-radius: 5px;
+  position: fixed;
+  top: 30px;
+  right: 20px;
+}
+
+.toast-close {
+  margin-right: 10px;
+  border: none;
+  color: #166f48;
+  background-color: transparent;
+}
+
+.toastify.on { opacity: 1; }
+
+.toast-error {
+  color: white;
+}
