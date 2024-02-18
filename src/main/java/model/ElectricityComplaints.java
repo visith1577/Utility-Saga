@@ -1,7 +1,7 @@
-package DAO.dao;
+package model;
 
 
-public class WaterComplaints {
+public class ElectricityComplaints {
     private String complaint_category;
     private String complaint_type;
     private String customer_name;
@@ -11,7 +11,7 @@ public class WaterComplaints {
     private Integer phoneNumber;
     private String Complaint_description;
 
-    public WaterComplaints() {
+    public ElectricityComplaints() {
 
     }
 }

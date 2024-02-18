@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 @WebServlet("/register")
 public class RegisterUser extends HttpServlet{
-//    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 //    private static final Logger logger = LogManager.getLogger(RegisterUser.class); // logger setup
 
     @Override

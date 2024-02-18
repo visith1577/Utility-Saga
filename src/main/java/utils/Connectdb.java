@@ -18,4 +18,10 @@ public class Connectdb {
             throw new SQLException("Database driver not found", e);
         }
     }
+
+    public static void closeConnection(Connection connection) throws SQLException {
+        if (connection != null ) {
+            connection.close();
+        }
+    }
 }

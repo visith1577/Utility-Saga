@@ -15,11 +15,11 @@
       <h2>Water Services - Public complains</h2>
       <div class="formbody">
         <div class="forminput">
-          <%--@declare id="complaincategory"--%><select name="ComplainCategory" id="Cateogry" required>
+          <select name="Category" id="Category" required>
               <option value="Operational">Operational</option>
               <option value="Commercial">Commercial</option>
           </select>
-          <label for="ComplainCategory">Complain Category</label>
+          <label for="Category">Complain Category</label>
         </div>
 
         <div class="forminput">
@@ -29,48 +29,48 @@
               <option value="NoWater">No Water</option>
               <option value="LowPressure">Low Pressure</option>
               <option value="LeakNearMeter">Leak Near Meter</option>
-              <option value="WeakQuality">Weak Weak Quality Problem</option>
+              <option value="WeakQuality">Quality Problem</option>
               <option value="Others">Others</option>
           </select>
           <label for="complaint_type">Complaint Type</label>
         </div>
         
         <div class="forminput">
-          <input id="CustomerName" type="text" required>
+          <input id="CustomerName" name="CustomerName" type="text" required>
           <label for="CustomerName">Customer Name</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="AccountNum" type="text" required>
+          <input id="AccountNum" name="AccountNum" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="AccountNum">Account Number</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="CusNIC" type="text" required>
+          <input id="CusNIC" name="CusNIC" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="CusNIC">NIC</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Email" type="email" required>
+          <input id="Email" name="Email" type="email" required>
           <!-- <div class="underline"></div> -->
           <label for="Email">Email Address</label>
           <div class="error"></div>
         </div>
         
         <div class="forminput">
-          <input id="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          <input id="Telnum" name="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <!-- <div class="underline"></div> -->
           <label for="Telnum">Phone Number</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <textarea id="txtArea" rows="1" cols="1" required maxlength="50"></textarea>
+          <textarea id="txtArea" name="txtArea" rows="1" cols="1" required maxlength="50"></textarea>
           <label for="txtArea">Complaint Description</label>
           <br />
         </div>
