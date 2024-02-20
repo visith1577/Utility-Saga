@@ -89,7 +89,7 @@ body{
 
 .contact-contaiter .form-container .contact-form .send-button{
     outline: none;
-    padding:7.5%;
+    padding:7.5% 7.5% 12.0%;
     cursor: pointer;
     margin-top: 1rem;
     border-radius: 5px;
