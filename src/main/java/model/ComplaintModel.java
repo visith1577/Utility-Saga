@@ -5,9 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 
-public class WaterComplaints {
+public class ComplaintModel {
 
-    private final String complaint_no;
+    private String complaint_no;
     private String complaint_category;
     private String complaint_type;
     private String account_number;
@@ -16,7 +16,7 @@ public class WaterComplaints {
     private String phoneNumber;
     private String Complaint_description;
 
-    public WaterComplaints() {
+    public ComplaintModel() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yy HH:mm:ss");
         String formattedDateTime = now.format(formatter);
@@ -64,7 +64,7 @@ public class WaterComplaints {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber.toString();
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -82,4 +82,6 @@ public class WaterComplaints {
     public String getComplaint_no() {
         return complaint_no;
     }
+
+    public void setComplaint_no(String complaint_no) {this.complaint_no = complaint_no;}
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class UserDetails {
+public class UserModel {
     private String username;
     private String email;
     private String password; // Store securely (hashed and salted)

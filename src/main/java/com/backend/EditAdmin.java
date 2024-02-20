@@ -1,6 +1,6 @@
 package com.backend;
 
-import DAO.dao.SuperAdmineditAdminDAO;
+import DAO.dao.SuperAdminDAO;
 import model.SuperAdmineditAdmin;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 @WebServlet("/editAdmin")
 public class EditAdmin extends HttpServlet {
-    private SuperAdmineditAdminDAO superAdmineditAdminDAO;
+    private SuperAdminDAO superAdminDAO;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        superAdmineditAdminDAO = new SuperAdmineditAdminDAO();
+        superAdminDAO = new SuperAdminDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,39 +30,39 @@ public class EditAdmin extends HttpServlet {
 
                 switch (action) {
                     case "createElecAdmin":
-                        superAdmineditAdminDAO.createElecAdmin(admin);
+                        superAdminDAO.createElecAdmin(admin);
                         request.setAttribute("message", "Electricity admin created successfully!");
                         break;
                     case "createWaterAdmin":
-                        superAdmineditAdminDAO.createWaterAdmin(admin);
+                        superAdminDAO.createWaterAdmin(admin);
                         request.setAttribute("message", "Water admin created successfully!");
                         break;
                     case "createSolarComp":
-                        superAdmineditAdminDAO.createSolarComp(admin);
+                        superAdminDAO.createSolarComp(admin);
                         request.setAttribute("message", "Solar company created successfully!");
                         break;
                     case "editElecAdmin":
-                        superAdmineditAdminDAO.updateElecAdmin(admin);
+                        superAdminDAO.updateElecAdmin(admin);
                         request.setAttribute("message", "Electricity admin details updated successfully!");
                         break;
                     case "editWaterAdmin":
-                        superAdmineditAdminDAO.updateWaterAdmin(admin);
+                        superAdminDAO.updateWaterAdmin(admin);
                         request.setAttribute("message", "Water admin details updated successfully!");
                         break;
                     case "editSolarComp":
-                        superAdmineditAdminDAO.updateSolarComp(admin);
+                        superAdminDAO.updateSolarComp(admin);
                         request.setAttribute("message", "Solar company details updated successfully!");
                         break;
                     case "deleteElecAdmin":
-                        superAdmineditAdminDAO.deleteElecAdmin(admin.getElecId());
+                        superAdminDAO.deleteElecAdmin(admin.getElecId());
                         request.setAttribute("message", "Electricity admin deleted successfully!");
                         break;
                     case "deleteWaterAdmin":
-                        superAdmineditAdminDAO.deleteWaterAdmin(admin.getWaterId());
+                        superAdminDAO.deleteWaterAdmin(admin.getWaterId());
                         request.setAttribute("message", "Water admin deleted successfully!");
                         break;
                     case "deleteSolarComp":
-                        superAdmineditAdminDAO.deleteSolarComp(admin.getSolarId());
+                        superAdminDAO.deleteSolarComp(admin.getSolarId());
                         request.setAttribute("message", "Solar company deleted successfully!");
                         break;
                     default:

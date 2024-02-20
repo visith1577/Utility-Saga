@@ -1,18 +1,19 @@
 package DAO.dao;
 
 import DAO.impl.Complaints;
-import model.WaterComplaints;
+import model.ComplaintModel;
 import utils.Connectdb;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WaterComplaintsDao implements Complaints {
 
-    public void saveComplaint(WaterComplaints complaint) throws SQLException {
+    public void saveComplaint(ComplaintModel complaint) throws SQLException {
         Connection conn = Connectdb.getConnection();
 
         String sql = "INSERT INTO water_complaint (complaint_no, complaint_category, complaint_type, account_number, nic, email, mobile,complaint) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -33,8 +34,31 @@ public class WaterComplaintsDao implements Complaints {
         conn.close();
     }
 
-    public List<WaterComplaints> getComplaints() throws SQLException{
-        List<WaterComplaints> complaint_list = new ArrayList<>();
+    public List<ComplaintModel> getComplaints() throws SQLException{
+        List<ComplaintModel> complaint_list = new ArrayList<>();
+
+        Connection conn = Connectdb.getConnection();
+
+        String sql = "SELECT * FROM water_complaint";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()){
+            ComplaintModel complaint = new ComplaintModel();
+            complaint.setComplaint_no(rs.getString("complaint_no"));
+            complaint.setComplaint_category(rs.getString("complaint_category"));
+            complaint.setComplaint_type(rs.getString("complaint_type"));
+            complaint.setAccount_number(rs.getString("account_number"));
+            complaint.setNic(rs.getString("nic"));
+            complaint.setEmail(rs.getString("email"));
+            complaint.setPhoneNumber(rs.getString("mobile"));
+            complaint.setComplaint_description(rs.getString("account_number"));
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
 
         return complaint_list;
     }
