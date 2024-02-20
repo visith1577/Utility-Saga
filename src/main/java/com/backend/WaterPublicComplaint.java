@@ -6,11 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.WaterComplaints;
-import utils.Connectdb;
+import model.ComplaintModel;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/wPub-complaint")
@@ -30,7 +28,7 @@ public class WaterPublicComplaint extends HttpServlet {
         String telNum = req.getParameter("Telnum");
         String txtArea = req.getParameter("txtArea");
 
-        WaterComplaints wComplaint = new WaterComplaints();
+        ComplaintModel wComplaint = new ComplaintModel();
         wComplaint.setComplaint_category(complainCat);
         wComplaint.setComplaint_type(complainType);
         wComplaint.setAccount_number(accNum);
@@ -57,5 +55,10 @@ public class WaterPublicComplaint extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
     }
 }

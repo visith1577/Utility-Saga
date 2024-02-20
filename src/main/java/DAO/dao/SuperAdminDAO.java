@@ -7,9 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SuperAdmineditAdminDAO implements DAO.impl.SuperAdmineditAdminImpl {
-    private Connectdb connection;
-
+public class SuperAdminDAO implements DAO.impl.SuperAdmineditAdminImpl {
 
     @Override
     public void createElecAdmin(SuperAdmineditAdmin admin) throws SQLException {
@@ -27,7 +25,7 @@ public class SuperAdmineditAdminDAO implements DAO.impl.SuperAdmineditAdminImpl 
 
     @Override
     public void deleteElecAdmin(String elecId) throws SQLException {
-        Connection con = connection.getConnection();
+        Connection con = Connectdb.getConnection();
         PreparedStatement stmt = con.prepareStatement("DELETE FROM electricity_admin WHERE id = ?");
         stmt.setString(1, elecId);
         stmt.executeUpdate();
@@ -37,7 +35,7 @@ public class SuperAdmineditAdminDAO implements DAO.impl.SuperAdmineditAdminImpl 
 
     @Override
     public void updateElecAdmin(SuperAdmineditAdmin admin) throws SQLException {
-        Connection conn = connection.getConnection();
+        Connection conn = Connectdb.getConnection();
         PreparedStatement stmt = conn.prepareStatement("UPDATE electricity_admin SET firstname = ?, lastname = ?, title = ?, pwd = ? WHERE id = ?");
         stmt.setString(1, admin.getElecfirstName());
         stmt.setString(2, admin.getEleclastName());
@@ -65,7 +63,7 @@ public class SuperAdmineditAdminDAO implements DAO.impl.SuperAdmineditAdminImpl 
 
     @Override
     public void deleteWaterAdmin(String waterId) throws SQLException {
-        Connection con = connection.getConnection();
+        Connection con = Connectdb.getConnection();
         PreparedStatement stmt = con.prepareStatement("DELETE FROM water_admin WHERE id = ?");
         stmt.setString(1, waterId);
         stmt.executeUpdate();
@@ -75,7 +73,7 @@ public class SuperAdmineditAdminDAO implements DAO.impl.SuperAdmineditAdminImpl 
 
     @Override
     public void updateWaterAdmin(SuperAdmineditAdmin admin) throws SQLException {
-        Connection conn = connection.getConnection();
+        Connection conn = Connectdb.getConnection();
         PreparedStatement stmt = conn.prepareStatement("UPDATE water_admin SET firstname = ?, lastname = ?, title = ?, pwd = ? WHERE id = ?");
         stmt.setString(1, admin.getWaterfirstName());
         stmt.setString(2, admin.getWaterlastName());
@@ -103,7 +101,7 @@ public class SuperAdmineditAdminDAO implements DAO.impl.SuperAdmineditAdminImpl 
 
     @Override
     public void deleteSolarComp(String solarId) throws SQLException {
-        Connection con = connection.getConnection();
+        Connection con = Connectdb.getConnection();
         PreparedStatement stmt = con.prepareStatement("DELETE FROM water_admin WHERE id = ?");
         stmt.setString(1, solarId);
         stmt.executeUpdate();
