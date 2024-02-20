@@ -54,6 +54,8 @@ public class WaterComplaintsDao implements Complaints {
             complaint.setEmail(rs.getString("email"));
             complaint.setPhoneNumber(rs.getString("mobile"));
             complaint.setComplaint_description(rs.getString("account_number"));
+
+            complaint_list.add(complaint);
         }
 
         rs.close();
