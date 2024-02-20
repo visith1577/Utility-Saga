@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact us-Water</title>
     <link  type="text/css" rel="stylesheet" href="../../CSS/forms.css">
-    <link  type="text/css" rel="stylesheet" href="../../CSS/contactpg.css">
+    <link  type="text/css" rel="stylesheet" href="../../CSS/contact.css">
+    <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
 </head>
 <body>
     <section>
         <div class="contact-contaiter">
             <div class="detail-container">
                 <h2>Contact us</h2>
-                <p>Visit our office or simply send us an email anytime you want. 
+                <p>Visit our office or simply email us anytime you want.
                     If you have any questions, please feel free to contact us.
                 </p>
             </br><div class="Detail"><strong>Address:</strong></br>National Water Supply and Drainage Board,
