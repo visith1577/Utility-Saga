@@ -19,4 +19,12 @@ Utility management system based on IOT, part of UCSC 2nd year group project by G
 
 - Starting font-end development
 - creating login pages
+- login & register backend
+- main ui components
+- extra ui components and utils
+- setting up backend for forms
+- backend setup for tables
+- other backend work 
+- mqtt & data simulation work
+- notification control
 

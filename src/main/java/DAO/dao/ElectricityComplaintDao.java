@@ -6,7 +6,9 @@ import utils.Connectdb;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ElectricityComplaintDao implements Complaints {
@@ -35,6 +37,33 @@ public class ElectricityComplaintDao implements Complaints {
 
     @Override
     public List<ComplaintModel> getComplaints() throws SQLException {
-        return null;
+        List<ComplaintModel> complaint_list = new ArrayList<>();
+
+        Connection conn = Connectdb.getConnection();
+
+        String sql = "SELECT * FROM electricity_complaint";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()){
+            ComplaintModel complaint = new ComplaintModel();
+            complaint.setComplaint_no(rs.getString("complaint_no"));
+            complaint.setComplaint_category(rs.getString("complaint_category"));
+            complaint.setComplaint_type(rs.getString("complaint_type"));
+            complaint.setAccount_number(rs.getString("account_number"));
+            complaint.setNic(rs.getString("nic"));
+            complaint.setEmail(rs.getString("email"));
+            complaint.setPhoneNumber(rs.getString("mobile"));
+            complaint.setComplaint_description(rs.getString("account_number"));
+
+            complaint_list.add(complaint);
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        return complaint_list;
     }
 }

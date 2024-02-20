@@ -82,6 +82,7 @@ public class EditAdmin extends HttpServlet {
     private SuperAdmineditAdmin getAdminFromRequest(HttpServletRequest request, String action) {
         // Implement data extraction and object creation based on your form fields and action
         // Consider input validation and sanitization here
+        return null;
     }
 
 
