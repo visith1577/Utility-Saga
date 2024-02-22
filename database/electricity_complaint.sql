@@ -7,3 +7,7 @@ CREATE TABLE electricity_complaint(
     FOREIGN KEY (nic) REFERENCES users(nic),
     FOREIGN KEY (account_number) REFERENCES Electricity_Bill(billId)
 )
+
+ALTER TABLE electricity_complaint
+ADD COLUMN complaint_type ENUM('Electricity Breakdown', 'Meter malfunction', 'Solar System malfunction') NOT NULL,
+ADD COLUMN complaint_status ENUM('Open', 'Closed', 'Pending') NOT NULL;
