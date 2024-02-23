@@ -47,7 +47,7 @@ public class ElectricityComplaintDao implements Complaints {
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()){
-            ComplaintModel complaint = new ComplaintModel();
+            ComplaintModel complaint = new ComplaintModel(complaint_number);
             complaint.setComplaint_no(rs.getString("complaint_no"));
             complaint.setComplaint_category(rs.getString("complaint_category"));
             complaint.setComplaint_type(rs.getString("complaint_type"));

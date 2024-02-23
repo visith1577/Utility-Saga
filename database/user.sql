@@ -17,3 +17,11 @@ CREATE TABLE users(
 ALTER TABLE users
 ADD CONSTRAINT unique_email_constraint UNIQUE (email);
 
+ALTER TABLE users
+ADD COLUMN district varchar(25) NOT NULL;
+
+ALTER TABLE users
+ADD COLUMN connectionType ENUM('DOMESTIC', 'INDUSTRIAL') NOT NULL,
+ADD COLUMN connectionStatus ENUM('Active', 'Pending', 'Disconnected') NOT NULL;
+
+
