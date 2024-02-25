@@ -29,7 +29,7 @@ public class ElectricityPublicComplaint extends HttpServlet {
         String telNum = req.getParameter("Telnum");
         String txtArea = req.getParameter("txtArea");
 
-        ComplaintModel wComplaint = new ComplaintModel();
+        ComplaintModel wComplaint = new ComplaintModel(complaint_number);
         wComplaint.setComplaint_category(complainCat);
         wComplaint.setComplaint_type(complainType);
         wComplaint.setAccount_number(accNum);
