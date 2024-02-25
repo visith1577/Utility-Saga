@@ -7,9 +7,47 @@
     <title>Contact us-Water</title>
     <link  type="text/css" rel="stylesheet" href="../../CSS/forms.css">
     <link  type="text/css" rel="stylesheet" href="../../CSS/contact.css">
+    <link type="text/css" rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
 </head>
 <body>
+    <div class="navv">
+        <header class="navbar">
+            <div class="navbar-container container">
+                <label for="hamburger"></label>
+                <input type="checkbox" name="hamburger" id="hamburger">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <ul class="menu-items">
+                    <li class="menu-items-li"><a href="#">Home</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
+                    <li class="menu-items-li"><a href="#">Contact Us</a></li>
+                    <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
+                    <script>
+                        function toggle() {
+                            window.location.href = "../dashboard/userDashboard.jsp"
+                        }
+                    </script>
+                    <li class="img_user dropdown">
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
+                            <button class="user-profile">
+                                <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+            </div>
+        </header>
+    </div>
     <section>
         <div class="contact-contaiter">
             <div class="detail-container">

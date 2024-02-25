@@ -6,11 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
     <head>
         <title>Dashboard</title>
-        <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+        <script type="module" src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </head>
     <body>
     <div class="navv">
@@ -27,8 +31,8 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
-                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
-                <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
+                <li class="nxt-page water"><button class="button-17" type="button">Electricity</button></li>
+                <li class="nxt-page electricity"><button class="button-17" type="button">Water</button></li>
 
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
@@ -36,7 +40,7 @@
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
+                            <a href="#"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
                             <a href="#">Link 2</a>
                             <a href="#">Link 3</a>
                         </div>
@@ -75,7 +79,7 @@
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/pages/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
@@ -86,19 +90,19 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity-newconnection.html"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity-newconnection.html"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/electricity-publiccomplaint.html"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity-publiccomplaint.jsp"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/pages/electricityAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricityAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
@@ -149,7 +153,9 @@
                 </div>
             </div>
             <div class="graph">
+                <canvas id="w-graph" class="main-graph water-graph">
 
+                </canvas>
             </div>
         </section>
         <section class="plan2 component electricity" style="background: #FCC7C7">
@@ -167,7 +173,8 @@
                 </div>
             </div>
             <div class="graph">
-
+                <canvas id="e-graph" class="main-graph electricity-graph">
+                </canvas>
             </div>
         </section>
         <section class="suggestion-component component water" style="background: lightblue">
@@ -305,34 +312,5 @@
     </main>
     </body>
     <script>
-        let nxt = document.querySelector(".nxt-page").textContent.trim();
-        let expires = new Date();
-        expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
-        document.cookie = 'nxt='+ nxt + ';expires=' + expires.toUTCString();
-
-        function toggle() {
-            const water_list = Array.from(document.getElementsByClassName("water"));
-            const electricity_list = Array.from(document.getElementsByClassName("electricity"));
-
-            if (nxt === "Electricity") {
-                water_list.forEach(element => element.style.display = 'none');
-                electricity_list.forEach(element => {
-                    if (element.style.display === 'none' || element.style.display === '') {
-                        element.style.display = 'block';
-                    }
-                });
-                nxt = "Water"
-                document.cookie = 'nxt=Water' + ';path=/';
-            } else {
-                water_list.forEach(element => {
-                    if (element.style.display === 'none' || element.style.display === '') {
-                        element.style.display = 'block';
-                    }
-                });
-                electricity_list.forEach(element => element.style.display = 'none');
-                nxt = "Electricity"
-                document.cookie = 'nxt=Electricity' + ';path=/';
-            }
-        }
     </script>
 </html>
