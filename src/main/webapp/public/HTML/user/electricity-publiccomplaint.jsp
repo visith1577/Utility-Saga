@@ -1,14 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
-  <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-  <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
-  <title>Form</title>
+  <link  type="text/css" rel="stylesheet" href="../../CSS/forms.css">
+  <link type="text/css" rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
+  <title>Electricity-Complaints</title>
 </head>
 <body>
 <div class="navv">
@@ -47,32 +44,32 @@
       <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
     </div>
   </header>
-</div>u
-  <div class="formbox water-form__complaint">
-    <form id="complaint_form" method="post" action="${pageContext.request.contextPath}/wPub-complaint">
-      <h2>Water Services - Public complains</h2>
+</div>
+<div class="formbox electricity_form--complaint">
+    <form id="complaint_form" method="post" action="${pageContext.request.contextPath}/ePub-complaint">
+      <h2>Electricity Services - Public complaints</h2>
       <div class="formbody">
         <div class="forminput">
           <select name="Category" id="Category" required>
-              <option value="Operational">Operational</option>
-              <option value="Commercial">Commercial</option>
+              <option value="Breakdown">Breakdown</option>
+              <option value="ServiceRequest">Service Request</option>
           </select>
-          <label for="Category">Complain Category</label>
+          <label for="Category">Complaint Category</label>
         </div>
 
         <div class="forminput">
           <select name="complaint_type" id="complaint_type" required>
-              <option value="MainLeak">Main Leak</option>
-              <option value="ConnectionLeak">Connection Leak</option>
-              <option value="NoWater">No Water</option>
-              <option value="LowPressure">Low Pressure</option>
-              <option value="LeakNearMeter">Leak Near Meter</option>
-              <option value="WeakQuality">Quality Problem</option>
-              <option value="Others">Others</option>
+            <option value="MainLeak">Billing issues</option>
+            <option value="ConnectionLeak">Connection & Disconnection issues</option>
+            <option value="NoWater">Power Outages</option>
+            <option value="LowPressure">Voltage & frequency problems</option>
+            <option value="LeakNearMeter">Smart meter problems</option>
+            <option value="WeakQuality">Quality Problem</option>
+            <option value="Others">Others</option>
           </select>
           <label for="complaint_type">Complaint Type</label>
         </div>
-        
+
         <div class="forminput">
           <input id="CustomerName" name="CustomerName" type="text" required>
           <label for="CustomerName">Customer Name</label>
@@ -80,41 +77,37 @@
         </div>
 
         <div class="forminput">
-          <input id="AccountNum" name="AccountNum" type="text" required>
+          <input id="AccountNum" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="AccountNum">Account Number</label>
-          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="CusNIC" name="CusNIC" type="text" required>
+          <input id="CusNIC" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="CusNIC">NIC</label>
-          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Email" name="Email" type="email" required>
+          <input id="Email" type="email" required>
           <!-- <div class="underline"></div> -->
           <label for="Email">Email Address</label>
-          <div class="error"></div>
-        </div>
-        
-        <div class="forminput">
-          <input id="Telnum" name="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-          <!-- <div class="underline"></div> -->
-          <label for="Telnum">Phone Number</label>
-          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <textarea id="txtArea" name="txtArea" rows="1" cols="1" required maxlength="50"></textarea>
+          <input id="Telnum" type="tel" required >
+          <!-- <div class="underline"></div> -->
+          <label for="Telnum">Telephone Number</label>
+        </div>
+
+        <div class="forminput">
+          <textarea id="txtArea" rows="1" cols="1" required></textarea>
           <label for="txtArea">Complaint Description</label>
           <br />
         </div>
       </div>
       <div class="formbtn">
-        <button type="submit" id="submit-btn" class="submitbtn waterbtn">Submit</button>
+        <button type="submit" class="submitbtn electricitybtn">Submit</button>
       </div>
     </form>
   </div>

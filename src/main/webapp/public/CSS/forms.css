@@ -28,7 +28,7 @@
   .formbox{
     /* width: 80%; */
     height: 90vh;
-    margin: 20px 70px 20px 70px;
+    margin: 15vh 70px 20px 70px;
     background: #fff;
     padding: 10px;
     overflow: hidden;
@@ -138,7 +138,7 @@
   
   
   /* electricity - new & complaint */
-  .electricity label{
+  .electricity-form__complaint label{
       color: var(--electricity-color2);
   }
   
@@ -151,7 +151,7 @@
   }
   
   /* water - new & complaint*/
-  .water label{
+  .water-form__complaint label{
       color: var(--water-color);
   }
   .formbox .formbtn .waterbtn{
@@ -236,12 +236,12 @@
 }
 
 .toastify {
-  padding: 18px 30px;
+  padding: 25px 30px;
   font-size: 16px;
   text-align: right;
   border-radius: 5px;
   position: fixed;
-  top: 30px;
+  margin-top: 12vh;
   right: 20px;
 }
 

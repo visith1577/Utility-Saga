@@ -3,10 +3,13 @@ package com.backend;
 import java.io.*;
 import java.sql.*;
 
+import DAO.dao.UserDetailsDao;
+import DAO.impl.UserDetails;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet("/login")
 public class UserLogin extends HttpServlet{
@@ -19,44 +22,36 @@ public class UserLogin extends HttpServlet{
     }
 
     static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
-        String uname = req.getParameter("Uname");
+        String nic = req.getParameter("nic").trim();
         String pwd = req.getParameter("Pwd");
         HttpSession session = req.getSession();
 
-        Cookie c = new Cookie("user_name" ,uname);
+        Cookie c = new Cookie("active_account" ,nic);
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false",
-                    "root",
-                    "root"
-            );
+            UserDetails userDao = new UserDetailsDao();
+            String pwdStored = userDao.getPasswordByNic(nic);
+            if (pwdStored != null) {
+                if(BCrypt.checkpw(pwd, pwdStored)){
+//                    System.out.println("===================Password verified--------------------------------");
+                    session.setAttribute("isLoggedIn", true);
+                    RequestDispatcher dispatcher = req.getRequestDispatcher(
+                            "/public/HTML/dashboard/" +
+                                    dash
+                    );
+                    resp.addCookie(c);
+                    dispatcher.forward(req, resp);
+                }
 
-            PreparedStatement pst = connection.prepareStatement(
-                    "select * from users where uname = ? and pwd = ?"
-            );
-            pst.setString(1, uname);
-            pst.setString(2, pwd);
-
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                session.setAttribute("name", rs.getString("uname"));
+            }else {
+                session.setAttribute("isLoggedIn", false);
                 RequestDispatcher dispatcher = req.getRequestDispatcher(
-                        "/public/HTML/dashboard" +
-                                dash
-                );
-                resp.addCookie(c);
-                dispatcher.forward(req, resp);
-            } else {
-                session.setAttribute("status", "failed");
-                RequestDispatcher dispatcher = req.getRequestDispatcher(
-                        "/public/HTML/" +
+                        "/public/HTML/login/" +
                                 login
                 );
                 dispatcher.forward(req, resp);
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

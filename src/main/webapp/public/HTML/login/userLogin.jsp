@@ -38,8 +38,8 @@
                         Login
                     </h1>
 
-                    <label for="Uname" class="login-field">
-                        <input type="text" placeholder="Enter username" id="Uname" name="Uname"
+                    <label for="nic" class="login-field">
+                        <input type="text" placeholder="Enter NIC" id="nic" name="nic"
                                class="login-field__name">
                     </label>
                     <label for="Pwd" class="login-field">

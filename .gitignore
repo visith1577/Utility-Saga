@@ -38,6 +38,6 @@ build/
 .DS_Store
 
 ### env ###
-.env
+src/main/java/assets/.env
 
 node_modules/

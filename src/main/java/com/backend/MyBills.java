@@ -8,9 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/user-details")
-public class UserDetails extends HttpServlet {
-
+@WebServlet("/my-bills")
+public class MyBills extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);

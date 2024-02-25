@@ -26,13 +26,18 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="../dashboard/dashboard.jsp">Home</a></li>
-                <li class="menu-items-li"><a href="../pages/aboutUs.jsp">About</a></li>
+                <li class="menu-items-li"><a href="#">Home</a></li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="#">Contact Us</a></li>
-
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
+                <script>
+                    function toggle() {
+                        window.location.href = "../dashboard/userDashboard.jsp"
+                    }
+                </script>
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
-                        <button>
+                        <button class="user-profile">
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">

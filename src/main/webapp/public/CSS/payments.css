@@ -57,6 +57,7 @@ a {
 }
 
 .app {
+    margin-top: 15vh;
     min-height: 80vh;
     width: 100%;
     max-width: 1600px;
@@ -203,7 +204,6 @@ a {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 0;
     background-color: transparent;
     border: 1px solid var(--c-gray-500);
     color: var(--c-text-primary);
