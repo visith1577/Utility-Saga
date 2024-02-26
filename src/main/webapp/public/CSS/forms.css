@@ -43,7 +43,10 @@
     margin-bottom: 30px;
     text-transform: uppercase;
   }
-  
+
+  .electricity h2{
+    color: var(--electricity-color);
+  }  
   .formbox .formbody{
     padding: 10px 20px 10px 20px;
     position: relative;
@@ -89,6 +92,10 @@
   
   .formbox .formbody .forminput input:focus{
     border-bottom: 2px solid var(--water-color);
+  }
+
+  .electricity .formbody .forminput input:focus{
+    border-bottom: 2px solid var(--electricity-color);
   }
   
   .formbox .formbody .forminput textarea{
