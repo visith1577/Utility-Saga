@@ -20,7 +20,7 @@ public class ElectricityRegionalAdminDAO {
 
         Connection con = Connectdb.getConnection();
 
-        String sql = "SELECT nic, firstname, lastname, address, mobile, connectionType, connectionStatus FROM users WHERE district =? ";//Check
+        String sql = "SELECT nic, firstname, lastname, address, mobile FROM users WHERE region =? ";//Check
         PreparedStatement stmt = con.prepareStatement(sql);
 
         ResultSet rs = stmt.executeQuery();

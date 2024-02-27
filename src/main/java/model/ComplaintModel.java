@@ -21,6 +21,9 @@ public class ComplaintModel {
         complaint_no = getAccount_number() + uuid;
     }
 
+    public ComplaintModel(String complaintNumber, String complaintCategory, String complaintType, String accountNumber, String complaintStatus) {
+    }
+
     public String getComplaint_category() {
         return complaint_category;
     }
@@ -82,4 +85,6 @@ public class ComplaintModel {
     }
 
     public void setComplaint_no(String complaint_no) {this.complaint_no = complaint_no;}
+
+
 }
