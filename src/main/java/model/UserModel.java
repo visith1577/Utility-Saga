@@ -8,7 +8,8 @@ public class UserModel {
     private String nic;
     private String username;
     private String email;
-    private String password; // Store securely (hashed and salted)
+    private String address;
+    private String password;
     private String firstName;
     private String lastName;
     private String mobile;
@@ -17,6 +18,9 @@ public class UserModel {
     private ProviderInfo provider;
     private String region;
     private Set<String> services;
+    private String connectionType;
+    private String connectionStatus;
+
 
     public String getNic() {
         return nic;
@@ -42,6 +46,7 @@ public class UserModel {
         this.email = email;
     }
 
+
     public String getPassword() {
         return password;
     }
@@ -65,7 +70,7 @@ public class UserModel {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+  
     public String getMobile() {
         return mobile;
     }
@@ -117,5 +122,25 @@ public class UserModel {
     public enum ProviderInfo {
         CEB,
         LECO
+    }
+
+    public String getFullName(String firstName, String lastName){
+        return this.firstName+ " "+ this.lastName;
+    }
+
+    public String getConnectionType() {
+        return connectionType;
+    }
+
+    public void setConnectionType(String connectionType) {
+        this.connectionType = connectionType;
+    }
+
+    public String getConnectionStatus() {
+        return connectionStatus;
+    }
+
+    public void setConnectionStatus(String connectionStatus) {
+        this.connectionStatus = connectionStatus;
     }
 }
