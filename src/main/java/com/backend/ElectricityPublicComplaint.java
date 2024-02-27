@@ -19,7 +19,6 @@ public class ElectricityPublicComplaint extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
 
         String accNum = req.getParameter("AccountNum");
         String complainCat = req.getParameter("Category");
@@ -52,15 +51,5 @@ public class ElectricityPublicComplaint extends HttpServlet {
             req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
         }
 
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
     }
 }

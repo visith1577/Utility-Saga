@@ -29,7 +29,7 @@ public class WaterComplaintsDao implements Complaints {
         stmt.setString(8, complaint.getComplaint_description());
 
         stmt.executeUpdate();
-
+//        System.out.println("closing connection");
         stmt.close();
         conn.close();
     }
