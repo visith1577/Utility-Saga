@@ -6,4 +6,6 @@ public class ComplaintRAdmin extends ComplaintModel{
     }
 
 
+    public void setUsernic(UsersRAdmin user) {
+    }
 }

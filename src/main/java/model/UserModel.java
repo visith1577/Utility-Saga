@@ -14,12 +14,16 @@ public class UserModel {
     private String lastName;
     private String mobile;
     private String home;
-    private String address;
     private ProviderInfo provider;
     private String region;
     private Set<String> services;
     private String connectionType;
     private String connectionStatus;
+
+    public UserModel(String firstName, String lastName, String mobile) {
+    }
+
+    public UserModel(){}
 
 
     public String getNic() {
