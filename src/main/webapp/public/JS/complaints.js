@@ -28,7 +28,7 @@ form.addEventListener('submit', e => {
             }
         }, 3205);
         send_data();
-        this.submit;
+        form.submit();
     } else {
         button.disabled = true;
         if (button.classList.contains('waterbtn')) {
@@ -110,11 +110,12 @@ function validateInputs() {
     const email_value = email.value.trim();
     const nic_value = nic.value.trim();
 
+
     let tel_val = validate_telnum(tel_num_value);
     let nic_valid = validate_nic(nic_value);
     let email_valid = validate_email(email_value);
 
-    return (tel_val && nic_value && email_valid)
+    return (tel_val && nic_valid && email_valid)
 }
 
 

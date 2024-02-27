@@ -17,10 +17,8 @@ public class ComplaintModel {
     private String Complaint_description;
 
     public ComplaintModel() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yy HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-        complaint_no = getAccount_number() + UUID.fromString(formattedDateTime);
+        UUID uuid = UUID.randomUUID();
+        complaint_no = getAccount_number() + uuid;
     }
 
     public String getComplaint_category() {

@@ -18,7 +18,6 @@ public class WaterPublicComplaint extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
 
         String accNum = req.getParameter("AccountNum");
         String complainCat = req.getParameter("Category");
@@ -37,11 +36,13 @@ public class WaterPublicComplaint extends HttpServlet {
         wComplaint.setPhoneNumber(telNum);
         wComplaint.setComplaint_description(txtArea);
 
+
         WaterComplaintsDao dao = new WaterComplaintsDao();
 
         try {
             try {
                 dao.saveComplaint(wComplaint);
+                System.out.println(req.getHeader("referer"));
                 resp.sendRedirect(req.getHeader("referer"));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -50,15 +51,5 @@ public class WaterPublicComplaint extends HttpServlet {
             req.setAttribute("errorMessage", e.getMessage());
             req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
     }
 }

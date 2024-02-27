@@ -54,20 +54,20 @@
       <div class="formbody">
         <div class="forminput">
           <select name="Category" id="Category" required>
-              <option value="Operational">Operational</option>
-              <option value="Commercial">Commercial</option>
+              <option value="Breakdown">Breakdown</option>
+              <option value="Service Request">Service Request</option>
           </select>
           <label for="Category">Complain Category</label>
         </div>
 
         <div class="forminput">
           <select name="complaint_type" id="complaint_type" required>
-              <option value="MainLeak">Main Leak</option>
-              <option value="ConnectionLeak">Connection Leak</option>
-              <option value="NoWater">No Water</option>
-              <option value="LowPressure">Low Pressure</option>
-              <option value="LeakNearMeter">Leak Near Meter</option>
-              <option value="WeakQuality">Quality Problem</option>
+              <option value="Main Leak">Main Leak</option>
+              <option value="Connection Leak">Connection Leak</option>
+              <option value="No Water">No Water</option>
+              <option value="Low Pressure">Low Pressure</option>
+              <option value="Leak Near Meter">Leak Near Meter</option>
+              <option value="Quality Problem">Quality Problem</option>
               <option value="Others">Others</option>
           </select>
           <label for="complaint_type">Complaint Type</label>

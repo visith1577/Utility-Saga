@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link  type="text/css" rel="stylesheet" href="../../CSS/forms.css">
-  <link type="text/css" rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
+  <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+  <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+  <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
   <title>Electricity-Complaints</title>
 </head>
 <body>
@@ -52,19 +55,19 @@
         <div class="forminput">
           <select name="Category" id="Category" required>
               <option value="Breakdown">Breakdown</option>
-              <option value="ServiceRequest">Service Request</option>
+              <option value="Service Request">Service Request</option>
           </select>
           <label for="Category">Complaint Category</label>
         </div>
 
         <div class="forminput">
           <select name="complaint_type" id="complaint_type" required>
-            <option value="MainLeak">Billing issues</option>
-            <option value="ConnectionLeak">Connection & Disconnection issues</option>
-            <option value="NoWater">Power Outages</option>
-            <option value="LowPressure">Voltage & frequency problems</option>
-            <option value="LeakNearMeter">Smart meter problems</option>
-            <option value="WeakQuality">Quality Problem</option>
+            <option value="Billing issues">Billing issues</option>
+            <option value="Connection & Disconnection issues">Connection & Disconnection issues</option>
+            <option value="Power Outages">Power Outages</option>
+            <option value="Voltage & frequency problems">Voltage & frequency problems</option>
+            <option value="Smart meter problems">Smart meter problems</option>
+            <option value="Quality Problem">Quality Problem</option>
             <option value="Others">Others</option>
           </select>
           <label for="complaint_type">Complaint Type</label>
@@ -80,34 +83,38 @@
           <input id="AccountNum" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="AccountNum">Account Number</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="CusNIC" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="CusNIC">NIC</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="Email" type="email" required>
           <!-- <div class="underline"></div> -->
           <label for="Email">Email Address</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Telnum" type="tel" required >
+          <input id="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <!-- <div class="underline"></div> -->
-          <label for="Telnum">Telephone Number</label>
+          <label for="Telnum">Phone Number</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <textarea id="txtArea" rows="1" cols="1" required></textarea>
+          <textarea id="txtArea" name="txtArea" rows="1" cols="1" required maxlength="50"></textarea>
           <label for="txtArea">Complaint Description</label>
           <br />
         </div>
       </div>
       <div class="formbtn">
-        <button type="submit" class="submitbtn electricitybtn">Submit</button>
+        <button type="submit" id="submit-btn" class="submitbtn electricitybtn">Submit</button>
       </div>
     </form>
   </div>
