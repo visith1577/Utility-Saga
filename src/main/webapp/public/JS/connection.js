@@ -164,14 +164,85 @@ export function toast_handle(result, btn_type) {
     }
 }
 
+// handling radio selector
 
-const form = document.getElementById('complaint_form');
+const connection = document.getElementById("connection");
+const disconnection = document.getElementById("disconnection");
+const type_div = document.getElementById("type-div");
+const acc_div = document.getElementById("acc-div");
+const new_addr = document.getElementById("NewConnectionAddress");
+const new_reg = document.getElementById("region");
+const new_addr_div = document.getElementById("new_addr-div");
+const new_reg_div = document.getElementById("new_reg-div");
+const w_connection = document.getElementById("water-connection");
+const w_disconnection = document.getElementById("water-disconnection");
+const reg_elem = document.getElementById("region");
+const reg_label = document.querySelector(`label[for="${reg_elem.id}"]`);
+
+
+if (connection != null) {
+    connection.addEventListener('change', () => {
+        if (acc_div.classList.contains("forminput")) {
+            acc_div.classList.remove("forminput");
+        }
+
+        reg_label.textContent = "New Connection Region"
+
+        acc_div.required ? acc_div.required = false : acc_div.required = false;
+
+        !new_addr.required ? new_addr.required = true : new_addr.required = true;
+        !type_div.required ? type_div.required = true : type_div.required = true;
+        new_addr_div.classList.add("forminput");
+        type_div.classList.add("forminput");
+    });
+}
+
+if (disconnection != null) {
+    disconnection.addEventListener('change', () => {
+        if (type_div.classList.contains("forminput")) {
+            type_div.classList.remove("forminput");
+        }
+
+        type_div.required ? type_div.required = false : type_div.required = false;
+
+        if (new_addr_div.classList.contains("forminput")) {
+            new_addr_div.classList.remove("forminput");
+        }
+
+        reg_label.textContent = "Connection Region"
+
+        new_addr.required ? new_addr.required = false : new_addr.required = false;
+        !acc_div.required ? acc_div.required = true : acc_div.required = true
+        acc_div.classList.add("forminput")
+    });
+}
+
+if (w_connection != null) {
+    w_connection.addEventListener('change', () => {
+        reg_label.textContent = "New Connection Region"
+        new_addr_div.classList.add("forminput")
+    });
+}
+
+if (w_disconnection != null) {
+    w_disconnection.addEventListener('change', () => {
+        reg_label.textContent = "Connection Region"
+        if (new_addr_div.classList.contains("forminput")) {
+            new_addr_div.classList.remove("forminput");
+        }
+    });
+}
+
+
+// validating inputs
+
+let connection_form = document.getElementById("connection-form");
 const tel_num = document.getElementById('Telnum');
 const email = document.getElementById('Email');
 const nic = document.getElementById('CusNIC');
 const button = document.getElementById('submit-btn')
 
-form.addEventListener('submit', e => {
+connection_form.addEventListener('submit', e => {
     e.preventDefault();
 
     let result  = validateInputs(tel_num, email, nic);
@@ -180,9 +251,4 @@ form.addEventListener('submit', e => {
     toast_handle(result, btn_type);
 });
 
-// test cases
-// validatePhoneNumber('0777586061')
-// console.log(validatePhoneNumber('+94771234567'))
-// console.log(validatePhoneNumber('0712345678'))
-// console.log(validatePhoneNumber('0111234567'))
-// console.log(validatePhoneNumber('03123456789'))
+
