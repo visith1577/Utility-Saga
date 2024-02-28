@@ -10,11 +10,16 @@ import model.ComplaintModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/wPub-complaint")
 public class WaterPublicComplaint extends HttpServlet {
 
     private static final long serialVersionUID = 22L;
+    List<String> complaint_types = List.of("Main Leak", "Connection Leak", "No Water",
+            "Low Pressure", "Leak Near Meter", "Quality Problem", "Others");
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +34,11 @@ public class WaterPublicComplaint extends HttpServlet {
 
         ComplaintModel wComplaint = new ComplaintModel();
         wComplaint.setComplaint_category(complainCat);
-        wComplaint.setComplaint_type(complainType);
+        if (complaint_types.contains(complainType)) {
+            wComplaint.setComplaint_type(complainType);
+        } else {
+            wComplaint.setComplaint_type("Others");
+        }
         wComplaint.setAccount_number(accNum);
         wComplaint.setEmail(email);
         wComplaint.setNic(nic);
