@@ -80,28 +80,28 @@
         </div>
 
         <div class="forminput">
-          <input id="AccountNum" type="text" required>
+          <input id="AccountNum" name="AccountNum" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="AccountNum">Account Number</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="CusNIC" type="text" required>
+          <input id="CusNIC" name="CusNIC" type="text" required>
           <!-- <div class="underline"></div> -->
           <label for="CusNIC">NIC</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Email" type="email" required>
+          <input id="Email" name="Email" type="email" required>
           <!-- <div class="underline"></div> -->
           <label for="Email">Email Address</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          <input id="Telnum" name="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <!-- <div class="underline"></div> -->
           <label for="Telnum">Phone Number</label>
           <div class="error"></div>

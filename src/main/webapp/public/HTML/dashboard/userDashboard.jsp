@@ -90,7 +90,7 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity-newconnection.html"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
+                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity_connection.html"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
