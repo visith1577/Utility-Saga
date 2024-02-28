@@ -163,26 +163,3 @@ export function toast_handle(result, btn_type) {
         send_err();
     }
 }
-
-
-const form = document.getElementById('complaint_form');
-const tel_num = document.getElementById('Telnum');
-const email = document.getElementById('Email');
-const nic = document.getElementById('CusNIC');
-const button = document.getElementById('submit-btn')
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    let result  = validateInputs(tel_num, email, nic);
-    let btn_type = 'waterbtn';
-
-    toast_handle(result, btn_type);
-});
-
-// test cases
-// validatePhoneNumber('0777586061')
-// console.log(validatePhoneNumber('+94771234567'))
-// console.log(validatePhoneNumber('0712345678'))
-// console.log(validatePhoneNumber('0111234567'))
-// console.log(validatePhoneNumber('03123456789'))
