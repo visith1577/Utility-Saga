@@ -32,7 +32,7 @@ public class ElectricityComplaintDao implements Complaints {
         stmt.executeUpdate();
 
         stmt.close();
-        conn.close();
+        Connectdb.closeConnection(conn);
     }
 
     @Override

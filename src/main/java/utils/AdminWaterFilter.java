@@ -2,21 +2,18 @@ package utils;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/user/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
-        filterName ="Auth-filter",
+        urlPatterns = {"/public/HTML/water/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        filterName ="Auth-filter__water_admin",
         description = "Authentication middleware"
 )
-public class AuthFilter implements Filter {
+public class AdminWaterFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("Authentication Filter <--------__in__-------->");
@@ -49,5 +46,3 @@ public class AuthFilter implements Filter {
         System.out.println("Authentication Filter <--------__end__-------->");
     }
 }
-
-

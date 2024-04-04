@@ -6,14 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSP - Hello World</title>
-        <link rel="stylesheet" href="../../CSS/login/login.css">
+        <title>Water login</title>
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/login/login.css">
     </head>
     <body>
-        <img src="../../resources/purple_bar.png" alt="" class="style-bar">
+        <img src="<%= request.getContextPath() %>/public/resources/purple_bar.png" alt="" class="style-bar">
         <div class="container">
             <aside class="side-panel">
                 <h1 class="side-panel__title side-panel__main">
@@ -34,7 +35,14 @@
                     </h1>
 
                     <h1 class="login-panel__title login-panel__sub">
-                        Login
+                        <c:if test="${ not empty requestScope.errorMessage }">
+                            <span id="error-message" style="color: #ff1010">
+                                    ${ requestScope.errorMessage }
+                            </span>
+                        </c:if>
+                        <c:if test="${empty requestScope.errorMessage}">
+                            Login
+                        </c:if>
                     </h1>
 
                     <label for="Uname" class="login-field">

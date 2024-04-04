@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<% String name = (String) session.getAttribute("UNAME"); %>
 <html>
 <head>
     <title>About Us</title>
@@ -24,24 +26,35 @@
         <span class="line line3"></span>
       </div>
       <ul class="menu-items">
-        <li class="menu-items-li"><a href="../dashboard/dashboard.jsp">Home</a></li>
-        <li class="menu-items-li"><a href="#">About</a></li>
+        <li class="menu-items-li"><a href="#">Home</a></li>
+        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
         <li class="menu-items-li"><a href="#">Contact Us</a></li>
-
+        <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
+        <script>
+          const electricity = "<%=session.getAttribute("electricity") != null%>"
+          const water = "<%=session.getAttribute("water") != null%>"
+          function toggle() {
+            if (electricity === 'true'){
+              window.location.href = "<%= request.getContextPath() %>/public/HTML/user/electricity/userDashboardElectricity.jsp";
+            } else if(water === 'true') {
+              window.location.href = "<%= request.getContextPath() %>/public/HTML/user/water/userDashboardWater.jsp";
+            }
+          }
+        </script>
         <li class="img_user dropdown">
-          <a href="">
-            <button>
+          <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
+            <button class="user-profile">
               <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
             </button>
             <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+              <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+              <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
             </div>
           </a>
         </li>
       </ul>
-      <img src="../../images/utility_saga.svg" alt="Utility Saga" class="logo">
+      <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
     </div>
   </header>
 </div>

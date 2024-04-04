@@ -14,6 +14,6 @@ public class WaterLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ElectricityLogin.loginDriverUtility(req, resp, "electricityDashboard.jsp", "electricityLogin.jsp");
+        ElectricityLogin.loginDriver(req, resp, "electricityDashboard.jsp", "electricityLogin.jsp");
     }
 }
