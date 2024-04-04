@@ -1,11 +1,15 @@
 package model;
 
-public class UserBills {
+import java.util.List;
+
+public class UserAccounts {
     private String bill_id;
     private String account_number;
     private String amount;
     private String billed_date;
     private String dueDate;
+
+    private List<String> account_list;
 
 
     public String getBill_id() {
@@ -46,5 +50,17 @@ public class UserBills {
 
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public List<String> getAccount_list() {
+        return account_list;
+    }
+
+    public void setAccount_list(List<String> account_list) {
+        this.account_list = account_list;
+    }
+
+    public void add_account(String account_number) {
+        this.account_list.add(account_number);
     }
 }

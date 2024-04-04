@@ -31,7 +31,7 @@
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
                 <script>
                     function toggle() {
-                        window.location.href = "../dashboard/userDashboard.jsp"
+                        window.location.href = "userDashboardElectricity.jsp"
                     }
                 </script>
                 <li class="img_user dropdown">

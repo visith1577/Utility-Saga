@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water - New Connection Form</title>
   <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
   <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+  <script type="module" src="<%= request.getContextPath() %>/public/JS/connection.js" defer></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-  <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
-  <title>Form</title>
 </head>
 <body>
 <div class="navv">
@@ -28,7 +28,7 @@
         <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
         <script>
           function toggle() {
-            window.location.href = "../dashboard/userDashboard.jsp"
+            window.location.href = "userDashboardElectricity.jsp"
           }
         </script>
         <li class="img_user dropdown">
@@ -47,70 +47,75 @@
       <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
     </div>
   </header>
-</div>u
+</div>
   <div class="formbox water-form__complaint">
-    <form id="complaint_form" method="post" action="${pageContext.request.contextPath}/wPub-complaint">
-      <h2>Water Services - Public complains</h2>
+    <form id="complaint_form" method="post" action="<%= request.getContextPath() %>/water-connection">
+      <h2>Water Services - New Connection Request</h2>
       <div class="formbody">
         <div class="forminput">
-          <select name="Category" id="Category" required>
-              <option value="Breakdown">Breakdown</option>
-              <option value="Service Request">Service Request</option>
+          <select name="Title" id="Title" required>
+              <option value="Mr">Mr.</option>
+              <option value="Mrs">Mrs.</option>
+              <option value="Miss">Miss</option>
           </select>
-          <label for="Category">Complain Category</label>
-        </div>
-
-        <div class="forminput">
-          <select name="complaint_type" id="complaint_type" required>
-              <option value="Main Leak">Main Leak</option>
-              <option value="Connection Leak">Connection Leak</option>
-              <option value="No Water">No Water</option>
-              <option value="Low Pressure">Low Pressure</option>
-              <option value="Leak Near Meter">Leak Near Meter</option>
-              <option value="Quality Problem">Quality Problem</option>
-              <option value="Others">Others</option>
-          </select>
-          <label for="complaint_type">Complaint Type</label>
+          <label for="Title">Title</label>
         </div>
         
         <div class="forminput">
-          <input id="CustomerName" name="CustomerName" type="text" required>
-          <label for="CustomerName">Customer Name</label>
-          <div class="error"></div>
+          <input id="Initial" name="Initial" type="text" required>
+          <label for="Initial">Initial</label>
         </div>
 
         <div class="forminput">
-          <input id="AccountNum" name="AccountNum" type="text" required>
-          <!-- <div class="underline"></div> -->
-          <label for="AccountNum">Account Number</label>
-          <div class="error"></div>
+          <input id="Name" name="Name" type="text" required>
+          <label for="Name">Name</label>
+        </div>
+
+        <div class="forminput">
+          <input id="Address" name="Address" type="text" required>
+          <label for="Address">Address</label>
         </div>
 
         <div class="forminput">
           <input id="CusNIC" name="CusNIC" type="text" required>
-          <!-- <div class="underline"></div> -->
           <label for="CusNIC">NIC</label>
-          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="Email" name="Email" type="email" required>
-          <!-- <div class="underline"></div> -->
           <label for="Email">Email Address</label>
-          <div class="error"></div>
-        </div>
-        
-        <div class="forminput">
-          <input id="Telnum" name="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-          <!-- <div class="underline"></div> -->
-          <label for="Telnum">Phone Number</label>
-          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <textarea id="txtArea" name="txtArea" rows="1" cols="1" required maxlength="50"></textarea>
-          <label for="txtArea">Complaint Description</label>
-          <br />
+          <input id="Telnum" name="Telnum" type="tel" required>
+          <label for="Telnum">Telephone Number(Mobile)</label>
+        </div>
+
+        <div class="forminput">
+          <input id="NearestAccNum" name="NearestAccNum" type="text" required>
+          <label for="NearestAccNum">Nearest Account Number</label>
+        </div>
+
+        <div>
+          <label for="water-connection" class="l-radio water-radio">
+            <input type="radio" id="water-connection" name="connection-status" value="connection" tabindex="1">
+            <span class="con-item">Connection</span>
+          </label>
+          <label for="water-disconnection" class="l-radio water-radio">
+            <input type="radio" id="water-disconnection" name="connection-status" value="disconnection" tabindex="2">
+            <span class="con-item">Disconnection</span>
+          </label>
+        </div>
+
+        <div class="forminput" id="new_reg-div">
+          <input id="region" name="region" type="text">
+          <label for="region">New Connection Region</label>
+          <div class="error"></div>
+        </div>
+
+        <div class="hidden" id="new_addr-div">
+          <input id="NewConnectionAddress" name="NewConnectionAddress" type="text" required>
+          <label for="NewConnectionAddress">New Connection Address</label>
         </div>
       </div>
       <div class="formbtn">

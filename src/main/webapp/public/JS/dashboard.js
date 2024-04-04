@@ -1,40 +1,3 @@
-function getCookieValue(cookieName) {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        const [name, value] = cookies[i].trim().split('=');
-        if (name === cookieName) {
-            return value;
-        }
-    }
-    return null; // Cookie not found
-}
-
-let nxt = getCookieValue('nxt');
-
-if (!getCookieValue('nxt')) {
-    let nxt = document.querySelector(".nxt-page").textContent.trim();
-    let expires = new Date();
-    expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
-    document.cookie = 'nxt='+ nxt + ';expires=' + expires.toUTCString();
-}
-
-function toggle() {
-    if (nxt === "Electricity") {
-        nxt = "Water"
-        document.cookie = 'nxt=Water' + ';path=/UtilitySaga_war_exploded/public/HTML/dashboard';
-    } else {
-        nxt = "Electricity"
-        document.cookie = 'nxt=Electricity' + ';path=/UtilitySaga_war_exploded/public/HTML/dashboard';
-    }
-    window.location.reload()
-}
-
-const nxt_page = document.querySelectorAll('.nxt-page')
-
-nxt_page.forEach(button => {
-    button.onclick = toggle
-})
-
 const w_ctx = document.getElementById('w-graph');
 const e_ctx = document.getElementById('e-graph');
 
@@ -106,35 +69,25 @@ function check_destroy_chart(ch) {
     }
 }
 
+function get_filename(pathname) {
+    return pathname.split("/").pop();
+}
+
 function set_dashboard() {
     let chart = null;
-    const water_list = Array.from(document.getElementsByClassName("water"));
-    const electricity_list = Array.from(document.getElementsByClassName("electricity"));
 
-    if (nxt === "Electricity") {
-        water_list.forEach(element => element.style.display = 'none');
-        electricity_list.forEach(element => {
-            if (element.style.display === 'none' || element.style.display === '') {
-                element.style.display = 'block';
-            }
-        });
+    if (get_filename(window.location.pathname) === "userDashboardElectricity.jsp") {
         check_destroy_chart(chart)
-        chart = new Chart(e_ctx, config);
+        new Chart(e_ctx, config);
     } else {
-        water_list.forEach(element => {
-            if (element.style.display === 'none' || element.style.display === '') {
-                element.style.display = 'block';
-            }
-        });
         check_destroy_chart(chart)
-        chart = new Chart(w_ctx, config);
-        electricity_list.forEach(element => element.style.display = 'none');
+        new Chart(w_ctx, config);
     }
 }
 
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
-        set_dashboard(nxt)
+        set_dashboard()
     }
 })
 
