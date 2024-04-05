@@ -13,7 +13,6 @@
     <title>user Dashboard</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
-    <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
 </head>
 <body>
 <div class="navv">
@@ -48,7 +47,7 @@
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
                             <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
@@ -61,19 +60,22 @@
 </div>
 <main class="component-container profile-component__main">
     <section class="user-profile__main card">
-        <form action="" method="post" id="user-profile" class="edit-profile">
+        <form action="${pageContext.request.contextPath}/user-profile" method="post" id="user-profile" class="edit-profile" enctype='multipart/form-data'>
             <img id="preview" class="user-image" src="<%=request.getContextPath()%>/public/images/profile_alt.jpg" alt="Profile Image">
             <input type="file" name="image" id="imageInput" accept="image/*">
             <input type="hidden" name="id" value="1234569uid">
             <br/>
             <label class="id" for="nic">NIC</label>
-            <input type="text" name="nic" value="<%= session.getAttribute("NIC") %>" class="form__field" id="nic" readonly>
+            <input type="text" name="nic" value="<%= session.getAttribute("NIC") %>" class="form__field" id="nic" readonly required>
             <label class="form__label" for="username"> Username: </label>
-            <input type="text" name="user_name" value="<%= name %>" class="form__field" id="username" readonly>
+            <input type="text" name="user_name" value="<%= name %>" class="form__field" id="username" readonly required>
+            <div class="error"></div>
             <label class="form-label" for="tel">Telephone:</label>
-            <input type="text" name="telephone" value="" class="form__field" id="tel" readonly>
+            <input type="text" name="telephone" value="<%= session.getAttribute("TELEPHONE") %>" class="form__field" id="tel" readonly required>
+            <div class="error"></div>
             <label class="form-label" for="email"> Email: </label>
-            <input type="email" name="email" value="" class="form__field" id="email" readonly>
+            <input type="email" name="email" value="<%= session.getAttribute("EMAIL") %>" class="form__field" id="email" readonly required>
+            <div class="error"></div>
             <div class="button-row">
                 <button type="button" id="editButton" class="button-70" onclick="onToggle()">Edit</button>
                 <button type="submit" id="saveButton" class="button-70">Save</button>
@@ -150,26 +152,21 @@
                 </table>
             </div>
         </div>
-
         <div class="user-profile__bottom card">
-
         </div>
     </section>
 </main>
 <script>
-    fetch("<%= request.getContextPath() %>" + "/user-profile", {
-        method: 'GET'
-    }).then(response => response.json())
-        .then(userDetails => {
-            console.log(userDetails);
-            const email = document.getElementById("email");
-            const tel = document.getElementById("tel");
-
-            email.value = userDetails.email;
-            tel.value = userDetails.mobile;
-        })
-        .catch(error => console.error('Error fetching data:', error));
+    <%--fetch("<%= request.getContextPath() %>" + "/user-profile", {--%>
+    <%--    method: 'GET'--%>
+    <%--}).then(response => response.json())--%>
+    <%--    .then(userDetails => {--%>
+    <%--        sessionStorage.setItem("email", userDetails.email);--%>
+    <%--        sessionStorage.setItem("telephone", userDetails.mobile)--%>
+    <%--    })--%>
+    <%--    .catch(error => console.error('Error fetching data:', error));--%>
 </script>
+<script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
 </body>
 </html>
 

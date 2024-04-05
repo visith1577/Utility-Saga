@@ -235,3 +235,45 @@ td{
     font-size: 12px;
     color: rgb(97, 175, 255);
 }
+
+.forminput input:focus {
+    outline: 0;
+}
+
+.forminput.success label {
+    color: #09c372;
+}
+
+.forminput.error label{
+    color: #ff3860;
+}
+
+.forminput .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+.toastify {
+    padding: 25px 30px;
+    font-size: 16px;
+    text-align: right;
+    border-radius: 5px;
+    position: fixed;
+    margin-top: 12vh;
+    right: 20px;
+    z-index: 999;
+}
+
+.toast-close {
+    margin-right: 10px;
+    border: none;
+    color: #166f48;
+    background-color: transparent;
+}
+
+.toastify.on { opacity: 1; }
+
+.toast-error {
+    color: white;
+}

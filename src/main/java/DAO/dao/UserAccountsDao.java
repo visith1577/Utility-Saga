@@ -31,7 +31,7 @@ public class UserAccountsDao implements UserAccounts {
             }
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT account_number FROM" + tableName + " WHERE nic = ?"
+                    "SELECT account_number FROM " + tableName + " WHERE nic = ?"
             );
 
             statement.setString(1, nic);

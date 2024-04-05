@@ -60,14 +60,14 @@
             <section>
                 <h2>User Setting</h2>
 
-                <label for="Name">Name:</label>
-                <input id="Name" type="text" value="<%= name %>">
+                <label for="Name">First Name:</label>
+                <input id="Name" type="text" value="${requestScope.firstname}">
 
-                <label for="email">Email:</label>
-                <input id="email" type="text">
+                <label for="email">Last Name:</label>
+                <input id="email" type="text" value="${requestScope.lastname}">
 
-                <label for="phone">Phone Number:</label>
-                <input id="phone" type="text">
+                <label for="phone">Phone Number (Home):</label>
+                <input id="phone" type="text" value="${requestScope.home}">
 
 
                 <button class="content-btn" type="submit" >Save Profile</button>
@@ -112,7 +112,6 @@
 
             <button class="content-btn" type="button">Save Appearance Settings</button>
         </section>
-
         <section>
             <h2>Service Settings</h2>
             <h3>Electricity Settings</h3>
@@ -180,18 +179,5 @@
         </section>
     </div>
 </body>
-<script>
-    fetch("<%= request.getContextPath() %>" + "/user-profile", {
-        method: 'GET'
-    }).then(response => response.json())
-        .then(userDetails => {
-            console.log(userDetails);
-            const email = document.getElementById("email");
-            const tel = document.getElementById("phone");
 
-            email.value = userDetails.email;
-            tel.value = userDetails.mobile;
-        })
-        .catch(error => console.error('Error fetching data:', error));
-</script>
 </html>
