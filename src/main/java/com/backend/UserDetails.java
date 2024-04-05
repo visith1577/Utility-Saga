@@ -3,8 +3,8 @@ package com.backend;
 
 import DAO.dao.UserDetailsDao;
 import com.google.gson.Gson;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,8 +13,11 @@ import jakarta.servlet.http.HttpSession;
 import model.UserModel;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
+
+@MultipartConfig
 @WebServlet("/user-profile")
 public class UserDetails extends HttpServlet {
 
@@ -36,6 +39,51 @@ public class UserDetails extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.getWriter().write("{\"error\": \"Failed to retrieve user details\"}");
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String nic = (String) session.getAttribute("NIC");
+        String uname = req.getParameter("user_name").strip();
+        String phone = req.getParameter("telephone").strip();
+        String email = req.getParameter("email").strip();
+        InputStream item = req.getPart("image").getInputStream();
+
+        UserModel user = new UserModel();
+        user.setNic(nic);
+        user.setUsername(uname);
+        user.setEmail(email);
+        user.setMobile(phone);
+        user.setImage(item);
+
+        DAO.impl.UserDetails userDao = new UserDetailsDao();
+
+        try {
+            userDao.updateUserInfo(user);
+            session.setAttribute("UNAME", uname);
+            session.setAttribute("TELEPHONE", user.getMobile());
+            session.setAttribute("EMAIL", user.getEmail());
+        } catch (SQLException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            req.setAttribute("errorMessage", "{\"error\": \"Failed to update user image\"}");
+            req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
+        }
+
+        try {
+            InputStream image = userDao.getImageByNic(nic);
+            if (image == null) {
+                userDao.insertImage(user);
+            } else {
+                userDao.updateImage(user);
+            }
+            resp.sendRedirect(req.getHeader("referer"));
+        } catch (SQLException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            resp.getWriter().write("{\"error\": \"Failed to update user image\"}");
+            req.setAttribute("errorMessage", "{\"error\": \"Failed to update user image\"}");
+            req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
         }
     }
 }

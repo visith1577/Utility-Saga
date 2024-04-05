@@ -42,6 +42,7 @@ public class UserLogin extends HttpServlet{
             UserDetails userDao = new UserDetailsDao();
             String pwdStored = userDao.getPasswordByNic(nic);
             String uname = userDao.getUnameByNic(nic);
+            UserModel details = userDao.getUserDetailsByNic(nic);
             if (pwdStored != null) {
                 if(BCrypt.checkpw(pwd, pwdStored)){
 //                    System.out.println("===================Password verified--------------------------------");
@@ -49,6 +50,8 @@ public class UserLogin extends HttpServlet{
                     session.setAttribute("isLoggedIn", true);
                     session.setAttribute("UNAME", uname);
                     session.setAttribute("NIC", nic);
+                    session.setAttribute("TELEPHONE", details.getMobile());
+                    session.setAttribute("EMAIL", details.getEmail());
                     setServiceCookie(nic, userDao, session);
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);

@@ -14,10 +14,6 @@ water_thresh.addEventListener("keydown", prevent_non_numeric);
 elec_thresh.addEventListener("keydown", prevent_non_numeric);
 
 
-function display_accounts() {
-
-}
-
 const add_wacc = document.getElementById("add-btn_water");
 const edit_wacc = document.getElementById("edit-btn_water");
 const del_wacc = document.getElementById("del-btn_water");

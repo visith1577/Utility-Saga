@@ -1,5 +1,6 @@
 package model;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class UserModel {
     private Set<String> services;
     private String connectionType;
     private String connectionStatus;
+    private InputStream image;
 
     public UserModel(String firstName, String lastName, String mobile) {
     }
@@ -122,6 +124,14 @@ public class UserModel {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public InputStream getImage() {
+        return image;
+    }
+
+    public void setImage(InputStream image) {
+        this.image = image;
     }
 
     public enum ProviderInfo {

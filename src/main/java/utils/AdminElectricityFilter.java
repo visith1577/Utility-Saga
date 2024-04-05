@@ -28,7 +28,7 @@ public class AdminElectricityFilter implements Filter {
 
 //        /public/HTML/login/userLogin.jsp
 
-        if(action.matches("^/public/HTML/login/.*"))
+        if(action.matches("^/public/HTML/login/.*") || action.matches("^/public/HTML/pages/.*"))
         {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
