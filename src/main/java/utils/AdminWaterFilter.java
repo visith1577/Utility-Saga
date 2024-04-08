@@ -5,11 +5,12 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.UserRAdmin;
 
 import java.io.IOException;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/water/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        urlPatterns = {"/public/HTML/water/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
         filterName ="Auth-filter__water_admin",
         description = "Authentication middleware"
 )
@@ -33,9 +34,11 @@ public class AdminWaterFilter implements Filter {
             return;
         } else {
             Object isLogged = session.getAttribute("isLoggedIn");
+            Object role = session.getAttribute("ROLE");
             if (isLogged != null ){
                 boolean isLoggedIn = (boolean) isLogged;
-                if (isLoggedIn) {
+                UserRAdmin.Role currRole = UserRAdmin.Role.valueOf(role.toString());
+                if (isLoggedIn && currRole == UserRAdmin.Role.MAIN) {
                     filterChain.doFilter(servletRequest, servletResponse);
                     return;
                 }

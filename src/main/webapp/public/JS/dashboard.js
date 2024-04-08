@@ -76,7 +76,8 @@ function get_filename(pathname) {
 function set_dashboard() {
     let chart = null;
 
-    if (get_filename(window.location.pathname) === "userDashboardElectricity.jsp") {
+    console.log(window.location.pathname)
+    if (get_filename(window.location.pathname) === "electricity-dashboard") {
         check_destroy_chart(chart)
         new Chart(e_ctx, config);
     } else {

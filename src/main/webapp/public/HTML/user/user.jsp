@@ -35,9 +35,9 @@
                     const water = "<%=session.getAttribute("water") != null%>"
                     function toggle() {
                         if (electricity === 'true'){
-                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/electricity/userDashboardElectricity.jsp";
+                            window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard";
                         } else if(water === 'true') {
-                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/water/userDashboardWater.jsp";
+                            window.location.href = "<%= request.getContextPath() %>/user/water-dashboard";
                         }
                     }
                 </script>
@@ -47,7 +47,7 @@
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
                             <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>

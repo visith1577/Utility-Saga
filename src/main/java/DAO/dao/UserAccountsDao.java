@@ -37,8 +37,50 @@ public class UserAccountsDao implements UserAccounts {
             statement.setString(1, nic);
 
             try (ResultSet result = statement.executeQuery()) {
-                if(result.next()){
+                while (result.next()){
                     account_list.add(result.getString("account_number"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return account_list;
+    }
+
+    @Override
+    public List<model.UserAccounts> getUserBills(String nic, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        List<model.UserAccounts> account_list = new ArrayList<>();
+
+        try {
+            String tableName;
+            String primaryName;
+            switch (category.toUpperCase()) {
+                case "WATER":
+                    tableName = "wAccount_list";
+                    primaryName = "water_bill";
+                    break;
+                case "ELECTRICITY":
+                    tableName = "eAccount_list";
+                    primaryName = "electricity_bill";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid table name: " + category);
+            }
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT "+ primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
+                            " ON " + tableName + ".primary_key = " +  primaryName + ".foreign_key" +
+                            " WHERE " + tableName + ".nic = ?"
+            );
+
+            statement.setString(1, nic);
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()){
+
                 }
             }
         } catch (SQLException e) {
