@@ -69,7 +69,11 @@
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 .popupdetails{
+=======
+.details{
+>>>>>>> a5a8e6cad8bf32f40f3e9f9e42c17186c2a7ad37
   margin: 20px;
   display: grid;
   grid-template-columns: 1fr;
@@ -78,7 +82,11 @@
   margin-right: 20px;
 }
 
+<<<<<<< HEAD
 .popupdetails .detail{
+=======
+.details .detail{
+>>>>>>> a5a8e6cad8bf32f40f3e9f9e42c17186c2a7ad37
   display: inline-flex;
   justify-content:left;
   flex-direction: row;
