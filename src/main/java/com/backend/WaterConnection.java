@@ -11,7 +11,7 @@ import model.ConnectionModel;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/water-connection")
+@WebServlet("/user/water-connection")
 public class WaterConnection extends HttpServlet {
 
     @Override
