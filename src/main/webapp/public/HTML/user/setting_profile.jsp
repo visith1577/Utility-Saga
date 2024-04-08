@@ -32,9 +32,9 @@
                     const water = "<%=session.getAttribute("water") != null%>"
                     function toggle() {
                         if (electricity === 'true'){
-                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/electricity/userDashboardElectricity.jsp";
+                            window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard";
                         } else if(water === 'true') {
-                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/water/userDashboardWater.jsp";
+                            window.location.href = "<%= request.getContextPath() %>/user/water-dashboard";
                         }
                     }
                 </script>
@@ -44,7 +44,7 @@
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
                             <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
@@ -115,7 +115,7 @@
         <section>
             <h2>Service Settings</h2>
             <h3>Electricity Settings</h3>
-
+            <c:if test="${not empty sessionScope.electricity}">
             <form>
                 <label for="account-details__electricity">Your Current Electricity Accounts:</label>
                 <ul id="account-details__electricity">
@@ -142,13 +142,18 @@
 
                 <label for="electricityThreshold">Usage Threshold (kWh):</label>
                 <input class="content-btn" type="number" id="electricityThreshold" name="electricityThreshold" placeholder="Set usage threshold" min="0" inputmode="numeric">
-
+                <button class="content-btn" type="button">UnSubscribe</button>
                 <button class="content-btn" type="button">Save Electricity Settings</button>
             </form>
         </section>
-
+        </c:if>
+        <c:if test="${empty sessionScope.electricity}">
+            <label for="account-details__water">Subscribe to view accounts.</label>
+            <button class="content-btn" type="button">Subscribe</button>
+        </c:if>
         <section>
             <h3>Water Settings</h3>
+            <c:if test="${not empty sessionScope.water}">
             <form>
                 <label for="account-details__water">Your Current Water Accounts:</label>
                 <ul id="account-details__water">
@@ -174,8 +179,14 @@
 
                 <label for="waterThreshold">Usage Threshold (liters):</label>
                 <input class="content-btn" type="number" id="waterThreshold" name="waterThreshold" placeholder="Set usage threshold" min="0" inputmode="numeric">
-                <button class="content-btn" type="button">Save Water Settings</button>
+                <button class="content-btn" type="button">UnSubscribe</button>
+                <button class="content-btn" type="submit">Save Water Settings</button>
             </form>
+            </c:if>
+            <c:if test="${empty sessionScope.water}">
+                <label for="account-details__water">Subscribe to view accounts.</label>
+                <button class="content-btn" type="button">Subscribe</button>
+            </c:if>
         </section>
     </div>
 </body>

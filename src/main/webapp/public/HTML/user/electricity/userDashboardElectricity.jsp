@@ -101,9 +101,9 @@
                 <div class="dropdown">
                     <button class="dropbtn">Account Number</button>
                     <div class="dropdown-content">
-                        <a href="#">Link elec</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <c:forEach items="${requestScope.electricity_account_list}" var="account">
+                            <a>${account}</a>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                 <tbody>
                 <tr>
                     <td class="td">
-                        <h1 class="suggestions-head">Suggestions</h1>
+                        <h1 class="suggestions-head">Daily Summary</h1>
                     </td>
                 </tr>
                 <tr>
