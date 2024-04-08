@@ -42,7 +42,7 @@
                     }
                 </script>
                 <li class="img_user dropdown">
-                    <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
+                    <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
@@ -100,54 +100,26 @@
             <div class="tbl-content">
                 <table>
                     <tbody>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
-                        <tr>
-                            <td>1223456779</td>
-                            <td>2500.00</td>
-                            <td>2024/2/13</td>
-                            <td>pending</td>
-                        </tr>
+                    <c:if test="${not empty sessionScope.electricity}">
+                        <c:forEach items="${requestScope.electricity_account_list}" var="account">
+                            <tr>
+                                <td>${account.account_number}</td>
+                                <td>${account.amount}</td>
+                                <td>${account.dueDate}</td>
+                                <td>${account.status}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.water}">
+                        <c:forEach items="${requestScope.water_account_list}" var="account">
+                            <tr>
+                                <td>${account.account_number}</td>
+                                <td>${account.amount}</td>
+                                <td>${account.dueDate}</td>
+                                <td>${account.status}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
                     </tbody>
                 </table>
             </div>

@@ -21,7 +21,7 @@ public class UserLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "user.jsp", "userLogin.jsp");
+        loginDriver(req, resp, "user-profile", "userLogin.jsp");
     }
 
     static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
@@ -56,7 +56,7 @@ public class UserLogin extends HttpServlet{
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
-                    resp.sendRedirect(req.getContextPath() + "/public/HTML/user/" + dash);
+                    resp.sendRedirect(req.getContextPath() + "/user/" + dash);
                 } else {
                     req.setAttribute("NIC", nic);
                     resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

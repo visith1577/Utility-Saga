@@ -2,12 +2,28 @@ package model;
 
 import java.util.List;
 
-public class UserAccounts {
+public class UserAccountsModel {
     private String bill_id;
     private String account_number;
     private String amount;
     private String billed_date;
     private String dueDate;
+
+    private Status status;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public enum Status {
+        PAID,
+        PENDING,
+        OVERDUE
+    }
 
     private List<String> account_list;
 
