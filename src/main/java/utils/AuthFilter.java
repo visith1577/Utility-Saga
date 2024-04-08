@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@WebFilter(
-//        urlPatterns = "/public/HTML/*",
-//        filterName ="Auth-filter",
-//        description = "Authentication middleware"
-//)
+@WebFilter(
+        urlPatterns = {"/public/HTML/user/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        filterName ="Auth-filter",
+        description = "Authentication middleware"
+)
 public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -28,12 +28,9 @@ public class AuthFilter implements Filter {
 
         String action = req.getServletPath();
 
-        List<String> authPathList = new ArrayList<String>();
-
-
 //        /public/HTML/login/userLogin.jsp
 
-        if("/public/HTML/login".equals(action) || "/public/HTML/login/userLogin.jsp".equals(action) || "/".equals(action))
+        if(action.matches("^/public/HTML/login/.*"))
         {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
@@ -46,9 +43,11 @@ public class AuthFilter implements Filter {
                     return;
                 }
             }
+            System.out.println("wrong pwd");
             resp.sendRedirect(req.getContextPath() + "/public/HTML/login/userSelector.jsp");
         }
-
         System.out.println("Authentication Filter <--------__end__-------->");
     }
 }
+
+

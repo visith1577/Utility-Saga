@@ -17,7 +17,7 @@ public class ElectricityComplaintDao implements Complaints {
     public void saveComplaint(ComplaintModel complaint) throws SQLException {
         Connection conn = Connectdb.getConnection();
 
-        String sql = "INSERT INTO electricity_complaint (complaint_no, complaint_category, complaint_type, account_number, nic, email, mobile,complaint) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO electricity_complaint (complaint_no, complaint_category, complaint_type, account_number, nic, email, mobile, complaint) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setString(1, complaint.getComplaint_no());
@@ -32,7 +32,7 @@ public class ElectricityComplaintDao implements Complaints {
         stmt.executeUpdate();
 
         stmt.close();
-        conn.close();
+        Connectdb.closeConnection(conn);
     }
 
     @Override

@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Water_Regional_admin_dahsboard</title>
-<link href="../../CSS/dashboards/Admin/admintable.css" rel="stylesheet">
-<link href="../../CSS/dashboards/Admin/admincards.css" rel="stylesheet">
-<link href="../../CSS/dashboards/Admin/regionaladmin.css" rel="stylesheet">
+<title>Electricity_Regional_admin_dahsboard</title>
+<link href="../../../CSS/dashboards/Admin/regionaladmin-electricity.css" rel="stylesheet">
+<link href="../../../CSS/popup.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -98,7 +97,7 @@
                         </thead>
                         <!-- table body -->
                         <tbody>
-                            <tr>
+                            <tr onclick="openPopup()">
                                 <td>1</td>
                                 <td>John Doe</td>
                                 <td>Colombo</td>
@@ -213,9 +212,46 @@
     </div>
 </section>
 
+<!-- popup -->
+<div class="popupcontainer" id="popupcontainer">
+    <div class="popup" id="popup">      
+          <span class="close" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></span>
+          <h2>User Details</h2>
+          <div class="popupdetails">
+                <div class="detail">
+                      <h2 class="topic">Customer ID : </h2>
+                      <h2>1</h2>
+                </div>
+                <div class="detail">
+                      <h2 class="topic">Customer Name: </h2>
+                      <h2>John Doe</h2>
+                </div>
+                <div class="detail">
+                      <h2 class="topic">Address : </h2>
+                      <h2>Colombo</h2>
+                </div>
+                <div class="detail">
+                      <h2 class="topic">Telephone : </h2>
+                      <h2>0771234567</h2>
+                </div>
+                <div class="detail">
+                      <h2 class="topic">Connection Type : </h2>
+                      <h2>Domestic</h2>
+                </div>
+                <div class="detail">
+                      <h2 class="topic">Connection Status : </h2>
+                      <h2>Active</h2>
+                </div>
+          </div>
+
+          <div class="btns">
+                <button type="button">Edit</button>
+                <button class="button1">Delete the user</button>
+          </div>
+    </div>
+</div>
 
 <!-- <script src="..JS/admindashboard.js"></script> -->
-<script src="../../JS/admindashboard.js"></script>
-
+<script src="../../../JS/Electricity%20-%20admindashboard.js"></script>
 </body>
 </html>

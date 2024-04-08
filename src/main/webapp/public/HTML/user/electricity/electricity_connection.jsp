@@ -29,7 +29,7 @@
           <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
           <script>
             function toggle() {
-              window.location.href = "../dashboard/userDashboard.jsp"
+              window.location.href = "userDashboardElectricity.jsp"
             }
           </script>
           <li class="img_user dropdown">
@@ -38,9 +38,9 @@
                 <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
               </button>
               <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
               </div>
             </a>
           </li>
@@ -51,7 +51,7 @@
   </div>
   <!-- main content -->
   <div class="formbox electricity_form--complain">
-    <form id="connection-form" method="post" action="">
+    <form id="connection-form" method="post" action="<%= request.getContextPath() %>/electricity-connection">
       <h2>Electricity Services - New Connection Request</h2>
       <div class="formbody">
         <div class="forminput">
@@ -107,11 +107,11 @@
 
         <div>
           <label for="connection" class="l-radio electricity-radio">
-            <input type="radio" id="connection" name="connection-status" value="connection" tabindex="1">
+            <input type="radio" id="connection" name="connection-status" value="CONNECTION" tabindex="1">
             <span class="con-item">Connection</span>
           </label>
           <label for="disconnection" class="l-radio electricity-radio">
-            <input type="radio" id="disconnection" name="connection-status" value="disconnection" tabindex="2">
+            <input type="radio" id="disconnection" name="connection-status" value="DISCONNECTION" tabindex="2">
             <span class="con-item">Disconnection</span>
           </label>
         </div>
@@ -126,11 +126,6 @@
         </select>
         <label for="RequiredType">Required electricity supply</label>
         </div>
-        <div class="hidden" id="acc-div">
-          <input id="account-num" type="text">
-          <label for="account-num">Account Number</label>
-          <div class="error"></div>
-        </div>
 
         <div class="hidden" id="new_addr-div">
           <input id="NewConnectionAddress" name="NewConnectionAddress" type="text">
@@ -141,6 +136,12 @@
         <div class="forminput" id="new_reg-div">
           <input id="region" name="region" type="text" required>
           <label for="region">New Connection Region</label>
+          <div class="error"></div>
+        </div>
+
+        <div class="hidden" id="acc-div">
+          <input id="account-num" type="text">
+          <label for="account-num">Account Number</label>
           <div class="error"></div>
         </div>
 

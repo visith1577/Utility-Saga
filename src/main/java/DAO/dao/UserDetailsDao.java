@@ -3,10 +3,10 @@ package DAO.dao;
 import model.UserModel;
 import utils.Connectdb;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.*;
 
 
 public class UserDetailsDao implements DAO.impl.UserDetails {
@@ -41,7 +41,7 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
-    public String getPasswordByNic(String username) throws SQLException {
+    public String getPasswordByNic(String nic) throws SQLException {
         Connection connection = Connectdb.getConnection();
 
         String storedHash;
@@ -50,7 +50,7 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
                     "SELECT pwd FROM users WHERE nic = ?"
             );
 
-            statement.setString(1, username);
+            statement.setString(1, nic);
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()) {
                     storedHash = result.getString("pwd");
@@ -67,7 +67,149 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
-    public void getUserDetailsByNic(String nic) throws SQLException {
-        
+    public String getUnameByNic(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+
+        String uname;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT uname FROM users WHERE nic = ?"
+            );
+
+            statement.setString(1, nic);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    uname = result.getString("uname");
+                } else {
+                    uname = nic;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return uname;
+    }
+
+    @Override
+    public UserModel getUserDetailsByNic(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserModel user = new UserModel();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT firstname, lastname, mobile, home, email, address, region, provider, services FROM users WHERE nic = ?"
+            );
+
+            statement.setString(1, nic);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    user.setFirstName(result.getString("firstname"));
+                    user.setLastName(result.getString("lastname"));
+                    user.setMobile(result.getString("mobile"));
+                    user.setHome(result.getString("home"));
+                    user.setEmail(result.getString("email"));
+                    user.setAddress(result.getString("address"));
+                    user.setRegion(result.getString("region"));
+                    UserModel.ProviderInfo providerInfo = UserModel.ProviderInfo.valueOf(result.getString("provider"));
+                    user.setProvider(providerInfo);
+                    user.setServices(new HashSet<>(Collections.singletonList(result.getString("services"))));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return user;
+    }
+
+    @Override
+    public void updateUserInfo(UserModel user) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE users SET uname = ?, mobile = ?, email = ? WHERE nic = ?"
+            );
+
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getMobile());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getNic());
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void insertImage(UserModel user) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO images (nic, filename, content_type, data) VALUES (?, ?, ?, ?)"
+            );
+
+            statement.setString(1, user.getNic());
+            statement.setString(2, user.getNic()+".jpg");
+            statement.setString(3, "image/jpeg");
+            statement.setBinaryStream(4, user.getImage(), user.getImage().available());
+
+            statement.executeUpdate();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void updateImage(UserModel user) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE images SET filename = ?, content_type = ?, data = ? WHERE nic = ?"
+            );
+
+            statement.setString(1, user.getNic()+".jpg");
+            statement.setString(2, "image/jpeg");
+            statement.setBlob(3, user.getImage());
+            statement.setString(4, user.getNic());
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public InputStream getImageByNic(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        InputStream imageData = null;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT data FROM images WHERE nic = ?"
+            );
+
+            statement.setString(1, nic);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    Blob blob = result.getBlob("data");
+                    if (blob != null) {
+                        imageData = blob.getBinaryStream();
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return imageData;
     }
 }

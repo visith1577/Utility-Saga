@@ -7,12 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<% String name = (String) session.getAttribute("UNAME"); %>
 <html>
 <head>
     <title>user Dashboard</title>
-    <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../CSS/dashboards/user.css">
-    <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
 </head>
 <body>
 <div class="navv">
@@ -26,13 +26,19 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
+                <li id="prof-id" class="menu-items-li"><a href="#"><%= "Welcome " + name%></a></li>
                 <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
-                <li class="menu-items-li"><a href="#">Contact Us</a></li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
                 <script>
+                    const electricity = "<%=session.getAttribute("electricity") != null%>"
+                    const water = "<%=session.getAttribute("water") != null%>"
                     function toggle() {
-                        window.location.href = "../dashboard/userDashboard.jsp"
+                        if (electricity === 'true'){
+                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/electricity/userDashboardElectricity.jsp";
+                        } else if(water === 'true') {
+                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/water/userDashboardWater.jsp";
+                        }
                     }
                 </script>
                 <li class="img_user dropdown">
@@ -41,9 +47,9 @@
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                         </button>
                         <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
                 </li>
@@ -54,29 +60,22 @@
 </div>
 <main class="component-container profile-component__main">
     <section class="user-profile__main card">
-        <form action="" method="post" id="user-profile">
-            <img id="preview" src="<%=request.getContextPath()%>/public/images/profile_alt.jpg" alt="Profile Image">
+        <form action="${pageContext.request.contextPath}/user-profile" method="post" id="user-profile" class="edit-profile" enctype='multipart/form-data'>
+            <img id="preview" class="user-image" src="<%=request.getContextPath()%>/public/images/profile_alt.jpg" alt="Profile Image">
             <input type="file" name="image" id="imageInput" accept="image/*">
             <input type="hidden" name="id" value="1234569uid">
             <br/>
+            <label class="id" for="nic">NIC</label>
+            <input type="text" name="nic" value="<%= session.getAttribute("NIC") %>" class="form__field" id="nic" readonly required>
             <label class="form__label" for="username"> Username: </label>
-            <input type="text" name="user_name" value="clone" class="form__field" id="username" readonly>
+            <input type="text" name="user_name" value="<%= name %>" class="form__field" id="username" readonly required>
+            <div class="error"></div>
             <label class="form-label" for="tel">Telephone:</label>
-            <input type="text" name="telephone" value="123-344-5434" class="form__field" id="tel" readonly>
+            <input type="text" name="telephone" value="<%= session.getAttribute("TELEPHONE") %>" class="form__field" id="tel" readonly required>
+            <div class="error"></div>
             <label class="form-label" for="email"> Email: </label>
-            <input type="email" name="email" value="nicolas@email.com" class="form__field" id="email" readonly>
-            <div class="checkbox-wrapper-4">
-                <input class="inp-cbx" id="morning" type="checkbox"/>
-                <label class="cbx" for="morning"><span>
-                <svg width="12px" height="10px">
-                <use xlink:href="#check-4"></use>
-                </svg></span><span>SMS Alert Activation</span></label>
-                <svg class="inline-svg">
-                    <symbol id="check-4" viewBox="0 0 12 10">
-                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                    </symbol>
-                </svg>
-            </div>
+            <input type="email" name="email" value="<%= session.getAttribute("EMAIL") %>" class="form__field" id="email" readonly required>
+            <div class="error"></div>
             <div class="button-row">
                 <button type="button" id="editButton" class="button-70" onclick="onToggle()">Edit</button>
                 <button type="submit" id="saveButton" class="button-70">Save</button>
@@ -153,52 +152,21 @@
                 </table>
             </div>
         </div>
-
         <div class="user-profile__bottom card">
-
         </div>
     </section>
 </main>
-</body>
 <script>
-    function onToggle() {
-        let form = document.getElementById("user-profile");
-        let inputs = form.getElementsByTagName('input');
-        let file = document.getElementById("imageInput");
-        let editButton = document.getElementById('editButton');
-        let saveButton = document.getElementById('saveButton');
-        let labels = form.querySelectorAll('#user-profile > label');
-
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].readOnly = !inputs[i].readOnly;
-        }
-
-
-
-        if (editButton.textContent === 'Edit') {
-            editButton.textContent = 'Cancel';
-            file.style.display = 'block';
-            saveButton.style.display = 'inline-block';
-
-            for (let i = 0; i < labels.length; i++) {
-                labels[i].style.display = 'block';
-            }
-        } else {
-            editButton.textContent = 'Edit';
-            file.style.display = 'none';
-            saveButton.style.display = 'none';
-            for (let i = 0; i < labels.length; i++) {
-                labels[i].style.display = 'none';
-            }
-        }
-    }
-
-    // temp function
-    document.getElementById('user-profile').addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        console.log('Data Saved.');
-    });
+    <%--fetch("<%= request.getContextPath() %>" + "/user-profile", {--%>
+    <%--    method: 'GET'--%>
+    <%--}).then(response => response.json())--%>
+    <%--    .then(userDetails => {--%>
+    <%--        sessionStorage.setItem("email", userDetails.email);--%>
+    <%--        sessionStorage.setItem("telephone", userDetails.mobile)--%>
+    <%--    })--%>
+    <%--    .catch(error => console.error('Error fetching data:', error));--%>
 </script>
+<script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
+</body>
 </html>
 
