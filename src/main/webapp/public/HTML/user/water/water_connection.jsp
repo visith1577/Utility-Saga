@@ -32,7 +32,7 @@
           }
         </script>
         <li class="img_user dropdown">
-          <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
+          <a href="<%= request.getContextPath() %>/user/user-profile">
             <button class="user-profile">
               <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
             </button>
@@ -49,7 +49,7 @@
   </header>
 </div>
   <div class="formbox water-form__complaint">
-    <form id="complaint_form" method="post" action="<%= request.getContextPath() %>/water-connection">
+    <form id="complaint_form" method="post" action="<%= request.getContextPath() %>/user/water-connection">
       <h2>Water Services - New Connection Request</h2>
       <div class="formbody">
         <div class="forminput">

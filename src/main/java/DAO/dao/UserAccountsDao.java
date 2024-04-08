@@ -1,14 +1,15 @@
 package DAO.dao;
 
 import DAO.impl.UserAccounts;
-import model.UserModel;
+import model.UserAccountsModel;
 import utils.Connectdb;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserAccountsDao implements UserAccounts {
 
@@ -50,10 +51,9 @@ public class UserAccountsDao implements UserAccounts {
     }
 
     @Override
-    public List<model.UserAccounts> getUserBills(String nic, String category) throws SQLException {
+    public List<UserAccountsModel> getUserBills(String nic, String category) throws SQLException {
         Connection connection = Connectdb.getConnection();
-        List<model.UserAccounts> account_list = new ArrayList<>();
-
+        List<UserAccountsModel> account_list = new ArrayList<>();
         try {
             String tableName;
             String primaryName;
@@ -71,8 +71,8 @@ public class UserAccountsDao implements UserAccounts {
             }
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT "+ primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
-                            " ON " + tableName + ".primary_key = " +  primaryName + ".foreign_key" +
+                    "SELECT " + primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
+                            " ON " + tableName + ".account_number = " +  primaryName + ".account_number" +
                             " WHERE " + tableName + ".nic = ?"
             );
 
@@ -80,7 +80,17 @@ public class UserAccountsDao implements UserAccounts {
 
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()){
+                    UserAccountsModel model = new UserAccountsModel();
 
+                    model.setAccount_number(result.getString("account_number"));
+                    model.setAmount(result.getString("amount"));
+                    model.setBilled_date(result.getString("billedDate"));
+                    model.setDueDate(result.getString("dueDate"));
+                    UserAccountsModel.Status status = UserAccountsModel.Status.valueOf(
+                            result.getString("status")
+                    );
+                    model.setStatus(status);
+                    account_list.add(model);
                 }
             }
         } catch (SQLException e) {
@@ -88,6 +98,7 @@ public class UserAccountsDao implements UserAccounts {
         } finally {
             Connectdb.closeConnection(connection);
         }
+
         return account_list;
     }
 }

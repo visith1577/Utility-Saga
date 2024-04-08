@@ -11,7 +11,7 @@ import model.ConnectionModel;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/electricity-connection")
+@WebServlet("/user/electricity-connection")
 public class ElectricityConnection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
