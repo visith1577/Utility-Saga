@@ -37,10 +37,10 @@ public class ElectricityRegionalAdmin extends HttpServlet {
         String action = req.getServletPath();
 
 
-        try{
-            switch (action){
-                case "getComplaints":
-            }
-        }
+//        try{
+//            switch (action){
+//                case "getComplaints":
+//            }
+//        }
     }
 }
