@@ -65,9 +65,6 @@
                 <div class="stats-box earning">
                     <h2 class="heading">Fluctuation</h2>
                     <div class="earning-amount flex-c">
-                        <div class="earning-icon flex">
-                            <ion-icon name="logo-paypal"></ion-icon>
-                        </div>
                         <p>$9125.33</p>
                     </div>
                     <canvas id="fluct"></canvas>
@@ -80,9 +77,9 @@
                     <canvas id="iot"></canvas>
                 </div>
 
-                <div class="top-selling stats-box">
-                    <h2 class="heading">Usages</h2>
-                    <table class="top-selling-products" height="100%" width="100%">
+                <div class="top-selling stats-box1">
+                    <h2 class="heading">Usages of iOT Devices</h2>
+                    <table class="top-selling-products1">
                         <tr>
                             <th>Device</th>
                             <th>Usage</th>
@@ -104,20 +101,24 @@
                             <td>10</td>
                             <td>250 W</td>
                         </tr>
-
-
-
                     </table>
+                    <div class="iOTconnection">
+                        <h2 class="heading">Manage IOT Device Connections</h2>
+                        <div class="iOTconnection1">
+                            <p>Above are the current devices, to connect new devices:</p>
+                            <button type="button" name="goto-devicepage">Go to devices to connect</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="product-stats flex">
+            <div class="product-stats1 flex">
                 <div class="product-sales stats-box">
                     <h2 class="heading">Budget</h2>
                 </div>
 
                 <div class="top-selling stats-box">
-                    <table class="top-selling-products" height="100%" width="100%">
+                    <table class="top-selling-products2" height="100%" width="100%">
                         <tr>
                             <th>Month</th>
                             <th>Expected Units</th>
