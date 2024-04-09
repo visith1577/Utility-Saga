@@ -101,4 +101,55 @@ public class UserAccountsDao implements UserAccounts {
 
         return account_list;
     }
+
+    @Override
+    public UserAccountsModel getUserBillByAccount(String nic, String account, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserAccountsModel model = new UserAccountsModel();
+        try {
+            String tableName;
+            String primaryName;
+            switch (category.toUpperCase()) {
+                case "WATER":
+                    tableName = "wAccount_list";
+                    primaryName = "water_bill";
+                    break;
+                case "ELECTRICITY":
+                    tableName = "eAccount_list";
+                    primaryName = "electricity_bill";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid table name: " + category);
+            }
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT " + primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
+                            " ON " + tableName + ".account_number = " +  primaryName + ".account_number" +
+                            " WHERE " + tableName + ".nic = ? AND " + tableName + ".account_number = ?" +
+                            " ORDER BY " + primaryName + ".dueDate DESC" + // Sort based on dueDate in descending order
+                            " LIMIT 1"
+            );
+
+            statement.setString(1, nic);
+            statement.setString(2, account);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()){
+                    model.setAmount(result.getString("amount"));
+                    model.setBilled_date(result.getString("billedDate"));
+                    model.setDueDate(result.getString("dueDate"));
+                    UserAccountsModel.Status status = UserAccountsModel.Status.valueOf(
+                            result.getString("status")
+                    );
+                    model.setStatus(status);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+
+        return model;
+    }
 }

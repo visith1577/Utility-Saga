@@ -61,8 +61,53 @@
 <main class="component-container profile-component__main">
     <section class="user-profile__main card">
         <form action="${pageContext.request.contextPath}/user-profile" method="post" id="user-profile" class="edit-profile" enctype='multipart/form-data'>
-            <img id="preview" class="user-image" src="<%=request.getContextPath()%>/public/images/profile_alt.jpg" alt="Profile Image">
+            <div id="canvasContainer">
+                <canvas id="previewCanvas" class="image-canvas" width="300" height="300"></canvas>
+            </div>
             <input type="file" name="image" id="imageInput" accept="image/*">
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const canvas = document.getElementById('previewCanvas');
+                    const context = canvas.getContext('2d');
+
+
+                    function draw_default_image() {
+                        const defaultImage = new Image();
+                        // Set the source of the default image
+                        defaultImage.src = "<%=request.getContextPath()%>/public/images/profile_alt.jpg";
+
+                        // Draw the default image onto the canvas when it's loaded
+                        defaultImage.onload = function() {
+                            context.drawImage(defaultImage, 0, 0, canvas.width, canvas.height);
+                        };
+                    }
+
+                    draw_default_image();
+
+                    function draw_selected_image(file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            const selectedImage = new Image();
+                            selectedImage.src = event.target.result;
+                            selectedImage.onload = function() {
+                                context.clearRect(0, 0, canvas.width, canvas.height);
+                                context.drawImage(selectedImage, 0, 0, canvas.width, canvas.height);
+                            };
+                        };
+                        reader.readAsDataURL(file);
+                    }
+
+                    document.getElementById('imageInput').addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            draw_selected_image(file);
+                        } else {
+                            context.clearRect(0, 0, canvas.width, canvas.height);
+                            draw_default_image();
+                        }
+                    });
+                });
+            </script>
             <input type="hidden" name="id" value="1234569uid">
             <br/>
             <label class="id" for="nic">NIC</label>
@@ -128,16 +173,6 @@
         </div>
     </section>
 </main>
-<script>
-    <%--fetch("<%= request.getContextPath() %>" + "/user-profile", {--%>
-    <%--    method: 'GET'--%>
-    <%--}).then(response => response.json())--%>
-    <%--    .then(userDetails => {--%>
-    <%--        sessionStorage.setItem("email", userDetails.email);--%>
-    <%--        sessionStorage.setItem("telephone", userDetails.mobile)--%>
-    <%--    })--%>
-    <%--    .catch(error => console.error('Error fetching data:', error));--%>
-</script>
 <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
 </body>
 </html>
