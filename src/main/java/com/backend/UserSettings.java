@@ -44,6 +44,8 @@ public class UserSettings extends HttpServlet {
             dispatcher.forward(req, resp);
 
         } catch (SQLException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("{\"error\": \"Failed to retrieve user details\"}");
             throw new RuntimeException(e);
         }
     }

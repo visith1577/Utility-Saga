@@ -1,7 +1,17 @@
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <% String name = (String) session.getAttribute("UNAME"); %>
+<%
+
+    Enumeration<String> attributeNames = session.getAttributeNames();
+    while (attributeNames.hasMoreElements()) {
+        String attributeName = attributeNames.nextElement();
+        Object attributeValue = session.getAttribute(attributeName);
+        System.out.println(attributeName + ": " + attributeValue);
+    }
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -76,11 +86,16 @@
 
         <section>
             <h2>Account  Settings</h2>
-            <form>
+            <form id="password-reset" method="post" action="<%= request.getContextPath() %>/user/pwd-reset">
                 <label for="password">Old Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter new password">
+                <input type="password" id="password" name="password" placeholder="Enter new password" required>
+                <div id="old-pwd" class="error"></div>
                 <label for="new-password">New Password:</label>
-                <input type="password" id="new-password" name="password" placeholder="Enter new password">
+                <input type="password" id="new-password" name="password" placeholder="Enter new password" required>
+                <div id="new-pwd" class="error"></div>
+                <label for="re-new-password">Confirm Password:</label>
+                <input type="password" id="re-new-password" name="password" placeholder="Enter new password" required>
+                <div id="re-pwd" class="error"></div>
                 <label for="language">Preferred Language:</label>
                 <select id="language" name="language">
                     <option value="english">English</option>
@@ -88,6 +103,7 @@
                     <option value="tamil">Tamil</option>
                 </select>
 
+                <div id="error-message" class="error"></div>
                 <button class="content-btn" type="submit">Save Account Settings</button>
                 <button class="content-btn" type="button">Edit Account Settings</button>
             </form>

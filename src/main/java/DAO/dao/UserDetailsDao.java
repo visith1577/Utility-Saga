@@ -186,6 +186,23 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
+    public void updatePassword(UserModel user) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE users SET  pwd = ? WHERE nic = ?"
+            );
+
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getNic());
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
     public InputStream getImageByNic(String nic) throws SQLException {
         Connection connection = Connectdb.getConnection();
         InputStream imageData = null;

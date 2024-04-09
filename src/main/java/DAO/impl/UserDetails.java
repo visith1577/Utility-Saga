@@ -21,5 +21,7 @@ public interface UserDetails {
 
     void updateImage(UserModel user) throws SQLException;
 
+    void updatePassword(UserModel user) throws SQLException;
+
     InputStream getImageByNic(String nic) throws SQLException;
 }

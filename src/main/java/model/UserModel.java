@@ -1,7 +1,6 @@
 package model;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.Set;
 
 
@@ -114,8 +113,8 @@ public class UserModel {
         return services;
     }
 
-    public void setServices(Set<String> region) {
-        this.services = region;
+    public void setServices(Set<String> services) {
+        this.services = services;
     }
 
     public String getRegion() {
@@ -139,7 +138,7 @@ public class UserModel {
         LECO
     }
 
-    public String getFullName(String firstName, String lastName){
+    public String getFullName(){
         return this.firstName+ " "+ this.lastName;
     }
 

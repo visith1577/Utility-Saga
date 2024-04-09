@@ -78,31 +78,16 @@
             </ul>
         </section>
 
-
-        <section class="plan2 component electricity" style="background: #FCC7C7">
-            <h1 class="plan2__heading">Bill Details</h1>
-            <div class="element">
-                <h3 class="plan2__heading3">Your Total Balance</h3>
-                <p class="plan2__price">1500/=</p>
-            </div>
-            <div class="element">
-                <button class="btn__plan2" style="background: red">Pay Now</button>
-            </div>
-            <div class="element">
-                <button class="btn__plan2" style="background: red">View Bill</button>
-            </div>
-        </section>
-
         <section class="plan2 component electricity" style="background: #FCC7C7">
             <h1 class="plan2__heading">Your Usage</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Select Your Account</h3>
 
                 <div class="dropdown">
-                    <button class="dropbtn">Account Number</button>
+                    <button id="dropbtn" class="dropbtn">Account Number</button>
                     <div class="dropdown-content">
                         <c:forEach items="${requestScope.electricity_account_list}" var="account">
-                            <a>${account}</a>
+                            <a onclick="select_account('${account}')">${account}</a>
                         </c:forEach>
                     </div>
                 </div>
@@ -110,6 +95,24 @@
             <div class="graph">
                 <canvas id="e-graph" class="main-graph electricity-graph">
                 </canvas>
+            </div>
+        </section>
+
+        <section class="plan2 component electricity" style="background: #FCC7C7">
+            <h1 class="plan2__heading">Bill Details</h1>
+            <div class="element">
+                <h3 class="plan2__heading3">Your Total Balance</h3>
+                <p id="billAmount" class="plan2__price"></p>
+                <h3 class="plan2__heading3">Due Date</h3>
+                <p id="billDue" class="plan2__price"></p>
+                <h3 class="plan2__heading3">Status</h3>
+                <p id="billStatus" class="plan2__price"></p>
+            </div>
+            <div class="element">
+                <button class="btn__plan2" style="background: red">Pay Now</button>
+            </div>
+            <div class="element">
+                <button class="btn__plan2" style="background: red">View Bill</button>
             </div>
         </section>
 
@@ -194,6 +197,30 @@
                     footer: '<a href="#">Set up service</a>'
                 });
             }
+        }
+
+        function select_account(account) {
+            document.getElementById('dropbtn').textContent = account;
+
+            fetch("<%= request.getContextPath() %>/user/my-bills?currDash=electricity&account=" + encodeURIComponent(account))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle successful response
+                    console.log('Data:', data);
+                    // Do something with the data
+                    document.getElementById('billAmount').textContent = data.amount
+                    document.getElementById('billDue').textContent = data.dueDate
+                    document.getElementById('billStatus').textContent = data.status
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error:', error.message);
+                });
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
