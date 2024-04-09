@@ -87,8 +87,12 @@ public class UserLogin extends HttpServlet{
 
         Set<String> services = currentUser.getServices();
         for (Object item: services) {
-            session.setAttribute(item.toString(), item.toString());
-            System.out.printf("%s in ::::", item);
+            String words = item.toString();
+            String[] separatedWords = words.split(",\\s*");
+            for (String word: separatedWords) {
+                session.setAttribute(word, word);
+                System.out.printf("%s in ::::", item);
+            }
         }
     }
 }

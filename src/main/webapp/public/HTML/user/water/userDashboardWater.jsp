@@ -81,19 +81,6 @@
     </section>
 
     <section class="plan2 component water" style="background: lightblue">
-        <h1 class="plan2__heading">Bill Details</h1>
-        <div class="element">
-            <h3 class="plan2__heading3">Your Total Balance</h3>
-            <p class="plan2__price">1500/=</p>
-        </div>
-        <div class="element">
-            <button class="btn__plan2" style="background: #1a1d86">Pay Now</button>
-        </div>
-        <div class="element">
-            <button class="btn__plan2" style="background: #1a1d86">View Bill</button>
-        </div>
-    </section>
-    <section class="plan2 component water" style="background: lightblue">
         <h1 class="plan2__heading">Your Usage</h1>
         <div class="element">
             <h3 class="plan2__heading3">Select Your Account</h3>
@@ -113,6 +100,25 @@
             </canvas>
         </div>
     </section>
+
+    <section class="plan2 component electricity" style="background: #FCC7C7">
+        <h1 class="plan2__heading">Bill Details</h1>
+        <div class="element">
+            <h3 class="plan2__heading3">Your Total Balance</h3>
+            <p id="billAmount" class="plan2__price"></p>
+            <h3 class="plan2__heading3">Due Date</h3>
+            <p id="billDue" class="plan2__price"></p>
+            <h3 class="plan2__heading3">Status</h3>
+            <p id="billStatus" class="plan2__price"></p>
+        </div>
+        <div class="element">
+            <button class="btn__plan2" style="background: red">Pay Now</button>
+        </div>
+        <div class="element">
+            <button class="btn__plan2" style="background: red">View Bill</button>
+        </div>
+    </section>
+
     <section class="suggestion-component component water" style="background: lightblue">
         <table class="wrapper">
             <tbody>
@@ -194,6 +200,30 @@
                 footer: '<a href="#">Set up service</a>'
             });
         }
+    }
+
+    function select_account(account) {
+        document.getElementById('dropbtn').textContent = account;
+
+        fetch("<%= request.getContextPath() %>/user/my-bills?currDash=water&account=" + encodeURIComponent(account))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle successful response
+                console.log('Data:', data);
+                // Do something with the data
+                document.getElementById('billAmount').textContent = data.amount
+                document.getElementById('billDue').textContent = data.dueDate
+                document.getElementById('billStatus').textContent = data.status
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error:', error.message);
+            });
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
