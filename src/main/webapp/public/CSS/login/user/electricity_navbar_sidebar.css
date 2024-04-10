@@ -13,7 +13,7 @@
 }
 
 .wrapper .top_navbar {
-    width: calc(100% - 40px);
+    width: calc(100%);
     margin-left: 15px;
     margin-right: 15px;
     height: 60px;
@@ -106,7 +106,7 @@
 .wrapper .content-middle .sidebar {
     position: fixed;
     margin-top: 40px;
-    margin-bottom: px;
+    margin-bottom: 0px;
     top: 50px;
     left: 20px;
     bottom: 0;

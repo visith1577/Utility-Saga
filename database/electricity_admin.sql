@@ -12,3 +12,13 @@ CREATE TABLE electricity_admin(
 
 ALTER TABLE electricity_admin
 ADD column role ENUM('MAIN', 'REGIONAL') NOT NULL;
+
+CREATE TABLE electricity_admin (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  region VARCHAR(255) NOT NULL,
+  contact_number VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  CONSTRAINT check_email CHECK (email REGEXP '^[\\w-]+@[\\w-]+\\.[\\w-]{2,}$')
+);
+

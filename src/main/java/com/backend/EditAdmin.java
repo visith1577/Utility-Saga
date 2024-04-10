@@ -75,7 +75,7 @@ public class EditAdmin extends HttpServlet {
             }
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Superadmin-editadmin.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Superadmin-electricity.jsp");
         dispatcher.forward(request, response);
     }
 
