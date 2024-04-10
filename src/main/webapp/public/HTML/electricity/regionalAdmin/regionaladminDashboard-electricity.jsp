@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Electricity_Regional_admin_dahsboard</title>
-<link href="../../../CSS/dashboards/Admin/regionaladmin-electricity.css" rel="stylesheet">
-<link href="../../../CSS/popup.css" rel="stylesheet">
+<title>Electricity Regional admin dashboard</title>
+<link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
+<link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -252,6 +253,6 @@
 </div>
 
 <!-- <script src="..JS/admindashboard.js"></script> -->
-<script src="../../../JS/Electricity%20-%20admindashboard.js"></script>
+<script src="../../../JS/ElectricityAdminDashboard.js"></script>
 </body>
 </html>

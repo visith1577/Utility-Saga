@@ -127,6 +127,33 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
+    public UserModel getUserFullNameByNic(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserModel user = new UserModel();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT firstname, lastname, mobile, home, email, address, region, provider, services FROM users WHERE nic = ?"
+            );
+
+            statement.setString(1, nic);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    user.setFirstName(result.getString("firstname"));
+                    user.setLastName(result.getString("lastname"));
+                    user.setAddress(result.getString("address"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return user;
+    }
+
+    @Override
     public void updateUserInfo(UserModel user) throws SQLException {
         Connection connection = Connectdb.getConnection();
         try {
@@ -203,9 +230,9 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
-    public InputStream getImageByNic(String nic) throws SQLException {
+    public String getImageByNic(String nic) throws SQLException {
         Connection connection = Connectdb.getConnection();
-        InputStream imageData = null;
+        String base64Image = null;
 
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -218,15 +245,20 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
                 if(result.next()){
                     Blob blob = result.getBlob("data");
                     if (blob != null) {
-                        imageData = blob.getBinaryStream();
+                        InputStream inputStream  = blob.getBinaryStream();
+                        byte[] imageData = inputStream.readAllBytes();
+
+                        base64Image = Base64.getEncoder().encodeToString(imageData);
                     }
                 }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             Connectdb.closeConnection(connection);
         }
-        return imageData;
+        return base64Image;
     }
 }

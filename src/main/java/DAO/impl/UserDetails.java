@@ -14,6 +14,7 @@ public interface UserDetails {
     String getUnameByNic(String nic) throws SQLException;
 
     UserModel getUserDetailsByNic(String nic) throws SQLException;
+    UserModel getUserFullNameByNic(String nic) throws SQLException;
 
     void updateUserInfo(UserModel user) throws SQLException;
 
@@ -23,5 +24,5 @@ public interface UserDetails {
 
     void updatePassword(UserModel user) throws SQLException;
 
-    InputStream getImageByNic(String nic) throws SQLException;
+    String getImageByNic(String nic) throws SQLException;
 }

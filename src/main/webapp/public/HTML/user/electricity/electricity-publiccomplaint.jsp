@@ -29,13 +29,26 @@
         <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
         <script>
           function toggle() {
-            window.location.href = "userDashboardElectricity.jsp"
+            window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard"
           }
         </script>
         <li class="img_user dropdown">
           <a href="<%= request.getContextPath() %>/user/user-profile">
             <button class="user-profile">
+              <%
+                // Retrieve the Image attribute from the session
+                Object image = session.getAttribute("IMAGE");
+
+                if (image == null) {
+              %>
               <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+              <%
+              } else {
+              %>
+              <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
+              <%
+                }
+              %>
             </button>
             <div class="dropdown-content">
               <a href="<%= request.getContextPath() %>/public/HTML/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
@@ -75,34 +88,37 @@
         </div>
 
         <div class="forminput">
-          <input id="CustomerName" name="CustomerName" type="text" required>
+          <input id="CustomerName" name="CustomerName" type="text" value="<%=request.getAttribute("fullName")%>" required>
           <label for="CustomerName">Customer Name</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="AccountNum" name="AccountNum" type="text" required>
-          <!-- <div class="underline"></div> -->
-          <label for="AccountNum">Account Number</label>
+          <select name="accountNum" id="accountNum" required>
+            <c:forEach items="${requestScope.electricity_account_list}" var="account">
+              <option value="${account}">${account}</option>
+            </c:forEach>
+          </select>
+          <label for="accountNum">Account Number</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="CusNIC" name="CusNIC" type="text" required>
+          <input id="CusNIC" name="CusNIC" type="text" value="<%=session.getAttribute("NIC")%>" required readonly>
           <!-- <div class="underline"></div> -->
           <label for="CusNIC">NIC</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Email" name="Email" type="email" required>
+          <input id="Email" name="Email" type="email" value="<%=session.getAttribute("EMAIL")%>" required readonly>
           <!-- <div class="underline"></div> -->
           <label for="Email">Email Address</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Telnum" name="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          <input id="Telnum" name="Telnum" type="tel" value="<%=session.getAttribute("TELEPHONE")%>" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <!-- <div class="underline"></div> -->
           <label for="Telnum">Phone Number</label>
           <div class="error"></div>

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Enumeration" %><%--
   Created by IntelliJ IDEA.
   User: visithkumarapperuma
   Date: 2024-01-08
@@ -8,11 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <% String name = (String) session.getAttribute("UNAME"); %>
+<%--<%--%>
+<%--    // Get the HttpSession object--%>
+<%--    HttpSession ses = request.getSession();--%>
+
+<%--// Get all attribute names in sessionScope--%>
+<%--    Enumeration<String> attributeNames = ses.getAttributeNames();--%>
+<%--    while (attributeNames.hasMoreElements()) {--%>
+<%--        String attributeName = attributeNames.nextElement();--%>
+<%--        Object attributeValue = session.getAttribute(attributeName);--%>
+<%--        System.out.println(attributeName + " : " + attributeValue);--%>
+<%--    }--%>
+<%--%>--%>
 <html>
 <head>
     <title>user Dashboard</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.min.css">
 </head>
 <body>
 <div class="navv">
@@ -44,7 +58,20 @@
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
+                            <%
+                                // Retrieve the Image attribute from the session
+                                Object image = session.getAttribute("IMAGE");
+
+                                if (image == null) {
+                            %>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                            <%
+                            } else {
+                            %>
+                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
+                            <%
+                                }
+                            %>
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
@@ -60,7 +87,7 @@
 </div>
 <main class="component-container profile-component__main">
     <section class="user-profile__main card">
-        <form action="${pageContext.request.contextPath}/user-profile" method="post" id="user-profile" class="edit-profile" enctype='multipart/form-data'>
+        <form action="${pageContext.request.contextPath}/user/api/user-profile" method="post" id="user-profile" class="edit-profile" enctype='multipart/form-data'>
             <div id="canvasContainer">
                 <canvas id="previewCanvas" class="image-canvas" width="300" height="300"></canvas>
             </div>
@@ -69,6 +96,16 @@
                 document.addEventListener("DOMContentLoaded", function() {
                     const canvas = document.getElementById('previewCanvas');
                     const context = canvas.getContext('2d');
+                    let fetchedImage = '<%= session.getAttribute("IMAGE") %>';
+
+                    function draw_image_on_canvas(imageSrc) {
+                        const image = new Image();
+                        image.src = 'data:image/jpeg;base64,' + imageSrc;
+                        image.onload = function() {
+                            context.clearRect(0, 0, canvas.width, canvas.height);
+                            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                        };
+                    }
 
 
                     function draw_default_image() {
@@ -82,7 +119,12 @@
                         };
                     }
 
-                    draw_default_image();
+
+                    if (fetchedImage) {
+                        draw_image_on_canvas(fetchedImage);
+                    } else {
+                        draw_default_image();
+                    }
 
                     function draw_selected_image(file) {
                         const reader = new FileReader();
@@ -102,8 +144,12 @@
                         if (file) {
                             draw_selected_image(file);
                         } else {
-                            context.clearRect(0, 0, canvas.width, canvas.height);
-                            draw_default_image();
+                            if (fetchedImage) {
+                                draw_image_on_canvas(fetchedImage);
+                            } else {
+                                context.clearRect(0, 0, canvas.width, canvas.height);
+                                draw_default_image();
+                            }
                         }
                     });
                 });
@@ -112,22 +158,27 @@
             <br/>
             <label class="id" for="nic">NIC</label>
             <input type="text" name="nic" value="<%= session.getAttribute("NIC") %>" class="form__field" id="nic" readonly required>
-            <label class="form__label" for="username"> Username: </label>
-            <input type="text" name="user_name" value="<%= name %>" class="form__field" id="username" readonly required>
-            <div class="error"></div>
-            <label class="form-label" for="tel">Telephone:</label>
-            <input type="text" name="telephone" value="<%= session.getAttribute("TELEPHONE") %>" class="form__field" id="tel" readonly required>
-            <div class="error"></div>
-            <label class="form-label" for="email"> Email: </label>
-            <input type="email" name="email" value="<%= session.getAttribute("EMAIL") %>" class="form__field" id="email" readonly required>
-            <div class="error"></div>
+            <div>
+                <label class="form__label" for="username"> Username: </label>
+                <input type="text" name="user_name" value="<%= name %>" class="form__field" id="username" readonly required>
+                <div class="error"></div>
+            </div>
+            <div>
+                <label class="form-label" for="tel">Telephone:</label>
+                <input type="text" name="telephone" value="<%= session.getAttribute("TELEPHONE") %>" class="form__field" id="tel" readonly required>
+                <div class="error"></div>
+            </div>
+            <div>
+                <label class="form-label" for="email"> Email: </label>
+                <input type="email" name="email" value="<%= session.getAttribute("EMAIL") %>" class="form__field" id="email" readonly required>
+                <div class="error"></div>
+            </div>
             <div class="button-row">
                 <button type="button" id="editButton" class="button-70" onclick="onToggle()">Edit</button>
                 <button type="submit" id="saveButton" class="button-70">Save</button>
             </div>
         </form>
     </section>
-
     <section class="user-profile__sub">
         <div class="user-profile__top card" style="padding: 0">
             <div class="tbl-header">
@@ -144,7 +195,7 @@
             </div>
             <div class="tbl-content">
                 <table>
-                    <tbody>
+                    <tbody id="dataTable">
                     <c:if test="${not empty sessionScope.electricity}">
                         <c:forEach items="${requestScope.electricity_account_list}" var="account">
                             <tr>
@@ -173,7 +224,16 @@
         </div>
     </section>
 </main>
+<%
+    // Get the context path dynamically
+    String contextPath = ((HttpServletRequest) request).getContextPath();
+%>
+<script>
+    // Set the context path as a JavaScript variable
+    const contextPath = '<%= contextPath %>';
+</script>
 <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
+<script type="module" src="<%= request.getContextPath() %>/public/JS/fetch_bills.js" defer></script>
 </body>
 </html>
 

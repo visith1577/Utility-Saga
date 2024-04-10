@@ -34,12 +34,25 @@
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
+                            <%
+                                // Retrieve the Image attribute from the session
+                                Object image = session.getAttribute("IMAGE");
+
+                                if (image == null) {
+                            %>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                            <%
+                            } else {
+                            %>
+                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
+                            <%
+                                }
+                            %>
                         </button>
                         <div class="dropdown-content">
-                            <a href="#"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
                 </li>
@@ -59,13 +72,13 @@
             <ul class="plan2__items">
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity/electricity_connection.jsp"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
+                        <a href="<%= request.getContextPath() %>/user/electricity-connection"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
                     </div>
                     <p class="plan2__para">New Connections</p>
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity/electricity-publiccomplaint.jsp"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
+                        <a href="<%= request.getContextPath() %>/user/electricity-public-complaint"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
                     </div>
                     <p class="plan2__para">Public Complaints</p>
                 </li>
@@ -188,7 +201,7 @@
         const water = "<%=session.getAttribute("water") != null%>"
         function toggle() {
             if (water === 'true'){
-                window.location.href = "<%= request.getContextPath() %>/public/HTML/user/water/userDashboardWater.jsp";
+                window.location.href = "<%= request.getContextPath() %>/user/water-dashboard";
             } else {
                 Swal.fire({
                     icon: "error",

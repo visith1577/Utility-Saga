@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 
 @MultipartConfig
-@WebServlet("/user-profile")
+@WebServlet("/user/api/user-profile")
 public class UserDetails extends HttpServlet {
 
     @Override
@@ -72,7 +72,7 @@ public class UserDetails extends HttpServlet {
         }
 
         try {
-            InputStream image = userDao.getImageByNic(nic);
+            String image = userDao.getImageByNic(nic);
             if (image == null) {
                 userDao.insertImage(user);
             } else {

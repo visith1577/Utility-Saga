@@ -1,12 +1,18 @@
 package com.backend;
 
 import DAO.dao.ElectricityComplaintDao;
+import DAO.dao.UserAccountsDao;
+import DAO.dao.UserDetailsDao;
+import DAO.impl.UserDetails;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.ComplaintModel;
+import model.UserModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(
-        "/ePub-complaint"
+        "/user/electricity-public-complaint"
 )
 public class ElectricityPublicComplaint extends HttpServlet {
     private static final long serialVersionUID = 21L;
@@ -59,5 +65,30 @@ public class ElectricityPublicComplaint extends HttpServlet {
             req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
         }
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+
+        DAO.impl.UserAccounts dao = new UserAccountsDao();
+        UserDetails user = new UserDetailsDao();
+        try {
+            List<String> account_elist = dao.getUserAccounts(
+                    (String) session.getAttribute("NIC"), "ELECTRICITY"
+            );
+            UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
+
+
+            req.setAttribute("electricity_account_list", account_elist);
+            req.setAttribute("fullName", model.getFullName());
+            req.setAttribute("ADDRESS", model.getAddress());
+
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/user/electricity/electricity-publiccomplaint.jsp");
+            dispatcher.forward(req, resp);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
