@@ -66,9 +66,10 @@
                             <option value="CEB">CEB</option>
                             <option value="LECO">LECO</option>
                         </select>
-
-                        <button type="submit" class="button">Add Admin</button>
-                        <button class="close-btn" onclick="closePopup()" class="button">Close</button>
+                        <div class="form-button">
+                            <button type="submit" class="buttons">Add Admin</button>
+                            <button  onclick="closePopup()" class="buttons">Close</button>
+                        </div>
                     </form>
 
                 </div>
