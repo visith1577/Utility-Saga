@@ -270,3 +270,15 @@ label.service {
     transform: translate(-50%, -50%); /* Center the message in the middle of the screen */
     transition: opacity 0.3s;
 }
+
+.comments{
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 2%;
+    margin: 0 2%;
+    width: 70%;
+    height: 50%;
+    border-radius: 4px;
+    color: #84848d;
+}

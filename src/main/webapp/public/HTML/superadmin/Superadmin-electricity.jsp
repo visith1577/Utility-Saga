@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Liviru Weerasinghe
+  Date: 4/10/2024
+  Time: 7:45 AM
+  To change this template use File | Settings | File Templates.
+--%>
+
 <%@ page import="model.ElectricityAdminModel" %>
 <%@ page import="DAO.dao.ElectricityAdminDAO" %>
 <%@ page import="java.util.List" %>
@@ -33,6 +41,7 @@
                     <ul class="menu-items">
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity.jsp">Electricity</a></li>
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-water.jsp">Water</a></li>
+                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
                         <li class="menu-items-li"><a href="#">Logout</a></li>
                     </ul>
                     <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
