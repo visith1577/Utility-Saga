@@ -11,4 +11,4 @@ ADD COLUMN status ENUM('PAID', 'PENDING', 'OVERDUE') NOT NULL;
 ALTER TABLE electricity_bill
 ADD COLUMN account_number varchar(255) NOT NULL;
 ALTER TABLE electricity_bill
-ADD CONSTRAINT fe_key FOREIGN KEY (account_number) REFERENCES eAccount_list(account_number);
+ADD CONSTRAINT fe_key FOREIGN KEY (account_number) REFERENCES eaccount_list(account_number);
