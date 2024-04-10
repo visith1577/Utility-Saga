@@ -16,11 +16,9 @@ public class ComplaintModel {
     private String phoneNumber;
     private String Complaint_description;
 
-    public ComplaintModel(String complaint_number) {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yy HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-        complaint_no = getAccount_number() + UUID.fromString(formattedDateTime);
+    public ComplaintModel() {
+        UUID uuid = UUID.randomUUID();
+        complaint_no = getAccount_number() + uuid;
     }
 
     public ComplaintModel(String complaintNumber, String complaintCategory, String complaintType, String accountNumber, String complaintStatus) {
@@ -88,8 +86,5 @@ public class ComplaintModel {
 
     public void setComplaint_no(String complaint_no) {this.complaint_no = complaint_no;}
 
-    public void setUsernic(UsersRAdmin user) {
-        this.nic = user.getNic();
-    }
-}
 
+}

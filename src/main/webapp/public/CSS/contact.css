@@ -22,7 +22,7 @@ body{
 .contact-contaiter{
     max-width: 90%;
     max-height: 90%;
-    margin: auto;
+    margin: 15vh auto;
     width: 100%;
     padding: 3%;
     display: grid;
@@ -49,7 +49,7 @@ body{
     padding: 5%;
     margin-left: 10%;
     margin-right: 10%;
-    box-shadow: 0.6px 0.8px 0.75px 0.5px rgb(178, 178, 178);
+    box-shadow: 1px 1px 1px 1px rgb(178, 178, 178);
 }
 
 .form-container{
@@ -115,7 +115,7 @@ body{
 @media (max-width: 964px){
     .contact-contaiter{
         grid-template-columns: repeat(1, 1fr);
-        margin: 0 auto;
+        margin: 15vh auto;
         width: 90%;
     }
 }
@@ -129,4 +129,14 @@ body{
     .contact-contaiter .map-container iframe{
         height: 400px;
     }
+}
+
+.image-profile {
+    border: 2px solid rgb(76, 154, 255);
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

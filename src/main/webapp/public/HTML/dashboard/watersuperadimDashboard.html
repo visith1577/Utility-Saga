@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water-superadmin</title>
+    <link rel="stylesheet" href="">
+    <link href="../../CSS/dashboards/Admin/superadmincharts.css" rel="stylesheet">
+    <link href="../../CSS/dashboards/Admin/superadmintables.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="topbar">
+                <div class="lefttop">
+                    <h2>Hello (Name)</h2>
+                </div>
+            </div>
+            <section class="tables-dashboard">
+                <div class="Details-table new-regional-admin">
+                    <div class="titlebar">
+                        <h2>New Regional admin Requests</h2>
+                        <!-- view all button -->
+                        <a href="#" class="btn">View All</a>
+                    </div>
+    
+                    <!-- table body -->
+                    <div class="tablediv">
+                        <table class="table">
+                            <!-- table header -->
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Telephone</th>
+                                    <th>Region</th>
+                                    <th>View Details</th>
+                                    <th>Approve/Reject</th>
+                                </tr>
+                            </thead>
+                            <!-- New R. Admin approval : table body -->
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>Colombo</td>
+                                    <td>0771234567</td>
+                                    <td>Western</td>
+                                    <td>
+                                        <a href="#" class="view-btn">View</a>
+                                    </td>
+                                    <td><a href="#" class="approve-btn">Approve</a>
+                                        <a href="#" class="reject-btn">Reject</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>Colombo</td>
+                                    <td>0771234567</td>
+                                    <td>Western</td>
+                                    <td>
+                                        <a href="#" class="view-btn">View</a>
+                                    </td>
+                                    <td><a href="#" class="approve-btn">Approve</a>
+                                        <a href="#" class="reject-btn">Reject</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>Colombo</td>
+                                    <td>0771234567</td>
+                                    <td>Western</td>
+                                    <td>
+                                        <a href="#" class="view-btn">View</a>
+                                    </td>
+                                    <td><a href="#" class="approve-btn">Approve</a>
+                                        <a href="#" class="reject-btn">Reject</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                </div>
+
+                <div class="Details-table current-regional-admin">
+                    <div class="titlebar">
+                        <h2>Current Regional Admins</h2>
+                        <!-- view all button -->
+                        <a href="#" class="btn">View All</a>
+                    </div>
+    
+                    <!-- table body -->
+                    <div class="tablediv">
+                        <table class="table">
+                            <!-- table header -->
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Telephone</th>
+                                    <th>Region</th>
+                                    <th>View Details</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <!-- New R. Admin approval : table body -->
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John Doe</td>
+                                    <td>Colombo</td>
+                                    <td>0771234567</td>
+                                    <td>Western</td>
+                                    <td><a href="#" class="view-btn">View</a></td>
+                                    <td><a href="#" class="delete-btn">Delete</a></td>
+                                </tr>         
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="analysis-details">
+                <div class="graph-content">
+                    <div class="Regional-admin-analysis">
+                        <h2>Regional admins</h2>
+                        <canvas id="regionalAdminChart"></canvas>
+                        <button class="view-btn">Go to regional admin list</button>
+                    </div>
+                    <div class="Regional-admin-analysis">
+                        <h2>Water Consumption Trend</h2>
+                        <canvas id="waterConsumptionChart"></canvas>
+                        <button class="view-btn">More Details about Consumption</button>
+                    </div>
+                    <div class="New-connection-analysis">
+                        <h2>New Connections</h2>
+                        <canvas id="newConnectionsChart"></canvas>
+                        <button class="view-btn">Go to New Connections list</button>
+                    </div>
+                </div>
+            </section>
+        </div> 
+    </div>
+
+    <script src="../../JS/superadmincharts.js"></script>
+</body>
+</html>

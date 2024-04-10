@@ -50,7 +50,7 @@
                     </button>
 
                     <button class="login-selector__btn cst-btn">
-                        <a href="userSelector.jsp">Customer</a>
+                        <a href="userLogin.jsp">Customer</a>
                     </button>
 
                     <button class="login-selector__btn cmp-btn">
