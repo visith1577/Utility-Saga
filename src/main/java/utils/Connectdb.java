@@ -6,7 +6,11 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class Connectdb {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false";
-    private static final Dotenv dotenv = Dotenv.load();
+    private static final Dotenv dotenv = Dotenv
+            .configure()
+            .directory("./assets")
+            .filename(".env")
+            .load();
 
     public static Connection getConnection() throws SQLException {
         try {

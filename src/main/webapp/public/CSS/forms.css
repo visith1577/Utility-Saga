@@ -27,11 +27,11 @@
   
   .formbox{
     /* width: 80%; */
-    height: 90vh;
-    margin: 20px 70px 20px 70px;
+    height: 100%;
+    margin: 15vh 70px 20px 70px;
     background: #fff;
     padding: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 10px;
     box-shadow: 0 0 05px rgba(135, 134, 134, 0.9);
   }
@@ -43,7 +43,10 @@
     margin-bottom: 30px;
     text-transform: uppercase;
   }
-  
+
+  .electricity h2{
+    color: var(--electricity-color);
+  }  
   .formbox .formbody{
     padding: 10px 20px 10px 20px;
     position: relative;
@@ -52,11 +55,16 @@
     gap: 30px;
     margin-top: 20px;
   }
-  .formbox .formbody .forminput{
+
+.hidden {
+  display: none;
+}
+
+.formbox .formbody .forminput{
     display: flex;
     width: 100%;
     flex-direction: column;
-  }
+}
   
   .formbox .formbody .forminput label{
     margin-top: 5px;
@@ -89,6 +97,10 @@
   
   .formbox .formbody .forminput input:focus{
     border-bottom: 2px solid var(--water-color);
+  }
+
+  .electricity .formbody .forminput input:focus{
+    border-bottom: 2px solid var(--electricity-color);
   }
   
   .formbox .formbody .forminput textarea{
@@ -138,7 +150,7 @@
   
   
   /* electricity - new & complaint */
-  .electricity label{
+  .electricity-form__complaint label{
       color: var(--electricity-color2);
   }
   
@@ -151,7 +163,7 @@
   }
   
   /* water - new & complaint*/
-  .water label{
+  .water-form__complaint label{
       color: var(--water-color);
   }
   .formbox .formbtn .waterbtn{
@@ -174,6 +186,7 @@
   
   @media screen and (max-width: 768px){
     .formbox{
+      /* height: 100vh; */
       margin: 10px;
       padding: 10px;   
     }
@@ -217,6 +230,51 @@
     }
   }
 
+.l-radio {
+  padding: 6px;
+  border-radius: 50px;
+  display: inline-flex;
+  cursor: pointer;
+  transition: background .2s ease;
+  margin: 8px 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input[type=radio] {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: none;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--secondary-color);
+  /*box-shadow: inset 0 0 0 1.5px*/
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  transition: box-shadow 150ms cubic-bezier(.95, .15, .5, 1.25);
+  pointer-events: none;
+}
+input[type=radio]:focus {
+  outline: none;
+}
+
+.electricity-radio input[type=radio]:checked {
+  box-shadow: inset 0 0 0 6px var(--electricity-color);
+}
+
+.water-radio input[type=radio]:checked {
+  box-shadow: inset 0 0 0 6px var(--water-color);
+}
+
+.con-item {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 20px;
+  padding: 0 8px;
+  font-size: 15px;
+}
+
 .forminput input:focus {
   outline: 0;
 }
@@ -236,13 +294,14 @@
 }
 
 .toastify {
-  padding: 18px 30px;
+  padding: 25px 30px;
   font-size: 16px;
   text-align: right;
   border-radius: 5px;
   position: fixed;
-  top: 30px;
+  margin-top: 12vh;
   right: 20px;
+  z-index: 999;
 }
 
 .toast-close {
@@ -256,4 +315,14 @@
 
 .toast-error {
   color: white;
+}
+
+.image-profile {
+  border: 2px solid rgb(76, 154, 255);
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

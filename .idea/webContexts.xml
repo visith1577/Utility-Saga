@@ -7,6 +7,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/add.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard/SolarPowerCompanyDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard/user.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard/userDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard/waterDashboard.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/dashboard" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-analysis.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-newconnection.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
@@ -14,7 +15,14 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-service.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricityDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/registerForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
+
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/solar/index.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/solar" />
+
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-electricity.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/electricity_connection.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/setting_profile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/user.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
+
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/water-publiccomplaint.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/userLogin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/userSelector.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />

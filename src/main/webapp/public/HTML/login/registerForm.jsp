@@ -61,16 +61,14 @@
               </div>
               <div class="button-container">
                 <div class="text-fields uname">
-                  <label for="Uname" class="reg-field"><i class='bx bx-user' ></i></label>
+                  <label for="Uname" class="reg-field"><i class='bx bx-card' ></i></label>
                   <input type="text" placeholder="Enter username" id="Uname" name="Uname"
                          class="reg-field__name">
                 </div>
-                <div class="gender-selection">
-                  <p class="field-heading">Gender : </p>
-                  <label for="male">
-                    <input type="radio" name="gender" id="male" value="M">Male
-                  </label>
-                  <label for="female"><input type="radio" name="gender" id="female" value="F">Female</label>
+                <div class="text-fields nic">
+                  <label for="nic" class="reg-field"><i class='bx bx-id-card' ></i></label>
+                  <input type="text" placeholder="Enter NIC" id="nic" name="nic"
+                         class="reg-field__name">
                 </div>
               </div>
               <div class="button-container">
@@ -93,7 +91,7 @@
             <div class="stage2-content">
               <div class="button-container">
                 <div class="text-fields phone">
-                  <label for="phone"><i class='bx bx-phone' ></i></label>
+                  <label for="phone"><i class='bx bx-mobile' ></i></label>
                   <input
                           type="text"
                           name="phone"
@@ -113,9 +111,15 @@
                   >
                 </div>
               </div>
-              <div class="text-fields email">
-                <label for="email"><i class='bx bx-envelope' ></i></label>
-                <input type="email" name="email" id="email" placeholder="Enter your email id">
+              <div class="button-container">
+                <div class="text-fields email">
+                  <label for="email"><i class='bx bx-envelope' ></i></label>
+                  <input type="email" name="email" id="email" placeholder="Enter your email id">
+                </div>
+                <div class="text-fields region">
+                  <label for="region"><i class='bx bx-area' ></i></label>
+                  <input type="text" placeholder="Enter Region" id="region" name="region">
+                </div>
               </div>
               <div class="button-container">
                 <div class="text-fields address">
@@ -141,12 +145,6 @@
                     <label for="water">
                       <input type="checkbox" name="service" id="water" value="water">
                       Water
-                    </label>
-                </div>
-                <div class="list-container">
-                    <label for="fuel">
-                      <input type="checkbox" name="service" id="fuel" value="fuel">
-                      Fuel
                     </label>
                 </div>
               </div>

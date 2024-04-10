@@ -13,6 +13,6 @@ public class AdministratorLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserLogin.loginDriver(req, resp, "userDashboard.jsp", "userLogin.jsp");
+        UserLogin.loginDriver(req, resp, "userDashboardElectricity.jsp", "userLogin.jsp");
     }
 }

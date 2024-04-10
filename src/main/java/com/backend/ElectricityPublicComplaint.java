@@ -1,25 +1,34 @@
 package com.backend;
 
 import DAO.dao.ElectricityComplaintDao;
+import DAO.dao.UserAccountsDao;
+import DAO.dao.UserDetailsDao;
+import DAO.impl.UserDetails;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.ComplaintModel;
+import model.UserModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(
-        "/ePub-complaint"
+        "/user/electricity-public-complaint"
 )
 public class ElectricityPublicComplaint extends HttpServlet {
     private static final long serialVersionUID = 21L;
+    List<String> complaint_types = List.of("Billing issues", "Connection & Disconnection issues", "Power Outages",
+            "Voltage & frequency problems", "Smart meter problems", "Quality Problem", "Others");
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
 
         String accNum = req.getParameter("AccountNum");
         String complainCat = req.getParameter("Category");
@@ -29,20 +38,24 @@ public class ElectricityPublicComplaint extends HttpServlet {
         String telNum = req.getParameter("Telnum");
         String txtArea = req.getParameter("txtArea");
 
-        ComplaintModel wComplaint = new ComplaintModel(complaint_number);
-        wComplaint.setComplaint_category(complainCat);
-        wComplaint.setComplaint_type(complainType);
-        wComplaint.setAccount_number(accNum);
-        wComplaint.setEmail(email);
-        wComplaint.setNic(nic);
-        wComplaint.setPhoneNumber(telNum);
-        wComplaint.setComplaint_description(txtArea);
+        ComplaintModel eComplaint = new ComplaintModel();
+        eComplaint.setComplaint_category(complainCat);
+        if (complaint_types.contains(complainType)) {
+            eComplaint.setComplaint_type(complainType);
+        } else {
+            eComplaint.setComplaint_type("Others");
+        }
+        eComplaint.setAccount_number(accNum);
+        eComplaint.setEmail(email);
+        eComplaint.setNic(nic);
+        eComplaint.setPhoneNumber(telNum);
+        eComplaint.setComplaint_description(txtArea);
 
         ElectricityComplaintDao dao = new ElectricityComplaintDao();
 
         try {
             try {
-                dao.saveComplaint(wComplaint);
+                dao.saveComplaint(eComplaint);
                 resp.sendRedirect(req.getHeader("referer"));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -56,11 +69,26 @@ public class ElectricityPublicComplaint extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
+        HttpSession session = req.getSession();
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        DAO.impl.UserAccounts dao = new UserAccountsDao();
+        UserDetails user = new UserDetailsDao();
+        try {
+            List<String> account_elist = dao.getUserAccounts(
+                    (String) session.getAttribute("NIC"), "ELECTRICITY"
+            );
+            UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
+
+
+            req.setAttribute("electricity_account_list", account_elist);
+            req.setAttribute("fullName", model.getFullName());
+            req.setAttribute("ADDRESS", model.getAddress());
+
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/user/electricity/electricity-publiccomplaint.jsp");
+            dispatcher.forward(req, resp);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

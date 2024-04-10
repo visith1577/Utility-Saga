@@ -57,6 +57,7 @@ a {
 }
 
 .app {
+    margin-top: 15vh;
     min-height: 80vh;
     width: 100%;
     max-width: 1600px;
@@ -203,7 +204,6 @@ a {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 0;
     background-color: transparent;
     border: 1px solid var(--c-gray-500);
     color: var(--c-text-primary);
@@ -745,4 +745,14 @@ button {
         outline: 0;
         box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
     }
+}
+
+.image-profile {
+    border: 2px solid rgb(76, 154, 255);
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

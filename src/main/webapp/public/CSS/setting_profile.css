@@ -1,0 +1,129 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+  
+.profile-container {
+    max-width: 90%;
+    background-color: rgb(215, 239, 250);
+    padding: 20px;
+    margin: 13vh auto 20px;
+}
+
+.profile-container h2 {
+    margin-top: 0;
+}
+
+.profile-container label {
+    display: block;
+    margin-bottom: 8px;
+}
+  
+.content-btn {
+      margin-top: 10px;
+      background-color: #0d6605;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;   
+      border-radius: 5px;
+}
+
+.content-btn:hover {
+      background-color: #053f00;
+      color: #fff;
+      cursor: pointer;
+      transition-delay: 10ms;
+}
+
+.profile-container section{
+      /* max-width: 800px; */
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 15px;
+}
+  
+  /* User Setting */
+section:nth-child(1) {
+    margin-bottom: 20px;
+}
+  
+  /* Account Settings */
+section:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+.profile-container input[type="text"],
+  select {
+    width: 100%;
+    padding: 5px;
+    /* background-color: yellowgreen; */
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: 30px;
+    border-color: rgb(172, 168, 168);
+  }
+  input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    /* background-color: yellowgreen; */
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: 20px;
+    border-color: rgb(172, 168, 168);
+  }
+  
+  /* Appearance Settings */
+section:nth-child(3) {
+    margin-bottom: 20px;
+}
+  
+  /* Service Settings */
+section:nth-child(4) {
+    margin-bottom: 20px;
+}
+  
+section li {
+    list-style-type:none;
+    margin: 10px;
+}
+  
+  .Edit{
+    background-color: rgb(2, 88, 88);
+  }
+  .Delete{
+    background-color: rgb(163, 8, 8);
+  }
+  
+  .Add {
+    background-color: rgb(3, 9, 94);
+    margin-bottom: 15px;
+  }
+  
+  input[type="number"] {
+    width: 30%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: 30px;
+    border-color: rgb(131, 128, 128);
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+  }
+
+.image-profile {
+    border: 2px solid rgb(76, 154, 255);
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
