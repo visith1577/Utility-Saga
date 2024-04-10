@@ -9,6 +9,12 @@ public class ElectricityAdminModel {
     private String email;
     private String password;
 
+    private UtilityType utilityType;
+
+    public enum UtilityType {
+        CEB, LECO
+    }
+
     public ElectricityAdminModel(){
         UUID uuid= UUID.randomUUID();
         id= getId()+ uuid;
@@ -60,5 +66,13 @@ public class ElectricityAdminModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UtilityType getUtilityType() {
+        return utilityType;
+    }
+
+    public void setUtilityType(UtilityType utilityType) {
+        this.utilityType = utilityType;
     }
 }

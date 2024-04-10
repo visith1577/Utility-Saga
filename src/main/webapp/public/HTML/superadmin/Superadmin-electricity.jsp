@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="../../CSS/forms.css">
 
 </head>
 
@@ -40,12 +41,12 @@
         </div>
 
         <div class="middle" id="middle">
-            <h4  class="title">Electricity Admins</h4>
+            <h4 class="title">Electricity Admins</h4>
             <div class="buttons">
                 <button class="button" onclick="openPopup()">Add</button>
               </div>
-            <div class="popup-form" id="popupForm" style="display: none">
-                <div class="popup-container">
+            <div class="popup-form" id="popupForm" style="display: none;">
+                <div id="popupContainer" class="popup-container">
                     <h3 class="popup-title">Add Electricity Admin</h3>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
                         <label for="region">Region:</label>
@@ -60,9 +61,16 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" required>
 
-                        <button type="submit">Add Admin</button>
+                        <label for="utility">Utility:</label>
+                        <select name="utility" id="utility" required>
+                            <option value="CEB">CEB</option>
+                            <option value="LECO">LECO</option>
+                        </select>
+
+                        <button type="submit" class="button">Add Admin</button>
+                        <button class="close-btn" onclick="closePopup()" class="button">Close</button>
                     </form>
-                    <button class="close-btn" onclick="closePopup()">Close</button>
+
                 </div>
             </div>
 
@@ -72,13 +80,15 @@
                     <th>Contact Number</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>CEB/LECO</th>
                 </tr>
                 <% for (ElectricityAdminModel admin : admins) { %>
                 <tr>
                     <td><%= admin.getRegion() %></td>
                     <td><%= admin.getContactNumber() %></td>
                     <td><%= admin.getEmail() %></td>
-                    <td><%= admin.getPassword() %></td> </tr>
+                    <td><%= admin.getPassword() %></td>
+                    <td><%= admin.getUtilityType() %></td></tr>
                 <% } %>
         
             </table>

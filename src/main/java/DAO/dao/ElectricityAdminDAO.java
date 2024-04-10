@@ -14,12 +14,13 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
     @Override
     public int addElectricityAdmin(ElectricityAdminModel admin) throws Exception {
         Connection connection = Connectdb.getConnection();
-        String query = "INSERT INTO electricity_admin (region, contact_number, email, password) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO electricity_admin (region, contact_number, email, password, utilityType) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, admin.getRegion());
         statement.setString(2, admin.getContactNumber());
         statement.setString(3, admin.getEmail());
         statement.setString(4, admin.getPassword());
+        statement.setString(5, admin.getUtilityType().toString().toUpperCase());
 
         int rowsAffected = statement.executeUpdate();
         connection.close();
@@ -43,6 +44,7 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
             admin.setContactNumber(rs.getString("contact_number"));
             admin.setEmail(rs.getString("email"));
             admin.setPassword(rs.getString("password"));
+            admin.setUtilityType(ElectricityAdminModel.UtilityType.valueOf(rs.getString("utilityType")));
             admins.add(admin);
         }
 
