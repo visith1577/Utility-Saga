@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Analysis - Electricity</title>
+    <title>IoT - Electricity</title>
     <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../../CSS/ElectricityServices/electricityAnalysis.css">
+    <link rel="stylesheet" href="../../../CSS/ElectricityServices/iot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="../../../CSS/forms.css">
 </head>
@@ -58,8 +58,16 @@
         <div class="main-content">
             <div class="stats flex">
                 <div class="stats-box sales">
-                    <h2 class="heading">Bills</h2>
-                    <canvas id="bills"></canvas>
+                    <h2 class="heading">Add Devices</h2>
+                    <form action="" id="iotform">
+                        <label for="serialNo">SerialNo</label>
+                        <input type="text" id="serialNo" name="serialNo" required><br>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required><br>
+                        <label for="pConsumption">Power Consumption</label>
+                        <input type="text" id="pConsumption" name="pConsumption" required><br>
+                        <button type="submit">Add Device</button>
+                    </form>
                 </div>
 
                 <div class="stats-box earning">
@@ -79,66 +87,25 @@
 
                 <div class="top-selling stats-box1">
                     <h2 class="heading">Usages of iOT Devices</h2>
-                    <table class="top-selling-products1">
+                    <table class="iotdevices" id="iottable">
+                        <thead>
                         <tr>
-                            <th>Device</th>
-                            <th>Usage</th>
-                            <th>Power Consumption </th>
+                            <th>Serial No</th>
+                            <th>Name</th>
+                            <th>Power Consumption(W)</th>
+                            <th>Status</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <tr>
-                            <td>AC</td>
-                            <td>25</td>
-                            <td>3000W</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" id="statusToggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>Fan 1</td>
-                            <td>5</td>
-                            <td>250 W</td>
-                        </tr>
-
-                        <tr>
-                            <td>Fan 2</td>
-                            <td>10</td>
-                            <td>250 W</td>
-                        </tr>
-                    </table>
-                    <div class="iOTconnection">
-                        <h2 class="heading">Manage IOT Device Connections</h2>
-                        <div class="iOTconnection1">
-                            <p>Above are the current devices, to connect new devices:</p>
-                            <a href="./iot.jsp"><button type="button" name="goto-devicepage">Go to devices to connect</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-stats1 flex">
-                <div class="product-sales stats-box">
-                    <h2 class="heading">Budget</h2>
-                </div>
-
-                <div class="top-selling stats-box">
-                    <table class="top-selling-products2" height="100%" width="100%">
-                        <tr>
-                            <th>Month</th>
-                            <th>Expected Units</th>
-                            <th>Expected Price</th>
-                        </tr>
-                        <tr>
-                            <td>January</td>
-                            <td>150</td>
-                            <td>5000</td>
-                        </tr>
-                        <tr>
-                            <td>February</td>
-                            <td>140</td>
-                            <td>4000</td>
-                        </tr>
-                        <tr>
-                            <td>March</td>
-                            <td>150</td>
-                            <td>5000</td>
-                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -158,6 +125,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="../../../JS/electricityAnalysis.js"></script>
+<script src="../../../JS/iot.js"></script>
 
 </body>
 </html>
