@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -28,18 +29,31 @@
         <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
         <script>
           function toggle() {
-            window.location.href = "userDashboardElectricity.jsp"
+            window.location.href = "<%= request.getContextPath() %>/user/water-dashboard"
           }
         </script>
         <li class="img_user dropdown">
           <a href="<%= request.getContextPath() %>/user/user-profile">
             <button class="user-profile">
+              <%
+                // Retrieve the Image attribute from the session
+                Object image = session.getAttribute("IMAGE");
+
+                if (image == null) {
+              %>
               <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+              <%
+              } else {
+              %>
+              <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
+              <%
+                }
+              %>
             </button>
             <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+              <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+              <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
             </div>
           </a>
         </li>
@@ -49,7 +63,7 @@
   </header>
 </div>
   <div class="formbox water-form__complaint">
-    <form id="complaint_form" method="post" action="<%= request.getContextPath() %>/user/water-connection">
+    <form id="connection-form" method="post" action="<%= request.getContextPath() %>/user/water-connection">
       <h2>Water Services - New Connection Request</h2>
       <div class="formbody">
         <div class="forminput">
@@ -67,27 +81,27 @@
         </div>
 
         <div class="forminput">
-          <input id="Name" name="Name" type="text" required>
+          <input id="Name" name="Name" type="text" value="<%= request.getAttribute("fullName") %>" required>
           <label for="Name">Name</label>
         </div>
 
         <div class="forminput">
-          <input id="Address" name="Address" type="text" required>
+          <input id="Address" name="Address" type="text" value=" <%= request.getAttribute("ADDRESS") %>" required>
           <label for="Address">Address</label>
         </div>
 
         <div class="forminput">
-          <input id="CusNIC" name="CusNIC" type="text" required>
+          <input id="CusNIC" name="CusNIC" type="text" value="<%= session.getAttribute("NIC") %>" required readonly>
           <label for="CusNIC">NIC</label>
         </div>
 
         <div class="forminput">
-          <input id="Email" name="Email" type="email" required>
+          <input id="Email" name="Email" type="email" value="<%=session.getAttribute("EMAIL")%>" required readonly>
           <label for="Email">Email Address</label>
         </div>
 
         <div class="forminput">
-          <input id="Telnum" name="Telnum" type="tel" required>
+          <input id="Telnum" name="Telnum" type="tel" value="<%=session.getAttribute("TELEPHONE")%>" required readonly oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <label for="Telnum">Telephone Number(Mobile)</label>
         </div>
 
@@ -107,15 +121,25 @@
           </label>
         </div>
 
+        <div class="hidden" id="new_addr-div">
+          <input id="NewConnectionAddress" name="NewConnectionAddress" type="text" required>
+          <label for="NewConnectionAddress">New Connection Address</label>
+        </div>
+
         <div class="forminput" id="new_reg-div">
           <input id="region" name="region" type="text">
           <label for="region">New Connection Region</label>
           <div class="error"></div>
         </div>
 
-        <div class="hidden" id="new_addr-div">
-          <input id="NewConnectionAddress" name="NewConnectionAddress" type="text" required>
-          <label for="NewConnectionAddress">New Connection Address</label>
+        <div class="hidden" id="acc-div">
+          <select name="account-num" id="account-num" required>
+            <c:forEach items="${requestScope.water_account_list}" var="account">
+              <option value="${account}">${account}</option>
+            </c:forEach>
+          </select>
+          <label for="account-num">Account Number</label>
+          <div class="error"></div>
         </div>
       </div>
       <div class="formbtn">

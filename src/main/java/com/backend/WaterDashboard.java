@@ -29,7 +29,7 @@ public class WaterDashboard extends HttpServlet {
             req.setAttribute("water_account_list", account_wlist);
 
 
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/user/electricity/userDashboardWater.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/user/water/userDashboardWater.jsp");
             dispatcher.forward(req, resp);
 
         } catch (SQLException e) {

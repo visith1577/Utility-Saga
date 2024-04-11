@@ -171,7 +171,6 @@ const disconnection = document.getElementById("disconnection");
 const type_div = document.getElementById("type-div");
 const acc_div = document.getElementById("acc-div");
 const new_addr = document.getElementById("NewConnectionAddress");
-const new_reg = document.getElementById("region");
 const new_addr_div = document.getElementById("new_addr-div");
 const new_reg_div = document.getElementById("new_reg-div");
 const w_connection = document.getElementById("water-connection");
@@ -219,17 +218,30 @@ if (disconnection != null) {
 
 if (w_connection != null) {
     w_connection.addEventListener('change', () => {
+        if (acc_div.classList.contains("forminput")) {
+            acc_div.classList.remove("forminput");
+        }
+
         reg_label.textContent = "New Connection Region"
-        new_addr_div.classList.add("forminput")
+
+        acc_div.required ? acc_div.required = false : acc_div.required = false;
+        !new_addr.required ? new_addr.required = true : new_addr.required = true;
+
+        new_addr_div.classList.add("forminput");
     });
 }
 
 if (w_disconnection != null) {
     w_disconnection.addEventListener('change', () => {
-        reg_label.textContent = "Connection Region"
         if (new_addr_div.classList.contains("forminput")) {
             new_addr_div.classList.remove("forminput");
         }
+
+        reg_label.textContent = "Connection Region"
+
+        new_addr.required ? new_addr.required = false : new_addr.required = false;
+        !acc_div.required ? acc_div.required = true : acc_div.required = true
+        acc_div.classList.add("forminput")
     });
 }
 
