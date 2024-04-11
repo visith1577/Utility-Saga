@@ -75,6 +75,28 @@
                             <option value="CEB">CEB</option>
                             <option value="LECO">LECO</option>
                         </select>
+
+                        <label for="empid">Employee ID:</label>
+                        <input type="text" name="empid" id="empid" required>
+
+                        <label for="uname">User Name:</label>
+                        <input type="text" name="uname" id="uname" required>
+
+                        <label for="fname">First Name:</label>
+                        <input type="text" name="fname" id="fname" required>
+
+                        <label for="lname">Last Name:</label>
+                        <input type="text" name="lname" id="lname" required>
+
+                        <label for="role">Admin Type:</label>
+                        <select name="role" id="role" required>
+                            <option value="MAIN">Main</option>
+                            <option value="REGIONAL">Regional</option>
+                        </select>
+
+                        <label for="mobile">Mobile:</label>
+                        <input type="text" name="mobile" id="mobile" required>
+
                         <div class="form-button">
                             <button type="submit" class="buttons">Add Admin</button>
                             <button  onclick="closePopup()" class="buttons">Close</button>
@@ -91,6 +113,12 @@
                     <th>Email</th>
                     <th>Password</th>
                     <th>CEB/LECO</th>
+                    <th>Employee ID</th>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Main/Regional</th>
+                    <th>Mobile</th>
                 </tr>
                 <% for (ElectricityAdminModel admin : admins) { %>
                 <tr>
@@ -98,7 +126,15 @@
                     <td><%= admin.getContactNumber() %></td>
                     <td><%= admin.getEmail() %></td>
                     <td><%= admin.getPassword() %></td>
-                    <td><%= admin.getUtilityType() %></td></tr>
+                    <td><%= admin.getUtilityType() %></td>
+                    <td><%= admin.getEmpId() %></td>
+                    <td><%= admin.getUname() %></td>
+                    <td><%= admin.getFirstname() %></td>
+                    <td><%= admin.getLastname() %></td>
+                    <td><%= admin.getRole() %></td>
+                    <td><%= admin.getMobile() %></td>
+                </tr>
+
                 <% } %>
         
             </table>

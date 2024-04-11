@@ -45,6 +45,7 @@
           var dropdown = document.querySelector('select[name="approvalStatus' + bNum + '"]');
           console.log('Dropdown:', dropdown);
           var status = dropdown.value;
+          console.log("abc", dropdown.name);
           updateApprovalStatus(bNum, status);
         });
       });
@@ -128,7 +129,7 @@
         <td><%= company.getDistrict() %></td>
         <td><%= company.getRemarks() %></td>
         <td>
-          <select name="approvalStatus <%= company.getBNum() %>">
+          <select name="approvalStatus<%= company.getBNum() %>">
             <option name="approvalStatus" value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
             <option name="approvalStatus" value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
             <option name="approvalStatus" value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>

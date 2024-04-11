@@ -26,6 +26,12 @@ public class ElectricityAdmin extends HttpServlet {
         String email= req.getParameter("email");
         String password = req.getParameter("password");
         String utility = req.getParameter("utility");
+        String empid = req.getParameter("empid");
+        String uname = req.getParameter("uname");
+        String fname = req.getParameter("fname");
+        String lname = req.getParameter("lname");
+        String role = req.getParameter("role");
+        String mobile = req.getParameter("mobile");
 
         ElectricityAdminModel admin = new ElectricityAdminModel();
 
@@ -34,6 +40,12 @@ public class ElectricityAdmin extends HttpServlet {
         admin.setEmail(email);
         admin.setPassword(password);
         admin.setUtilityType(ElectricityAdminModel.UtilityType.valueOf(utility));
+        admin.setEmpId(empid);
+        admin.setUname(uname);
+        admin.setFirstname(fname);
+        admin.setLastname(lname);
+        admin.setRole(ElectricityAdminModel.Role.valueOf(role));
+        admin.setMobile(mobile);
 
         ElectricityAdminDAO dao = new ElectricityAdminDAO();
 
