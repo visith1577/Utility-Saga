@@ -1,3 +1,21 @@
+:root {
+  --primary-color: #100f0f;
+  --secondary-color: #787575;
+  --tertiary-color: #fff;
+  --electricity-color: #e2d412;
+  --electricity-color2: #b2ad0f;
+  --electricity-color3: #fbffdac4;
+  --water-color1: #0011ff;
+  --water-color2: #0017ae;
+  --warning-color: #ffff00;
+  --delete-color: #c00000;
+  --delete-color2: #ff0000;
+  --info-color: #00ffff;
+  --border-radius: 10px;
+  --box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -127,3 +145,130 @@ section li {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.popupcontainer,
+  .popupcontainer2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: all 0.3s ease;
+  }
+  
+  .open-popupcontainer,
+  .open-popupcontainer2 {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .popup,
+  .popup2 {
+    width: 400px;
+    background: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 10px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s;
+  }
+  
+  .open-popup,
+  .open-popup2 {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .popup h2 {
+    font-size: 25px;
+    font-weight: 500;
+  }
+  
+  .popup .btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .accountType , option, input{
+    /* background-color: #00ffff; */
+    width: 150px;
+    font-family: inherit;
+    padding: 10px;
+    font-size: 11px;
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  hr{
+    margin-bottom: 20px;
+  }
+  
+  .add-btn,
+  .add-btn, .wateradd-btn,
+  .close-btn {
+    width: 150px;
+    font-family: inherit;
+    padding: 10px;
+    font-size: 11px;
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .add-btn {
+    background: var(--electricity-color2);
+    color: #f8f8f8;
+  }
+  
+  .wateradd-btn {
+    background: var(--water-color2);
+    color: #f8f8f8;
+  }
+  
+  .close-btn {
+    background: var(--delete-color);
+    color: #f8f8f8;
+  }
+  
+  .add-btn:hover {
+    background: var(--electricity-color);
+    cursor: pointer;
+  }
+
+  .close-btn:hover{
+    background-color: var(--delete-color2);
+    cursor: pointer;
+  }
+
+  @media screen and (max-device-width: 480px) {
+    .popup {
+      width: 300px;
+    }
+  
+    .popup h2 {
+      font-size: 20px;
+    }
+  }

@@ -112,3 +112,27 @@ passwordInput.addEventListener('change', handleInputEvent);
 const form = document.getElementById('password-reset');
 form.addEventListener('submit', handleFormSubmit);
 
+let popup = document.getElementById('popup');
+let popupcontainer = document.getElementById('popupcontainer');
+let popup2 = document.getElementById('popup2');
+let popupcontainer2 = document.getElementById('popupcontainer2');
+
+function openPopup1() {
+      popup.classList.add("open-popup");
+      popupcontainer.classList.add("open-popupcontainer");
+}
+
+function closePopup1() {
+      popup.classList.remove("open-popup");
+      popupcontainer.classList.remove("open-popupcontainer");
+}
+
+function openPopup2() {
+    popup2.classList.add("open-popup2");
+    popupcontainer2.classList.add("open-popupcontainer2");
+}
+
+function closePopup2() {
+    popup2.classList.remove("open-popup2");
+    popupcontainer2.classList.remove("open-popupcontainer2");
+}
