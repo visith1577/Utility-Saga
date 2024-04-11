@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.UserModel;
 import model.UserRAdmin;
 import org.mindrot.jbcrypt.BCrypt;
+import utils.ReportGenerator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -57,8 +58,8 @@ public class seed extends HttpServlet {
         user.setEmail(email);
         user.setAddress(address);
         user.setRegion(region);
-//        user.setRole(UserRAdmin.Role.MAIN);
-        user.setRole(UserRAdmin.Role.REGIONAL);
+        user.setRole(UserRAdmin.Role.MAIN);
+//        user.setRole(UserRAdmin.Role.REGIONAL);
 
         String bcryptHashedPwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
         user.setPassword(bcryptHashedPwd);
@@ -70,5 +71,13 @@ public class seed extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+//        ReportGenerator report = new ReportGenerator();
+//        String report_text = report.dailyReport("23456444", 200, 180, 10_000);
+//
+//        resp.setContentType("text/html");
+//
+//        // Write the report as response
+//        resp.getWriter().println(report_text);
     }
 }
