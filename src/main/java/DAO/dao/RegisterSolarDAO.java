@@ -72,4 +72,19 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
         return companies;
     }
 
+    @Override
+    public void updateApprovalStatus(String bNum, String status) throws SQLException {
+        Connection connection= Connectdb.getConnection();
+        try{
+
+            PreparedStatement stmt = connection.prepareStatement("UPDATE solar_company SET approval_status = ? WHERE bnum = ?");
+            stmt.setString(1, status);
+            stmt.setString(2, bNum);
+
+            stmt.executeUpdate();
+        }finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
 }
