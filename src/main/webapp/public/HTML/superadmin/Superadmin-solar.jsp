@@ -36,13 +36,27 @@
       }
     }
 
-    function updateApprovalStatus(companyId, status){
+    document.addEventListener("DOMContentLoaded", function() {
+      var buttons = document.querySelectorAll('.submit-btn');
+      buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          var bNum = button.dataset.bNum;
+          console.log('BNum:', bNum);
+          var dropdown = document.querySelector('select[name="approvalStatus' + bNum + '"]');
+          console.log('Dropdown:', dropdown);
+          var status = dropdown.value;
+          updateApprovalStatus(bNum, status);
+        });
+      });
+    });
+
+    function updateApprovalStatus(bNum, status){
       fetch('UpdateApprovalStatus',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'companyId=' + encodeURIComponent(companyId) + '&status=' + encodeURIComponent(status)
+        body: 'companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status)
       }).then(response => {
         if(!response.ok){
           throw new Error('Response was not ok');
@@ -98,6 +112,7 @@
         <th>District</th>
         <th>Remarks</th>
         <th>Approved Status</th>
+        <th>Submit</th>
       </tr>
       <% for (SolarCompanyModel company : companies) { %>
       <tr>
@@ -113,13 +128,13 @@
         <td><%= company.getDistrict() %></td>
         <td><%= company.getRemarks() %></td>
         <td>
-          <select name="approvalStatus_<%= company.getId() %>" onchange="updateApprovalStatus('<%= company.getId() %>', this.value)">
-            <option value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
-            <option value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
-            <option value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
+          <select name="approvalStatus <%= company.getBNum() %>">
+            <option name="approvalStatus" value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
+            <option name="approvalStatus" value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
+            <option name="approvalStatus" value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
           </select>
-
         </td>
+        <td><button class="submit-btn" data-bNum="<%= company.getBNum() %>" >Submit</button></td>
       </tr>
       <% } %>
 
