@@ -155,8 +155,7 @@
 
                 <button class="content-btn Edit" type="button">Edit Accounts</button>
                 <button type="button" class="content-btn Delete">Delete Accounts</button>
-                <button type="button" class="content-btn Add">Add Accounts</button>
-
+                <button id="add-btn_water" type="button" class="content-btn Add" onclick="openPopup2()">Add Accounts elec</button>
 
                 <label for="electricityNotifications">Receive Notifications:</label>
                 <select id="electricityNotifications" name="electricityNotifications">
@@ -192,8 +191,7 @@
                 </ul>
                 <button id="edit-btn_water" type="button" class="content-btn Edit">Edit Accounts</button>
                 <button id="del-btn_water" type="button" class="content-btn Delete">Delete Accounts</button>
-                <button id="add-btn_water" type="button" class="content-btn Add">Add Accounts</button>
-
+                <button type="button" class="content-btn Add" onclick="openPopup1()">Add Accounts</button>
 
                 <label for="waterNotifications">Receive Notifications:</label>
                 <select id="waterNotifications" name="waterNotifications">
@@ -218,6 +216,46 @@
             </c:if>
         </section>
     </div>
+    <div class="popupcontainer" id="popupcontainer">
+        <div class="popup" id="popup">      
+              <span class="close" onclick="closePopup1()"><i class="fa-solid fa-xmark"></i></span>
+              <h2>Add Water Account</h2>
+              <hr>
+                <form id="accountForm">
+                 <label for="accountNumber">Account Number:</label><br>
+                 <input type="text" id="accountNumber" name="accountNumber"><br><br>
+                 <div class="btn-div">
+                    <button type="button" class="wateradd-btn" onclick="addAccount()">Add more Accounts</button>
+                    <button class="close-btn" onclick="closePopup1()">Close</button>
+                 </div>
+
+                </form>
+        </div>
+    </div>
+
+    <div class="popupcontainer2" id="popupcontainer2">
+        <div class="popup2" id="popup2">      
+              <span class="close" onclick="closePopup2()"><i class="fa-solid fa-xmark"></i></span>
+              <h2>Add Electricity Account</h2>
+              <hr>
+                <form id="accountForm">
+                    <label for="accountType">Select Account Type:</label><br>
+                    <select id="accountType" name="accountType" class="accountType">
+                       <option value="ceb">CEB</option>
+                       <option value="leco">LECO</option>
+                    </select><br><br>
+                 <label for="accountNumber">Account Number:</label><br>
+                 <input type="text" id="accountNumber" name="accountNumber"><br><br>
+                 <div class="btn-div">
+                    <button type="button" class="add-btn">Add more Accounts</button>
+                    <button class="close-btn" onclick="closePopup2()">Close</button>
+                 </div>
+
+                </form>
+        </div>
+
+    </div>
+
 </body>
 
 </html>
