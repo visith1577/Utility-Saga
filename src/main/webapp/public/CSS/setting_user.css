@@ -9,7 +9,6 @@ body {
   .setting-container {
     width: 95%;
     align-items: center;
-    margin: 0 auto;
     background-color: #f4f4f4;
     padding: 20px;
     margin: 10px;
@@ -109,4 +108,14 @@ body {
       padding: 10px;
     }
   }
+
+.image-profile {
+  border: 2px solid rgb(76, 154, 255);
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
   

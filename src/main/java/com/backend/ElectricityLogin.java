@@ -48,6 +48,8 @@ public class ElectricityLogin extends HttpServlet{
                     session.setAttribute("isLoggedIn", true);
                     session.setAttribute("ROLE", role.toString());
                     session.setAttribute("ID", id);
+                    session.setAttribute("REGION", id); // region up
+                    session.setAttribute("AREAS", id);  // list of areas
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);

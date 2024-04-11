@@ -746,3 +746,13 @@ button {
         box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
     }
 }
+
+.image-profile {
+    border: 2px solid rgb(76, 154, 255);
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

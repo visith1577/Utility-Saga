@@ -3,22 +3,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <% String name = (String) session.getAttribute("UNAME"); %>
-<%
+<%--<%--%>
 
-    Enumeration<String> attributeNames = session.getAttributeNames();
-    while (attributeNames.hasMoreElements()) {
-        String attributeName = attributeNames.nextElement();
-        Object attributeValue = session.getAttribute(attributeName);
-        System.out.println(attributeName + ": " + attributeValue);
-    }
-%>
+<%--    Enumeration<String> attributeNames = session.getAttributeNames();--%>
+<%--    while (attributeNames.hasMoreElements()) {--%>
+<%--        String attributeName = attributeNames.nextElement();--%>
+<%--        Object attributeValue = session.getAttribute(attributeName);--%>
+<%--        System.out.println(attributeName + ": " + attributeValue);--%>
+<%--    }--%>
+<%--%>--%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/setting_profile.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-    <script type="module" src="<%= request.getContextPath() %>/public/JS/user_profile.js" defer></script>
+    <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
     <title>Account Setting</title>
 </head>
 <body>
@@ -51,7 +51,20 @@
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
+                            <%
+                                // Retrieve the Image attribute from the session
+                                Object image = session.getAttribute("IMAGE");
+
+                                if (image == null) {
+                            %>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                            <%
+                            } else {
+                            %>
+                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
+                            <%
+                                }
+                            %>
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>

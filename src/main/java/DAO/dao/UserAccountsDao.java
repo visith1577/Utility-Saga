@@ -51,9 +51,10 @@ public class UserAccountsDao implements UserAccounts {
     }
 
     @Override
-    public List<UserAccountsModel> getUserBills(String nic, String category) throws SQLException {
+    public List<UserAccountsModel> getUserBills(String nic, String category, int limit, int offset) throws SQLException {
         Connection connection = Connectdb.getConnection();
         List<UserAccountsModel> account_list = new ArrayList<>();
+
         try {
             String tableName;
             String primaryName;
@@ -73,10 +74,13 @@ public class UserAccountsDao implements UserAccounts {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT " + primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
                             " ON " + tableName + ".account_number = " +  primaryName + ".account_number" +
-                            " WHERE " + tableName + ".nic = ?"
+                            " WHERE " + tableName + ".nic = ?" +
+                            "LIMIT ? OFFSET ?"
             );
 
             statement.setString(1, nic);
+            statement.setInt(2, limit);
+            statement.setInt(3, offset);
 
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()){
@@ -89,6 +93,11 @@ public class UserAccountsDao implements UserAccounts {
                     UserAccountsModel.Status status = UserAccountsModel.Status.valueOf(
                             result.getString("status")
                     );
+                    if (category.equals("WATER")) {
+                        model.setType(UserAccountsModel.Acc.WATER);
+                    } else {
+                        model.setType(UserAccountsModel.Acc.ELECTRICITY);
+                    }
                     model.setStatus(status);
                     account_list.add(model);
                 }

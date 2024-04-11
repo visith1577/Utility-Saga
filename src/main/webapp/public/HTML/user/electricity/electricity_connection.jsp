@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -29,13 +30,26 @@
           <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
           <script>
             function toggle() {
-              window.location.href = "userDashboardElectricity.jsp"
+              window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard"
             }
           </script>
           <li class="img_user dropdown">
             <a href="<%= request.getContextPath() %>/user/user-profile">
               <button class="user-profile">
+                <%
+                  // Retrieve the Image attribute from the session
+                  Object image = session.getAttribute("IMAGE");
+
+                  if (image == null) {
+                %>
                 <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
+                <%
+                } else {
+                %>
+                <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
+                <%
+                  }
+                %>
               </button>
               <div class="dropdown-content">
                 <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
@@ -70,31 +84,31 @@
         </div>
 
         <div class="forminput">
-          <input id="Name" name="Name" type="text" required>
+          <input id="Name" name="Name" type="text" value="<%= request.getAttribute("fullName") %>" required>
           <label for="Name">Name</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Address" name="Address" type="text" required>
+          <input id="Address" name="Address" type="text" value="<%= request.getAttribute("ADDRESS") %>" required>
           <label for="Address">Current Address</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="CusNIC" name="CusNIC" type="text" required>
+          <input id="CusNIC" name="CusNIC" type="text" value="<%= session.getAttribute("NIC") %>" required readonly>
           <label for="CusNIC">NIC</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="Email" name="Email" type="email" required>
+          <input id="Email" name="Email" type="email" value="<%= session.getAttribute("EMAIL") %>" required readonly>
           <label for="Email">Email Address</label>
           <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input name="Telnum" id="Telnum" type="tel" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          <input name="Telnum" id="Telnum" type="tel" value="<%= session.getAttribute("TELEPHONE") %>" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <label for="Telnum">Telephone Number(Mobile)</label>
           <div class="error"></div>
         </div>
@@ -140,7 +154,11 @@
         </div>
 
         <div class="hidden" id="acc-div">
-          <input id="account-num" type="text">
+          <select name="account-num" id="account-num" required>
+            <c:forEach items="${requestScope.electricity_account_list}" var="account">
+              <option value="${account}">${account}</option>
+            </c:forEach>
+          </select>
           <label for="account-num">Account Number</label>
           <div class="error"></div>
         </div>

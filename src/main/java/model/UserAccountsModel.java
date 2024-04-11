@@ -8,8 +8,22 @@ public class UserAccountsModel {
     private String amount;
     private String billed_date;
     private String dueDate;
-
     private Status status;
+    private Acc type;
+
+    public Acc getType() {
+        return type;
+    }
+
+    public void setType(Acc type) {
+        this.type = type;
+    }
+
+
+    public enum Acc {
+        WATER,
+        ELECTRICITY
+    }
 
     public Status getStatus() {
         return status;
