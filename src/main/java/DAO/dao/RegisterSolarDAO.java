@@ -73,7 +73,8 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
     }
 
     @Override
-    public void updateApprovalStatus(String bNum, String status) throws SQLException {
+    public boolean updateApprovalStatus(String bNum, String status) throws SQLException {
+        boolean rowsUpdated = false;
         Connection connection= Connectdb.getConnection();
         try{
 
@@ -81,10 +82,11 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
             stmt.setString(1, status);
             stmt.setString(2, bNum);
 
-            stmt.executeUpdate();
+            rowsUpdated = stmt.executeUpdate() > 0;
         }finally {
             Connectdb.closeConnection(connection);
         }
+        return rowsUpdated;
     }
 
 }

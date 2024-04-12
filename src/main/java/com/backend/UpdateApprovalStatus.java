@@ -2,6 +2,7 @@ package com.backend;
 
 import DAO.dao.RegisterSolarDAO;
 import DAO.impl.SolarCompanyImpl;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,28 +20,23 @@ import java.sql.SQLException;
 public class UpdateApprovalStatus extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String bNum= req.getParameter("bNum");
-        String status= req.getParameter("status");
+        String bNum = req.getParameter("bNum");
+        String status = req.getParameter("status");
 
-        try{
-            Connection connection= Connectdb.getConnection();
-            PreparedStatement stmt= connection.prepareStatement("UPDATE solar_company SET approval_status=? WHERE bnum=?");
+        try {
+            SolarCompanyImpl dao = new RegisterSolarDAO();
+            boolean success = dao.updateApprovalStatus(bNum, status);
 
-            stmt.setString(1,status);
-            stmt.setString(2,bNum);
-
-            SolarCompanyImpl dao =  new RegisterSolarDAO();
-
-
-            try{
-                dao.updateApprovalStatus(bNum,status);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-        }catch (SQLException e) {
+            Gson gson = new Gson();
+            String jsonResponse = gson.toJson(success);
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write(jsonResponse);
+        } catch (SQLException e) {
             e.printStackTrace();
-
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to update approval status");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

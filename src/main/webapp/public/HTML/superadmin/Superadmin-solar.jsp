@@ -38,21 +38,24 @@
 
     document.addEventListener("DOMContentLoaded", function() {
       var buttons = document.querySelectorAll('.submit-btn');
+      console.log(buttons);
       buttons.forEach(function(button) {
         button.addEventListener('click', function() {
-          var bNum = button.dataset.bNum;
+          console.log('Button clicked');
+          var bNum = button.dataset.bnum;
           console.log('BNum:', bNum);
           var dropdown = document.querySelector('select[name="approvalStatus' + bNum + '"]');
           console.log('Dropdown:', dropdown);
           var status = dropdown.value;
-          console.log("abc", dropdown.name);
+          console.log("abc:", dropdown.name);
           updateApprovalStatus(bNum, status);
         });
       });
     });
 
     function updateApprovalStatus(bNum, status){
-      fetch('UpdateApprovalStatus',{
+      console.log("Updating approval status for companyId:", bNum, "with status:", status);
+      fetch('/UtilitySaga_war_exploded/UpdateApprovalStatus',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -129,12 +132,12 @@
         <td><%= company.getRemarks() %></td>
         <td>
           <select name="approvalStatus<%= company.getBNum() %>">
-            <option name="approvalStatus" value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
-            <option name="approvalStatus" value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
-            <option name="approvalStatus" value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
+            <option  value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
+            <option  value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
+            <option  value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
           </select>
         </td>
-        <td><button class="submit-btn" data-bNum="<%= company.getBNum() %>" >Submit</button></td>
+        <td><button class="submit-btn" data-bnum="<%= company.getBNum() %>" >Submit</button></td>
       </tr>
       <% } %>
 
