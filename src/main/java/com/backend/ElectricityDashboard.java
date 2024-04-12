@@ -1,6 +1,7 @@
 package com.backend;
 
 import DAO.dao.UserAccountsDao;
+import DAO.impl.UserAccounts;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class ElectricityDashboard extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        DAO.impl.UserAccounts dao = new UserAccountsDao();
+        UserAccounts dao = new UserAccountsDao();
         try {
             List<String> account_elist = dao.getUserAccounts(
                     (String) session.getAttribute("NIC"), "ELECTRICITY"

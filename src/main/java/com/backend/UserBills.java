@@ -1,7 +1,9 @@
 package com.backend;
 
+import DAO.dao.SummaryReportDao;
 import DAO.dao.UserAccountsDao;
 import DAO.dao.UserDetailsDao;
+import DAO.impl.SummaryReport;
 import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.UserAccountsModel;
 import model.UserModel;
+import utils.ReportGenerator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +30,8 @@ public class UserBills extends HttpServlet {
         String account = req.getParameter("account");
         String dash = req.getParameter("currDash");
         DAO.impl.UserAccounts dao = new UserAccountsDao();
+        SummaryReport summaryReport = new SummaryReportDao();
+        ReportGenerator gen = new ReportGenerator();
 
         if (account != null && !account.isEmpty()) {
             try {
@@ -34,6 +39,15 @@ public class UserBills extends HttpServlet {
                     UserAccountsModel account_bill = dao.getUserBillByAccount(
                             (String) session.getAttribute("NIC"), account, "WATER"
                     );
+
+                    String elec_report = summaryReport.getSummary("water", (String) session.getAttribute("NIC"));
+                    if (elec_report == null) {
+                        // create a new summary report
+                        elec_report = gen.dailyReportWater(account, 180, 200, 10_000);
+                        summaryReport.insertSummary(elec_report, "water", (String) session.getAttribute("NIC"));
+                    }
+
+
                     Gson gson = new Gson();
                     String jsonData = gson.toJson(account_bill);
 
@@ -47,6 +61,15 @@ public class UserBills extends HttpServlet {
                     UserAccountsModel account_bill = dao.getUserBillByAccount(
                             (String) session.getAttribute("NIC"), account, "ELECTRICITY"
                     );
+
+                    String elec_report = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"));
+                    if (elec_report == null) {
+                        // create a new summary report
+                        elec_report = gen.dailyReportElectricity(account, 180, 200, 10_000);
+                        summaryReport.insertSummary(elec_report, "electricity", (String) session.getAttribute("NIC"));
+                    }
+
+
                     Gson gson = new Gson();
                     String jsonData = gson.toJson(account_bill);
 
