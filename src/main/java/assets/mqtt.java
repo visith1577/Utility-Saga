@@ -10,17 +10,19 @@ import utils.ElectricityMeterCallback;
 import utils.MQTTClient;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 @WebServlet("/getdata")
 public class mqtt extends HttpServlet {
 
     private MQTTClient mqttClient;
+    private final AtomicReference<String> latestReading = new AtomicReference<>();
 
     @Override
     public void init() throws ServletException {
         try {
             mqttClient = new MQTTClient();
-            mqttClient.setCallback(new ElectricityMeterCallback());
+            mqttClient.setCallback(new ElectricityMeterCallback(latestReading));
         } catch (MqttException e) {
             throw new ServletException("Failed to initialize MQTT client", e);
         }
@@ -28,7 +30,12 @@ public class mqtt extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String reading = latestReading.get();
+        if (reading != null) {
+            resp.getWriter().write("Latest reading: " + reading);
+        } else {
+            resp.getWriter().write("No data received yet");
+        }
     }
 
     @Override
