@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact us-Water</title>
-    <link  type="text/css" rel="stylesheet" href="../../../CSS/forms.css">
-    <link  type="text/css" rel="stylesheet" href="../../../CSS/contact.css">
-    <link type="text/css" rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
+    <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/contact.css">
+    <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
 </head>
 <body>
@@ -85,11 +85,11 @@
             
             <div class="form-container">
             <h3>Message us</h3>
-            <form action="" class="contact-form">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Telephone Number" required>
-                <textarea name="" id="" cols="30" rows="10" placeholder="Write message here" required></textarea>
+            <form method="post" action="${pageContext.request.contextPath}/user/water-contact-us" class="contact-form">
+                <input name="Sender-name" type="text" placeholder="Name" required>
+                <input name="Sender-email" type="email" placeholder="Email" required>
+                <input name="Sender-telephone" type="tel" placeholder="Telephone Number" required>
+                <textarea name="Sender-message" id="" cols="30" rows="10" placeholder="Write message here" required></textarea>
                 <input type="submit" value="Send" class="send-button">
             </form>
             </div>

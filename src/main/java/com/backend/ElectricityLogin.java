@@ -20,7 +20,7 @@ public class ElectricityLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "electricityDashboard.jsp", "electricityLogin.jsp");
+        loginDriver(req, resp, "regionalAdminDashboard-electricity.jsp", "electricityLogin.jsp");
     }
 
     static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
