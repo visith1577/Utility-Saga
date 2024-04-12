@@ -161,9 +161,8 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     top: -33px;
 }
 
-.gender-selection, .provider-selection{
+.provider-selection{
     display: flex;
-    align-items: center;
     margin-left: 10px;
     width: 80%;
 }
@@ -173,16 +172,16 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 
 .provider-selection label{
-    margin: 0 2%;
     display: flex;
     align-items: center;
     color: #84848d;
     width: 20%;
+    margin: 0 2% 10px 14px;
 }
 
 input[type="radio"]{
     accent-color: #696cff;
-    margin-right: 6%;
+    width: 2rem;
 }
 
 .pagination-btns{
@@ -242,10 +241,6 @@ label.service {
     margin-right: 100%;
 }
 
-.provider-selection {
-    margin: 10px;
-}
-
 .error-message-container {
     display: none; /* Hide the container by default */
     position: fixed;
@@ -281,4 +276,9 @@ label.service {
     height: 50%;
     border-radius: 4px;
     color: #84848d;
+}
+
+.provider-selection {
+    display: flex;
+    flex-direction: column;
 }

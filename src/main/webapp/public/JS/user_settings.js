@@ -67,7 +67,7 @@ function showError(message) {
 }
 
 
-function checkPasswordStrength(password) {
+export function checkPasswordStrength(password) {
     // Define regex patterns for different character types
     const lowercaseRegex = /[a-z]/;
     const uppercaseRegex = /[A-Z]/;

@@ -205,6 +205,16 @@
                                 <td>Active</td>
                                 <td><input type="button" class="tablebtn" value="View More"></td>
                             </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Operational</td>
+                                <td>Main Leak</td>
+                                <td>K.P.Perera</td>
+                                <td>21400564</td>
+                                <td>0771234567</td>
+                                <td>Active</td>
+                                <td><input type="button" class="tablebtn" value="View More"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -253,6 +263,6 @@
 </div>
 
 <!-- <script src="..JS/admindashboard.js"></script> -->
-<script src="../../../JS/ElectricityAdminDashboard.js"></script>
+<script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
 </body>
 </html>

@@ -14,16 +14,14 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-publiccomplaint.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-service.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricityDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/login/registerForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/login" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/registerForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
-
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/solar/index.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/solar" />
-
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-electricity.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-solar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/electricity_connection.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/setting_profile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/user.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
-
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user/water-publiccomplaint.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/userLogin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/userSelector.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
