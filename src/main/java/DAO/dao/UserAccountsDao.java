@@ -36,7 +36,6 @@ public class UserAccountsDao implements UserAccounts {
             );
 
             statement.setString(1, nic);
-            statement.close();
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()){
                     account_list.add(result.getString("account_number"));
@@ -81,7 +80,6 @@ public class UserAccountsDao implements UserAccounts {
             statement.setString(1, nic);
             statement.setInt(2, limit);
             statement.setInt(3, offset);
-            statement.close();
 
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()){
@@ -142,7 +140,6 @@ public class UserAccountsDao implements UserAccounts {
 
             statement.setString(1, nic);
             statement.setString(2, account);
-            statement.close();
 
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()){
