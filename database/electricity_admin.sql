@@ -30,4 +30,11 @@ CREATE TABLE electricity_admin (
   CONSTRAINT check_role CHECK (role IN ('MAIN', 'REGIONAL'))
 );
 
+ALTER TABLE electricity_admin
+DROP CONSTRAINT check_email;
+
+ALTER TABLE electricity_admin
+ADD CONSTRAINT check_email
+CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+
 
