@@ -5,6 +5,8 @@ import DAO.dao.UserAccountsDao;
 import DAO.impl.SummaryReport;
 import com.google.gson.Gson;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,6 +36,8 @@ public class UserBills extends HttpServlet {
 
         if (account != null && !account.isEmpty()) {
             try {
+                JsonObject responseData = new JsonObject();
+
                 if (Objects.equals(dash, "water")) {
                     UserAccountsModel account_bill = dao.getUserBillByAccount(
                             (String) session.getAttribute("NIC"), account, "WATER"
@@ -44,19 +48,22 @@ public class UserBills extends HttpServlet {
                         // create a new summary report
                         wReport = gen.dailyReportWater(account, 180, 200, 10_000);
                         summaryReport.insertSummary(wReport, "water", (String) session.getAttribute("NIC"), account);
-                    } else {
-                        // get the existing summary report
-                        wReport = summaryReport.getSummary("water", (String) session.getAttribute("NIC"), account);
                     }
+                    wReport = summaryReport.getSummary("water", (String) session.getAttribute("NIC"), account);
+                    Gson gson1 = new Gson();
+                    JsonElement jsonData1 = gson1.toJsonTree(wReport);
+                    responseData.add("report", jsonData1);
 
 
-                    Gson gson = new Gson();
-                    String jsonData = gson.toJson(account_bill);
+
+                    Gson gson2 = new Gson();
+                    JsonElement jsonData2 = gson2.toJsonTree(account_bill);
+                    responseData.add("bill", jsonData2);
 
                     resp.setContentType("application/json");
                     resp.setCharacterEncoding("UTF-8");
 
-                    resp.getWriter().write(jsonData);
+                    resp.getWriter().write(responseData.toString());
                 }
 
                 if (Objects.equals(dash, "electricity")) {
@@ -69,20 +76,24 @@ public class UserBills extends HttpServlet {
                         // create a new summary report
                         eReport= gen.dailyReportElectricity(account, 180, 200, 10_000);
                         summaryReport.insertSummary(eReport, "electricity", (String) session.getAttribute("NIC"), account);
-                    } else {
-                        // get the existing summary report
-                        eReport = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"), account);
-
                     }
 
+                    eReport = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"), account);
+                    Gson gson1 = new Gson();
+                    JsonObject jsonObject = gson1.fromJson(eReport, JsonObject.class);
+                    JsonElement jsonData1 = gson1.toJsonTree(jsonObject);
+                    responseData.add("report", jsonData1);
 
-                    Gson gson = new Gson();
-                    String jsonData = gson.toJson(account_bill);
+
+
+                    Gson gson2 = new Gson();
+                    JsonElement jsonData2 = gson2.toJsonTree(account_bill);
+                    responseData.add("bill", jsonData2);
 
                     resp.setContentType("application/json");
                     resp.setCharacterEncoding("UTF-8");
 
-                    resp.getWriter().write(jsonData);
+                    resp.getWriter().write(responseData.toString());
                 }
 
             } catch (SQLException e) {
