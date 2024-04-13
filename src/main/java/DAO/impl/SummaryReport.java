@@ -1,10 +1,9 @@
 package DAO.impl;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 public interface SummaryReport {
-    void insertSummary(String summary, String rep, String nic) throws SQLException;
-    String getSummary(String summary, String rep) throws SQLException;
-    boolean checkSummaryExists(String nic, String rep) throws SQLException;
+    void insertSummary(String summary, String rep, String nic, String account_number) throws SQLException;
+    String getSummary(String rep, String nic, String account_number) throws SQLException;
+    boolean checkSummaryExists(String rep, String nic, String account_number) throws SQLException;
 }

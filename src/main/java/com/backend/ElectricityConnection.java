@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.ConnectionModel;
+import model.UserAccountsModel;
 import model.UserModel;
 
 import java.io.IOException;
@@ -91,8 +92,8 @@ public class ElectricityConnection extends HttpServlet {
         DAO.impl.UserAccounts dao = new UserAccountsDao();
         UserDetails user = new UserDetailsDao();
         try {
-            List<String> account_elist = dao.getUserAccounts(
-                    (String) session.getAttribute("NIC"), "ELECTRICITY"
+            List<String> account_elist = dao.getUserAccountsWithStatus(
+                    (String) session.getAttribute("NIC"), "ELECTRICITY", "ACTIVE"
             );
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
 

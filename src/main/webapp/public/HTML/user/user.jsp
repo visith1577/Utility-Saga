@@ -81,7 +81,7 @@
                     </a>
                 </li>
             </ul>
-            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+            <img loading="lazy" src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </header>
 </div>
@@ -226,7 +226,7 @@
 </main>
 <%
     // Get the context path dynamically
-    String contextPath = ((HttpServletRequest) request).getContextPath();
+    String contextPath = request.getContextPath();
 %>
 <script>
     // Set the context path as a JavaScript variable

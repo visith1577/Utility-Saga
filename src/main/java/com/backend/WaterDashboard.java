@@ -22,8 +22,8 @@ public class WaterDashboard extends HttpServlet {
 
         DAO.impl.UserAccounts dao = new UserAccountsDao();
         try {
-            List<String> account_wlist = dao.getUserAccounts(
-                    (String) session.getAttribute("NIC"), "WATER"
+            List<String> account_wlist = dao.getUserAccountsWithStatus(
+                    (String) session.getAttribute("NIC"), "WATER", "ACTIVE"
             );
 
             req.setAttribute("water_account_list", account_wlist);

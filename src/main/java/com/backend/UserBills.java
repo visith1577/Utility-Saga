@@ -2,10 +2,9 @@ package com.backend;
 
 import DAO.dao.SummaryReportDao;
 import DAO.dao.UserAccountsDao;
-import DAO.dao.UserDetailsDao;
 import DAO.impl.SummaryReport;
 import com.google.gson.Gson;
-import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,13 +12,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.UserAccountsModel;
-import model.UserModel;
 import utils.ReportGenerator;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 
 @WebServlet("/user/my-bills")
@@ -33,6 +29,9 @@ public class UserBills extends HttpServlet {
         SummaryReport summaryReport = new SummaryReportDao();
         ReportGenerator gen = new ReportGenerator();
 
+        String eReport;
+        String wReport;
+
         if (account != null && !account.isEmpty()) {
             try {
                 if (Objects.equals(dash, "water")) {
@@ -40,11 +39,14 @@ public class UserBills extends HttpServlet {
                             (String) session.getAttribute("NIC"), account, "WATER"
                     );
 
-                    String elec_report = summaryReport.getSummary("water", (String) session.getAttribute("NIC"));
-                    if (elec_report == null) {
+                    boolean water_report = summaryReport.checkSummaryExists("water", (String) session.getAttribute("NIC"), account);
+                    if (!water_report) {
                         // create a new summary report
-                        elec_report = gen.dailyReportWater(account, 180, 200, 10_000);
-                        summaryReport.insertSummary(elec_report, "water", (String) session.getAttribute("NIC"));
+                        wReport = gen.dailyReportWater(account, 180, 200, 10_000);
+                        summaryReport.insertSummary(wReport, "water", (String) session.getAttribute("NIC"), account);
+                    } else {
+                        // get the existing summary report
+                        wReport = summaryReport.getSummary("water", (String) session.getAttribute("NIC"), account);
                     }
 
 
@@ -62,11 +64,15 @@ public class UserBills extends HttpServlet {
                             (String) session.getAttribute("NIC"), account, "ELECTRICITY"
                     );
 
-                    String elec_report = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"));
-                    if (elec_report == null) {
+                    boolean elec_report = summaryReport.checkSummaryExists("electricity", (String) session.getAttribute("NIC"), account);
+                    if (!elec_report) {
                         // create a new summary report
-                        elec_report = gen.dailyReportElectricity(account, 180, 200, 10_000);
-                        summaryReport.insertSummary(elec_report, "electricity", (String) session.getAttribute("NIC"));
+                        eReport= gen.dailyReportElectricity(account, 180, 200, 10_000);
+                        summaryReport.insertSummary(eReport, "electricity", (String) session.getAttribute("NIC"), account);
+                    } else {
+                        // get the existing summary report
+                        eReport = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"), account);
+
                     }
 
 

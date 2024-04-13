@@ -75,8 +75,8 @@ public class WaterPublicComplaint extends HttpServlet {
         DAO.impl.UserAccounts dao = new UserAccountsDao();
         UserDetails user = new UserDetailsDao();
         try {
-            List<String> account_wlist = dao.getUserAccounts(
-                    (String) session.getAttribute("NIC"), "WATER"
+            List<String> account_wlist = dao.getUserAccountsWithStatus(
+                    (String) session.getAttribute("NIC"), "WATER", "ACTIVE"
             );
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
 

@@ -149,13 +149,12 @@
                 <label for="account-details__electricity">Your Current Electricity Accounts:</label>
                 <ul id="account-details__electricity">
                     <c:forEach items="${requestScope.electricity_account_list}" var="account">
-                        <li>${account}</li>
+                        <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
                     </c:forEach>
                 </ul>
 
-                <button class="content-btn Edit" type="button">Edit Accounts</button>
-                <button type="button" class="content-btn Delete">Delete Accounts</button>
-                <button id="add-btn_water" type="button" class="content-btn Add" onclick="openPopup2()">Add Accounts elec</button>
+                <button id="edit-btn_electricity" class="content-btn Delete" type="button">Deactivate</button>
+                <button id="add-btn_electricity" class="content-btn Edit" type="button">Activate</button>
 
                 <label for="electricityNotifications">Receive Notifications:</label>
                 <select id="electricityNotifications" name="electricityNotifications">
@@ -186,13 +185,11 @@
                 <label for="account-details__water">Your Current Water Accounts:</label>
                 <ul id="account-details__water">
                     <c:forEach items="${requestScope.water_account_list}" var="account">
-                        <li>${account}</li>
+                        <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
                     </c:forEach>
                 </ul>
-                <button id="edit-btn_water" type="button" class="content-btn Edit">Edit Accounts</button>
-                <button id="del-btn_water" type="button" class="content-btn Delete">Delete Accounts</button>
-                <button type="button" class="content-btn Add" onclick="openPopup1()">Add Accounts</button>
-
+                <button id="edit-btn_water" type="button" class="content-btn Delete">Deactivate</button>
+                <button id="add-btn_water" type="button" class="content-btn Edit">Activate</button>
                 <label for="waterNotifications">Receive Notifications:</label>
                 <select id="waterNotifications" name="waterNotifications">
                     <option value="yes">Yes</option>
@@ -218,44 +215,41 @@
     </div>
     <div class="popupcontainer" id="popupcontainer">
         <div class="popup" id="popup">      
-              <span class="close" onclick="closePopup1()"><i class="fa-solid fa-xmark"></i></span>
-              <h2>Add Water Account</h2>
+              <span id="close-btn_water" class="close"><i class="fa-solid fa-xmark"></i></span>
+              <h2 id="popup-header_water">Add Water Account</h2>
               <hr>
-                <form id="accountForm">
+                <form method="post" action="${pageContext.request.contextPath}/user/account-activity/water" id="accountForm_water">
                  <label for="accountNumber">Account Number:</label><br>
-                 <input type="text" id="accountNumber" name="accountNumber"><br><br>
+                 <input type="text" id="accountActive-Number" name="accountNumber" required><br><br>
+                    <input type="hidden" id="action-water" name="action" required>
                  <div class="btn-div">
-                    <button type="button" class="wateradd-btn" onclick="addAccount()">Add more Accounts</button>
-                    <button class="close-btn" onclick="closePopup1()">Close</button>
+                     <button type="submit" class="wateradd-btn" id="water-add_btn"></button>
+                    <button type="button" class="close-btn" id="close-btn2_water">Close</button>
                  </div>
-
                 </form>
         </div>
     </div>
 
     <div class="popupcontainer2" id="popupcontainer2">
         <div class="popup2" id="popup2">      
-              <span class="close" onclick="closePopup2()"><i class="fa-solid fa-xmark"></i></span>
-              <h2>Add Electricity Account</h2>
+              <span class="close" id="close-btn_electricity"><i class="fa-solid fa-xmark"></i></span>
+              <h2 id="popup-header_electricity">Add Electricity Account</h2>
               <hr>
-                <form id="accountForm">
+                <form method="post" action="${pageContext.request.contextPath}/user/account-activity/electricity" id="accountForm_electricity">
                     <label for="accountType">Select Account Type:</label><br>
                     <select id="accountType" name="accountType" class="accountType">
                        <option value="ceb">CEB</option>
                        <option value="leco">LECO</option>
                     </select><br><br>
                  <label for="accountNumber">Account Number:</label><br>
-                 <input type="text" id="accountNumber" name="accountNumber"><br><br>
+                 <input type="text" id="accountNumber" name="accountNumber" required><br><br>
+                    <input type="hidden" id="action-electricity" name="action" required>
                  <div class="btn-div">
-                    <button type="button" class="add-btn">Add more Accounts</button>
-                    <button class="close-btn" onclick="closePopup2()">Close</button>
+                    <button type="submit" class="add-btn" id="electricity-add_btn"></button>
+                    <button type="button" class="close-btn" id="close-btn2_electricity">Close</button>
                  </div>
-
                 </form>
         </div>
-
     </div>
-
 </body>
-
 </html>

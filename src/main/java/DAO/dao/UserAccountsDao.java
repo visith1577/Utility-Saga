@@ -14,7 +14,63 @@ import java.util.List;
 public class UserAccountsDao implements UserAccounts {
 
     @Override
-    public List<String> getUserAccounts(String nic, String category) throws SQLException {
+    public List<UserAccountsModel> getUserAccounts(String nic, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        List<UserAccountsModel> account_list = new ArrayList<>();
+
+        try {
+            String tableName;
+            switch (category.toUpperCase()) {
+                case "WATER":
+                    tableName = "wAccount_list";
+                    break;
+                case "ELECTRICITY":
+                    tableName = "eAccount_list";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid table name: " + category);
+            }
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT  account_number, user_status, meter_status, iot_meter FROM " + tableName + " WHERE nic = ?"
+            );
+
+            statement.setString(1, nic);
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()){
+                    UserAccountsModel model = new UserAccountsModel();
+                    model.setAccount_number(result.getString("account_number"));
+                    UserAccountsModel.UserStatus user_status = UserAccountsModel.UserStatus.valueOf(
+                            result.getString("user_status")
+                    );
+                    UserAccountsModel.MeterStatus meter_status = UserAccountsModel.MeterStatus.valueOf(
+                            result.getString("meter_status")
+                    );
+                    UserAccountsModel.Iot iot_status = UserAccountsModel.Iot.valueOf(
+                            result.getString("iot_meter")
+                    );
+                    model.setUserStatus(user_status);
+                    model.setMeterStatus(meter_status);
+                    model.setIot(iot_status);
+
+                    if (category.equals("WATER")) {
+                        model.setType(UserAccountsModel.Acc.WATER);
+                    } else {
+                        model.setType(UserAccountsModel.Acc.ELECTRICITY);
+                    }
+
+                    account_list.add(model);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return account_list;
+    }
+
+    public List<String> getUserAccountsWithStatus(String nic, String category, String status) throws SQLException {
         Connection connection = Connectdb.getConnection();
         List<String> account_list = new ArrayList<>();
 
@@ -32,10 +88,11 @@ public class UserAccountsDao implements UserAccounts {
             }
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT account_number FROM " + tableName + " WHERE nic = ?"
+                    "SELECT  account_number FROM " + tableName + " WHERE nic = ? AND user_status = ?"
             );
 
             statement.setString(1, nic);
+            statement.setString(2, status);
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()){
                     account_list.add(result.getString("account_number"));
@@ -159,5 +216,37 @@ public class UserAccountsDao implements UserAccounts {
         }
 
         return model;
+    }
+
+    @Override
+    public void updateAccountStatus(String nic, String account, String status, String table) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            String tableName;
+            switch (table.toUpperCase()) {
+                case "WATER":
+                    tableName = "wAccount_list";
+                    break;
+                case "ELECTRICITY":
+                    tableName = "eAccount_list";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid table name: " + table);
+            }
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE " + tableName + " SET user_status = ? WHERE account_number = ? AND nic = ?"
+            );
+
+            statement.setString(1, status);
+            statement.setString(2, account);
+            statement.setString(3, nic);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
     }
 }
