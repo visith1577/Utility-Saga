@@ -143,10 +143,9 @@
             <tr>
                 <td class="td-item">
                     <div class="suggestion-1-parent">
-                        <h3 class="suggestion-head">Suggestion 1</h3>
+                        <h3 class="suggestion-head" id="header1">Suggestion 1</h3>
                         <div class="description-the-water-container">
-                            <span class="description">Description: </span>
-                            <span class="the-water-coming"
+                            <span class="the-water-coming" id="text1"
                             >The water coming out of our taps is consistently
                         discolored, appearing brown and murky. This is concerning as
                         it affects the usability and safety of the water for
@@ -159,10 +158,10 @@
             <tr>
                 <td class="td-item">
                     <div class="suggestion-1-parent">
-                        <h3 class="suggestion-head">Suggestion 1</h3>
+                        <h3 class="suggestion-head" id="header2">Suggestion 1</h3>
                         <div class="description-the-water-container">
-                            <span class="description">Description: </span>
-                            <span class="the-water-coming"
+
+                            <span class="the-water-coming" id="text2"
                             >The water coming out of our taps is consistently
                         discolored, appearing brown and murky. This is concerning as
                         it affects the usability and safety of the water for
@@ -175,10 +174,9 @@
             <tr>
                 <td class="td-item">
                     <div class="suggestion-1-parent">
-                        <h3 class="suggestion-head">Suggestion 1</h3>
+                        <h3 class="suggestion-head" id="header3">Suggestion 1</h3>
                         <div class="description-the-water-container">
-                            <span class="description">Description: </span>
-                            <span class="the-water-coming"
+                            <span class="the-water-coming" id="text3"
                             >The water coming out of our taps is consistently
                         discolored, appearing brown and murky. This is concerning as
                         it affects the usability and safety of the water for

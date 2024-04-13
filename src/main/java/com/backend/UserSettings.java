@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.UserAccountsModel;
 import model.UserModel;
 
 import java.io.IOException;
@@ -24,10 +25,11 @@ public class UserSettings extends HttpServlet {
         DAO.impl.UserAccounts dao = new UserAccountsDao();
         DAO.impl.UserDetails user = new UserDetailsDao();
         try {
-            List<String> account_wlist = dao.getUserAccounts(
+
+            List<UserAccountsModel> account_wlist = dao.getUserAccounts(
                     (String) session.getAttribute("NIC"), "WATER"
             );
-            List<String> account_elist = dao.getUserAccounts(
+            List<UserAccountsModel> account_elist = dao.getUserAccounts(
                     (String) session.getAttribute("NIC"), "ELECTRICITY"
             );
 

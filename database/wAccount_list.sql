@@ -1,7 +1,17 @@
 CREATE TABLE wAccount_list(
-    account_number varchar(255) PRIMARY KEY,
-    nic varchar(13),
-    FOREIGN KEY (nic) REFERENCES users(nic)
+                              account_number varchar(255) PRIMARY KEY,
+                              nic varchar(13),
+                              FOREIGN KEY (nic) REFERENCES users(nic)
 );
 
 INSERT INTO wAccount_list (account_number, nic) VALUES ('dummyAccount1', '200114400385');
+
+
+ALTER TABLE wAccount_list
+    ADD COLUMN user_status ENUM('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'ACTIVE';
+
+ALTER TABLE wAccount_list
+    ADD COLUMN meter_status ENUM('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'ACTIVE';
+
+ALTER TABLE wAccount_list
+    ADD COLUMN iot_meter ENUM('YES', 'NO') NOT NULL DEFAULT 'NO';
