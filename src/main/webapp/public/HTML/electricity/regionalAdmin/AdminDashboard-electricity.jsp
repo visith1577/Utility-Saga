@@ -8,14 +8,35 @@
 <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
 <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="../../../CSS/forms.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body>
 <header>
-    <!-- nav bar -->
+    <div class="navv">
+        <header class="navbar">
+            <div class="navbar-container container">
+                <label for="hamburger"></label>
+                <input type="checkbox" name="hamburger" id="hamburger">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <ul class="menu-items">
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/AdminDashboard-electricity.jsp">Customers</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/complaints-electricity.jsp">Complaints</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-payment.jsp">Payment</a></li>
+                    <li class="menu-items-li"><a href="#">Logout</a></li>
+                </ul>
+                <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+            </div>
+        </header>
+    </div>
 </header>
-<div class="topbar">
+<div class="topbar" style="margin-top: 12.5vh">
     <div class="lefttop">
         <h2>Hello (Name)</h2>
     </div>
