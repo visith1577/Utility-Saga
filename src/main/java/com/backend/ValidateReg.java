@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/api/validate-one")
-public class ValidateOne extends HttpServlet {
+public class ValidateReg extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");

@@ -224,12 +224,14 @@
                 return response.json();
             })
             .then(data => {
-                // Handle successful response
-                console.log('Data:', data);
+
                 // Do something with the data
-                document.getElementById('billAmount').textContent = data.amount
-                document.getElementById('billDue').textContent = data.dueDate
-                document.getElementById('billStatus').textContent = data.status
+                document.getElementById('billAmount').textContent = data.bill['amount'];
+                document.getElementById('billDue').textContent = data.bill['dueDate'];
+                document.getElementById('billStatus').textContent = data.bill['status'];
+
+                // console.log("Data:", data);
+                // console.log(data.bill['amount'])
             })
             .catch(error => {
                 // Handle error
