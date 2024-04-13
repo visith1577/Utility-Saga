@@ -1,3 +1,8 @@
+<%@ page import="model.UserModel" %>
+<%@ page import="java.util.List" %>
+<%@ page import="DAO.dao.UserDetailsDao" %>
+<% List<UserModel> users = new UserDetailsDao().getUserDetailsRegionalAdmin();%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html lang="en">
@@ -29,7 +34,7 @@
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/AdminDashboard-electricity.jsp">Customers</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/complaints-electricity.jsp">Complaints</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-payment.jsp">Payment</a></li>
-                    <li class="menu-items-li"><a href="#">Logout</a></li>
+                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                 </ul>
                 <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
             </div>
@@ -94,8 +99,7 @@
 
     <!-- Users/Connections -->
     <div class="details">
-        <!-- Table 1 -->
-        <div class="tablediv">
+        <div class="tablediv" style="width: 100% !important; max-width: 100% !important;">
             <div class="customerdetails">
                 <div class="titlebar">
                     <h2>Customer Details</h2>
@@ -109,138 +113,32 @@
                         <!-- table header -->
                         <thead>
                             <tr>
-                                <th>Customer ID</th>
+                                <th>Customer NIC</th>
                                 <th>Customer Name</th>
+                                <th>Mobile Number</th>
+                                <th>Email</th>
+                                <th>Username</th>
                                 <th>Address</th>
-                                <th>Telephone</th>
-                                <th>Connection Type</th>
-                                <th>Connection Status</th>
                             </tr>
                         </thead>
-                        <!-- table body -->
                         <tbody>
-                            <tr onclick="openPopup()">
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>Colombo</td>
-                                <td>0771234567</td>
-                                <td>Domestic</td>
-                                <td>Active</td>
-                            </tr>
+                            <% for (UserModel user : users) { %>
                             <tr>
-                                <td>2</td>
-                                <td>Jane Doe</td>
-                                <td>Kandy</td>
-                                <td>0771234567</td>
-                                <td>Domestic</td>
-                                <td>Active</td>
+                                <td><%= user.getNic() %></td>
+                                <td><%= user.getFirstName() %> <%= user.getLastName() %></td>
+                                <td><%= user.getMobile() %></td>
+                                <td><%= user.getEmail() %></td>
+                                <td><%= user.getUsername() %></td>
+                                <td><%= user.getAddress() %></td>
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>John Doe</td>
-                                <td>Colombo</td>
-                                <td>0771234567</td>
-                                <td>Domestic</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Jane Doe</td>
-                                <td>Kandy</td>
-                                <td>0771234567</td>
-                                <td>Domestic</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>John Doe</td>
-                                <td>Colombo</td>
-                                <td>0771234567</td>
-                                <td>Domestic</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Jane Doe</td>
-                                <td>Kandy</td>
-                                <td>0771234567</td>
-                                <td>Domestic</td>
-                                <td>Active</td>
-                            </tr>
+                            <% } %>
+
                         </tbody>
                     </table>
                 </div>
 
             </div>
         </div>
-        <!-- right div -->
-        <div class="connection-analyse">
-            <h2>New Users Analyse</h2>
-            <canvas id="lineChart"></canvas>
-        <div class="details-chart">
-            <ul style="list-style-type: circle;">
-                <li>    All Users are in K (multiply by 1000) form</li>
-                <li>    Domestic Users are in K (multiply by 1000) form</li>
-                <li>    Commercial Users are in K (multiply by 1000) form</li>
-                <li>    Industrial Users are in K (multiply by 1000) form</li>
-            </ul>
-        </div>
-        
-        </div>
-    </div>
-
-    <!-- Complaints -->
-    <div class="complaints">
-        <div class="tablediv">
-            <div class="customerdetails">
-                <div class="titlebar">
-                    <h2>Complaint Details</h2>
-                    <!-- view all button -->
-                    <a href="#" class="btn">View All</a>
-                </div>
-                <!-- table body -->
-                <div class="table-container">
-                    <table class="table">
-                        <!-- table header -->
-                        <thead>
-                            <tr>
-                                <th>Complaint_Number</th>
-                                <th>Cateogry</th>
-                                <th>Complaint_type</th>
-                                <th>Customer Name</th>
-                                <th>Account Number</th>
-                                <th>Telephone</th>
-                                <th>Complaint Status</th>
-                                <th>More</th>
-                            </tr>
-                        </thead>
-                        <!-- table body -->
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Operational</td>
-                                <td>Main Leak</td>
-                                <td>K.P.Perera</td>
-                                <td>21400564</td>
-                                <td>0771234567</td>
-                                <td>Active</td>
-                                <td><input type="button" class="tablebtn" value="View More"></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Operational</td>
-                                <td>Main Leak</td>
-                                <td>K.P.Perera</td>
-                                <td>21400564</td>
-                                <td>0771234567</td>
-                                <td>Active</td>
-                                <td><input type="button" class="tablebtn" value="View More"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>    
     </div>
 </section>
 
@@ -283,7 +181,6 @@
     </div>
 </div>
 
-<!-- <script src="..JS/admindashboard.js"></script> -->
 <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
 </body>
 </html>
