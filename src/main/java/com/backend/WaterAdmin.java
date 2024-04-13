@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ElectricityAdminModel;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -31,13 +32,14 @@ public class WaterAdmin extends HttpServlet {
         admin.setRegion(region);
         admin.setContactNumber(contact);
         admin.setEmail(email);
-        admin.setPassword(password);
         admin.setEmpId(empid);
         admin.setUname(uname);
         admin.setFirstname(fname);
         admin.setLastname(lname);
         admin.setRole(ElectricityAdminModel.Role.valueOf(role));
         admin.setMobile(mobile);
+        String bcryptHashedPwd = BCrypt.hashpw(password, BCrypt.gensalt());
+        admin.setPassword(bcryptHashedPwd);
 
         WaterAdminDAO dao = new WaterAdminDAO();
 

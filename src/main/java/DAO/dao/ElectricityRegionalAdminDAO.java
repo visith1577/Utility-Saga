@@ -47,46 +47,21 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
         return user_list;
     }
 
-    @Override
-    public void registerUser(UserRAdmin user) throws SQLException {
-        Connection connection = Connectdb.getConnection();
-        try{
-            PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO electricity_admin (id, uname, firstname, lastname, password, tel, email, address, region, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-            );
-            System.out.println(user.getId());
-            statement.setString(1, user.getId().trim());
-            statement.setString(2, user.getUsername());
-            statement.setString(3, user.getFirstName());
-            statement.setString(4, user.getLastName());
-            statement.setString(5, user.getPassword());
-            statement.setString(6, user.getTel());
-            statement.setString(7, user.getEmail());
-            statement.setString(8, user.getAddress());
-            statement.setString(9, user.getRegion());
-            statement.setString(10, user.getRole().name());
-
-            statement.executeUpdate();
-
-        } finally {
-            Connectdb.closeConnection(connection);
-        }
-    }
 
     @Override
-    public String getPasswordById(String id) throws SQLException {
+    public String getPasswordById(String region) throws SQLException {
         Connection connection = Connectdb.getConnection();
 
         String storedHash;
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT password FROM electricity_admin WHERE id = ?"
+                    "SELECT password FROM electricity_admin WHERE region = ?"
             );
 
-            statement.setString(1, id);
+            statement.setString(1, region);
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()) {
-                    storedHash = result.getString("pwd");
+                    storedHash = result.getString("password");
                 } else {
                     storedHash = null;
                 }
@@ -106,17 +81,18 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT tel, email, address, region, role FROM electricity_admin WHERE id = ?"
+                    "SELECT empid, mobile, email, region, utilityType, role FROM electricity_admin WHERE id = ?"
             );
 
             statement.setString(1, id);
 
             try (ResultSet result = statement.executeQuery()) {
                 if(result.next()){
-                    user.setTel(result.getString("tel"));
+                    user.setId(result.getString("empid"));
+                    user.setMobile(result.getString("mobile"));
                     user.setEmail(result.getString("email"));
-                    user.setAddress(result.getString("address"));
                     user.setRegion(result.getString("region"));
+                    user.setUtilityType(UserRAdmin.UtilityType.valueOf(result.getString("utilityType")));
                     UserRAdmin.Role role = UserRAdmin.Role.valueOf(result.getString("role"));
                     user.setRole(role);
                 }
@@ -130,15 +106,15 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
     }
 
     @Override
-    public UserRAdmin.Role getUserRoleById(String id) throws SQLException {
+    public UserRAdmin.Role getUserRoleById(String region) throws SQLException {
         Connection connection = Connectdb.getConnection();
         UserRAdmin.Role role = null;
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT role FROM electricity_admin WHERE id = ?"
+                    "SELECT role FROM electricity_admin WHERE region = ?"
             );
 
-            statement.setString(1, id);
+            statement.setString(1, region);
 
             try (ResultSet result = statement.executeQuery()) {
                 if(result.next()){
