@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.ComplaintModel;
+import model.UserAccountsModel;
 import model.UserModel;
 
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class ElectricityPublicComplaint extends HttpServlet {
         DAO.impl.UserAccounts dao = new UserAccountsDao();
         UserDetails user = new UserDetailsDao();
         try {
-            List<String> account_elist = dao.getUserAccounts(
+            List<UserAccountsModel> account_elist = dao.getUserAccounts(
                     (String) session.getAttribute("NIC"), "ELECTRICITY"
             );
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));

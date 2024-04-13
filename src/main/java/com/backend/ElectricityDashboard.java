@@ -24,8 +24,8 @@ public class ElectricityDashboard extends HttpServlet {
 
         UserAccounts dao = new UserAccountsDao();
         try {
-            List<String> account_elist = dao.getUserAccounts(
-                    (String) session.getAttribute("NIC"), "ELECTRICITY"
+            List<String> account_elist = dao.getUserAccountsWithStatus(
+                    (String) session.getAttribute("NIC"), "ELECTRICITY", "ACTIVE"
             );
 
             req.setAttribute("electricity_account_list", account_elist);
