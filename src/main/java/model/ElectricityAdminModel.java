@@ -10,6 +10,16 @@ public class ElectricityAdminModel {
     private String password;
 
     private UtilityType utilityType;
+    private String empId;
+    private String uname;
+    private String firstname;
+    private String lastname;
+    private Role role;
+    private String mobile;
+    public enum Role{
+        MAIN,REGIONAL
+    }
+
 
     public enum UtilityType {
         CEB, LECO
@@ -20,12 +30,19 @@ public class ElectricityAdminModel {
         id= getId()+ uuid;
     }
 
-    public ElectricityAdminModel(String id, String region, String contactNumber, String email, String password) {
+    public ElectricityAdminModel(String id, String region, String contactNumber, String email, String password, UtilityType utilityType,String empId, String uname, String firstname, String lastname, Role role, String mobile) {
         this.id = id;
         this.region = region;
         this.contactNumber = contactNumber;
         this.email = email;
         this.password = password;
+        this.utilityType = utilityType;
+        this.empId= empId;
+        this.uname = uname;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+        this.mobile= mobile;
     }
 
     public String getId() {
@@ -74,5 +91,53 @@ public class ElectricityAdminModel {
 
     public void setUtilityType(UtilityType utilityType) {
         this.utilityType = utilityType;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

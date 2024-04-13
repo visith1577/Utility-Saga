@@ -17,7 +17,7 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
 
         try{
             PreparedStatement stmt = connection.prepareStatement(
-                 "INSERT INTO solar_company (cname, bnum, ownernic, uname, pwd, mobile, companytelnum, email, address, district, remarks,approval_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+                 "INSERT INTO solar_company (cname, bnum, ownernic, uname, pwd, mobile, companytelnum, email, address, district, remarks) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
             );
             stmt.setString(1, company.getCompanyName());
             stmt.setString(2, company.getBNum());
@@ -30,7 +30,6 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
             stmt.setString(9,company.getAddress());
             stmt.setString(10, company.getDistrict());
             stmt.setString(11, company.getRemarks());
-            stmt.setString(12, company.getApprovalStatus().toString().toUpperCase());
 
             stmt.executeUpdate();
         }
@@ -61,7 +60,7 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
             company.setAddress(rs.getString(10));
             company.setDistrict(rs.getString(11));
             company.setRemarks(rs.getString(12));
-            company.setApprovalStatus(SolarCompanyModel.ApprovalStatus.valueOf(rs.getString(13)));
+            company.setApprovalStatus(SolarCompanyModel.ApprovalStatus.valueOf(rs.getString(13).toUpperCase()));
 
             companies.add(company);
         }
@@ -71,6 +70,23 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
         stmt.close();
         connection.close();
         return companies;
+    }
+
+    @Override
+    public boolean updateApprovalStatus(String bNum, String status) throws SQLException {
+        boolean rowsUpdated = false;
+        Connection connection= Connectdb.getConnection();
+        try{
+
+            PreparedStatement stmt = connection.prepareStatement("UPDATE solar_company SET approval_status = ? WHERE bnum = ?");
+            stmt.setString(1, status);
+            stmt.setString(2, bNum);
+
+            rowsUpdated = stmt.executeUpdate() > 0;
+        }finally {
+            Connectdb.closeConnection(connection);
+        }
+        return rowsUpdated;
     }
 
 }

@@ -44,6 +44,11 @@ public class SolarCompanyModel {
 
     public SolarCompanyModel(){}
 
+    public SolarCompanyModel(String BNum, ApprovalStatus approvalStatus){
+        this.BNum= BNum;
+        this.approvalStatus= approvalStatus;
+    }
+
     public String getId() {
         return id;
     }

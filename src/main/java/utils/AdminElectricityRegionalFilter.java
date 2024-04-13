@@ -24,6 +24,12 @@ public class AdminElectricityRegionalFilter implements Filter{
 
             HttpSession session = req.getSession(false);
 
+            if (session == null) {
+                System.out.println("Session is null. Redirecting to login page.");
+                resp.sendRedirect(req.getContextPath() + "/public/HTML/login/userSelector.jsp");
+                return;
+            }
+
             String action = req.getServletPath();
 
 //        /public/HTML/login/userLogin.jsp

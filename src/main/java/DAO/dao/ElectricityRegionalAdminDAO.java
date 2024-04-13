@@ -52,7 +52,7 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
         Connection connection = Connectdb.getConnection();
         try{
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO electricity_admin (id, uname, firstname, lastname, pwd, tel, email, address, region, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO electricity_admin (id, uname, firstname, lastname, password, tel, email, address, region, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
             System.out.println(user.getId());
             statement.setString(1, user.getId().trim());
@@ -80,7 +80,7 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
         String storedHash;
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT pwd FROM electricity_admin WHERE id = ?"
+                    "SELECT password FROM electricity_admin WHERE id = ?"
             );
 
             statement.setString(1, id);
