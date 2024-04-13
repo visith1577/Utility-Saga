@@ -37,4 +37,6 @@ ALTER TABLE electricity_admin
 ADD CONSTRAINT check_email
 CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
 
+DELETE FROM electricity_admin;
+
 

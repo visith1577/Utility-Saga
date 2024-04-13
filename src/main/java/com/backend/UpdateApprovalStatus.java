@@ -26,12 +26,13 @@ public class UpdateApprovalStatus extends HttpServlet {
         try {
             SolarCompanyImpl dao = new RegisterSolarDAO();
             boolean success = dao.updateApprovalStatus(bNum, status);
-
+//            System.out.println(status);
             Gson gson = new Gson();
             String jsonResponse = gson.toJson(success);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(jsonResponse);
+            System.out.println(status);
         } catch (SQLException e) {
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to update approval status");

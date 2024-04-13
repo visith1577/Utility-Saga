@@ -11,7 +11,6 @@ import java.util.List;
 public interface UserRegional {
     List<UModelRegional> getUsers() throws SQLException;
     List<ComplaintRAdmin> getComplaints() throws SQLException;
-    void registerUser(UserRAdmin user) throws SQLException;
 
     String getPasswordById(String id) throws SQLException;
 

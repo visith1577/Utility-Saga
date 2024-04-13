@@ -261,4 +261,35 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         }
         return base64Image;
     }
+
+    @Override
+    public List<UserModel> getUserDetailsRegionalAdmin() throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<UserModel> users = new ArrayList<>();
+        String sql = "SELECT u.nic, u.firstname, u.lastname, u.mobile, u.email, u.uname, u.address \n" +
+                "FROM users u\n" +
+                "JOIN electricity_admin ea ON u.region = ea.region\n" +
+                "WHERE u.region = ea.region;\n";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()){
+            UserModel user = new UserModel();
+            user.setNic(rs.getString("nic"));
+            user.setFirstName(rs.getString("firstname"));
+            user.setLastName(rs.getString("lastname"));
+            user.setMobile(rs.getString("mobile"));
+            user.setEmail(rs.getString("email"));
+            user.setUsername(rs.getString("uname"));
+            user.setAddress(rs.getString("address"));
+
+            users.add(user);
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+        return users;
+    }
 }

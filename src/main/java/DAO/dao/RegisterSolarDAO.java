@@ -73,19 +73,24 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
     }
 
     @Override
-    public boolean updateApprovalStatus(String bNum, String status) throws SQLException {
+    public boolean updateApprovalStatus(String bnum, String status) throws SQLException {
         boolean rowsUpdated = false;
-        Connection connection= Connectdb.getConnection();
-        try{
 
-            PreparedStatement stmt = connection.prepareStatement("UPDATE solar_company SET approval_status = ? WHERE bnum = ?");
+        try (Connection connection = Connectdb.getConnection();
+             PreparedStatement stmt = connection.prepareStatement("UPDATE solar_company SET approval_status = ? WHERE bnum = ?")) {
+
             stmt.setString(1, status);
-            stmt.setString(2, bNum);
+            stmt.setString(2, bnum);
 
-            rowsUpdated = stmt.executeUpdate() > 0;
-        }finally {
-            Connectdb.closeConnection(connection);
+            int rowsAffected = stmt.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
+
+            rowsUpdated = rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Failed to update approval status: " + e.getMessage());
         }
+
         return rowsUpdated;
     }
 

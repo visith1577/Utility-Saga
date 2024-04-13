@@ -14,3 +14,8 @@ CREATE TABLE solar_company(
     approval_status VARCHAR(20) DEFAULT 'Pending',
     CONSTRAINT unique_email_constraint UNIQUE (email)
 );
+
+ALTER TABLE solar_company
+MODIFY COLUMN approval_status ENUM('PENDING', 'REJECTED', 'APPROVED') DEFAULT 'PENDING';
+
+UPDATE solar_company SET approval_status = "REJECTED" WHERE bnum = "0001234cdfed";

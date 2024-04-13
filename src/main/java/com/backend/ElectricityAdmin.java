@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ElectricityAdminModel;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class ElectricityAdmin extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String region= req.getParameter("region");
+        String region= req.getParameter("region").toUpperCase();
         String contact= req.getParameter("contact");
         String email= req.getParameter("email");
         String password = req.getParameter("password");
@@ -28,12 +29,13 @@ public class ElectricityAdmin extends HttpServlet {
         String role = req.getParameter("role");
         String mobile = req.getParameter("mobile");
 
+
+
         ElectricityAdminModel admin = new ElectricityAdminModel();
 
         admin.setRegion(region);
         admin.setContactNumber(contact);
         admin.setEmail(email);
-        admin.setPassword(password);
         admin.setUtilityType(ElectricityAdminModel.UtilityType.valueOf(utility));
         admin.setEmpId(empid);
         admin.setUname(uname);
@@ -41,6 +43,8 @@ public class ElectricityAdmin extends HttpServlet {
         admin.setLastname(lname);
         admin.setRole(ElectricityAdminModel.Role.valueOf(role));
         admin.setMobile(mobile);
+        String bcryptHashedPwd = BCrypt.hashpw(password, BCrypt.gensalt());
+        admin.setPassword(bcryptHashedPwd);
 
         ElectricityAdminDAO dao = new ElectricityAdminDAO();
 
