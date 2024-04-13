@@ -26,5 +26,7 @@ public interface UserDetails {
 
     String getImageByNic(String nic) throws SQLException;
 
+    void updateServices(String nic, List<String> services) throws SQLException;
+
      List<UserModel> getUserDetailsRegionalAdmin() throws SQLException;
 }

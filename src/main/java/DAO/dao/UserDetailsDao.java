@@ -263,6 +263,24 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
+    public void updateServices(String nic, List<String> services) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE users SET services = ? WHERE nic = ?"
+            );
+
+            String serviceString = String.join(",", services);
+            statement.setString(1, serviceString);
+            statement.setString(2, nic);
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
     public List<UserModel> getUserDetailsRegionalAdmin() throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
