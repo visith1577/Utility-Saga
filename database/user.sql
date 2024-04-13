@@ -30,3 +30,5 @@ CREATE TABLE users(
 
 ALTER TABLE users
 ADD CONSTRAINT unique_email_constraint UNIQUE (email);
+
+DELETE FROM users where nic="200130704297";

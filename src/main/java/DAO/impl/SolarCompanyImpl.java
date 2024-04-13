@@ -10,4 +10,6 @@ public interface SolarCompanyImpl {
     void registerCompany(SolarCompanyModel company) throws SQLException;
 
     public List<SolarCompanyModel> getRegisteredCompanies() throws Exception;
+
+    boolean updateApprovalStatus(String bNum, String status) throws Exception;
 }
