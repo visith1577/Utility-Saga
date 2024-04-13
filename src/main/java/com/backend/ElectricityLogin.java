@@ -20,7 +20,7 @@ public class ElectricityLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "regionalAdminDashboard-electricity.jsp", "electricityLogin.jsp");
+        loginDriver(req, resp, "AdminDashboard-electricity.jsp", "electricityLogin.jsp");
     }
 
     static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
@@ -54,7 +54,7 @@ public class ElectricityLogin extends HttpServlet{
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
                     if (role == UserRAdmin.Role.MAIN) {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/admin/" + dash);
+                        resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/admin/" + dash);//Change
                     } else {
                         resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/regionalAdmin/" + dash);
                     }

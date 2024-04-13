@@ -1,14 +1,15 @@
 CREATE TABLE water_admin(
-    id varchar(50) PRIMARY KEY CHECK (id REGEXP '[a-zA-Z]+(_[a-zA-Z]+.*)?'),
-    uname varchar(25) NOT NULL ,
-    firstname varchar(50) NOT NULL ,
-    lastname varchar(50) NOT NULL ,
-    pwd varchar(255) NOT NULL CHECK (CHAR_LENGTH(pwd) > 8),
-    tel varchar(20) NOT NULL,
-    email varchar(255) NOT NULL UNIQUE CHECK ( email LIKE  '%_@_%._%' AND CHAR_LENGTH(email) < 255),
-    address varchar(255) NOT NULL,
-    region varchar(50) NOT NULL CHECK (CHAR_LENGTH(region) < 50)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  region VARCHAR(255) NOT NULL,
+  contact_number VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  empid VARCHAR(50) NOT NULL UNIQUE,
+  uname VARCHAR(25) NOT NULL,
+  firstname VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
+  role ENUM('MAIN', 'REGIONAL') NOT NULL,
+  mobile VARCHAR(20) NOT NULL,
+  CONSTRAINT check_email_water CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
+  CONSTRAINT check_role_water CHECK (role IN ('MAIN', 'REGIONAL'))
 );
-
-ALTER TABLE water_admin
-ADD column role ENUM('MAIN', 'REGIONAL') NOT NULL;

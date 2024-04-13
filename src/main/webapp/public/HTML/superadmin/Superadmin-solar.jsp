@@ -22,6 +22,57 @@
   <link href="../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
   <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
   <link rel="stylesheet" href="../../CSS/forms.css">
+  <script src="../../JS/dashboard.js"></script>
+  <script>
+    window.onscroll = function () {
+      scrollFunction()
+    }
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+        document.getElementById("sidebar").style.height = "80%";
+      } else {
+        document.getElementById("sidebar").style.height = "85%";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var buttons = document.querySelectorAll('.submit-btn');
+      console.log(buttons);
+      buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          console.log('Button clicked');
+          var bNum = button.dataset.bnum;
+          console.log('BNum:', bNum);
+          var dropdown = document.querySelector('select[name="approvalStatus' + bNum + '"]');
+          console.log('Dropdown:', dropdown);
+          var status = dropdown.value;
+          console.log("abc:", dropdown.name);
+          updateApprovalStatus(bNum, status);
+        });
+      });
+    });
+
+    function updateApprovalStatus(bNum, status){
+      console.log("Updating approval status for companyId:", bNum, "with status:", status);
+      fetch('/UtilitySaga_war_exploded/UpdateApprovalStatus',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status)
+      }).then(response => {
+        if(!response.ok){
+          throw new Error('Response was not ok');
+        }
+        return response.json();
+      }).then(data => {
+        console.log("Approval Status updated successfuly: ",data);
+      }).catch(error => {
+        console.error("Problem updating approval statrus: ", error);
+      })
+    }
+  </script>
 
 </head>
 
@@ -38,8 +89,7 @@
           <span class="line line3"></span>
         </div>
         <ul class="menu-items">
-          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity.jsp">Electricity</a></li>
-          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-water.jsp">Water</a></li>
+          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
           <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
           <li class="menu-items-li"><a href="#">Logout</a></li>
         </ul>
@@ -65,6 +115,7 @@
         <th>District</th>
         <th>Remarks</th>
         <th>Approved Status</th>
+        <th>Submit</th>
       </tr>
       <% for (SolarCompanyModel company : companies) { %>
       <tr>
@@ -80,11 +131,13 @@
         <td><%= company.getDistrict() %></td>
         <td><%= company.getRemarks() %></td>
         <td>
-          <select name="approvalStatus_<%= company.getId() %>">  <option value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
-            <option value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
-            <option value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
+          <select name="approvalStatus<%= company.getBNum() %>">
+            <option  value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
+            <option  value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
+            <option  value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
           </select>
         </td>
+        <td><button class="submit-btn" data-bnum="<%= company.getBNum() %>" >Submit</button></td>
       </tr>
       <% } %>
 
@@ -97,27 +150,5 @@
 </div>
 
 </body>
-<script src="../../JS/dashboard.js"></script>
-<script>
-  window.onscroll = function () {
-    scrollFunction()
-  }
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
-      document.getElementById("sidebar").style.height = "80%";
-    } else {
-      document.getElementById("sidebar").style.height = "85%";
-    }
-  }
-
-  function openPopup() {
-    document.getElementById("popupForm").style.display = "block";
-  }
-
-  function closePopup() {
-    document.getElementById("popupForm").style.display = "none";
-  }
-</script>
 
 </html>

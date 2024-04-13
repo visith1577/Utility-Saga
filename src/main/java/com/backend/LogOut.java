@@ -17,6 +17,7 @@ public class LogOut extends HttpServlet {
 
         resp.sendRedirect(req.getContextPath() + "/public/HTML/login/userSelector.jsp");
         HttpSession session = req.getSession(false);
+        System.out.println(session);
 
         if (session != null) {
             // Invalidate the session (log out the user)

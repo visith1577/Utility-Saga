@@ -36,7 +36,7 @@ public class RegisterUser extends HttpServlet{
         String eBill = req.getParameter("eBill").strip();
         String wBill = req.getParameter("wBill").strip();
         String homePhone = req.getParameter("home-phone").strip();
-        String region = req.getParameter("region").strip();
+        String region = req.getParameter("region").strip().toUpperCase();
         String electricityProvider = req.getParameter("provider").toUpperCase();
         String[] services = req.getParameterValues("service");
 

@@ -19,18 +19,18 @@ public class RegisterSolar extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String cname= req.getParameter("cname");
-        String bnum= req.getParameter("bnum");
-        String uname= req.getParameter("uname");
-        String nic= req.getParameter("nic");
-        String pwd= req.getParameter("pwd");
-        String repwd= req.getParameter("Re");
-        String phone= req.getParameter("phone");
-        String cphone= req.getParameter("company-phone");
-        String email= req.getParameter("email");
-        String district= req.getParameter("district");
-        String address= req.getParameter("address");
-        String comment= req.getParameter("comment");
+        String cname= req.getParameter("cname").trim();
+        String bnum= req.getParameter("bnum").trim();
+        String uname= req.getParameter("uname").trim();
+        String nic= req.getParameter("nic").trim();
+        String pwd= req.getParameter("pwd").trim();
+        String repwd= req.getParameter("Re").trim();
+        String phone= req.getParameter("phone").trim();
+        String cphone= req.getParameter("company-phone").trim();
+        String email= req.getParameter("email").trim();
+        String district= req.getParameter("district").trim();
+        String address= req.getParameter("address").trim();
+        String comment= req.getParameter("comment").trim();
 
         SolarCompanyModel company= new SolarCompanyModel();
         company.setCompanyName(cname);

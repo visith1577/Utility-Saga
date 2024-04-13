@@ -4,10 +4,16 @@ public class UserRAdmin extends UserModel{
     private String id;
     private String tel;
     private String region;
+    private UtilityType utilityType;
     private Role role;
 
     public Role getRole() {
         return role;
+    }
+
+    public enum UtilityType{
+        CEB,
+        LECO
     }
 
     public void setRole(Role role) {
@@ -42,5 +48,13 @@ public class UserRAdmin extends UserModel{
     @Override
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public UtilityType getUtilityType() {
+        return utilityType;
+    }
+
+    public void setUtilityType(UtilityType utilityType) {
+        this.utilityType = utilityType;
     }
 }
