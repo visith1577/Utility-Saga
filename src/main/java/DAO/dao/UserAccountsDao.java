@@ -249,4 +249,49 @@ public class UserAccountsDao implements UserAccounts {
             Connectdb.closeConnection(connection);
         }
     }
+
+    @Override
+    public boolean checkAccountExists(String nic, String account, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        boolean exists = false;
+        try {
+            String tableName;
+            switch (category.toUpperCase()) {
+                case "WATER":
+                    tableName = "wAccount_list";
+                    break;
+                case "ELECTRICITY":
+                    tableName = "eAccount_list";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid table name: " + category);
+            }
+
+            PreparedStatement statement;
+
+            if (account != null) {
+                statement = connection.prepareStatement(
+                        "SELECT account_number FROM " + tableName + " WHERE nic = ? AND account_number = ?"
+                );
+                statement.setString(2, account);
+            } else {
+                statement = connection.prepareStatement(
+                        "SELECT account_number FROM " + tableName + " WHERE nic = ?"
+                );
+            }
+
+            statement.setString(1, nic);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()){
+                    exists = true;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return exists;
+    }
 }

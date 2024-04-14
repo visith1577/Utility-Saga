@@ -143,14 +143,9 @@
             <tr>
                 <td class="td-item">
                     <div class="suggestion-1-parent">
-                        <h3 class="suggestion-head" id="header1">Suggestion 1</h3>
+                        <h3 class="suggestion-head" id="header1">Daily Consumption Analysis</h3>
                         <div class="description-the-water-container">
-                            <span class="the-water-coming" id="text1"
-                            >The water coming out of our taps is consistently
-                        discolored, appearing brown and murky. This is concerning as
-                        it affects the usability and safety of the water for
-                        drinking, cooking, and general household use.</span
-                            >
+                            <span class="the-water-coming" id="report1"></span>
                         </div>
                     </div>
                 </td>
@@ -158,15 +153,9 @@
             <tr>
                 <td class="td-item">
                     <div class="suggestion-1-parent">
-                        <h3 class="suggestion-head" id="header2">Suggestion 1</h3>
+                        <h3 class="suggestion-head" id="header2">Monthly Consumption Forecast</h3>
                         <div class="description-the-water-container">
-
-                            <span class="the-water-coming" id="text2"
-                            >The water coming out of our taps is consistently
-                        discolored, appearing brown and murky. This is concerning as
-                        it affects the usability and safety of the water for
-                        drinking, cooking, and general household use.</span
-                            >
+                            <span class="the-water-coming" id="report2"></span>
                         </div>
                     </div>
                 </td>
@@ -174,14 +163,9 @@
             <tr>
                 <td class="td-item">
                     <div class="suggestion-1-parent">
-                        <h3 class="suggestion-head" id="header3">Suggestion 1</h3>
+                        <h3 class="suggestion-head" id="header3">Water-saving Recommendations</h3>
                         <div class="description-the-water-container">
-                            <span class="the-water-coming" id="text3"
-                            >The water coming out of our taps is consistently
-                        discolored, appearing brown and murky. This is concerning as
-                        it affects the usability and safety of the water for
-                        drinking, cooking, and general household use.</span
-                            >
+                            <span class="the-water-coming" id="report3"></span>
                         </div>
                     </div>
                 </td>
@@ -224,12 +208,15 @@
                 return response.json();
             })
             .then(data => {
-                // Handle successful response
-                console.log('Data:', data);
+
                 // Do something with the data
-                document.getElementById('billAmount').textContent = data.amount
-                document.getElementById('billDue').textContent = data.dueDate
-                document.getElementById('billStatus').textContent = data.status
+                document.getElementById('billAmount').textContent = data.bill.amount
+                document.getElementById('billDue').textContent = data.bill.dueDate
+                document.getElementById('billStatus').textContent = data.bill.status
+
+                document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
+                document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
+                document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
             })
             .catch(error => {
                 // Handle error

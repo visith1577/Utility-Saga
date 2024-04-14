@@ -10,6 +10,6 @@ public interface UserAccounts {
     List<UserAccountsModel> getUserBills(String nic, String category, int limit, int offset) throws SQLException;
     List<String> getUserAccountsWithStatus(String nic, String category, String status) throws SQLException;
     UserAccountsModel getUserBillByAccount(String nic, String account, String category) throws SQLException;
-
     void updateAccountStatus(String nic, String account, String status, String table) throws SQLException;
+    boolean checkAccountExists(String nic, String account, String category) throws SQLException;
 }

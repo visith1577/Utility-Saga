@@ -145,7 +145,7 @@
             <h2>Service Settings</h2>
             <h3>Electricity Settings</h3>
             <c:if test="${not empty sessionScope.electricity}">
-            <form>
+            <div>
                 <label for="account-details__electricity">Your Current Electricity Accounts:</label>
                 <ul id="account-details__electricity">
                     <c:forEach items="${requestScope.electricity_account_list}" var="account">
@@ -166,22 +166,26 @@
                     <option value="yes">Enable</option>
                     <option value="no">Disable</option>
                 </select>
-
-                <label for="electricityThreshold">Usage Threshold (kWh):</label>
-                <input class="content-btn" type="number" id="electricityThreshold" name="electricityThreshold" placeholder="Set usage threshold" min="0" inputmode="numeric">
-                <button class="content-btn" type="button">UnSubscribe</button>
-                <button class="content-btn" type="button">Save Electricity Settings</button>
-            </form>
+                <c:if test="${not empty sessionScope.water}">
+                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
+                    <input type="hidden" name="action" value="unsubscribe">
+                    <button class="content-btn" type="submit" id="unsubscribe-electricity">UnSubscribe</button>
+                </form>
+                </c:if>
+            </div>
         </section>
         </c:if>
         <c:if test="${empty sessionScope.electricity}">
             <label for="account-details__water">Subscribe to view accounts.</label>
-            <button class="content-btn" type="button">Subscribe</button>
+            <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
+                <input type="hidden" name="action" value="subscribe">
+                <button class="content-btn" type="submit" id="subscribe-electricity">Subscribe</button>
+            </form>
         </c:if>
         <section>
             <h3>Water Settings</h3>
             <c:if test="${not empty sessionScope.water}">
-            <form>
+            <div>
                 <label for="account-details__water">Your Current Water Accounts:</label>
                 <ul id="account-details__water">
                     <c:forEach items="${requestScope.water_account_list}" var="account">
@@ -200,16 +204,20 @@
                     <option value="yes">Enable</option>
                     <option value="no">Disable</option>
                 </select>
-
-                <label for="waterThreshold">Usage Threshold (liters):</label>
-                <input class="content-btn" type="number" id="waterThreshold" name="waterThreshold" placeholder="Set usage threshold" min="0" inputmode="numeric">
-                <button class="content-btn" type="button">UnSubscribe</button>
-                <button class="content-btn" type="submit">Save Water Settings</button>
-            </form>
+                <c:if test="${not empty sessionScope.electricity}">
+                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
+                    <input type="hidden" name="action" value="unsubscribe">
+                    <button class="content-btn" type="submit" name="action" id="unsubscribe-water">UnSubscribe</button>
+                </form>
+                </c:if>
+            </div>
             </c:if>
             <c:if test="${empty sessionScope.water}">
                 <label for="account-details__water">Subscribe to view accounts.</label>
-                <button class="content-btn" type="button">Subscribe</button>
+                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
+                    <input type="hidden" name="action" value="subscribe">
+                    <button class="content-btn" type="submit" id="subscribe-water">Subscribe</button>
+                </form>
             </c:if>
         </section>
     </div>
@@ -252,4 +260,6 @@
         </div>
     </div>
 </body>
+<script>
+</script>
 </html>
