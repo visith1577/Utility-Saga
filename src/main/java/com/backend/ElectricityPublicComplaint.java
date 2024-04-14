@@ -40,35 +40,11 @@ public class ElectricityPublicComplaint extends HttpServlet {
         String txtArea = req.getParameter("txtArea");
 
         ComplaintModel eComplaint = new ComplaintModel();
-
-        if ("Breakdown".equals(complainCat)) {
-            eComplaint.setComplaint_category(ComplaintModel.Complaint_Category.Breakdown);
-        } else if ("ServiceRequest".equals(complainCat)) {
-            eComplaint.setComplaint_category(ComplaintModel.Complaint_Category.ServiceRequest);
-        }
-
-        switch (complainType) {
-            case "BillingIssues":
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.BillingIssues);
-                break;
-            case "ConnectDisconnect":
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.ConnectDisconnect);
-                break;
-            case "PowerOutage":
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.PowerOutage);
-                break;
-            case "VoltageFrequency":
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.VoltageFrequency);
-                break;
-            case "SmartMeter":
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.SmartMeter);
-                break;
-            case "Quality":
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.Quality);
-                break;
-            default:
-                eComplaint.setComplaint_type(ComplaintModel.Complaint_Type.Other);
-                break;
+        eComplaint.setComplaint_category(complainCat);
+        if (complaint_types.contains(complainType)) {
+            eComplaint.setComplaint_type(complainType);
+        } else {
+            eComplaint.setComplaint_type("Others");
         }
         eComplaint.setAccount_number(accNum);
         eComplaint.setEmail(email);

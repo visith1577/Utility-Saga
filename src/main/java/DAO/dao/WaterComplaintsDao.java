@@ -2,7 +2,6 @@ package DAO.dao;
 
 import DAO.impl.Complaints;
 import model.ComplaintModel;
-import model.ComplaintRAdmin;
 import utils.Connectdb;
 
 import java.sql.Connection;
@@ -21,8 +20,8 @@ public class WaterComplaintsDao implements Complaints {
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setString(1, complaint.getComplaint_no());
-        stmt.setString(2, complaint.getComplaint_category().toString());
-        stmt.setString(3, complaint.getComplaintTypeWater().toString());
+        stmt.setString(2, complaint.getComplaint_category());
+        stmt.setString(3, complaint.getComplaint_type());
         stmt.setString(4, complaint.getAccount_number());
         stmt.setString(5, complaint.getNic());
         stmt.setString(6, complaint.getEmail());
@@ -48,8 +47,10 @@ public class WaterComplaintsDao implements Complaints {
         while (rs.next()){
             ComplaintModel complaint = new ComplaintModel();
             complaint.setComplaint_no(rs.getString("complaint_no"));
-            complaint.setComplaint_category(ComplaintModel.Complaint_Category.valueOf(rs.getString("complaint_category")));
-            complaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.valueOf(rs.getString("complaint_type")));
+            complaint.setComplaint_category(rs.getString("complaint_category"));
+            complaint.setComplaint_type(rs.getString("complaint_type"));
+            complaint.setAccount_number(rs.getString("account_number"));
+            complaint.setNic(rs.getString("nic"));
             complaint.setEmail(rs.getString("email"));
             complaint.setPhoneNumber(rs.getString("mobile"));
             complaint.setComplaint_description(rs.getString("account_number"));
