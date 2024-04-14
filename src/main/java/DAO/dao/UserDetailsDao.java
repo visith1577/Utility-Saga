@@ -266,10 +266,11 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     public List<UserModel> getUserDetailsRegionalAdmin() throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
-        String sql = "SELECT u.nic, u.firstname, u.lastname, u.mobile, u.email, u.uname, u.address \n" +
+        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
                 "FROM users u\n" +
-                "JOIN electricity_admin ea ON u.region = ea.region\n" +
-                "WHERE u.region = ea.region;\n";
+                "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
+                "JOIN electricity_admin ON eal.region= electricity_admin.region";
+
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         ResultSet rs = stmt.executeQuery();
@@ -281,8 +282,9 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
             user.setLastName(rs.getString("lastname"));
             user.setMobile(rs.getString("mobile"));
             user.setEmail(rs.getString("email"));
-            user.setUsername(rs.getString("uname"));
+            user.setConnectionStatus(rs.getString("meter_status"));
             user.setAddress(rs.getString("address"));
+            user.setAccount_number(rs.getString("account_number"));
 
             users.add(user);
         }
@@ -292,4 +294,22 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         connection.close();
         return users;
     }
+
+    @Override
+    public  void updateAccountStatus(String accountNumber, String newStatus) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+
+        try {
+            String query = "UPDATE eaccount_list SET user_status = ? WHERE account_number = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, newStatus.toUpperCase());
+            preparedStatement.setString(2, accountNumber);
+            preparedStatement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+
+        }
+
+
 }

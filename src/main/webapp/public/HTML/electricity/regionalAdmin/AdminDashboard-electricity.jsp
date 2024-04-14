@@ -16,6 +16,50 @@
     <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="../../../CSS/forms.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.querySelector('table').addEventListener('click', function(event) {
+            if (event.target.classList.contains('change-status-btn')) {
+                changeUserStatus(event);
+            }
+        });
+
+
+        function changeUserStatus(event) {
+            console.log('changeUserStatus function called');
+
+            const row = event.target.closest('tr');
+            console.log('Row:', row);
+
+            const accountNumber = row.querySelector('td:nth-child(1)').textContent;
+            console.log('Account Number:', accountNumber);
+
+            const currentStatus = row.querySelector('td:nth-child(7)').textContent;
+            console.log('Current Status:', currentStatus);
+
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            console.log('New Status:', newStatus);
+
+            fetch('/user-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    accountNumber: accountNumber,
+                    newStatus: newStatus
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+
+                    row.querySelector('td:nth-child(7)').textContent = data.status;
+                })
+                .catch(error => {
+                    console.error('Error updating user status:', error);
+                });
+        }
+    </script>
 
 </head>
 <body>
@@ -113,23 +157,27 @@
                         <!-- table header -->
                         <thead>
                             <tr>
+                                <th>Account Number</th>
                                 <th>Customer NIC</th>
                                 <th>Customer Name</th>
                                 <th>Mobile Number</th>
                                 <th>Email</th>
-                                <th>Username</th>
                                 <th>Address</th>
+                                <th>Status</th>
+                                <th>Change Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% for (UserModel user : users) { %>
                             <tr>
+                                <td><%= user.getAccount_number() %></td>
                                 <td><%= user.getNic() %></td>
                                 <td><%= user.getFirstName() %> <%= user.getLastName() %></td>
                                 <td><%= user.getMobile() %></td>
                                 <td><%= user.getEmail() %></td>
-                                <td><%= user.getUsername() %></td>
                                 <td><%= user.getAddress() %></td>
+                                <td><%= user.getConnectionStatus()%></td>
+                                <td><button class="change-status-btn">Change Status</button></td>
                             </tr>
                             <% } %>
 

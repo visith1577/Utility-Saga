@@ -39,11 +39,29 @@ public class WaterPublicComplaint extends HttpServlet {
         String txtArea = req.getParameter("txtArea");
 
         ComplaintModel wComplaint = new ComplaintModel();
-        wComplaint.setComplaint_category(complainCat);
-        if (complaint_types.contains(complainType)) {
-            wComplaint.setComplaint_type(complainType);
-        } else {
-            wComplaint.setComplaint_type("Others");
+        switch (complainType) {
+            case "MainLeak":
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.MainLeak);
+                break;
+            case "ConnectionLeak":
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.ConnectionLeak);
+                break;
+            case "NoWater":
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.NoWater);
+                break;
+            case "LowPressure":
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.LowPressure);
+                break;
+            case "LeakNearby":
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.LeakNearby);
+                break;
+            case "Quality":
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.Quality);
+                break;
+
+            default:
+                wComplaint.setComplaintTypeWater(ComplaintModel.Complaint_Type_Water.Other);
+                break;
         }
         wComplaint.setAccount_number(accNum);
         wComplaint.setEmail(email);
