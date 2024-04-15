@@ -41,7 +41,13 @@ public class ElectricityComplaintDao implements Complaints {
 
         Connection conn = Connectdb.getConnection();
 
-        String sql = "SELECT * FROM electricity_complaint";
+        String sql = "SELECT *\n" +
+                "FROM electricity_complaint ec\n" +
+                "JOIN eAccount_list ea ON ec.account_number = ea.account_number\n" +
+                "JOIN electricity_admin ead ON ea.region = ead.region WHERE ea.region = ead.region\n" +
+                "AND ec.account_number = ea.account_number";
+
+//        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         ResultSet rs = stmt.executeQuery();
@@ -55,7 +61,7 @@ public class ElectricityComplaintDao implements Complaints {
             complaint.setNic(rs.getString("nic"));
             complaint.setEmail(rs.getString("email"));
             complaint.setPhoneNumber(rs.getString("mobile"));
-            complaint.setComplaint_description(rs.getString("account_number"));
+            complaint.setComplaint_description(rs.getString("complaint"));
 
             complaint_list.add(complaint);
         }

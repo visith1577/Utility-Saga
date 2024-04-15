@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
   <link rel="stylesheet" href="../../CSS/forms.css">
   <script src="../../JS/dashboard.js"></script>
+  <script src="../../JS/SolarSearch.js"></script>
   <script>
     window.onscroll = function () {
       scrollFunction()
@@ -98,7 +99,15 @@
     </header>
   </div>
 
+  <div style="margin-top: 100px">
+  <input type="text" id="nic" placeholder="Enter Owner NIC">
+  <button onclick="search()">Search</button>
+
+  </div>
+
   <div class="middle" id="middle">
+    <div id="results"></div>
+
     <h4 class="title">Solar Companies</h4>
 
     <table class="table">

@@ -12,8 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class ElectricityRegionalAdminDAO implements UserRegional {
@@ -170,5 +168,54 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
         con.close();
 
         return complaint_list;
+    }
+
+    @Override
+    public String getPasswordSuperAdminById(String username) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+
+        String storedHash;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT pwd FROM super_admin WHERE uname = ?"
+            );
+
+            statement.setString(1, username);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    storedHash = result.getString("pwd");
+                } else {
+                    storedHash = null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return storedHash;
+    }
+    @Override
+    public UserRAdmin.Role getUserSuperAdminRoleById(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserRAdmin.Role role = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT role FROM super_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    role = UserRAdmin.Role.valueOf(result.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return role;
     }
 }

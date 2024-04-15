@@ -1,12 +1,10 @@
 package DAO.dao;
 
-import model.ElectricityAdminModel;
 import model.SolarCompanyModel;
 import DAO.impl.SolarCompanyImpl;
 
 import utils.Connectdb;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.sql.*;
 import java.util.*;
 
@@ -92,6 +90,42 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
         }
 
         return rowsUpdated;
+    }
+
+    @Override
+    public List<SolarCompanyModel> getRegisteredCompaniesByNIC(String ownerNIC) throws Exception {
+        List<SolarCompanyModel> companies = new ArrayList<>();
+        Connection connection = Connectdb.getConnection();
+        String sql = "SELECT * FROM solar_company WHERE ownernic = ?";
+        PreparedStatement stmt=  connection.prepareStatement(sql);
+        stmt.setString(1, ownerNIC);
+
+        ResultSet rs= stmt.executeQuery();
+
+        while(rs.next()){
+            SolarCompanyModel company = new SolarCompanyModel();
+            company.setCompanyName(rs.getString(2));
+            company.setBNum(rs.getString(3));
+            company.setOwnerNIC(rs.getString(4));
+            company.setUsername(rs.getString(5));
+            company.setPwd(rs.getString(6));
+            company.setMobile(rs.getString(7));
+            company.setLandNo(rs.getString(8));
+            company.setEmail(rs.getString(9));
+            company.setAddress(rs.getString(10));
+            company.setDistrict(rs.getString(11));
+            company.setRemarks(rs.getString(12));
+            company.setApprovalStatus(SolarCompanyModel.ApprovalStatus.valueOf(rs.getString(13).toUpperCase()));
+
+            companies.add(company);
+        }
+
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return companies;
     }
 
 }

@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="DAO.dao.ElectricityComplaintDao" %>
+<%@ page import="model.ComplaintModel" %>
+<%@ page import="java.util.List" %>
+<% List<ComplaintModel> complaints = new ElectricityComplaintDao().getComplaints();%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +38,7 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminDashboard-electricity.jsp">Customers</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/AdminDashboard-electricity.jsp">Customers</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/complaints-electricity.jsp">Complaints</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-payment.jsp">Payment</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
@@ -67,7 +72,23 @@
                         </thead>
                         <tbody>
                         <tr>
-
+                                <% for (ComplaintModel complaint : complaints) { %>
+                        <tr>
+                            <td><%= complaint.getComplaint_no() %></td>
+                            <td><%= complaint.getComplaint_category() %></td>
+                            <td><%= complaint.getComplaint_type() %></td>
+                            <td><%= complaint.getNic() %></td>
+                            <td><%= complaint.getAccount_number() %></td>
+                            <td><%= complaint.getPhoneNumber() %></td>
+                            <td><select name="complaintStatus<%= complaint.getComplaint_no() %>">
+                                <option  value="ACTIVE" <%= complaint.getComplaintStatus() == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" %>>Active</option>
+                                <option  value="PENDING" <%= complaint.getComplaintStatus() == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" %>>Pending</option>
+                                <option  value="DONE" <%= complaint.getComplaintStatus() == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" %>>Done</option>
+                            </select></td>
+                            <td><%= complaint.getComplaint_description()%></td>
+                            <td><button class="submit-btn" data-bnum="<%= complaint.getComplaint_no() %>" >Submit</button></td>
+                        </tr>
+                        <% } %>
                         </tr>
                         </tbody>
                     </table>

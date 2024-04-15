@@ -646,15 +646,7 @@
       <option name="project" value="LOCAL" />
       <updated>1713205858363</updated>
     </task>
-    <task id="LOCAL-00040" summary="minor updates">
-      <option name="closed" value="true" />
-      <created>1713207545133</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1713207545133</updated>
-    </task>
-    <option name="localTasksCounter" value="41" />
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -713,8 +705,8 @@
     <MESSAGE value="smtp server and registration validations" />
     <MESSAGE value="database update" />
     <MESSAGE value="fix" />
-    <MESSAGE value="Commi revert" />
     <MESSAGE value="minor updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor updates" />
+    <MESSAGE value="Commi revert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commi revert" />
   </component>
 </project>

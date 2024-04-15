@@ -11,8 +11,8 @@
 <%@ page import="DAO.dao.WaterAdminDAO" %>
 <%@ page import="java.util.List" %>
 
-<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins();%>
-<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins();%>
+<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.MAIN);%>
+<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.MAIN);%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +43,7 @@
                     <ul class="menu-items">
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
-                        <li class="menu-items-li"><a href="#">Logout</a></li>
+                        <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                     </ul>
                     <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
                 </div>
@@ -51,13 +51,13 @@
         </div>
 
         <div class="middle" id="middle">
-            <h4 class="title">Electricity Admins</h4>
+            <h2 class="title">Electricity Admins</h2>
             <div class="buttons">
-                <button class="button" onclick="openPopup('popupForm')">Add</button>
+                <button class="button" onclick="openPopup('popupForm')">Add Electricity Admins</button>
               </div>
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
-                    <h3 class="popup-title">Add Electricity Admin</h3>
+                    <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
                         <label for="region">Region:</label>
                         <input type="text" name="region" id="region" required>
@@ -92,7 +92,6 @@
                         <label for="role">Admin Type:</label>
                         <select name="role" id="role" required>
                             <option value="MAIN">Main</option>
-                            <option value="REGIONAL">Regional</option>
                         </select>
 
                         <label for="mobile">Mobile:</label>
@@ -140,13 +139,13 @@
         
             </table>
 
-            <h4 class="title">Water Admins</h4>
+            <h2 class="title">Water Admins</h2>
             <div class="buttons">
-                <button class="button" onclick="openPopup('wpopupForm')">Add</button>
+                <button class="button" onclick="openPopup('wpopupForm')">Add Water Admins</button>
             </div>
             <div class="popup-form" id="wpopupForm" style="display: none;">
                 <div id="wpopupContainer" class="popup-container">
-                    <h3 class="popup-title">Add Electricity Admin</h3>
+                    <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="waddForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                         <label for="wregion">Region:</label>
                         <input type="text" name="wregion" id="wregion" required>
@@ -175,7 +174,6 @@
                         <label for="wrole">Admin Type:</label>
                         <select name="wrole" id="wrole" required>
                             <option value="MAIN">Main</option>
-                            <option value="REGIONAL">Regional</option>
                         </select>
 
                         <label for="wmobile">Mobile:</label>
