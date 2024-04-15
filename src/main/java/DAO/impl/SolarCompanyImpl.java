@@ -12,4 +12,6 @@ public interface SolarCompanyImpl {
     public List<SolarCompanyModel> getRegisteredCompanies() throws Exception;
 
     boolean updateApprovalStatus(String bNum, String status) throws Exception;
+
+    List<SolarCompanyModel> getRegisteredCompaniesByNIC(String ownerNIC) throws Exception;
 }
