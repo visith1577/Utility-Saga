@@ -10,9 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e0196e9-8b26-4f3d-81d6-87f62879622c" name="Changes" comment="Commi revert">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/SolarSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/public/JS/SolarSearch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/HTML/electricity/admin/AdminDashboard-electricity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/HTML/electricity/admin/AdminDashboard-electricity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-electricity-water.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-electricity-water.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/dao/RegisterSolarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/dao/RegisterSolarDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/impl/SolarCompanyImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/impl/SolarCompanyImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-solar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-solar.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +28,10 @@
         <option value="HTML File" />
         <option value="Servlet" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Interface" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -558,7 +561,7 @@
       <workItem from="1713076169814" duration="2483000" />
       <workItem from="1713152033993" duration="3303000" />
       <workItem from="1713155376913" duration="379000" />
-      <workItem from="1713155817583" duration="9166000" />
+      <workItem from="1713155817583" duration="13714000" />
     </task>
     <task id="LOCAL-00001" summary="Commi revert">
       <option name="closed" value="true" />

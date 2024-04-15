@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
   <link rel="stylesheet" href="../../CSS/forms.css">
   <script src="../../JS/dashboard.js"></script>
+  <script src="../../JS/SolarSearch.js"></script>
   <script>
     window.onscroll = function () {
       scrollFunction()
@@ -96,6 +97,12 @@
         <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
       </div>
     </header>
+  </div>
+
+  <div style="margin-top: 100px">
+  <input type="text" id="nic" placeholder="Enter Owner NIC">
+  <button onclick="search()">Search</button>
+  <div id="results"></div>
   </div>
 
   <div class="middle" id="middle">
