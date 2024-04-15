@@ -51,13 +51,13 @@
         </div>
 
         <div class="middle" id="middle">
-            <h4 class="title">Electricity Admins</h4>
+            <h2 class="title">Electricity Admins</h2>
             <div class="buttons">
-                <button class="button" onclick="openPopup('popupForm')">Add</button>
+                <button class="button" onclick="openPopup('popupForm')">Add Electricity Admins</button>
               </div>
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
-                    <h3 class="popup-title">Add Electricity Admin</h3>
+                    <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
                         <label for="region">Region:</label>
                         <input type="text" name="region" id="region" required>
@@ -140,13 +140,13 @@
         
             </table>
 
-            <h4 class="title">Water Admins</h4>
+            <h2 class="title">Water Admins</h2>
             <div class="buttons">
-                <button class="button" onclick="openPopup('wpopupForm')">Add</button>
+                <button class="button" onclick="openPopup('wpopupForm')">Add Water Admins</button>
             </div>
             <div class="popup-form" id="wpopupForm" style="display: none;">
                 <div id="wpopupContainer" class="popup-container">
-                    <h3 class="popup-title">Add Electricity Admin</h3>
+                    <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="waddForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                         <label for="wregion">Region:</label>
                         <input type="text" name="wregion" id="wregion" required>
