@@ -102,10 +102,12 @@
   <div style="margin-top: 100px">
   <input type="text" id="nic" placeholder="Enter Owner NIC">
   <button onclick="search()">Search</button>
-  <div id="results"></div>
+
   </div>
 
   <div class="middle" id="middle">
+    <div id="results"></div>
+
     <h4 class="title">Solar Companies</h4>
 
     <table class="table">
