@@ -37,7 +37,7 @@ function displayResults(data) {
                 "</td><td>" + data[i].district +
                 "</td><td>" + data[i].remarks +
                 "</td><td>" + data[i].approvalStatus +
-                "</td><td><button>Submit</button>"  +
+                "</td><td><button class=\"submit-btn\" data-bnum=\"<%= company.getBNum() %>\">Submit</button>"  +
                 "</td></tr>";
         }
         table += "</table>";
