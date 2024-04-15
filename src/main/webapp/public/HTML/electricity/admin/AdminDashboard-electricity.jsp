@@ -37,9 +37,8 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
-                    <li class="menu-items-li"><a href="#">Logout</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminDashboard-electricity.jsp">Regional Admins</a></li>
+                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                 </ul>
                 <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
             </div>
@@ -87,7 +86,6 @@
 
                     <label for="role">Admin Type:</label>
                     <select name="role" id="role" required>
-                        <option value="MAIN">Main</option>
                         <option value="REGIONAL">Regional</option>
                     </select>
 
