@@ -103,7 +103,7 @@
         <a class="card" href="#">
             <div class="infor">
                 <div class="numbers">15 000</div>
-                <div class="cardName">Water Service Users</div>
+                <div class="cardName">Electricity Service Users</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-users"></i>
@@ -113,7 +113,7 @@
         <a class="card" href="#">
             <div class="infor">
                 <div class="numbers">5 000</div>
-                <div class="cardName">New Water Connections</div>
+                <div class="cardName">New Electricity Connections</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-faucet"></i>
@@ -133,7 +133,7 @@
         <a class="card" href="#">
             <div class="infor">
                 <div class="numbers">15 000</div>
-                <div class="cardName">Water Service Users</div>
+                <div class="cardName">Electricity Service Users</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>
