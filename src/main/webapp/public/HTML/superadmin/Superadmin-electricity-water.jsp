@@ -11,8 +11,8 @@
 <%@ page import="DAO.dao.WaterAdminDAO" %>
 <%@ page import="java.util.List" %>
 
-<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins();%>
-<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins();%>
+<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.MAIN);%>
+<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.MAIN);%>
 
 <!DOCTYPE html>
 <html lang="en">

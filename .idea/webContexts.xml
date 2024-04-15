@@ -13,6 +13,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-newconnection.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-publiccomplaint.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity-service.html" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity/admin/AdminDashboard-electricity.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity/regionalAdmin/AdminDashboard-electricity.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricity/regionalAdmin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/electricityDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/public/HTML/login/registerForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/public/HTML/login" />

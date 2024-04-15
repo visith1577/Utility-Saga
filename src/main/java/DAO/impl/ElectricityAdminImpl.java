@@ -7,5 +7,5 @@ import model.ElectricityAdminModel;
 public interface ElectricityAdminImpl {
         public int addElectricityAdmin(ElectricityAdminModel admin) throws Exception;
 
-        public List<ElectricityAdminModel> getElectricityAdmins() throws Exception;
+        public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception;
 }

@@ -7,12 +7,9 @@
 --%>
 <%@ page import="model.ElectricityAdminModel" %>
 <%@ page import="DAO.dao.ElectricityAdminDAO" %>
-<%@ page import="DAO.dao.WaterAdminDAO" %>
 <%@ page import="java.util.List" %>
 
-<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins();%>
-<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins();%>
-
+<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.REGIONAL);%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,7 +117,8 @@
                 <th>Main/Regional</th>
                 <th>Mobile</th>
             </tr>
-            <% for (ElectricityAdminModel admin : admins) { %>
+            <%
+                for (ElectricityAdminModel admin : admins) { %>
             <tr>
                 <td><%= admin.getRegion() %></td>
                 <td><%= admin.getContactNumber() %></td>
@@ -138,89 +136,6 @@
             <% } %>
 
         </table>
-
-        <h4 class="title">Water Admins</h4>
-        <div class="buttons">
-            <button class="button" onclick="openPopup('wpopupForm')">Add</button>
-        </div>
-        <div class="popup-form" id="wpopupForm" style="display: none;">
-            <div id="wpopupContainer" class="popup-container">
-                <h3 class="popup-title">Add Electricity Admin</h3>
-                <form id="waddForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
-                    <label for="wregion">Region:</label>
-                    <input type="text" name="wregion" id="wregion" required>
-
-                    <label for="wcontact">Contact Number:</label>
-                    <input type="text" name="wcontact" id="wcontact" required>
-
-                    <label for="wemail">Email:</label>
-                    <input type="email" name="wemail" id="wemail" required>
-
-                    <label for="wpassword">Password:</label>
-                    <input type="password" name="wpassword" id="wpassword" required>
-
-                    <label for="wempid">Employee ID:</label>
-                    <input type="text" name="wempid" id="wempid" required>
-
-                    <label for="wuname">User Name:</label>
-                    <input type="text" name="wuname" id="wuname" required>
-
-                    <label for="wfname">First Name:</label>
-                    <input type="text" name="wfname" id="wfname" required>
-
-                    <label for="wlname">Last Name:</label>
-                    <input type="text" name="wlname" id="wlname" required>
-
-                    <label for="wrole">Admin Type:</label>
-                    <select name="wrole" id="wrole" required>
-                        <option value="MAIN">Main</option>
-                        <option value="REGIONAL">Regional</option>
-                    </select>
-
-                    <label for="wmobile">Mobile:</label>
-                    <input type="text" name="wmobile" id="wmobile" required>
-
-                    <div class="form-button">
-                        <button type="submit" class="buttons">Add Admin</button>
-                        <button  onclick="closePopup('wpopupForm')" class="buttons">Close</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
-        <table class="table">
-            <tr>
-                <th>Region</th>
-                <th>Contact Number</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Employee ID</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Main/Regional</th>
-                <th>Mobile</th>
-            </tr>
-            <% for (ElectricityAdminModel admin : wadmins) { %>
-            <tr>
-                <td><%= admin.getRegion() %></td>
-                <td><%= admin.getContactNumber() %></td>
-                <td><%= admin.getEmail() %></td>
-                <td><%= admin.getPassword() %></td>
-                <td><%= admin.getEmpId() %></td>
-                <td><%= admin.getUname() %></td>
-                <td><%= admin.getFirstname() %></td>
-                <td><%= admin.getLastname() %></td>
-                <td><%= admin.getRole() %></td>
-                <td><%= admin.getMobile() %></td>
-            </tr>
-
-            <% } %>
-
-        </table>
-
-    </div>
 
 </div>
 </div>

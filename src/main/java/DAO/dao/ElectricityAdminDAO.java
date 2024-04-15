@@ -35,11 +35,12 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
     }
 
     @Override
-    public List<ElectricityAdminModel> getElectricityAdmins() throws Exception {
+    public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception {
         List<ElectricityAdminModel> admins = new ArrayList<>();
-        Connection connection = Connectdb.getConnection();
-        String query = "SELECT * FROM electricity_admin";
+        Connection connection = Connectdb.getConnection();;
+        String query = "SELECT * FROM electricity_admin WHERE role = ?";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, role.toString().toUpperCase());
 
         ResultSet rs = statement.executeQuery();
 

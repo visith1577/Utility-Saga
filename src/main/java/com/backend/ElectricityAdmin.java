@@ -31,6 +31,7 @@ public class ElectricityAdmin extends HttpServlet {
 
 
 
+
         ElectricityAdminModel admin = new ElectricityAdminModel();
 
         admin.setRegion(region);
