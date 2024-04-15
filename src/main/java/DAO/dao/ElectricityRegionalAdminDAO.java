@@ -1,10 +1,7 @@
 package DAO.dao;
 
 import DAO.impl.UserRegional;
-import model.ComplaintRAdmin;
-import model.UModelRegional;
-import model.UserModel;
-import model.UserRAdmin;
+import model.*;
 import utils.Connectdb;
 
 import java.sql.Connection;
@@ -217,5 +214,40 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
             Connectdb.closeConnection(connection);
         }
         return role;
+    }
+
+    @Override
+    public List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException {
+        List<ElectricityAdminModel> admins = new ArrayList<>();
+        Connection con = Connectdb.getConnection();
+
+        String sql = "SELECT region, contact_number, email, password, utilityType, empid, uname, firstname, lastname, role, mobile FROM electricity_admin WHERE empid = ?";
+
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, nic);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            ElectricityAdminModel admin = new ElectricityAdminModel();
+            admin.setRegion(rs.getString("region"));
+            admin.setContactNumber(rs.getString("contact_number"));
+            admin.setEmail(rs.getString("email"));
+            admin.setPassword(rs.getString("password"));
+            admin.setUtilityType(ElectricityAdminModel.UtilityType.valueOf(rs.getString("utilityType")));
+            admin.setEmpId(rs.getString("empid"));
+            admin.setUname(rs.getString("uname"));
+            admin.setFirstname(rs.getString("firstname"));
+            admin.setLastname(rs.getString("lastname"));
+            admin.setRole(ElectricityAdminModel.Role.valueOf(rs.getString("role")));
+            admin.setMobile(rs.getString("mobile"));
+
+            admins.add(admin);
+        }
+
+        rs.close();
+        stmt.close();
+        con.close();
+        return admins;
     }
 }

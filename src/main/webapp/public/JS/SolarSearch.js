@@ -18,6 +18,7 @@ function search() {
 }
 
 function displayResults(data) {
+    console.log(data);
     var resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
     if (data.length === 0) {

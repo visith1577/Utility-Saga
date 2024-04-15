@@ -1,9 +1,6 @@
 package DAO.impl;
 
-import model.ComplaintRAdmin;
-import model.UModelRegional;
-import model.UserModel;
-import model.UserRAdmin;
+import model.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,4 +18,6 @@ public interface UserRegional {
     String getPasswordSuperAdminById(String username) throws SQLException;
 
     UserRAdmin.Role getUserSuperAdminRoleById(String region) throws SQLException;
+
+    List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
 }
