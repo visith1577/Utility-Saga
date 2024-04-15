@@ -16,6 +16,14 @@ public class ComplaintModel {
     private String phoneNumber;
     private String Complaint_description;
 
+    private ComplaintStatus complaintStatus;
+
+    public enum ComplaintStatus{
+        ACTIVE,
+        PENDING,
+        DONE
+    }
+
     public ComplaintModel() {
         UUID uuid = UUID.randomUUID();
         complaint_no = getAccount_number() + uuid;
@@ -86,5 +94,11 @@ public class ComplaintModel {
 
     public void setComplaint_no(String complaint_no) {this.complaint_no = complaint_no;}
 
+    public ComplaintStatus getComplaintStatus() {
+        return complaintStatus;
+    }
 
+    public void setComplaintStatus(ComplaintStatus complaintStatus) {
+        this.complaintStatus = complaintStatus;
+    }
 }
