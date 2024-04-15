@@ -10,17 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e0196e9-8b26-4f3d-81d6-87f62879622c" name="Changes" comment="Commi revert">
-      <change afterPath="$PROJECT_DIR$/database/super_admin.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/SuperAdminLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/56b0ab0e-c6c8-4642-a29b-49496ebd1bc9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/56b0ab0e-c6c8-4642-a29b-49496ebd1bc9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/56b0ab0e-c6c8-4642-a29b-49496ebd1bc9/storage_v2/_src_/schema/utilitysaga.FLsc4A.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/56b0ab0e-c6c8-4642-a29b-49496ebd1bc9/storage_v2/_src_/schema/utilitysaga.FLsc4A.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/super_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/super_admin.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DAO/dao/ElectricityRegionalAdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/dao/ElectricityRegionalAdminDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DAO/impl/UserRegional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/impl/UserRegional.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/HTML/login/administratorLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/HTML/login/administratorLogin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-solar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-solar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/JS/SolarSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/JS/SolarSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/SuperAdminLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/SuperAdminLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/UserRAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/UserRAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/AdminSuperFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/AdminSuperFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -568,6 +568,8 @@
       <workItem from="1713155376913" duration="379000" />
       <workItem from="1713155817583" duration="14816000" />
       <workItem from="1713178918639" duration="2807000" />
+      <workItem from="1713182079163" duration="2500000" />
+      <workItem from="1713185280320" duration="964000" />
     </task>
     <task id="LOCAL-00001" summary="Commi revert">
       <option name="closed" value="true" />

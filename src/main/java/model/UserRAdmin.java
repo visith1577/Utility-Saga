@@ -22,7 +22,8 @@ public class UserRAdmin extends UserModel{
 
     public enum Role {
         MAIN,
-        REGIONAL
+        REGIONAL,
+        SUPERADMIN
     }
     public String getId() {
         return id;

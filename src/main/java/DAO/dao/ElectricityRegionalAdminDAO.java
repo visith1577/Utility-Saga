@@ -195,4 +195,27 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
         }
         return storedHash;
     }
+    @Override
+    public UserRAdmin.Role getUserSuperAdminRoleById(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserRAdmin.Role role = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT role FROM super_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    role = UserRAdmin.Role.valueOf(result.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return role;
+    }
 }

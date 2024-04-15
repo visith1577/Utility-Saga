@@ -40,16 +40,21 @@ public class SuperAdminLogin extends HttpServlet{
             req.removeAttribute("errorMessage");
             DAO.impl.UserRegional userDao = new ElectricityRegionalAdminDAO();
             String pwdStored = userDao.getPasswordSuperAdminById(id);
+            UserRAdmin.Role role = userDao.getUserSuperAdminRoleById(id);
             if (pwdStored != null) {
 //                    System.out.println("===================Password verified--------------------------------");
                     session = req.getSession(true);
                     session.setAttribute("isLoggedIn", true);
+                    session.setAttribute("ROLE", role);
                     session.setAttribute("ID", id);
+                    session.setAttribute("REGION", id); // region up
+                    session.setAttribute("AREAS", id);  // list of areas
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
-                    resp.sendRedirect(req.getContextPath() + "/public/HTML/superadmin/" + dash);//Change
-
+                    if (role == UserRAdmin.Role.SUPERADMIN) {
+                        resp.sendRedirect(req.getContextPath() + "/public/HTML/superadmin/" + dash);//Change
+                    }
             }else {
                 req.setAttribute("ID", id);
                 resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

@@ -19,4 +19,6 @@ public interface UserRegional {
     UserRAdmin.Role getUserRoleById(String id) throws SQLException;
 
     String getPasswordSuperAdminById(String username) throws SQLException;
+
+    UserRAdmin.Role getUserSuperAdminRoleById(String region) throws SQLException;
 }
