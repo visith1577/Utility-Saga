@@ -9,7 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6226052-6753-42b4-b9b2-5c97d43a841f" name="Changes" comment="minor updates" />
+    <list default="true" id="f6226052-6753-42b4-b9b2-5c97d43a841f" name="Changes" comment="Commi revert">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/assets/seed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assets/seed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/AdminElectricityRegionalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/AdminElectricityRegionalFilter.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -682,7 +689,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="sql files &lt;&lt; user &gt;&gt;" />
     <MESSAGE value="update .gitignore" />
     <MESSAGE value="user page updated" />
     <MESSAGE value="db connect function and form validators" />
@@ -707,6 +713,7 @@
     <MESSAGE value="database update" />
     <MESSAGE value="fix" />
     <MESSAGE value="minor updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor updates" />
+    <MESSAGE value="Commi revert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commi revert" />
   </component>
 </project>
