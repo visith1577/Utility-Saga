@@ -41,7 +41,12 @@ public class SuperAdminLogin extends HttpServlet{
             DAO.impl.UserRegional userDao = new ElectricityRegionalAdminDAO();
             String pwdStored = userDao.getPasswordSuperAdminById(id);
             UserRAdmin.Role role = userDao.getUserSuperAdminRoleById(id);
-            if (pwdStored != null) {
+            System.out.println("PwdStored: "+pwdStored);
+            System.out.println("role: "+role);
+            System.out.println("id: "+id);
+            System.out.println("pwd: "+pwd);
+            System.out.println(pwdStored);
+            if (pwdStored != null && pwdStored.equals(pwd)) {
 //                    System.out.println("===================Password verified--------------------------------");
                     session = req.getSession(true);
                     session.setAttribute("isLoggedIn", true);

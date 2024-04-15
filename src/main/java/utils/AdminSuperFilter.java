@@ -33,17 +33,21 @@ public class AdminSuperFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         } else {
-            Object isLogged = session.getAttribute("isLoggedIn");
-            Object role = session.getAttribute("ROLE");
-            if (isLogged != null ){
-                boolean isLoggedIn = (boolean) isLogged;
-                UserRAdmin.Role currRole = UserRAdmin.Role.valueOf(role.toString());
-                if (isLoggedIn && currRole == UserRAdmin.Role.SUPERADMIN) {
-                    filterChain.doFilter(servletRequest, servletResponse);
-                    return;
+            if (session != null) {
+                Object isLogged = session.getAttribute("isLoggedIn");
+                Object role = session.getAttribute("ROLE");
+
+                if (isLogged != null && role != null) {
+                    boolean isLoggedIn = (boolean) isLogged;
+                    UserRAdmin.Role currRole = UserRAdmin.Role.valueOf(role.toString());
+
+                    if (isLoggedIn && currRole == UserRAdmin.Role.SUPERADMIN) {
+                        filterChain.doFilter(servletRequest, servletResponse);
+                        return;
+                    }
                 }
             }
-            System.out.println("wrong pwd");
+            System.out.println("User not logged in or not a super admin");
             resp.sendRedirect(req.getContextPath() + "/public/HTML/login/administratorLogin.jsp");
         }
         System.out.println("Authentication Filter <--------__end__-------->");

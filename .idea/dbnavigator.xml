@@ -26,8 +26,8 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/database/user.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
     <mapping file-url="file://$PROJECT_DIR$/database/wconnection_req.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
+    <mapping file-url="file://$PROJECT_DIR$/database/user.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
     <mapping file-url="file://$PROJECT_DIR$/database/water_bill.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
     <mapping file-url="file://$PROJECT_DIR$/database/water_complaint.sql" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="utilitysaga" />
     <mapping file-url="file://$PROJECT_DIR$/database" connection-id="1d02c919-d758-474a-b399-e42b8982b0eb" session-id="MAIN" current-schema="new1" />

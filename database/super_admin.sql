@@ -8,3 +8,15 @@ CREATE TABLE super_admin(
 
 INSERT INTO super_admin (nic, uname, pwd, region, role)
 VALUES ('200130704297', 'admin', 'Admin@utilitysaga', 'SUPERADMIN', 'SUPERADMIN');
+
+DELETE FROM super_admin WHERE nic ='200130704297';
+
+INSERT INTO super_admin (nic, uname, pwd, region, role)
+VALUES ('200130704296', 'SUPERADMIN', 'Admin@utilitysaga', 'SUPERADMIN', 'SUPERADMIN');
+
+SELECT @@autocommit;
+
+SET autocommit = 1;
+
+
+
