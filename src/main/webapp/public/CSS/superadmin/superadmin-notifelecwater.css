@@ -10,13 +10,14 @@ body {
 .fcontainer{
     padding-left: 20px;
     padding-top: 95px;
+    justify-content: center; /* Centering the form horizontally */
+
 }
 
 .form-box {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    padding-top: 75px;
     background-color: #f7f7f7;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
