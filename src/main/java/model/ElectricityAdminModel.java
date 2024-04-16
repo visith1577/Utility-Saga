@@ -11,9 +11,9 @@ public class ElectricityAdminModel {
 
     private UtilityType utilityType;
     private String empId;
-    private String uname;
-    private String firstname;
-    private String lastname;
+    private String username;
+    private String firstName;
+    private String lastName;
     private Role role;
     private String mobile;
     public enum Role{
@@ -40,9 +40,9 @@ public class ElectricityAdminModel {
         this.password = password;
         this.utilityType = utilityType;
         this.empId= empId;
-        this.uname = uname;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.username = uname;
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.role = role;
         this.mobile= mobile;
     }
@@ -54,9 +54,9 @@ public class ElectricityAdminModel {
         this.email = email;
         this.password = password;
         this.empId= empId;
-        this.uname = uname;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.username = uname;
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.role = role;
         this.mobile= mobile;
     }
@@ -109,28 +109,44 @@ public class ElectricityAdminModel {
         this.utilityType = utilityType;
     }
 
-    public String getUname() {
-        return uname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getFirstname() {
-        return firstname;
+        return firstName;
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstName = firstname;
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public Role getRole() {

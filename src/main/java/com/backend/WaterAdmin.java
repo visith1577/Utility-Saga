@@ -33,7 +33,7 @@ public class WaterAdmin extends HttpServlet {
         admin.setContactNumber(contact);
         admin.setEmail(email);
         admin.setEmpId(empid);
-        admin.setUname(uname);
+        admin.setUsername(uname);
         admin.setFirstname(fname);
         admin.setLastname(lname);
         admin.setRole(ElectricityAdminModel.Role.valueOf(role));

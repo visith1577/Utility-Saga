@@ -39,7 +39,7 @@ public class ElectricityAdmin extends HttpServlet {
         admin.setEmail(email);
         admin.setUtilityType(ElectricityAdminModel.UtilityType.valueOf(utility));
         admin.setEmpId(empid);
-        admin.setUname(uname);
+        admin.setUsername(uname);
         admin.setFirstname(fname);
         admin.setLastname(lname);
         admin.setRole(ElectricityAdminModel.Role.valueOf(role));

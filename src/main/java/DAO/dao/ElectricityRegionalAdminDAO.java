@@ -236,7 +236,7 @@ public class ElectricityRegionalAdminDAO implements UserRegional {
             admin.setPassword(rs.getString("password"));
             admin.setUtilityType(ElectricityAdminModel.UtilityType.valueOf(rs.getString("utilityType")));
             admin.setEmpId(rs.getString("empid"));
-            admin.setUname(rs.getString("uname"));
+            admin.setUsername(rs.getString("uname"));
             admin.setFirstname(rs.getString("firstname"));
             admin.setLastname(rs.getString("lastname"));
             admin.setRole(ElectricityAdminModel.Role.valueOf(rs.getString("role")));
