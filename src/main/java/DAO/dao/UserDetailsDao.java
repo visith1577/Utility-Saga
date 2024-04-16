@@ -326,8 +326,6 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         } finally {
             Connectdb.closeConnection(connection);
         }
-
-        }
-
+    }
 
 }

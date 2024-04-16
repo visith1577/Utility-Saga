@@ -71,25 +71,44 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
     }
 
     @Override
-    public boolean updateApprovalStatus(String bnum, String status) throws SQLException {
-        boolean rowsUpdated = false;
+    public void updateApprovalStatus(String bnum, String status) throws SQLException {
+        Connection connection = Connectdb.getConnection();
 
-        try (Connection connection = Connectdb.getConnection();
-             PreparedStatement stmt = connection.prepareStatement("UPDATE solar_company SET approval_status = ? WHERE bnum = ?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE solar_company SET approval_status = ? WHERE bnum = ?")) {
 
             stmt.setString(1, status);
             stmt.setString(2, bnum);
 
-            int rowsAffected = stmt.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected);
-
-            rowsUpdated = rowsAffected > 0;
+           stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SQLException("Failed to update approval status: " + e.getMessage());
+        } finally {
+            Connectdb.closeConnection(connection);
         }
+    }
 
-        return rowsUpdated;
+    @Override
+    public SolarCompanyModel getApprovalStatus(String bnum) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        SolarCompanyModel model = new SolarCompanyModel();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT approval_status FROM solar_company WHERE bnum = ?");
+            stmt.setString(1, bnum);
+
+            try (ResultSet result = stmt.executeQuery()){
+                while(result.next()) {
+                   SolarCompanyModel.ApprovalStatus status = SolarCompanyModel.ApprovalStatus.valueOf(result.getString("approval_status"));
+                   model.setApprovalStatus(status);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Failed to update approval status: " + e.getMessage());
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return model;
     }
 
     @Override
@@ -119,12 +138,9 @@ public class RegisterSolarDAO implements SolarCompanyImpl{
 
             companies.add(company);
         }
-
-
         rs.close();
         stmt.close();
         connection.close();
-
         return companies;
     }
 
