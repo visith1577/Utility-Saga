@@ -18,4 +18,4 @@ CREATE TABLE solar_company(
 ALTER TABLE solar_company
 MODIFY COLUMN approval_status ENUM('PENDING', 'REJECTED', 'APPROVED') DEFAULT 'PENDING';
 
-UPDATE solar_company SET approval_status = "REJECTED" WHERE bnum = "0001234cdfed";
+UPDATE solar_company SET approval_status = 'REJECTED' WHERE bnum = '0001234cdfed';

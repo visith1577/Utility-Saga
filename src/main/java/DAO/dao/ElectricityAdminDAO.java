@@ -14,7 +14,7 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
     @Override
     public int addElectricityAdmin(ElectricityAdminModel admin) throws Exception {
         Connection connection = Connectdb.getConnection();
-        String query = "INSERT INTO electricity_admin (region, contact_number, email, password, utilityType,empid,uname, firstname, lastname, role, mobile) VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?)";
+        String query = "INSERT INTO electricity_admin (region, contact_number, email, password, utilityType,empid, uname, firstname, lastname, role, mobile) VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, admin.getRegion());
         statement.setString(2, admin.getContactNumber());

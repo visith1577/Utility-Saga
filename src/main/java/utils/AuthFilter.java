@@ -36,9 +36,10 @@ public class AuthFilter implements Filter {
             return;
         } else {
             Object isLogged = session.getAttribute("isLoggedIn");
-            if (isLogged != null ){
+            String currRole = (String) session.getAttribute("ROLE");
+            if (isLogged != null){
                 boolean isLoggedIn = (boolean) isLogged;
-                if (isLoggedIn) {
+                if (isLoggedIn && currRole.equals("USER")) {
                     filterChain.doFilter(servletRequest, servletResponse);
                     return;
                 }

@@ -20,10 +20,10 @@ public class ElectricityLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "AdminDashboard-electricity.jsp", "electricityLogin.jsp");
+        loginDriver(req, resp, "AdminDashboard-electricity.jsp");
     }
 
-    static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
+    static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash) throws ServletException, IOException {
         String id = req.getParameter("Uname").trim();
         String pwd = req.getParameter("Pwd");
         HttpSession session = req.getSession();
@@ -65,7 +65,7 @@ public class ElectricityLogin extends HttpServlet{
                     req.setAttribute("errorMessage", "Incorrect Password");
                     RequestDispatcher dispatcher = req.getRequestDispatcher(
                             "/public/HTML/login/" +
-                                    login
+                                    "electricityLogin.jsp"
                     );
                     dispatcher.forward(req, resp);
                 }
@@ -75,7 +75,7 @@ public class ElectricityLogin extends HttpServlet{
                 req.setAttribute("errorMessage", "ID not registered");
                 RequestDispatcher dispatcher = req.getRequestDispatcher(
                         "/public/HTML/login/" +
-                                login
+                                "electricityLogin.jsp"
                 );
                 dispatcher.forward(req, resp);
             }
