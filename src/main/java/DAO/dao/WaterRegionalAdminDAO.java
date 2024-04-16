@@ -46,4 +46,54 @@ public class WaterRegionalAdminDAO implements WaterRegional{
         con.close();
         return admins;
     }
+
+    @Override
+    public String getPasswordById(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+
+        String storedHash;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT password FROM water_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    storedHash = result.getString("password");
+                } else {
+                    storedHash = null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return storedHash;
+    }
+
+    @Override
+    public UserRAdmin.Role getUserRoleById(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserRAdmin.Role role = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT role FROM water_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    role = UserRAdmin.Role.valueOf(result.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return role;
+    }
 }

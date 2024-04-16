@@ -58,7 +58,7 @@
               </div>
 
             <div>
-                <input type="text" id="nic" placeholder="Enter NIC for Electricity">
+                <input type="text" id="nic" placeholder="EmpID for Electricity">
                 <button onclick="search('nic')">Search</button>
             </div>
             <div id="results"></div>
@@ -150,7 +150,7 @@
             <h2 class="title">Water Admins</h2>
 
             <div>
-                <input type="text" id="nic2" placeholder="Enter NIC for Water">
+                <input type="text" id="nic2" placeholder="EmpID for Water">
                 <button onclick="search('nic2')">Search</button>
             </div>
             <div id="results2"></div>

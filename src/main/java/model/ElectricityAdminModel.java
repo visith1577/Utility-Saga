@@ -17,12 +17,14 @@ public class ElectricityAdminModel {
     private Role role;
     private String mobile;
     public enum Role{
-        MAIN,REGIONAL
+        MAIN,
+        REGIONAL
     }
 
 
     public enum UtilityType {
-        CEB, LECO
+        CEB,
+        LECO
     }
 
     public ElectricityAdminModel(){
@@ -37,6 +39,20 @@ public class ElectricityAdminModel {
         this.email = email;
         this.password = password;
         this.utilityType = utilityType;
+        this.empId= empId;
+        this.uname = uname;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+        this.mobile= mobile;
+    }
+
+    public ElectricityAdminModel(String id, String region, String contactNumber, String email, String password,String empId, String uname, String firstname, String lastname, Role role, String mobile) {
+        this.id = id;
+        this.region = region;
+        this.contactNumber = contactNumber;
+        this.email = email;
+        this.password = password;
         this.empId= empId;
         this.uname = uname;
         this.firstname = firstname;

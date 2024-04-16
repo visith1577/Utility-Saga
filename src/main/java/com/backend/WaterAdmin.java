@@ -16,7 +16,7 @@ import java.io.IOException;
 )
 public class WaterAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String region = req.getParameter("wregion");
+        String region = req.getParameter("wregion").toUpperCase();
         String contact = req.getParameter("wcontact");
         String email = req.getParameter("wemail");
         String password = req.getParameter("wpassword");

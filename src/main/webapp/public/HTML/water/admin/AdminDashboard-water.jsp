@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Liviru Weerasinghe
-  Date: 4/13/2024
-  Time: 10:42 AM
+  Date: 4/16/2024
+  Time: 12:45 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="model.ElectricityAdminModel" %>
-<%@ page import="DAO.dao.ElectricityAdminDAO" %>
+<%@ page import="DAO.dao.WaterAdminDAO" %>
 <%@ page import="java.util.List" %>
 
-<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.REGIONAL);%>
+<%List<ElectricityAdminModel> admins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.REGIONAL);%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,51 +54,45 @@
 
     <div class="middle" id="middle">
         <div id="results"></div>
-        <h4 class="title">Electricity Admins</h4>
+        <h4 class="title">Water Admins</h4>
         <div class="buttons">
             <button class="button" onclick="openPopup('popupForm')">Add</button>
         </div>
         <div class="popup-form" id="popupForm" style="display: none;">
             <div id="popupContainer" class="popup-container">
                 <h3 class="popup-title">Add Electricity Admin</h3>
-                <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
+                <form id="addForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                     <label for="region">Region:</label>
-                    <input type="text" name="region" id="region" required>
+                    <input type="text" name="wregion" id="region" required>
 
                     <label for="contact">Contact Number:</label>
-                    <input type="text" name="contact" id="contact" required>
+                    <input type="text" name="wcontact" id="contact" required>
 
                     <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="wemail" id="email" required>
 
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" required>
-
-                    <label for="utility">Utility:</label>
-                    <select name="utility" id="utility" required>
-                        <option value="CEB">CEB</option>
-                        <option value="LECO">LECO</option>
-                    </select>
+                    <input type="password" name="wpassword" id="password" required>
 
                     <label for="empid">Employee ID:</label>
-                    <input type="text" name="empid" id="empid" required>
+                    <input type="text" name="wempid" id="empid" required>
 
                     <label for="uname">UserName:</label>
-                    <input type="text" name="uname" id="uname" required>
+                    <input type="text" name="wuname" id="uname" required>
 
                     <label for="fname">First Name:</label>
-                    <input type="text" name="fname" id="fname" required>
+                    <input type="text" name="wfname" id="fname" required>
 
                     <label for="lname">Last Name:</label>
-                    <input type="text" name="lname" id="lname" required>
+                    <input type="text" name="wlname" id="lname" required>
 
                     <label for="role">Admin Type:</label>
-                    <select name="role" id="role" required>
+                    <select name="wrole" id="role" required>
                         <option value="REGIONAL">Regional</option>
                     </select>
 
                     <label for="mobile">Mobile:</label>
-                    <input type="text" name="mobile" id="mobile" required>
+                    <input type="text" name="wmobile" id="mobile" required>
 
                     <div class="form-button">
                         <button type="submit" class="buttons">Add Admin</button>
@@ -115,7 +109,6 @@
                 <th>Contact Number</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>CEB/LECO</th>
                 <th>Employee ID</th>
                 <th>Username</th>
                 <th>First Name</th>
@@ -130,7 +123,6 @@
                 <td><%= admin.getContactNumber() %></td>
                 <td><%= admin.getEmail() %></td>
                 <td><%= admin.getPassword() %></td>
-                <td><%= admin.getUtilityType() %></td>
                 <td><%= admin.getEmpId() %></td>
                 <td><%= admin.getUname() %></td>
                 <td><%= admin.getFirstname() %></td>

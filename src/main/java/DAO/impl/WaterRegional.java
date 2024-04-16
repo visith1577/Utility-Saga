@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface WaterRegional {
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
+
+    String getPasswordById(String region) throws SQLException;
+
+    UserRAdmin.Role getUserRoleById(String region) throws SQLException;
 }
