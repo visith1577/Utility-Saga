@@ -7,7 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    // Get the context path dynamically
     String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-    <<link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
 
 </head>
 

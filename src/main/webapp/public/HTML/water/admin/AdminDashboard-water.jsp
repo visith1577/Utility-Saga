@@ -5,11 +5,11 @@
   Time: 12:45 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="model.ElectricityAdminModel" %>
-<%@ page import="DAO.dao.WaterAdminDAO" %>
-<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String contextPath = request.getContextPath();
+%>
 
-<%List<ElectricityAdminModel> admins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.REGIONAL);%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,10 +18,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Water- Main Admin</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../../JS/ElectricityMainAdmin.js"></script>
-    <link href="../../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../../CSS/forms.css">
+    <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
+    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
 
 </head>
 
@@ -47,9 +47,20 @@
     </div>
 
     <div style="margin-top: 100px">
-        <input type="text" id="nic" placeholder="EmpID for Electricity">
-        <button onclick="search('nic')">Search</button>
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/main-admin/water-accounts">
+            <label for="nic"></label>
+            <input name="id" type="text" id="nic" placeholder="Enter EmpID">
+
+            <button type="submit" name="search">Search</button>
+            <button type="button" id="resetButton">Reset</button>
+        </form>
     </div>
+    <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.getElementById('nic').value = '';
+            document.getElementById('searchForm').submit();
+        });
+    </script>
 
 
     <div class="middle" id="middle">
@@ -116,22 +127,29 @@
                 <th>Main/Regional</th>
                 <th>Mobile</th>
             </tr>
-            <%
-                for (ElectricityAdminModel admin : admins) { %>
-            <tr>
-                <td><%= admin.getRegion() %></td>
-                <td><%= admin.getContactNumber() %></td>
-                <td><%= admin.getEmail() %></td>
-                <td><%= admin.getPassword() %></td>
-                <td><%= admin.getEmpId() %></td>
-                <td><%= admin.getUsername() %></td>
-                <td><%= admin.getFirstname() %></td>
-                <td><%= admin.getLastname() %></td>
-                <td><%= admin.getRole() %></td>
-                <td><%= admin.getMobile() %></td>
-            </tr>
 
-            <% } %>
+            <c:if test="${empty requestScope.waterRegionalAdmins}">
+                <tr>
+                    <td colspan="12"> No admins found </td>
+                </tr>
+            </c:if>
+            <c:if test="${not empty requestScope.waterRegionalAdmins}">
+                <c:forEach items="${requestScope.waterRegionalAdmins}" var="admin">
+                    <tr>
+                        <td>${admin.region}</td>
+                        <td>${admin.contactNumber}</td>
+                        <td>${admin.email}</td>
+                        <td>${admin.password}</td>
+                        <td> ${admin.utilityType} </td>
+                        <td> ${admin.empId} </td>
+                        <td> ${admin.username}</td>
+                        <td> ${admin.firstName} </td>
+                        <td> ${admin.lastName}</td>
+                        <td> ${admin.role} </td>
+                        <td> ${admin.mobile}</td>
+                    </tr>
+                </c:forEach>
+            </c:if>
 
         </table>
 
