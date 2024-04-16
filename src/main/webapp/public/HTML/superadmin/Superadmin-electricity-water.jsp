@@ -20,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Document</title>
+    <title>Super Admin- Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../JS/SuperAdminElectricityWater.js"></script>
     <link href="../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
