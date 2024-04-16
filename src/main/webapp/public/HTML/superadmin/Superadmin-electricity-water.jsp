@@ -56,7 +56,7 @@
         </div>
 
         <div style="margin-top: 100px">
-            <form id="searchForm" method="get" action="<%= request.getContextPath() %>/main-admin/regional-electricity-accounts">
+            <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
                 <label for="nic"></label>
                 <input name="id" type="text" id="nic" placeholder="Enter EMPID">
 
@@ -173,7 +173,7 @@
             <h2 class="title">Water Admins</h2>
 
             <div>
-                <form id="searchForm2" method="get" action="<%= request.getContextPath() %>/main-admin/regional-electricity-accounts">
+                <form id="searchForm2" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
                     <label for="nic"></label>
                     <input name="id2" type="text" id="nic2" placeholder="Enter EMPID">
 
