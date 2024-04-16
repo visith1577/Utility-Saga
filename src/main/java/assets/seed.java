@@ -1,11 +1,13 @@
 package assets;
 
+import DAO.dao.ElectricityAdminDAO;
 import DAO.dao.ElectricityRegionalAdminDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ElectricityAdminModel;
 import model.UserRAdmin;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -29,41 +31,41 @@ public class seed extends HttpServlet {
 //        String homePhone = "011 244 0316";
 //        String region = "headOffice";
 
-//        String id = "Regional_Colombo";
-//        String fname = "CEB";
-//        String lname = "Regional";
-//        String uname = "CEB Admin Colombo";
-//        String pwd = "rootAdmin";
-//        String tel = "1987";
-//        String email = "dgmp@ceb.lk";
-//        String address = "23 Claessen Pl ";
-//        String homePhone = "0114 498 498";
-//        String region = "Colombo";
+        String id = "Regional_Colombo";
+        String fname = "CEB";
+        String lname = "Regional";
+        String uname = "CEB Admin Colombo";
+        String pwd = "rootAdmin";
+        String tel = "1987";
+        String email = "dgmp@ceb.lk";
+        String address = "23 Claessen Pl ";
+        String homePhone = "0114 498 498";
+        String region = "Colombo";
+        String empid = "CEB001";
 //
-//        UserRAdmin user = new UserRAdmin();
-//        user.setId(id);
-//        user.setUsername(uname);
-//        user.setFirstName(fname);
-//        user.setLastName(lname);
-//        user.setRegion(region);
-//        user.setTel(tel);
-//        user.setHome(homePhone);
-//        user.setEmail(email);
-//        user.setAddress(address);
-//        user.setRegion(region);
-//        user.setRole(UserRAdmin.Role.MAIN);
-//        user.setRole(UserRAdmin.Role.REGIONAL);
-//
-//        String bcryptHashedPwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
-//        user.setPassword(bcryptHashedPwd);
-//
-//        ElectricityRegionalAdminDAO dao = new ElectricityRegionalAdminDAO();
-//
-//        try {
-//            dao.registerUser(user);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        ElectricityAdminModel user = new ElectricityAdminModel();
+        user.setId(id);
+        user.setRegion(region);
+        user.setContactNumber(tel);
+        user.setEmail(email);
+        user.setUtilityType(ElectricityAdminModel.UtilityType.valueOf("CEB"));
+        user.setEmpId(empid);
+        user.setUname(uname);
+        user.setFirstname(fname);
+        user.setLastname(lname);
+        user.setRole(ElectricityAdminModel.Role.valueOf("REGIONAL"));
+        user.setMobile(homePhone);
+        String bcryptHashedPwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
+        user.setPassword(bcryptHashedPwd);
+
+
+        ElectricityAdminDAO dao = new ElectricityAdminDAO();
+
+        try {
+            dao.addElectricityAdmin(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 //        ReportGenerator report = new ReportGenerator();
 //        String report_text = report.dailyReport("23456444", 200, 180, 10_000);
