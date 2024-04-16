@@ -17,7 +17,7 @@ import java.io.IOException;
 public class AdminElectricityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Authentication Filter <--------__in__-------->");
+        System.out.println("Authentication Filter Admin <--------__in__-------->");
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;

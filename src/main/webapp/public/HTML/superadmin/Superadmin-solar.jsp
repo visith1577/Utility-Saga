@@ -8,8 +8,18 @@
 <%@ page import="model.SolarCompanyModel" %>
 <%@ page import="DAO.dao.RegisterSolarDAO" %>
 <%@ page import="java.util.List" %>
-
-<%List<SolarCompanyModel> companies = new RegisterSolarDAO().getRegisteredCompanies();%>
+<%
+  // Get the context path dynamically
+  String contextPath = request.getContextPath();
+%>
+<%
+    List<SolarCompanyModel> companies = null;
+    try {
+        companies = new RegisterSolarDAO().getRegisteredCompanies();
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +29,13 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Document</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link href="../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
-  <link rel="stylesheet" href="../../CSS/forms.css">
-  <script src="../../JS/dashboard.js"></script>
-  <script src="../../JS/SolarSearch.js"></script>
+  <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+  <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
+  <script src="<%= request.getContextPath() %>/public/JS/SolarSearch.js"></script>
   <script>
     window.onscroll = function () {
       scrollFunction()
@@ -37,42 +49,40 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      var buttons = document.querySelectorAll('.submit-btn');
-      console.log(buttons);
-      buttons.forEach(function(button) {
-        button.addEventListener('click', function() {
-          console.log('Button clicked');
-          var bNum = button.dataset.bnum;
-          console.log('BNum:', bNum);
-          var dropdown = document.querySelector('select[name="approvalStatus' + bNum + '"]');
-          console.log('Dropdown:', dropdown);
-          var status = dropdown.value;
-          console.log("abc:", dropdown.name);
-          updateApprovalStatus(bNum, status);
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const submitButtons = document.querySelectorAll('.submit-btn');
+
+      console.log(submitButtons);
+
+      submitButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const row = button.parentNode.parentNode;
+          const bNum = row.dataset.bnum;
+          const statusSelect = row.querySelector('select[name="approvalStatus"]');
+          const status = statusSelect.value;
+          console.log(status)
+          updateApprovalStatus(bNum, status)
         });
       });
-    });
 
-    function updateApprovalStatus(bNum, status){
-      console.log("Updating approval status for companyId:", bNum, "with status:", status);
-      fetch('/UtilitySaga_war_exploded/UpdateApprovalStatus',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status)
-      }).then(response => {
-        if(!response.ok){
-          throw new Error('Response was not ok');
-        }
-        return response.json();
-      }).then(data => {
-        console.log("Approval Status updated successfuly: ",data);
-      }).catch(error => {
-        console.error("Problem updating approval statrus: ", error);
-      })
-    }
+      function updateApprovalStatus(bNum, status) {
+        const contextPath = '<%= contextPath %>';
+        fetch(contextPath + '/UpdateApprovalStatus?companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status), {
+          method: "POST"
+        })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Response was not ok');
+                  }
+                  return response.json();
+                }).then(_ => {
+          toastr.success("Status of " + bNum + " updated to " + status + " successfully.");
+        }).catch(error => {
+          console.error("Problem updating approval status: ", error);
+        })
+      }
+    });
   </script>
 
 </head>
@@ -127,7 +137,7 @@
         <th>Submit</th>
       </tr>
       <% for (SolarCompanyModel company : companies) { %>
-      <tr>
+      <tr data-bnum="<%= company.getBNum() %>">
         <td><%= company.getCompanyName() %></td>
         <td><%= company.getBNum() %></td>
         <td><%= company.getOwnerNIC() %></td>
@@ -140,24 +150,17 @@
         <td><%= company.getDistrict() %></td>
         <td><%= company.getRemarks() %></td>
         <td>
-          <select name="approvalStatus<%= company.getBNum() %>">
+          <select name="approvalStatus">
             <option  value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
             <option  value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
             <option  value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
           </select>
         </td>
-        <td><button class="submit-btn" data-bnum="<%= company.getBNum() %>" >Submit</button></td>
+        <td><button class="submit-btn" id="<%= company.getBNum() %>">Submit</button></td>
       </tr>
       <% } %>
-
     </table>
-
   </div>
-
 </div>
-</div>
-</div>
-
 </body>
-
 </html>
