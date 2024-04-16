@@ -9,13 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6226052-6753-42b4-b9b2-5c97d43a841f" name="Changes" comment="Commi revert">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="4e0196e9-8b26-4f3d-81d6-87f62879622c" name="Changes" comment="Commi revert">
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/dao/WaterRegionalAdminDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/impl/WaterRegional.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/ElectricitySuperAdminSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/WaterSuperAdminSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/public/JS/SuperAdminElectricityWater.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/assets/seed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/assets/seed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/AdminElectricityRegionalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/AdminElectricityRegionalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/dao/ElectricityRegionalAdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/dao/ElectricityRegionalAdminDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/impl/UserRegional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/impl/UserRegional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-electricity-water.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/HTML/superadmin/Superadmin-electricity-water.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/JS/SolarSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/JS/SolarSearch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +33,10 @@
         <option value="JavaScript File" />
         <option value="Jsp File" />
         <option value="CSS File" />
-        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -1013,7 +1019,7 @@
       <workItem from="1713178918639" duration="2807000" />
       <workItem from="1713182079163" duration="2500000" />
       <workItem from="1713185280320" duration="964000" />
-      <workItem from="1713196522765" duration="1009000" />
+      <workItem from="1713196522765" duration="7917000" />
     </task>
     <task id="LOCAL-00001" summary="Commi revert">
       <option name="closed" value="true" />

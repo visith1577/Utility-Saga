@@ -22,6 +22,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../JS/SuperAdminElectricityWater.js"></script>
     <link href="../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="../../CSS/forms.css">
@@ -55,6 +56,13 @@
             <div class="buttons">
                 <button class="button" onclick="openPopup('popupForm')">Add Electricity Admins</button>
               </div>
+
+            <div>
+                <input type="text" id="nic" placeholder="Enter NIC for Electricity">
+                <button onclick="search('nic')">Search</button>
+            </div>
+            <div id="results"></div>
+
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
                     <h2 class="popup-title">Add Electricity Admin</h2>
@@ -140,6 +148,13 @@
             </table>
 
             <h2 class="title">Water Admins</h2>
+
+            <div>
+                <input type="text" id="nic2" placeholder="Enter NIC for Water">
+                <button onclick="search('nic2')">Search</button>
+            </div>
+            <div id="results2"></div>
+
             <div class="buttons">
                 <button class="button" onclick="openPopup('wpopupForm')">Add Water Admins</button>
             </div>
