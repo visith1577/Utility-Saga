@@ -11,8 +11,22 @@
 <%@ page import="DAO.dao.WaterAdminDAO" %>
 <%@ page import="java.util.List" %>
 
-<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.MAIN);%>
-<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.MAIN);%>
+<%
+    List<ElectricityAdminModel> admins = null;
+    try {
+        admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.MAIN);
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+%>
+<%
+    List<ElectricityAdminModel> wadmins = null;
+    try {
+        wadmins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.MAIN);
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +57,7 @@
                     </div>
                     <ul class="menu-items">
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
-                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
+                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/solar-accounts">Solar</a></li>
                         <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                     </ul>
                     <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
@@ -237,8 +251,6 @@
             </div>
 
             </div>
-        </div>
-    </div>
 
 </body>
 <script src="../../JS/dashboard.js"></script>

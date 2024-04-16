@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Liviru Weerasinghe
@@ -5,20 +6,9 @@
   Time: 8:42 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="model.SolarCompanyModel" %>
-<%@ page import="DAO.dao.RegisterSolarDAO" %>
-<%@ page import="java.util.List" %>
 <%
   // Get the context path dynamically
   String contextPath = request.getContextPath();
-%>
-<%
-    List<SolarCompanyModel> companies = null;
-    try {
-        companies = new RegisterSolarDAO().getRegisteredCompanies();
-    } catch (Exception e) {
-        throw new RuntimeException(e);
-    }
 %>
 
 <!DOCTYPE html>
@@ -37,6 +27,7 @@
   <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
   <script src="<%= request.getContextPath() %>/public/JS/SolarSearch.js"></script>
   <script>
+    let contextPath = '<%= contextPath %>';
     window.onscroll = function () {
       scrollFunction()
     }
@@ -87,80 +78,97 @@
 
 </head>
 
-<body>
-<div class="wrapper">
-  <div class="navv">
-    <header class="navbar">
-      <div class="navbar-container container">
-        <label for="hamburger"></label>
-        <input type="checkbox" name="hamburger" id="hamburger">
-        <div class="hamburger-lines">
-          <span class="line line1"></span>
-          <span class="line line2"></span>
-          <span class="line line3"></span>
-        </div>
-        <ul class="menu-items">
-          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
-          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
-          <li class="menu-items-li"><a href="#">Logout</a></li>
-        </ul>
-        <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+  <body>
+    <div class="wrapper">
+      <div class="navv">
+        <header class="navbar">
+          <div class="navbar-container container">
+            <label for="hamburger"></label>
+            <input type="checkbox" name="hamburger" id="hamburger">
+            <div class="hamburger-lines">
+              <span class="line line1"></span>
+              <span class="line line2"></span>
+              <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
+              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
+              <li class="menu-items-li"><a href="#">Logout</a></li>
+            </ul>
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+          </div>
+        </header>
       </div>
-    </header>
-  </div>
 
-  <div style="margin-top: 100px">
-  <input type="text" id="nic" placeholder="Enter Owner NIC">
-  <button onclick="search()">Search</button>
+      <div style="margin-top: 100px">
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/solar-accounts">
+          <label for="nic"></label>
+          <input name="id" type="text" id="nic" placeholder="Enter Owner NIC">
 
-  </div>
+          <button type="submit" name="search">Search</button>
+          <button type="button" id="resetButton">Reset</button>
+        </form>
+      </div>
+      <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+          document.getElementById('nic').value = '';
+          document.getElementById('searchForm').submit();
+        });
+      </script>
 
-  <div class="middle" id="middle">
-    <div id="results"></div>
+      <div class="middle" id="middle">
+        <div id="results"></div>
 
-    <h4 class="title">Solar Companies</h4>
+        <h4 class="title">Solar Companies</h4>
 
-    <table class="table">
-      <tr>
-        <th>Company Name</th>
-        <th>BRN</th>
-        <th>Owner-NIC</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Mobile</th>
-        <th>Company Phone</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>District</th>
-        <th>Remarks</th>
-        <th>Approved Status</th>
-        <th>Submit</th>
-      </tr>
-      <% for (SolarCompanyModel company : companies) { %>
-      <tr data-bnum="<%= company.getBNum() %>">
-        <td><%= company.getCompanyName() %></td>
-        <td><%= company.getBNum() %></td>
-        <td><%= company.getOwnerNIC() %></td>
-        <td><%= company.getUsername() %></td>
-        <td><%= company.getPwd() %></td>
-        <td><%= company.getMobile() %></td>
-        <td><%= company.getLandNo() %></td>
-        <td><%= company.getEmail() %></td>
-        <td><%= company.getAddress() %></td>
-        <td><%= company.getDistrict() %></td>
-        <td><%= company.getRemarks() %></td>
-        <td>
-          <select name="approvalStatus">
-            <option  value="PENDING" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.PENDING ? "selected" : "" %>>Pending</option>
-            <option  value="APPROVED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.APPROVED ? "selected" : "" %>>Approved</option>
-            <option  value="REJECTED" <%= company.getApprovalStatus() == SolarCompanyModel.ApprovalStatus.REJECTED ? "selected" : "" %>>Rejected</option>
-          </select>
-        </td>
-        <td><button class="submit-btn" id="<%= company.getBNum() %>">Submit</button></td>
-      </tr>
-      <% } %>
-    </table>
-  </div>
-</div>
-</body>
+        <table class="table">
+          <tr>
+            <th>Company Name</th>
+            <th>BRN</th>
+            <th>Owner-NIC</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Mobile</th>
+            <th>Company Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>Remarks</th>
+            <th>Approved Status</th>
+            <th>Submit</th>
+          </tr>
+          <c:if test="${empty requestScope.solarCompanies}">
+            <tr>
+              <td colspan="12">No companies found</td>
+            </tr>
+          </c:if>
+          <c:if test="${not empty requestScope.solarCompanies}">
+            <c:forEach items="${requestScope.solarCompanies}" var="company">
+              <tr  data-bnum="${company.BNum}">
+                <td>${company.companyName}</td>
+                <td>${company.BNum}</td>
+                <td>${company.ownerNIC}</td>
+                <td>${company.username}</td>
+                <td>${company.pwd}</td>
+                <td>${company.mobile}</td>
+                <td>${company.landNo}</td>
+                <td>${company.email}</td>
+                <td>${company.address}</td>
+                <td>${company.district}</td>
+                <td>${company.remarks}</td>
+                <td>
+                  <select name="approvalStatus">
+                    <option  value="PENDING" ${company.approvalStatus == 'PENDING' ? 'selected' : ''}>Pending</option>
+                    <option  value="APPROVED" ${company.approvalStatus == 'APPROVED' ? 'selected' : ''}>Approved</option>
+                    <option  value="REJECTED" ${company.approvalStatus == 'REJECTED' ? 'selected' : ''}>Rejected</option>
+                  </select>
+                </td>
+                <td><button class="submit-btn" id="${company.BNum}">Submit</button></td>
+              </tr>
+            </c:forEach>
+          </c:if>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>
