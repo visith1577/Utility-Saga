@@ -43,7 +43,7 @@
     <div class="fcontainer">
         <h2>Notification Handling | To Regional admins</h2>
         <div class="form-box">
-            <form>
+            <form id="region">
                 <label for="title">Notification Title:</label>
                 <input type="text" name="title" id="title" required>
                 <label for="region">Select the Region:</label>

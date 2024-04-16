@@ -124,7 +124,7 @@
                 <td><%= admin.getEmail() %></td>
                 <td><%= admin.getPassword() %></td>
                 <td><%= admin.getEmpId() %></td>
-                <td><%= admin.getUname() %></td>
+                <td><%= admin.getUsername() %></td>
                 <td><%= admin.getFirstname() %></td>
                 <td><%= admin.getLastname() %></td>
                 <td><%= admin.getRole() %></td>

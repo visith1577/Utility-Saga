@@ -1,8 +1,7 @@
 function search(identifier) {
     var nic = document.getElementById(identifier).value;
 
-    if (identifier === 'nic') {
-        fetch('/UtilitySaga_war_exploded/superadmin/electricity/search?nic=' + nic)
+        fetch(contextPath +'/superadmin/electricity/search?nic=' + nic)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -16,22 +15,7 @@ function search(identifier) {
                 console.error('There was a problem with the fetch operation:', error);
                 alert('Error: ' + error.message);
             });
-    } else if (identifier === 'nic2') {
-        fetch('/UtilitySaga_war_exploded/superadmin/water/search?nic=' + nic)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                displayResultsWater(data);
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-                alert('Error: ' + error.message);
-            });
-    }
+
 
 }
 
