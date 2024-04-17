@@ -91,8 +91,8 @@
               <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/regional-electricity-accounts">Electricity/Water</a></li>
-              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
+              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">Electricity/Water</a></li>
+              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/solar-accounts">Solar</a></li>
               <li class="menu-items-li"><a href="<%= request.getContextPath() %>/logout">Logout</a></li>
             </ul>
             <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
