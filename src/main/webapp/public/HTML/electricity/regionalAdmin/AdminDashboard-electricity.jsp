@@ -19,15 +19,18 @@
     <script src="<%= request.getContextPath() %>/public/JS/RegionalAdminUsers.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        let contextPath = '<%= contextPath %>';
-        document.querySelector('table').addEventListener('click', function(event) {
-            if (event.target.classList.contains('change-status-btn')) {
-                changeUserStatus(event);
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            let contextPath = '<%= contextPath %>';
+            document.querySelector('table').addEventListener('click', function(event) {
+                if (event.target.classList.contains('change-status-btn')) {
+                    changeUserStatus(event);
+                }
+            });
         });
 
 
         function changeUserStatus(event) {
+            let contextPath = '<%= contextPath %>';
             console.log('changeUserStatus function called');
 
             const row = event.target.closest('tr');
@@ -39,10 +42,10 @@
             const currentStatus = row.querySelector('td:nth-child(7)').textContent;
             console.log('Current Status:', currentStatus);
 
-            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
             console.log('New Status:', newStatus);
 
-            fetch('/user-status', {
+            fetch(contextPath+ '/user-status', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

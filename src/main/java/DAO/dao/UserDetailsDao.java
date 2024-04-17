@@ -350,12 +350,20 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     @Override
     public  void updateAccountStatus(String accountNumber, String newStatus) throws SQLException{
         Connection connection = Connectdb.getConnection();
+        System.out.println("Account before exec: "+accountNumber);
+        System.out.println("Status before exec: "+newStatus);
 
         try {
-            String query = "UPDATE eaccount_list SET user_status = ? WHERE account_number = ?";
+            String query = "UPDATE eaccount_list SET meter_status = ? WHERE account_number = ?";
+            System.out.println("SQL Query: " + query);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, newStatus.toUpperCase());
             preparedStatement.setString(2, accountNumber);
+
+            System.out.println("Prepared Statement Parameters:");
+            System.out.println("  newStatus (uppercase): " + newStatus.toUpperCase());
+            System.out.println("  accountNumber: " + accountNumber);
+
             preparedStatement.executeUpdate();
         } finally {
             Connectdb.closeConnection(connection);
