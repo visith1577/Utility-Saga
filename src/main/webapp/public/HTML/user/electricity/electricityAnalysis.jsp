@@ -70,6 +70,71 @@
 <div class="dashboard">
     <div class="content">
         <div class="main-content">
+            <section class="search component electricity">
+                    <h2 class="select-heading">Account Number</h2>
+                    <div class="select-box">
+                        <div class="options-container">
+                            <div class="option">
+                                <input
+                                        type="radio"
+                                        class="radio"
+                                        id="automobiles"
+                                        name="category"
+                                />
+                                <label for="automobiles">Automobiles</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="film" name="category" />
+                                <label for="film">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="science" name="category" />
+                                <label for="science">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="art" name="category" />
+                                <label for="art">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="music" name="category" />
+                                <label for="music">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="travel" name="category" />
+                                <label for="travel">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="sports" name="category" />
+                                <label for="sports">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="news" name="category" />
+                                <label for="news">oreoAcc12</label>
+                            </div>
+
+                            <div class="option">
+                                <input type="radio" class="radio" id="tutorials" name="category" />
+                                <label for="tutorials">Tutorials</label>
+                            </div>
+                        </div>
+
+                        <div class="selected">
+                            Select Account Number
+                        </div>
+                        <div class="search-box">
+                            <label>
+                                <input type="text" placeholder="search account">
+                            </label>
+                        </div>
+                    </div>
+            </section>
 
             <div class="stats flex">
                 <div class="stats-box sales">
@@ -85,57 +150,27 @@
 
             <div class="stats bills">
                 <div class="stats-box calc-box">
-                    <h2 class="heading">Bill Calculation</h2>
-                    <div class="billcalculation">
-                        <div class="a_row">
-                            <label for="Category">Select your Category</label>
-                            <select name="Category" id="Category">
-                                <option value="Domestic">Domestic</option>
-                                <option value="Industrial">Industrial</option>
-                                <option value="General">General</option>
-                                <option value="Government">Government</option>
-                                <option value="Hotel">Hotel</option>
-                                <option value="Educational">Educational</option>
-                                <option value="Religious">Religious</option>
-                            </select>
-                        </div>
-                        <div class="Period">
-                            <div class="a_row">
-                                <label for="lastReadingDate">Last Reading Date:</label>
-                                <input type="date" id="lastReadingDate" name="lastReadingDate">
-                        
-                                <label for="currentReadingDate">Current Reading Date:</label>
-                                <input type="date" id="currentReadingDate" name="currentReadingDate">
-                            </div>
-                            <div class="a_row">
-                                <label for="lastReading">Last Reading:</label>
-                                <input type="number" id="lastReading" name="lastReading">
-                        
-                                <label for="currentReading">Current Reading:</label>
-                                <input type="number" id="currentReading" name="currentReading">
-                            </div>
-                        </div>
-                        <div class="calculation">
-                            <div class="btn-a_row">
-                                <button type="button" name="calculate">Calculate the amounts</button>
-                                <button type="button" name="reset">Reset</button>
-                            </div>
-                            <div class="a_row">
-                                <label for="result1">Bill Amount(Normal Tariff):</label>
-                                <input type="number" id="result1" name="result" readonly>
-                            </div>
-                            <div class="a_row">
-                                <label for="result2">Bill Amount(Variable Tariff):</label>
-                                <input type="number" id="result2" name="result" readonly>
-                            </div>
-
-                            <div class="a_row">
-                                <p>For more details on Tariffs,  <a href="">click here</a></p>
-                            </div>
-                                <label for="t_result">The most suitable tariff for you:</label>
-                                <input type="text" id="t_result" name="t_result" readonly>
-                        </div>
-                        
+                    <h1 class="heading">Calender</h1>
+                    <div class="calendar">
+                        <header>
+                            <h3 class="month"></h3>
+                            <nav>
+                                <button id="prev"></button>
+                                <button id="next"></button>
+                            </nav>
+                        </header>
+                        <section>
+                            <ul class="days">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="dates"></ul>
+                        </section>
                     </div>          
                 </div>
             
@@ -219,41 +254,6 @@
                     <canvas id="bills"></canvas>
                 </div>
             </div>
-
-            <div class="product-stats flex">
-                <div class="product-sales stats-box">
-                    <h2 class="heading">IOT Devices</h2>
-                    <canvas id="iot"></canvas>
-                </div>
-
-                <div class="top-selling stats-box1">
-                    <h2 class="heading">Usages of iOT Devices</h2>
-                    <table class="top-selling-products1">
-                        <tr>
-                            <th>Device</th>
-                            <th>Usage</th>
-                            <th>Power Consumption</th>
-                        </tr>
-                        <tr>
-                            <td>AC</td>
-                            <td>25</td>
-                            <td>3000W</td>
-                        </tr>
-                        <tr>
-                            <td>Fan 1</td>
-                            <td>5</td>
-                            <td>250 W</td>
-                        </tr>
-
-                        <tr>
-                            <td>Fan 2</td>
-                            <td>10</td>
-                            <td>250 W</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
