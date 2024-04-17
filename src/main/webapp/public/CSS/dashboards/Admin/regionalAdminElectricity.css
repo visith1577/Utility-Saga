@@ -63,6 +63,7 @@ canvas {
 }
 
 .details{
+    margin-top: 3vh;
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -105,7 +106,7 @@ canvas {
     color: var(--secondary-color);
 }
 
- .tablediv .customerdetails .titlebar .btn{
+ .btn{
     position: relative;
     padding: 5px 10px;
     background-color: var(--electricity-color2);

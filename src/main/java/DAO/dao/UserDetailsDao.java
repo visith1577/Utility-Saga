@@ -302,7 +302,41 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
             user.setEmail(rs.getString("email"));
             user.setConnectionStatus(rs.getString("meter_status"));
             user.setAddress(rs.getString("address"));
-            user.setAccount_number(rs.getString("account_number"));
+            user.setAccountNumber(rs.getString("account_number"));
+
+            users.add(user);
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+        return users;
+    }
+
+    @Override
+    public List<UserModel> getUserDetailsByNICRegionalAdmin(String acc) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<UserModel> users = new ArrayList<>();
+        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
+                "FROM users u\n" +
+                "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
+                "JOIN electricity_admin ON eal.region= electricity_admin.region WHERE eal.account_number = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, acc);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()){
+            UserModel user = new UserModel();
+            user.setNic(rs.getString("nic"));
+            user.setFirstName(rs.getString("firstname"));
+            user.setLastName(rs.getString("lastname"));
+            user.setMobile(rs.getString("mobile"));
+            user.setEmail(rs.getString("email"));
+            user.setConnectionStatus(rs.getString("meter_status"));
+            user.setAddress(rs.getString("address"));
+            user.setAccountNumber(rs.getString("account_number"));
 
             users.add(user);
         }
