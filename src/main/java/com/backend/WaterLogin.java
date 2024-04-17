@@ -55,7 +55,7 @@ public class WaterLogin extends HttpServlet{
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
                     if (role == UserRAdmin.Role.MAIN) {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/water/admin/" + dash);//Change
+                        resp.sendRedirect(req.getContextPath() + "/main-admin/water-accounts");
                     } else {
                         resp.sendRedirect(req.getContextPath() + "/public/HTML/water/regionalAdmin/" + dash);
                     }
