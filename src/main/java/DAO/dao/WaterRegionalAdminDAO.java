@@ -32,7 +32,7 @@ public class WaterRegionalAdminDAO implements WaterRegional{
             admin.setEmail(rs.getString("email"));
             admin.setPassword(rs.getString("password"));
             admin.setEmpId(rs.getString("empid"));
-            admin.setUname(rs.getString("uname"));
+            admin.setUsername(rs.getString("uname"));
             admin.setFirstname(rs.getString("firstname"));
             admin.setLastname(rs.getString("lastname"));
             admin.setRole(ElectricityAdminModel.Role.valueOf(rs.getString("role")));
@@ -45,5 +45,55 @@ public class WaterRegionalAdminDAO implements WaterRegional{
         stmt.close();
         con.close();
         return admins;
+    }
+
+    @Override
+    public String getPasswordById(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+
+        String storedHash;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT password FROM water_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    storedHash = result.getString("password");
+                } else {
+                    storedHash = null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return storedHash;
+    }
+
+    @Override
+    public UserRAdmin.Role getUserRoleById(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        UserRAdmin.Role role = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT role FROM water_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    role = UserRAdmin.Role.valueOf(result.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return role;
     }
 }

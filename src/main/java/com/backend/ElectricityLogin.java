@@ -54,7 +54,7 @@ public class ElectricityLogin extends HttpServlet{
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
                     if (role == UserRAdmin.Role.MAIN) {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/admin/" + dash);//Change
+                        resp.sendRedirect(req.getContextPath() + "/main-admin/electricity-accounts");//Change
                     } else {
                         resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/regionalAdmin/" + dash);
                     }

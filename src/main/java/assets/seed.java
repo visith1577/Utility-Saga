@@ -50,7 +50,7 @@ public class seed extends HttpServlet {
         user.setEmail(email);
         user.setUtilityType(ElectricityAdminModel.UtilityType.valueOf("CEB"));
         user.setEmpId(empid);
-        user.setUname(uname);
+        user.setUsername(uname);
         user.setFirstname(fname);
         user.setLastname(lname);
         user.setRole(ElectricityAdminModel.Role.valueOf("REGIONAL"));

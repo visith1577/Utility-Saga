@@ -13,3 +13,5 @@ CREATE TABLE water_admin(
   CONSTRAINT check_email_water CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
   CONSTRAINT check_role_water CHECK (role IN ('MAIN', 'REGIONAL'))
 );
+
+DELETE from water_admin WHERE region = 'WDematagoda';
