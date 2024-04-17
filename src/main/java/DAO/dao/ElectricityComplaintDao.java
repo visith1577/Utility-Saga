@@ -58,10 +58,10 @@ public class ElectricityComplaintDao implements Complaints {
             complaint.setComplaintNo(rs.getString("complaint_no"));
             complaint.setComplaintCategory(rs.getString("complaint_category"));
             complaint.setComplaintType(rs.getString("complaint_type"));
-            complaint.setAccountNumber(rs.getString("account_number"));
             complaint.setNic(rs.getString("nic"));
-            complaint.setEmail(rs.getString("email"));
-            complaint.setPhoneNumber(rs.getString("mobile"));
+            complaint.setAccountNumber(rs.getString("account_number"));
+            complaint.setMobile(rs.getString("mobile"));
+            complaint.setComplaintStatus(ComplaintModel.ComplaintStatus.valueOf(rs.getString("complaint_status")));
             complaint.setComplaintDescription(rs.getString("complaint"));
 
             complaint_list.add(complaint);
@@ -118,6 +118,7 @@ public class ElectricityComplaintDao implements Complaints {
     public void updateApprovalStatus(String complaintno, String status) throws SQLException {
         Connection connection = Connectdb.getConnection();
 
+
         try (PreparedStatement stmt = connection.prepareStatement("UPDATE electricity_complaint SET complaint_status = ? WHERE complaint_no = ?")) {
 
             stmt.setString(1, status);
@@ -135,6 +136,8 @@ public class ElectricityComplaintDao implements Complaints {
     public ComplaintModel getApprovalStatus(String complaintno) throws SQLException {
         Connection connection = Connectdb.getConnection();
         ComplaintModel model = new ComplaintModel();
+        System.out.println("getApprovalStatus called");
+        System.out.println("complaintno: "+ complaintno);
 
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT complaint_status FROM electricity_complaint WHERE complaint_no = ?");
@@ -143,6 +146,7 @@ public class ElectricityComplaintDao implements Complaints {
             try (ResultSet result = stmt.executeQuery()){
                 while(result.next()) {
                     ComplaintModel.ComplaintStatus status = ComplaintModel.ComplaintStatus.valueOf(result.getString("complaint_status"));
+                    System.out.println("Final status: "+status);
                     model.setComplaintStatus(status);
                 }
             }

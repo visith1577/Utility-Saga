@@ -36,7 +36,7 @@ public class UpdateRegionalElecComplaintStatus extends HttpServlet {
 
             Complaints dao = new ElectricityComplaintDao();
             dao.updateApprovalStatus(bNum, status.toUpperCase());
-//            System.out.println(status);
+            System.out.println(status);
             ComplaintModel model = dao.getApprovalStatus(bNum);
 
             Gson gson = new Gson();

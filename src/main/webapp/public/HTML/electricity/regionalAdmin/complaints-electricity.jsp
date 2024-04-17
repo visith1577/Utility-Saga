@@ -16,9 +16,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electricity Regional admin dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
@@ -48,7 +51,8 @@
             submitButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const row = button.parentNode.parentNode;
-                    const bNum = row.dataset.bnum;
+                    const bNum = row.cells[0].textContent;
+                    console.log(bNum)
                     const statusSelect = row.querySelector('select[name="complaintStatus"]');
                     const status = statusSelect.value;
                     console.log(status)
@@ -139,6 +143,7 @@
                             <th>Account Number</th>
                             <th>Mobile</th>
                             <th>Complaint Status</th>
+                            <th>Select</th>
                             <th>Description</th>
                         </tr>
                         </thead>
@@ -156,6 +161,7 @@
                             <td>${complaint.complaintNo}</td>
                             <td>${complaint.complaintCategory}</td>
                             <td>${complaint.complaintType}</td>
+                            <td>${complaint.nic}</td>
                             <td>${complaint.accountNumber}</td>
                             <td>${complaint.mobile}</td>
                             <td>${complaint.complaintStatus}</td>
@@ -165,7 +171,7 @@
                                 <option  value="DONE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" }>Done</option>
                             </select></td>
                             <td>${complaint.complaintDescription}</td>
-                            <td><button class="submit-btn" data-bnum="<${complaint.complaintNo}" >Submit</button></td>
+                            <td><button class="submit-btn" id="${complaint.complaintNo}" >Submit</button></td>
                         </tr>
                         </c:forEach>
                     </c:if>
