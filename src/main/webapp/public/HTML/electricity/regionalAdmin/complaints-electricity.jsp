@@ -7,10 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<%@ page import="DAO.dao.ElectricityComplaintDao" %>
-<%@ page import="model.ComplaintModel" %>
-<%@ page import="java.util.List" %>
-<% List<ComplaintModel> complaints = new ElectricityComplaintDao().getComplaints();%>
+<%
+    String contextPath = request.getContextPath();
+%>
 
 <html lang="en">
 <head>
@@ -20,9 +19,62 @@
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../../CSS/forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalComplaintSearch.js"></script>
+    <script>
+        let contextPath = '<%= contextPath %>';
+        window.onscroll = function () {
+            scrollFunction()
+        }
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+                document.getElementById("sidebar").style.height = "80%";
+            } else {
+                document.getElementById("sidebar").style.height = "85%";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const submitButtons = document.querySelectorAll('.submit-btn');
+
+            console.log(submitButtons);
+
+            submitButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const row = button.parentNode.parentNode;
+                    const bNum = row.dataset.bnum;
+                    const statusSelect = row.querySelector('select[name="complaintStatus"]');
+                    const status = statusSelect.value;
+                    console.log(status)
+                    updateApprovalStatus(bNum, status)
+                });
+            });
+
+            function updateApprovalStatus(bNum, status) {
+                const contextPath = '<%= contextPath %>';
+                fetch(contextPath + '/UpdateRegionalComplaintStatus?companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status), {
+                    method: "POST"
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Response was not ok');
+                        }
+                        return response.json();
+                    }).then(_ => {
+                    toastr.success("Status of " + bNum + " updated to " + status + " successfully.");
+                }).catch(error => {
+                    console.error("Problem updating approval status: ", error);
+                })
+            }
+        });
+    </script>
+
 
 </head>
 <body>
@@ -39,7 +91,7 @@
                 </div>
                 <ul class="menu-items">
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">Customers</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/complaints-electricity.jsp">Complaints</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/complaints">Complaints</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-payment.jsp">Payment</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                 </ul>
@@ -49,6 +101,23 @@
     </div>
 </header>
 
+
+    <div style="margin-top: 12.5vh">
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/complaints">
+            <label for="nic"></label>
+            <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">
+
+            <button type="submit" name="search" class="btn">Search</button>
+            <button type="button" id="resetButton" class="btn">Reset</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.getElementById('nic').value = '';
+            document.getElementById('searchForm').submit();
+        });
+    </script>
+
     <div class="complaints">
         <div class="tablediv">
             <div class="customerdetails">
@@ -56,13 +125,16 @@
                     <h2>Complaint Details</h2>
                     <a href="#" class="btn">View All</a>
                 </div>
+
+                <div id="results"></div>
+
                 <div class="table-container">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Complaint_Number</th>
+                            <th>Complaint Number</th>
                             <th>Category</th>
-                            <th>Complaint_type</th>
+                            <th>Complaint Type</th>
                             <th>NIC</th>
                             <th>Account Number</th>
                             <th>Mobile</th>
@@ -71,25 +143,32 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                    <c:if test="${empty requestScope.electricityRegionalComplaints}">
                         <tr>
-                                <% for (ComplaintModel complaint : complaints) { %>
+                            <td colspan="12">No companies found</td>
+                        </tr>
+                    </c:if>
+                    <c:if test="${not empty requestScope.electricityRegionalComplaints}">
+                        <c:forEach items="${requestScope.electricityRegionalComplaints}" var="complaint">
+
                         <tr>
-                            <td><%= complaint.getComplaint_no() %></td>
-                            <td><%= complaint.getComplaint_category() %></td>
-                            <td><%= complaint.getComplaint_type() %></td>
-                            <td><%= complaint.getNic() %></td>
-                            <td><%= complaint.getAccount_number() %></td>
-                            <td><%= complaint.getPhoneNumber() %></td>
-                            <td><select name="complaintStatus<%= complaint.getComplaint_no() %>">
-                                <option  value="ACTIVE" <%= complaint.getComplaintStatus() == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" %>>Active</option>
-                                <option  value="PENDING" <%= complaint.getComplaintStatus() == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" %>>Pending</option>
-                                <option  value="DONE" <%= complaint.getComplaintStatus() == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" %>>Done</option>
+                            <td>${complaint.complaintNo}</td>
+                            <td>${complaint.complaintCategory}</td>
+                            <td>${complaint.complaintType}</td>
+                            <td>${complaint.accountNumber}</td>
+                            <td>${complaint.mobile}</td>
+                            <td>${complaint.complaintStatus}</td>
+                            <td><select name="complaintStatus">
+                                <option  value="ACTIVE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" }>Active</option>
+                                <option  value="PENDING" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" }>Pending</option>
+                                <option  value="DONE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" }>Done</option>
                             </select></td>
-                            <td><%= complaint.getComplaint_description()%></td>
-                            <td><button class="submit-btn" data-bnum="<%= complaint.getComplaint_no() %>" >Submit</button></td>
+                            <td>${complaint.complaintDescription}</td>
+                            <td><button class="submit-btn" data-bnum="<${complaint.complaintNo}" >Submit</button></td>
                         </tr>
-                        <% } %>
-                        </tr>
+                        </c:forEach>
+                    </c:if>
                         </tbody>
                     </table>
                 </div>
@@ -98,6 +177,5 @@
     </div>
 </section>
 
-<script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
 </body>
 </html>
