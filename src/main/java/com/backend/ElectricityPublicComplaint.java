@@ -40,17 +40,17 @@ public class ElectricityPublicComplaint extends HttpServlet {
         String txtArea = req.getParameter("txtArea");
 
         ComplaintModel eComplaint = new ComplaintModel();
-        eComplaint.setComplaint_category(complainCat);
+        eComplaint.setComplaintCategory(complainCat);
         if (complaint_types.contains(complainType)) {
-            eComplaint.setComplaint_type(complainType);
+            eComplaint.setComplaintType(complainType);
         } else {
-            eComplaint.setComplaint_type("Others");
+            eComplaint.setComplaintType("Others");
         }
-        eComplaint.setAccount_number(accNum);
+        eComplaint.setAccountNumber(accNum);
         eComplaint.setEmail(email);
         eComplaint.setNic(nic);
         eComplaint.setPhoneNumber(telNum);
-        eComplaint.setComplaint_description(txtArea);
+        eComplaint.setComplaintDescription(txtArea);
 
         ElectricityComplaintDao dao = new ElectricityComplaintDao();
 

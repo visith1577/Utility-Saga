@@ -56,7 +56,7 @@ public class ElectricityLogin extends HttpServlet{
                     if (role == UserRAdmin.Role.MAIN) {
                         resp.sendRedirect(req.getContextPath() + "/main-admin/electricity-accounts");//Change
                     } else {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/regionalAdmin/" + dash);
+                        resp.sendRedirect(req.getContextPath() + "/electricity/regional-admin/user-accounts");
                     }
 
                 } else {

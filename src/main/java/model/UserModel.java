@@ -21,7 +21,7 @@ public class UserModel {
     private String connectionType;
     private String connectionStatus;
     private InputStream image;
-    private String account_number;
+    private String accountNumber;
 
     public UserModel(String firstName, String lastName, String mobile) {
     }
@@ -159,11 +159,11 @@ public class UserModel {
         this.connectionStatus = connectionStatus;
     }
 
-    public String getAccount_number() {
-        return account_number;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setAccount_number(String account_number) {
-        this.account_number = account_number;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }

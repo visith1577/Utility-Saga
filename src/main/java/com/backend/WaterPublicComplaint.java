@@ -39,17 +39,17 @@ public class WaterPublicComplaint extends HttpServlet {
         String txtArea = req.getParameter("txtArea");
 
         ComplaintModel wComplaint = new ComplaintModel();
-        wComplaint.setComplaint_category(complainCat);
+        wComplaint.setComplaintCategory(complainCat);
         if (complaint_types.contains(complainType)) {
-            wComplaint.setComplaint_type(complainType);
+            wComplaint.setComplaintType(complainType);
         } else {
-            wComplaint.setComplaint_type("Others");
+            wComplaint.setComplaintType("Others");
         }
-        wComplaint.setAccount_number(accNum);
+        wComplaint.setAccountNumber(accNum);
         wComplaint.setEmail(email);
         wComplaint.setNic(nic);
         wComplaint.setPhoneNumber(telNum);
-        wComplaint.setComplaint_description(txtArea);
+        wComplaint.setComplaintDescription(txtArea);
 
 
         WaterComplaintsDao dao = new WaterComplaintsDao();

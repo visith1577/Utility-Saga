@@ -30,5 +30,7 @@ public interface UserDetails {
 
      List<UserModel> getUserDetailsRegionalAdmin() throws SQLException;
 
+    List<UserModel> getUserDetailsByNICRegionalAdmin(String nic) throws SQLException;
+
     void updateAccountStatus(String accountNumber, String newStatus) throws SQLException;
 }
