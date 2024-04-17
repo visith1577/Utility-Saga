@@ -10,14 +10,14 @@ import model.UserRAdmin;
 import java.io.IOException;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/electricity/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        urlPatterns = {"/public/HTML/electricity/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*", "/main-admin/electricity-accounts/*"},
         filterName ="Auth-filter__electricity_admin",
         description = "Authentication middleware"
 )
 public class AdminElectricityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Authentication Filter <--------__in__-------->");
+        System.out.println("Authentication Filter Admin <--------__in__-------->");
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;

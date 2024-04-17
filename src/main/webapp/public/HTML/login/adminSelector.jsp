@@ -57,9 +57,6 @@
                         <a href="waterLogin.jsp">Water</a>
                     </button>
 
-                    <button class="login-selector__btn cmp-btn">
-                        <a href="fuelLogin.jsp">Fuel</a>
-                    </button>
                 </div>
             </section>
         </div>

@@ -5,6 +5,7 @@
     --electricity-color: #e2d412;
     --electricity-color2: #b2ad0f;
     --electricity-color3: #fbffdac4;
+    --electricity-color4: #f5f6fa;
     --warning-color: #ffff00;
     --delete-color: #c00000;
     --delete-color2: #ff0000;
@@ -205,4 +206,286 @@ button[name="goto-devicepage"]:hover {
     .stats-box, .top-selling {
         flex: 1 1 100%;
     }
+}
+
+.search {
+    background: #EDEDED;
+    padding: 5vh;
+    margin-top: 3vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.select-heading {
+    margin: 16px;
+}
+
+.select-box {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    position: relative;
+}
+
+.select-box .options-container {
+    background: #2f3640;
+    color: #f5f6fa;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+
+    order: 1;
+}
+
+.selected {
+    background: #2f3640;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #f5f6fa;
+    position: relative;
+
+    order: 0;
+}
+
+.selected::after {
+    content: "";
+    /*background: url("img/arrow-down.svg");*/
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 5px;
+
+    transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 54px;
+}
+
+.select-box .options-container.active + .selected::after {
+    transform: rotateX(180deg);
+    top: -6px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+    width: 8px;
+    background: #0d141f;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+    background: #525861;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.select-box .option:hover {
+    background: #414b57;
+}
+
+.select-box label {
+    cursor: pointer;
+}
+
+.select-box .option .radio {
+    display: none;
+}
+
+.search-box input {
+    width: 100%;
+    position: absolute;
+    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 8px 8px 0 0;
+    z-index: 100;
+    border: 8px solid #2f3640;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+.select-box .options-container.active ~ .search-box input {
+    opacity: 1;
+    pointer-events: auto;
+
+}
+
+.heading {
+    font-weight: 600;
+    text-align: center;
+    color: var(--electricity-color2);
+    margin-bottom: 2rem;
+}
+
+.month {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--electricity-color3);
+    margin-bottom: 1rem;
+}
+
+.calendar {
+    margin: auto;
+    width: 98%;
+    max-width: 380px;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.calendar header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendar nav {
+    display: flex;
+    align-items: center;
+}
+
+.calendar ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    padding-inline: 2vh;
+}
+
+.calendar ul li {
+    width: calc(100% / 7);
+    margin-top: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+#prev,
+#next {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#prev::before,
+#next::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-color: #ccc;
+}
+
+#next::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#prev::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+#prev:hover::before,
+#next:hover::before {
+    border-color: #000;
+}
+
+.days {
+    font-weight: 600;
+}
+
+.dates li.today {
+    color: #fff;
+    cursor: pointer;
+}
+
+.dates li.today::before {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--electricity-color2);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.dates li.breakdown::before {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--delete-color2);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.dates li.breakdown {
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.dates li.inactive {
+    color: #ccc;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe; /* White background */
+    margin: 15% auto; /* Center the modal vertically */
+    padding: 20px;
+    border: 1px solid #888; /* Gray border */
+    width: 80%; /* Width of the modal */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Shadow for depth */
+    font-family: Arial, sans-serif; /* Font family */
+    font-size: 16px; /* Font size */
+    color: #333; /* Text color */
 }

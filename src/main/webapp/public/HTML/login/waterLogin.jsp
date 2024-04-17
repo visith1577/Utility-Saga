@@ -29,7 +29,7 @@
             <%--            <div class="empty-div">--%>
             <%--            </div>--%>
             <section class="login">
-                <div class="login-form">
+                <form action="${pageContext.request.contextPath}/water-login" method="post" class="login-form">
                     <h1 class="login-panel__title login-panel__main">
                         Welcome To Utility Saga
                     </h1>
@@ -46,7 +46,7 @@
                     </h1>
 
                     <label for="Uname" class="login-field">
-                        <input type="text" placeholder="Enter username" id="Uname" name="Uname"
+                        <input type="text" placeholder="Enter Region id:" id="Uname" name="Uname"
                                class="login-field__name">
                     </label>
                     <label for="Pwd" class="login-field">
@@ -62,7 +62,7 @@
                     <a href="#" class="register">
                         Register
                     </a>
-                </div>
+                </form>
             </section>
         </div>
     </body>

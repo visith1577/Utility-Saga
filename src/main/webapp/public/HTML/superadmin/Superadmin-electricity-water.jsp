@@ -5,14 +5,16 @@
   Time: 7:45 AM
   To change this template use File | Settings | File Templates.
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.ElectricityAdminModel" %>
 <%@ page import="DAO.dao.ElectricityAdminDAO" %>
 <%@ page import="DAO.dao.WaterAdminDAO" %>
 <%@ page import="java.util.List" %>
 
-<%List<ElectricityAdminModel> admins = new ElectricityAdminDAO().getElectricityAdmins(ElectricityAdminModel.Role.MAIN);%>
-<%List<ElectricityAdminModel> wadmins = new WaterAdminDAO().getWaterAdmins(ElectricityAdminModel.Role.MAIN);%>
+<%
+    String contextPath = request.getContextPath();
+%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +22,14 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Document</title>
+    <title>Super Admin- Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="../../CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../CSS/forms.css">
+    <script src="../../JS/SuperAdminElectricityWater.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/SuperAdminElectricityWater.js"></script>
+    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
 
 </head>
 
@@ -41,8 +46,8 @@
                         <span class="line line3"></span>
                     </div>
                     <ul class="menu-items">
-                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
-                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
+                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">Electricity/Water</a></li>
+                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/solar-accounts">Solar</a></li>
                         <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                     </ul>
                     <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
@@ -50,11 +55,32 @@
             </header>
         </div>
 
+        <div style="margin-top: 100px">
+            <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
+                <label for="nic"></label>
+                <input name="id" type="text" id="nic" placeholder="Enter EMPID">
+
+                <button type="submit" name="search">Search</button>
+                <button type="button" id="resetButton">Reset</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('resetButton').addEventListener('click', function() {
+                document.getElementById('nic').value = '';
+                document.getElementById('searchForm').submit();
+            });
+        </script>
+
+
+
         <div class="middle" id="middle">
             <h2 class="title">Electricity Admins</h2>
             <div class="buttons">
                 <button class="button" onclick="openPopup('popupForm')">Add Electricity Admins</button>
               </div>
+
+            <div id="results"></div>
+
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
                     <h2 class="popup-title">Add Electricity Admin</h2>
@@ -80,7 +106,7 @@
                         <label for="empid">Employee ID:</label>
                         <input type="text" name="empid" id="empid" required>
 
-                        <label for="uname">User Name:</label>
+                        <label for="uname">Username:</label>
                         <input type="text" name="uname" id="uname" required>
 
                         <label for="fname">First Name:</label>
@@ -120,26 +146,49 @@
                     <th>Main/Regional</th>
                     <th>Mobile</th>
                 </tr>
-                <% for (ElectricityAdminModel admin : admins) { %>
-                <tr>
-                    <td><%= admin.getRegion() %></td>
-                    <td><%= admin.getContactNumber() %></td>
-                    <td><%= admin.getEmail() %></td>
-                    <td><%= admin.getPassword() %></td>
-                    <td><%= admin.getUtilityType() %></td>
-                    <td><%= admin.getEmpId() %></td>
-                    <td><%= admin.getUname() %></td>
-                    <td><%= admin.getFirstname() %></td>
-                    <td><%= admin.getLastname() %></td>
-                    <td><%= admin.getRole() %></td>
-                    <td><%= admin.getMobile() %></td>
+                <c:if test="${empty requestScope.electricityMainAdmins}">
+                    <tr>
+                        <td colspan="12">No admins found</td>
+                    </tr>
+                </c:if>
+                <c:if test="${not empty requestScope.electricityMainAdmins}">
+                <c:forEach items="${requestScope.electricityMainAdmins}" var="admin">
+                    <tr>
+                    <td>${admin.region}</td>
+                    <td>${admin.contactNumber}</td>
+                    <td>${admin.email}</td>
+                    <td>${admin.password}</td>
+                    <td> ${admin.utilityType} </td>
+                    <td> ${admin.empId} </td>
+                    <td> ${admin.username}</td>
+                    <td> ${admin.firstName} </td>
+                    <td> ${admin.lastName}</td>
+                    <td> ${admin.role} </td>
+                    <td> ${admin.mobile}</td>
                 </tr>
-
-                <% } %>
-        
+                </c:forEach>
+                </c:if>
             </table>
 
             <h2 class="title">Water Admins</h2>
+
+            <div>
+                <form id="searchForm2" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
+                    <label for="nic"></label>
+                    <input name="id2" type="text" id="nic2" placeholder="Enter EMPID">
+
+                    <button type="submit" name="search">Search</button>
+                    <button type="button" id="resetButton2">Reset</button>
+                </form>
+            </div>
+            <script>
+                document.getElementById('resetButton2').addEventListener('click', function() {
+                    document.getElementById('nic2').value = '';
+                    document.getElementById('searchForm2').submit();
+                });
+            </script>
+            <div id="results2"></div>
+
             <div class="buttons">
                 <button class="button" onclick="openPopup('wpopupForm')">Add Water Admins</button>
             </div>
@@ -162,7 +211,7 @@
                         <label for="wempid">Employee ID:</label>
                         <input type="text" name="wempid" id="wempid" required>
 
-                        <label for="wuname">User Name:</label>
+                        <label for="wuname">Username:</label>
                         <input type="text" name="wuname" id="wuname" required>
 
                         <label for="wfname">First Name:</label>
@@ -201,33 +250,41 @@
                     <th>Main/Regional</th>
                     <th>Mobile</th>
                 </tr>
-                <% for (ElectricityAdminModel admin : wadmins) { %>
-                <tr>
-                    <td><%= admin.getRegion() %></td>
-                    <td><%= admin.getContactNumber() %></td>
-                    <td><%= admin.getEmail() %></td>
-                    <td><%= admin.getPassword() %></td>
-                    <td><%= admin.getEmpId() %></td>
-                    <td><%= admin.getUname() %></td>
-                    <td><%= admin.getFirstname() %></td>
-                    <td><%= admin.getLastname() %></td>
-                    <td><%= admin.getRole() %></td>
-                    <td><%= admin.getMobile() %></td>
-                </tr>
 
-                <% } %>
+                <c:if test="${empty requestScope.waterMainAdmins}">
+                    <tr>
+                        <td colspan="12">No admins found</td>
+                    </tr>
+                </c:if>
+                <c:if test="${not empty requestScope.waterMainAdmins}">
+                <c:forEach items="${requestScope.waterMainAdmins}" var="admin">
+                <tr>
+                    <td>${admin.region}</td>
+                    <td>${admin.contactNumber}</td>
+                    <td>${admin.email}</td>
+                    <td>${admin.password}</td>
+                    <td> ${admin.utilityType} </td>
+                    <td> ${admin.empId} </td>
+                    <td> ${admin.username}</td>
+                    <td> ${admin.firstName} </td>
+                    <td> ${admin.lastName}</td>
+                    <td> ${admin.role} </td>
+                    <td> ${admin.mobile}</td>
+                </tr>
+                </c:forEach>
+                </c:if>
+
 
             </table>
 
             </div>
 
             </div>
-        </div>
-    </div>
 
 </body>
 <script src="../../JS/dashboard.js"></script>
 <script>
+    let contextPath = '<%= contextPath %>';
     window.onscroll = function () {
         scrollFunction()
     }

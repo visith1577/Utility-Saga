@@ -10,7 +10,7 @@ import model.UserRAdmin;
 import java.io.IOException;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/water/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        urlPatterns = {"/public/HTML/water/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*", "/main-admin/water-accounts/*"},
         filterName ="Auth-filter__water_admin",
         description = "Authentication middleware"
 )

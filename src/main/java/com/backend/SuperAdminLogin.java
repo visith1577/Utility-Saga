@@ -20,7 +20,7 @@ public class SuperAdminLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "Superadmin-electricity-water.jsp", "administratorLogin.jsp");
+        loginDriver(req, resp, "/super-admin/main-electricity-accounts", "administratorLogin.jsp");
     }
 
     static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
@@ -58,7 +58,7 @@ public class SuperAdminLogin extends HttpServlet{
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
                     if (role == UserRAdmin.Role.SUPERADMIN) {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/superadmin/" + dash);//Change
+                        resp.sendRedirect(req.getContextPath()  + dash);//Change
                     }
             }else {
                 req.setAttribute("ID", id);

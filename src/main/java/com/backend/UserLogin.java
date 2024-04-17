@@ -54,6 +54,7 @@ public class UserLogin extends HttpServlet{
                     session.setAttribute("TELEPHONE", details.getMobile());
                     session.setAttribute("EMAIL", details.getEmail());
                     session.setAttribute("IMAGE", image);
+                    session.setAttribute("ROLE", "USER");
                     setServiceCookie(nic, userDao, session);
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
