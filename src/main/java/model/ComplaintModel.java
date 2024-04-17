@@ -7,14 +7,15 @@ import java.util.UUID;
 
 public class ComplaintModel {
 
-    private String complaint_no;
-    private String complaint_category;
-    private String complaint_type;
-    private String account_number;
+    private String complaintNo;
+    private String complaintCategory;
+    private String complaintType;
+    private String accountNumber;
     private String nic;
+    private String mobile;
     private String email;
     private String phoneNumber;
-    private String Complaint_description;
+    private String complaintDescription;
 
     private ComplaintStatus complaintStatus;
 
@@ -26,34 +27,42 @@ public class ComplaintModel {
 
     public ComplaintModel() {
         UUID uuid = UUID.randomUUID();
-        complaint_no = getAccount_number() + uuid;
+        complaintNo = getAccountNumber() + uuid;
     }
 
     public ComplaintModel(String complaintNumber, String complaintCategory, String complaintType, String accountNumber, String complaintStatus) {
     }
 
-    public String getComplaint_category() {
-        return complaint_category;
+    public String getComplaintNo() {
+        return complaintNo;
     }
 
-    public void setComplaint_category(String complaint_category) {
-        this.complaint_category = complaint_category;
+    public void setComplaintNo(String complaintNo) {
+        this.complaintNo = complaintNo;
     }
 
-    public String getComplaint_type() {
-        return complaint_type;
+    public String getComplaintCategory() {
+        return complaintCategory;
     }
 
-    public void setComplaint_type(String complaint_type) {
-        this.complaint_type = complaint_type;
+    public void setComplaintCategory(String complaintCategory) {
+        this.complaintCategory = complaintCategory;
     }
 
-    public String getAccount_number() {
-        return account_number;
+    public String getComplaintType() {
+        return complaintType;
     }
 
-    public void setAccount_number(String account_number) {
-        this.account_number = account_number;
+    public void setComplaintType(String complaintType) {
+        this.complaintType = complaintType;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getNic() {
@@ -80,19 +89,13 @@ public class ComplaintModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getComplaint_description() {
-        return Complaint_description;
+    public String getComplaintDescription() {
+        return complaintDescription;
     }
 
-    public void setComplaint_description(String complaint_description) {
-        Complaint_description = complaint_description;
+    public void setComplaintDescription(String complaintDescription) {
+        this.complaintDescription = complaintDescription;
     }
-
-    public String getComplaint_no() {
-        return complaint_no;
-    }
-
-    public void setComplaint_no(String complaint_no) {this.complaint_no = complaint_no;}
 
     public ComplaintStatus getComplaintStatus() {
         return complaintStatus;
@@ -100,5 +103,13 @@ public class ComplaintModel {
 
     public void setComplaintStatus(ComplaintStatus complaintStatus) {
         this.complaintStatus = complaintStatus;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
