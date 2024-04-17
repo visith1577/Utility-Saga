@@ -104,10 +104,10 @@
                 <input type="password" id="password" name="password" placeholder="Enter new password" required>
                 <div id="old-pwd" class="error"></div>
                 <label for="new-password">New Password:</label>
-                <input type="password" id="new-password" name="password" placeholder="Enter new password" required>
+                <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
                 <div id="new-pwd" class="error"></div>
                 <label for="re-new-password">Confirm Password:</label>
-                <input type="password" id="re-new-password" name="password" placeholder="Enter new password" required>
+                <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
                 <div id="re-pwd" class="error"></div>
                 <label for="language">Preferred Language:</label>
                 <select id="language" name="language">

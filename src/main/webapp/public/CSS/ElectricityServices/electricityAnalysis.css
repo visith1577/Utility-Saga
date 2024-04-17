@@ -489,3 +489,39 @@ button[name="goto-devicepage"]:hover {
     font-size: 16px; /* Font size */
     color: #333; /* Text color */
 }
+
+#prev-budget,
+#next-budget {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#prev-budget::before,
+#next-budget::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-color: #ccc;
+}
+
+#next-budget::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#prev-budget::before {
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+#prev-budget:hover::before,
+#next-budget:hover::before {
+    border-color: #000;
+}
