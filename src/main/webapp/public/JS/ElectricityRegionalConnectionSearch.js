@@ -18,7 +18,7 @@ function search() {
 }
 
 function displayResults(data) {
-    console.log(data);
+    console.log("Data: "+data);
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
     if (data.length === 0) {

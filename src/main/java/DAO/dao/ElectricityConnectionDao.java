@@ -43,7 +43,7 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         List<ConnectionModel> connections = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
         String sql = "SELECT req.*\n" +
-                "FROM electricity_connection_requirement req\n" +
+                "FROM electricity_connection_request req\n" +
                 "JOIN electricity_admin admin ON req.region = admin.region\n" +
                 "WHERE req.account_status != 'ADDED' AND req.region = admin.region;";
 
@@ -80,16 +80,18 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
     public List<ConnectionModel> getConnectionRegionalAdminByNIC(String nic) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
+        System.out.println("nic inside getConnectionbyNIC: "+ nic);
         String sql = "SELECT req.*\n" +
-                "FROM electricity_connection_requirement req\n" +
+                "FROM electricity_connection_request req\n" +
                 "JOIN electricity_admin admin ON req.region = admin.region\n" +
                 "WHERE req.account_status != 'ADDED' \n" +
-                "AND req.nic = ?\n" +
+                "AND req.account_number = ?\n" +
                 "AND req.region = admin.region;";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
 
-        stmt.setString(1, "id");
+        stmt.setString(1, nic);
+        System.out.println("nic inside getConnectionbyNIC: Succesful");
 
         ResultSet rs= stmt.executeQuery();
 
@@ -112,6 +114,8 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
 
 
         }
+
+        System.out.println("Added connections: "+ connections.size());
         rs.close();
         stmt.close();
         connection.close();

@@ -38,6 +38,7 @@ INSERT INTO eAccount_list(account_number, nic, region) VALUES ('0004', '20014563
 INSERT INTO eAccount_list(account_number, nic, region) VALUES ('0008', '200145632147', 'KOTTAWA');
 INSERT INTO eAccount_list(account_number, nic, region) VALUES ('0009', '200130704283', 'COLOM');
 INSERT INTO eAccount_list(account_number, nic, region) VALUES ('0010', '200123632412', 'COLOM');
+INSERT INTO eAccount_list(account_number, nic, region, subregion) VALUES ('0011', '200130704296', 'KOTTAWA', 'KOTTAWA1');
 
 
 

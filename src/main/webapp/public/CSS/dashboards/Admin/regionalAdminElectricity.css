@@ -24,6 +24,8 @@
   }
 
 
+
+
   /* Top bar*/
  .topbar {
     margin-right:15px;
@@ -71,6 +73,7 @@ canvas {
     margin-left: 20px;
     margin-right: 20px;
 }
+
 
 .complaints{
     position: relative;
@@ -259,6 +262,8 @@ canvas {
 .navbar a:hover{
     color: var(--electricity-color2);
 }
+
+
 
 
 

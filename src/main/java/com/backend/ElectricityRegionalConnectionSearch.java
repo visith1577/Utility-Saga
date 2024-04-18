@@ -18,11 +18,13 @@ public class ElectricityRegionalConnectionSearch extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         String nic = request.getParameter("nic");
+        System.out.println("nic in /electricity/connection/search: "+ nic);
 
         ElectricityConnectionDao dao = new ElectricityConnectionDao();
         List<ConnectionModel> connections = null;
         try {
             connections = dao.getConnectionRegionalAdminByNIC(nic);
+            System.out.println("getConnectionRegionalAdminByNIC called");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

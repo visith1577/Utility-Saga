@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electricity Regional admin dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElecForm.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-jicI5S7PZg7NtOWKp6hv3zokYkaw9fdL3+M5uHyXr+1XNMe5W4/zJ3uiz5zgI5Fp9Pwe5VXvBsYHpma/8ZkC9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
@@ -28,7 +29,7 @@
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalComplaintSearch.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalConnectionSearch.js"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -52,7 +53,7 @@
             submitButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const row = button.parentNode.parentNode;
-                    const bNum = row.cells[0].textContent;
+                    const bNum = row.cells[1].textContent;
                     console.log(bNum)
                     const statusSelect = row.querySelector('select[name="accountStatus"]');
                     const status = statusSelect.value;
@@ -138,7 +139,33 @@
                 <a href="#" class="btn">View All</a>
             </div>
 
+
             <div id="results"></div>
+
+            <div class="popup-form" id="popupForm" style="display: none;">
+                <div id="popupContainer" class="popup-container">
+                    <h2 class="popup-title">Add Electricity Admin</h2>
+                    <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/regional-admin/create-account">
+                        <label for="region">Region </label>
+                        <input type="text" name="region" id="region" required>
+
+                        <label for="subregion">Sub Region</label>
+                        <input type="text" name="subregion" id="subregion" required>
+
+                        <label for="accountno">Account Number </label>
+                        <input type="text" name="accountno" id="accountno" required>
+
+                        <label for="nicc">NIC</label>
+                        <input type="text" name="nicc" id="nicc" required>
+
+                        <div class="form-button">
+                            <button type="submit" class="buttons">Add Admin</button>
+                            <button  onclick="closePopup('popupForm')" class="buttons">Close</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
 
             <div class="table-container">
                 <table class="table">
@@ -164,14 +191,14 @@
 
                     <c:if test="${empty requestScope.electricityConnectionRequests}">
                         <tr>
-                            <td colspan="12">No companies found</td>
+                            <td colspan="12">No new connections found</td>
                         </tr>
                     </c:if>
                     <c:if test="${not empty requestScope.electricityConnectionRequests}">
                         <c:forEach items="${requestScope.electricityConnectionRequests}" var="connection">
 
                             <tr>
-                                <td>${connection.requsterName}</td>
+                                <td>${connection.requesterName}</td>
                                 <td>${connection.accountNumber}</td>
                                 <td>${connection.nic}</td>
                                 <td>${connection.email}</td>
@@ -180,7 +207,7 @@
                                 <td>${connection.currentAddress}</td>
                                 <td>${connection.newAddress}</td>
                                 <td>${connection.nearestAccount}</td>
-                                <td>${connection.connectionRequirement}</td>
+                                <td>${connection.connectionRequirements}</td>
                                 <td>${connection.connectionType}</td>
                                 <td><select name="accountStatus">
                                     <option  value="REJECTED" ${ connection.accountStatus == ConnectionModel.accountStatus.REJECTED ? "selected" : "" }>Rejected</option>
@@ -197,7 +224,27 @@
         </div>
     </div>
 </div>
+
+<div class="buttons">
+    <button class="button" onclick="openPopup('popupForm')">Add New Account</button>
+</div>
+
 </section>
+<script>
+    function openPopup(popUpId) {
+        var popup= document.getElementById(popUpId);
+        if(popup){
+            popup.style.display = "block";
+        }
+    }
+
+    function closePopup(popUpId) {
+        var popup = document.getElementById(popUpId);
+        if (popup) {
+            popup.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>
