@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <div class="navv">
@@ -221,6 +222,28 @@
             </div>
         </div>
         <div class="user-profile__bottom card">
+            <div class="box">
+                <form action="#">
+                    <div class="input_box">
+
+                        <label>
+                            <input type="text" placeholder="Search..." required>
+                        </label>
+                        <div class="selection"><p>Status</p></div>
+
+                        <div class="categories">
+                            <p class="option">PAID</p>
+                            <p class="option">PENDING</p>
+                            <p class="option">OVERDUE</p>
+                        </div>
+                        <input type="hidden" id="status" name="status" value="none">
+
+                        <button type="reset" class="resetButton"><i class="fas fa-sync-alt"></i></button>
+                        <button type="submit" class="resetButton"><i class="fas fa-paper-plane"></i></button>
+
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 </main>
@@ -231,6 +254,38 @@
 <script>
     // Set the context path as a JavaScript variable
     const contextPath = '<%= contextPath %>';
+
+    let selection = document.querySelector(".selection");
+    let selected_text = document.querySelector(".selection p");
+    let categories = document.querySelector(".categories");
+    let options = document.querySelectorAll(".categories p");
+
+
+    let dropdown = document.querySelector(".selection p");
+    let resetButton = document.querySelector(".resetButton");
+
+    // Create a function to reset the search bar and dropdown
+    function resetElements() {
+        dropdown.innerHTML = "Status";
+        document.getElementById('status').value = "none";
+    }
+
+    // Add an event listener to the reset button
+    resetButton.addEventListener("click", resetElements);
+
+
+    selection.onclick = function(){
+        categories.classList.toggle("active");
+    }
+
+    options.forEach(option => {
+        option.onclick = function(){
+            selected_text.innerHTML = option.innerHTML;
+            categories.classList.toggle("active");
+
+            document.getElementById('status').value = option.innerHTML;
+        }
+    });
 </script>
 <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
 <script type="module" src="<%= request.getContextPath() %>/public/JS/fetch_bills.js" defer></script>

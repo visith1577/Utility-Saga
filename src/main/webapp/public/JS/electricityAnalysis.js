@@ -2,7 +2,6 @@
 
 const bills = document.getElementById("bills");
 const fluct = document.getElementById("fluct");
-const iot = document.getElementById("iot");
 Chart.defaults.color = "black";
 Chart.defaults.borderColor = "rgba(255, 196, 0, 1)";
 
@@ -63,28 +62,49 @@ new Chart(monthcons, {
     },
 });
 
+// search bar controls start
 
-new Chart(iot, {
-    type: "doughnut",
-    data: {
-        labels: ["AC", "Fan1", "Fan2"],
-        datasets: [
-            {
-                label: "My Revenue",
-                data: [25, 5, 10],
-                backgroundColor: [
-                    "rgba(155,128,151,1)",
-                    "rgba(254,111,162,1)",
-                    "rgba(244,164,111, 1)",
-                ],
-                hoverBackgroundColor: "#e2d412",
-            },
-        ],
-    },
-    options: {
-        responsive: true,
-    },
+const selected = document.querySelector(".selected");
+const optionsContainer = document.querySelector(".options-container");
+
+const optionsList = document.querySelectorAll(".option");
+const searchBox = document.querySelector(".search-box input");
+
+selected.addEventListener("click", () => {
+    optionsContainer.classList.toggle("active");
+
+    searchBox.value = "";
+    filterList("");
+
+    if (optionsContainer.classList.contains("active")) {
+        searchBox.focus();
+    }
 });
+
+optionsList.forEach((o) => {
+    o.addEventListener("click", () => {
+        selected.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer.classList.remove("active");
+    });
+});
+
+searchBox.addEventListener("keyup", function (e) {
+    filterList(e.target.value);
+});
+
+const filterList = (searchTerm) => {
+    searchTerm = searchTerm.toLowerCase();
+    optionsList.forEach((option) => {
+        let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label.indexOf(searchTerm) !== -1) {
+            option.style.display = "block";
+        } else {
+            option.style.display = "none";
+        }
+    });
+}
+
+// search bar controls end
 
 new Chart(bud_act, {
     type: "bar",
@@ -170,6 +190,108 @@ new Chart(dailycons, {
     }
 });
 
+// calender code
+
+const header = document.querySelector(".calendar h3");
+const dates = document.querySelector(".dates");
+const navs = document.querySelectorAll("#prev, #next");
+
+
+const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
+
+let date = new Date();
+let month = date.getMonth();
+let year = date.getFullYear();
+
+function renderCalendar() {
+    const start = new Date(year, month, 1).getDay();
+    const endDate = new Date(year, month + 1, 0).getDate();
+    const end = new Date(year, month, endDate).getDay();
+    const endDatePrev = new Date(year, month, 0).getDate();
+
+    let datesHtml = "";
+
+    for (let i = start; i > 0; i--) {
+        datesHtml += `<li class="inactive">${endDatePrev - i + 1}</li>`;
+    }
+
+    for (let i = 1; i <= endDate; i++) {
+        let className =
+            i === date.getDate() &&
+            month === new Date().getMonth() &&
+            year === new Date().getFullYear()
+                ? ' class="today"'
+                : "";
+        let modalHtml =
+            i === date.getDate() &&
+            month === new Date().getMonth() &&
+            year === new Date().getFullYear()
+                ? '<div class="modal"><div class="modal-content"><p>This is today\'s date.</p></div></div>'
+                : "";
+        datesHtml += `<li${className}>${i}</li>${modalHtml}`;
+    }
+
+    for (let i = end; i < 6; i++) {
+        datesHtml += `<li class="inactive">${i - end + 1}</li>`;
+    }
+
+    dates.innerHTML = datesHtml;
+    header.textContent = `${months[month]} ${year}`;
+}
+
+navs.forEach((nav) => {
+    nav.addEventListener("click", (e) => {
+        const btnId = e.target.id;
+
+        if (btnId === "prev" && month === 0) {
+            year--;
+            month = 11;
+        } else if (btnId === "next" && month === 11) {
+            year++;
+            month = 0;
+        } else {
+            month = btnId === "next" ? month + 1 : month - 1;
+        }
+
+        date = new Date(year, month, new Date().getDate());
+        year = date.getFullYear();
+        month = date.getMonth();
+
+        renderCalendar();
+    });
+});
+
+renderCalendar();
+
+document.querySelectorAll('.today').forEach(function(date) {
+    date.addEventListener('click', function() {
+        this.nextElementSibling.style.display = 'block';
+    });
+});
+
+window.onclick = function(event) {
+    setTimeout(function() {
+        if (!event.target.matches('.today')) {
+            document.querySelectorAll('.modal').forEach(function(modal) {
+                modal.style.display = 'none';
+            });
+        }
+    }, 1000);
+};
+// end of calendar code
 
 function placeholderIsSupported() {
     test = document.createElement('input');
