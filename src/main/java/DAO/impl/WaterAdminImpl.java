@@ -10,4 +10,8 @@ public interface WaterAdminImpl {
     public List<ElectricityAdminModel> getWaterAdmins(ElectricityAdminModel.Role role) throws Exception;
 
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
+
+    String getPasswordByNic(String nic) throws SQLException;
+
+    void updatePassword(ElectricityAdminModel user) throws SQLException;
 }

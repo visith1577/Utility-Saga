@@ -30,8 +30,8 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/settings.jsp">Settings</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/water-accounts">Regional Admins</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                 </ul>
                 <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
@@ -41,7 +41,7 @@
 
     <section style="margin-top: 12.5vh">
         <h2>Account  Settings</h2>
-        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/electricity/main-admin/pwd-reset">
+        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/water/main-admin/pwd-reset">
             <label for="password">Old Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter new password" required>
             <div id="old-pwd" class="error"></div>
