@@ -40,33 +40,33 @@ public class ElectricityConnection extends HttpServlet {
 
         String required_type = req.getParameter("RequiredType");
         String new_con_address = req.getParameter("NewConnectionAddress");
-        String region = req.getParameter("region").trim();
+        String region = req.getParameter("region").trim().toUpperCase();
 
 
         ConnectionModel eConnection = new ConnectionModel();
 
         String requester_name = title + " " + initial + " " + name;
-        eConnection.setRequester_name(requester_name);
+        eConnection.setRequesterName(requester_name);
 
-        eConnection.setCurrent_address(curr_address);
+        eConnection.setCurrentAddress(curr_address);
         eConnection.setNic(nic);
         eConnection.setEmail(email);
         eConnection.setMobile(telNum);
         eConnection.setRegion(region);
-        eConnection.setAccount_number(accNum);
+        eConnection.setAccountNumber(accNum);
 
         ConnectionModel.ConnectionRequirement requirement = ConnectionModel.ConnectionRequirement.valueOf(connection);
-        eConnection.setConnection_requirements(requirement);
+        eConnection.setConnectionRequirements(requirement);
 
         if (required_type != null && new_con_address != null) {
-            eConnection.setConnection_type(required_type);
-            eConnection.setNew_address(new_con_address);
+            eConnection.setConnectionType(required_type);
+            eConnection.setNewAddress(new_con_address);
         } else {
-            eConnection.setConnection_type(null);
-            eConnection.setNew_address(null);
+            eConnection.setConnectionType(null);
+            eConnection.setNewAddress(null);
         }
 
-        eConnection.setNearest_account(nearest_acc_num);
+        eConnection.setNearestAccount(nearest_acc_num);
 
 
         ElectricityConnectionDao dao = new ElectricityConnectionDao();

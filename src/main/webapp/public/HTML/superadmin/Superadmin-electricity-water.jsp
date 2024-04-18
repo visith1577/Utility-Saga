@@ -6,10 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.ElectricityAdminModel" %>
-<%@ page import="DAO.dao.ElectricityAdminDAO" %>
-<%@ page import="DAO.dao.WaterAdminDAO" %>
-<%@ page import="java.util.List" %>
 
 <%
     String contextPath = request.getContextPath();

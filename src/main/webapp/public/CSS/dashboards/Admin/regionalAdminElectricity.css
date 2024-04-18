@@ -24,6 +24,8 @@
   }
 
 
+
+
   /* Top bar*/
  .topbar {
     margin-right:15px;
@@ -71,6 +73,7 @@ canvas {
     margin-left: 20px;
     margin-right: 20px;
 }
+
 
 .complaints{
     position: relative;
@@ -217,6 +220,52 @@ canvas {
   .cardBox .card:hover .iconBx {
     color: var(--tertiary-color);
   }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--electricity-color2);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.profile-icon {
+    text-decoration: none;
+    color: #333;
+    font-size: 36px;
+}
+
+.profile-icon:hover {
+    color: var(--electricity-color2);
+}
+
+.navbar a:hover{
+    color: var(--electricity-color2);
+}
+
+
+
+
 
 
 /* ====================== Responsive Design ========================== */

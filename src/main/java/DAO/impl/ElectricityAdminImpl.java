@@ -11,4 +11,8 @@ public interface ElectricityAdminImpl {
         public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception;
 
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
+
+    String getPasswordByNic(String nic) throws SQLException;
+
+    void updatePassword(ElectricityAdminModel user) throws SQLException;
 }

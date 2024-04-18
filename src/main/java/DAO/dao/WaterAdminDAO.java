@@ -101,4 +101,47 @@ public class WaterAdminDAO implements WaterAdminImpl {
         con.close();
         return admins;
     }
+
+    @Override
+    public String getPasswordByNic(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+
+        String storedHash;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT password FROM water_admin WHERE region = ?"
+            );
+
+            statement.setString(1, nic);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    storedHash = result.getString("password");
+                } else {
+                    storedHash = null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return storedHash;
+    }
+
+    @Override
+    public void updatePassword(ElectricityAdminModel user) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE water_admin SET  password = ? WHERE region = ?"
+            );
+
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getRegion());
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
 }
