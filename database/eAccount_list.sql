@@ -23,6 +23,12 @@ ALTER TABLE utilitysaga.eaccount_list
     ADD COLUMN sub_region VARCHAR(25),
     ADD COLUMN balance DECIMAL(10,2) NOT NULL DEFAULT 0;
 
+ALTER TABLE eaccount_list
+ADD COLUMN request_id VARCHAR(50),
+ADD CONSTRAINT fk_eaccount_request_id FOREIGN KEY (request_id) REFERENCES electricity_connection_request(id);
+
+ALTER TABLE eaccount_list
+MODIFY COLUMN request_id INT NULL;
 
 INSERT INTO eAccount_list (account_number, nic) VALUES ('dummyAccount2', '200114400385');
 
