@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.*;
 import model.ElectricityAdminModel;
 import org.mindrot.jbcrypt.BCrypt;
 
-@WebServlet("/electricity/admin/pwd-reset")
+@WebServlet("/electricity/main-admin/pwd-reset")
 public class PasswordResetElectricityAdmin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

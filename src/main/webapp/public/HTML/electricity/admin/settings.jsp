@@ -41,15 +41,15 @@
 
     <section style="margin-top: 12.5vh">
         <h2>Account  Settings</h2>
-        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/electricity/admin/pwd-reset">
+        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/electricity/main-admin/pwd-reset">
             <label for="password">Old Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter new password" required>
             <div id="old-pwd" class="error"></div>
             <label for="new-password">New Password:</label>
-            <input type="password" id="new-password" name="password" placeholder="Enter new password" required>
+            <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
             <div id="new-pwd" class="error"></div>
             <label for="re-new-password">Confirm Password:</label>
-            <input type="password" id="re-new-password" name="password" placeholder="Enter new password" required>
+            <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
             <div id="re-pwd" class="error"></div>
 
 
