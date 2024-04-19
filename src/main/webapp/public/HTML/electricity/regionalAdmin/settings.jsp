@@ -48,8 +48,62 @@
         </header>
     </div>
 
+
+
     <section style="margin-top: 12.5vh">
         <h2>Account  Settings</h2>
+
+        <form id="admin-details-form" method="post" action="<%= request.getContextPath() %>/electricity/regional-admin/update-details">
+            <label for="empid">Employee ID:</label>
+            <input type="text" id="empid" name="empid" value="${sessionScope.EMPID}" disabled>
+            <label for="uname">Username:</label>
+            <input type="text" id="uname" name="uname" value="${sessionScope.USERNAME}" disabled>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" value="${sessionScope.FNAME}" disabled>
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" value="${sessionScope.LNAME}" disabled>
+            <label for="mobile">Mobile:</label>
+            <input type="text" id="mobile" name="mobile" value="${sessionScope.MOBILE}" disabled>
+
+            <div id="error-message-details" class="error"></div>
+            <div id="buttons">
+                <button class="content-btn" id="edit-btn">Edit</button>
+                <button class="content-btn" type="submit" id="submit-btn" style="display: none;">Save</button>
+                <button class="content-btn" id="cancel-btn" style="display: none;">Cancel</button>
+            </div>
+        </form>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const editBtn = document.getElementById("edit-btn");
+                const submitBtn = document.getElementById("submit-btn");
+                const cancelBtn = document.getElementById("cancel-btn");
+                const formFields = document.querySelectorAll("form input[type='text']");
+
+                function toggleFormFields(state) {
+                    formFields.forEach(field => {
+                        field.disabled = !state;
+                    });
+                }
+
+                editBtn.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    toggleFormFields(true);
+                    editBtn.style.display = "none";
+                    submitBtn.style.display = "block";
+                    cancelBtn.style.display = "block";
+                });
+
+                cancelBtn.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    toggleFormFields(false);
+                    editBtn.style.display = "block";
+                    submitBtn.style.display = "none";
+                    cancelBtn.style.display = "none";
+                });
+            });
+        </script>
+
+
         <form id="password-reset" method="post" action="<%= request.getContextPath() %>/electricity/regional-admin/pwd-reset">
             <label for="password">Old Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter new password" required>

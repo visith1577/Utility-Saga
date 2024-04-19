@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import DAO.impl.ElectricityAdminImpl;
+import model.UserModel;
 import utils.Connectdb;
 import model.ElectricityAdminModel;
 
@@ -31,6 +34,32 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
 
 
         int rowsAffected = statement.executeUpdate();
+        connection.close();
+        return rowsAffected;
+    }
+
+    @Override
+    public int updateAdminDetails(ElectricityAdminModel admin) throws Exception {
+        System.out.println("Inside updateAdmin details");
+        Connection connection = Connectdb.getConnection();
+        String query = "UPDATE electricity_admin\n" +
+                "SET empid = ?, uname = ?, firstname = ?, lastname = ?, mobile = ?\n" +
+                "WHERE region = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, admin.getEmpId());
+        statement.setString(2, admin.getUsername());
+        statement.setString(3, admin.getFirstname());
+        statement.setString(4, admin.getLastname());
+        statement.setString(5, admin.getMobile());
+        statement.setString(6, admin.getRegion());
+
+        System.out.println("Region: "+ admin.getRegion());
+
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
         connection.close();
         return rowsAffected;
     }
@@ -146,6 +175,35 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
         } finally {
             Connectdb.closeConnection(connection);
         }
+    }
+
+    @Override
+    public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        ElectricityAdminModel admin = new ElectricityAdminModel();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT empid, uname, firstname, lastname, mobile FROM electricity_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    admin.setEmpId(result.getString("empid"));
+                    admin.setUsername(result.getString("uname"));
+                    admin.setFirstname(result.getString("firstname"));
+                    admin.setLastname(result.getString("lastname"));
+                    admin.setMobile(result.getString("mobile"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return admin;
     }
 
 }
