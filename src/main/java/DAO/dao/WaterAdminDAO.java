@@ -144,4 +144,80 @@ public class WaterAdminDAO implements WaterAdminImpl {
             Connectdb.closeConnection(connection);
         }
     }
+
+    @Override
+    public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        ElectricityAdminModel admin = new ElectricityAdminModel();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT empid, uname, firstname, lastname, mobile FROM water_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    admin.setEmpId(result.getString("empid"));
+                    admin.setUsername(result.getString("uname"));
+                    admin.setFirstname(result.getString("firstname"));
+                    admin.setLastname(result.getString("lastname"));
+                    admin.setMobile(result.getString("mobile"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return admin;
+    }
+
+    @Override
+    public int updateAdminDetails(ElectricityAdminModel admin) throws Exception {
+        System.out.println("Inside updateAdmin details");
+        Connection connection = Connectdb.getConnection();
+        String query = "UPDATE water_admin\n" +
+                "SET empid = ?, uname = ?, firstname = ?, lastname = ?, mobile = ?\n" +
+                "WHERE region = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, admin.getEmpId());
+        statement.setString(2, admin.getUsername());
+        statement.setString(3, admin.getFirstname());
+        statement.setString(4, admin.getLastname());
+        statement.setString(5, admin.getMobile());
+        statement.setString(6, admin.getRegion());
+
+        System.out.println("Region: "+ admin.getRegion());
+
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
+        connection.close();
+        return rowsAffected;
+    }
+
+    @Override
+    public int updateImportantDetails(ElectricityAdminModel admin) throws Exception{
+        Connection connection = Connectdb.getConnection();
+        String query= "UPDATE water_admin\n" +
+                "SET contact_number = ?, email = ?\n" +
+                "WHERE region = ?;\n";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        statement.setString(1, admin.getContactNumber());
+        statement.setString(2, admin.getEmail());
+        statement.setString(3, admin.getRegion());
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
+        connection.close();
+        return rowsAffected;
+    }
+
 }

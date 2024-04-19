@@ -16,6 +16,7 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         Connection conn = Connectdb.getConnection();
 
 
+
         String sql = "INSERT INTO electricity_connection_request (requester_name, account_number, nic, email, " +
                 "mobile, region, current_address, new_address, nearest_account, " +
                 "connection_requirement, connection_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

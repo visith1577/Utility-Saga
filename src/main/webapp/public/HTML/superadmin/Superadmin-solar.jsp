@@ -127,7 +127,6 @@
             <th>BRN</th>
             <th>Owner-NIC</th>
             <th>Username</th>
-            <th>Password</th>
             <th>Mobile</th>
             <th>Company Phone</th>
             <th>Email</th>
@@ -149,7 +148,6 @@
                 <td>${company.BNum}</td>
                 <td>${company.ownerNIC}</td>
                 <td>${company.username}</td>
-                <td>${company.pwd}</td>
                 <td>${company.mobile}</td>
                 <td>${company.landNo}</td>
                 <td>${company.email}</td>

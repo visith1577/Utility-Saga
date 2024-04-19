@@ -3,11 +3,13 @@ package com.backend;
 import java.io.*;
 import java.sql.*;
 
+import DAO.dao.ElectricityAdminDAO;
 import DAO.dao.ElectricityRegionalAdminDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.ElectricityAdminModel;
 import model.UserRAdmin;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -39,8 +41,10 @@ public class ElectricityLogin extends HttpServlet{
         try {
             req.removeAttribute("errorMessage");
             DAO.impl.UserRegional userDao = new ElectricityRegionalAdminDAO();
+            DAO.impl.ElectricityAdminImpl admindao = new ElectricityAdminDAO();
             String pwdStored = userDao.getPasswordById(id);
             UserRAdmin.Role role = userDao.getUserRoleById(id);
+            ElectricityAdminModel model = admindao.getUserDetailsByRegion(id);
             if (pwdStored != null) {
                 if(BCrypt.checkpw(pwd, pwdStored)){
 //                    System.out.println("===================Password verified--------------------------------");
@@ -50,6 +54,11 @@ public class ElectricityLogin extends HttpServlet{
                     session.setAttribute("ID", id);
                     session.setAttribute("REGION", id); // region up
                     session.setAttribute("AREAS", id);  // list of areas
+                    session.setAttribute("USERNAME", model.getUsername());
+                    session.setAttribute("EMPID", model.getEmpId());
+                    session.setAttribute("FNAME", model.getFirstname());
+                    session.setAttribute("LNAME", model.getLastname());
+                    session.setAttribute("MOBILE", model.getMobile());
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
