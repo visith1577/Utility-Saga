@@ -2,6 +2,9 @@
     // Get the context path dynamically
     String contextPath = request.getContextPath();
 %>
+<% String firstname = (String) session.getAttribute("FNAME"); %>
+<% String lastname = (String) session.getAttribute("LNAME"); %>
+<% String region = (String) session.getAttribute("REGION"); %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
@@ -101,13 +104,12 @@
     </div>
 </header>
 <div class="topbar" style="margin-top: 12.5vh">
-    <div class="lefttop">
-        <h2>Hello (Name)</h2>
+    <div class="lefttop" style="font-size: larger">
+        <h2>Hello <%=firstname%> <%=lastname%> </h2>
     </div>
-    <div class="righttop">
+    <div class="righttop" style="font-size: x-large">
         <ul>
-            <li>Region:Biyagama</li>
-            <li>Areas:Dompe, Biyagama, Malwana</li>
+            <li style="list-style-type: none">Region: <%=region%></li>
         </ul>
     </div>
 </div>

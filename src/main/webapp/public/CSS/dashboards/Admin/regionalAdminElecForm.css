@@ -58,6 +58,17 @@ button{
     color: lavender;
 }
 
+input[type="password"] {
+    width: 150px;
+    font-family: inherit;
+    padding: 10px;
+    font-size: 11px;
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
 .popup-form {
     display: flex;
     justify-content: center;

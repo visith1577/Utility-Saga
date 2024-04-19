@@ -50,20 +50,25 @@
 
 
 
-    <section style="margin-top: 12.5vh">
+    <section style="margin-top: 12.5vh; margin-left: 2vh">
         <h2>Account  Settings</h2>
 
         <form id="admin-details-form" method="post" action="<%= request.getContextPath() %>/electricity/regional-admin/update-details">
             <label for="empid">Employee ID:</label>
             <input type="text" id="empid" name="empid" value="${sessionScope.EMPID}" disabled>
+            <div class="error" style="margin-top: 2vh"></div>
             <label for="uname">Username:</label>
             <input type="text" id="uname" name="uname" value="${sessionScope.USERNAME}" disabled>
+            <div class="error" style="margin-top: 2vh"></div>
             <label for="firstname">First Name:</label>
             <input type="text" id="firstname" name="firstname" value="${sessionScope.FNAME}" disabled>
+            <div class="error" style="margin-top: 2vh"></div>
             <label for="lastname">Last Name:</label>
             <input type="text" id="lastname" name="lastname" value="${sessionScope.LNAME}" disabled>
+            <div class="error" style="margin-top: 2vh"></div>
             <label for="mobile">Mobile:</label>
             <input type="text" id="mobile" name="mobile" value="${sessionScope.MOBILE}" disabled>
+            <div class="error" style="margin-top: 2vh"></div>
 
             <div id="error-message-details" class="error"></div>
             <div id="buttons">
@@ -104,10 +109,10 @@
         </script>
 
 
-        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/electricity/regional-admin/pwd-reset">
+        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/electricity/regional-admin/pwd-reset" style="margin-top: 2vh">
             <label for="password">Old Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter new password" required>
-            <div id="old-pwd" class="error"></div>
+            <div id="old-pwd" class="error" ></div>
             <label for="new-password">New Password:</label>
             <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
             <div id="new-pwd" class="error"></div>

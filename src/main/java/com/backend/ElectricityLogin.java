@@ -54,11 +54,11 @@ public class ElectricityLogin extends HttpServlet{
                     session.setAttribute("ID", id);
                     session.setAttribute("REGION", id); // region up
                     session.setAttribute("AREAS", id);  // list of areas
-                    session.setAttribute("USERNAME", model.getUsername());  // list of areas
-                    session.setAttribute("EMPID", model.getEmpId());  // list of areas
-                    session.setAttribute("FNAME", model.getFirstname());  // list of areas
-                    session.setAttribute("LNAME", model.getLastname());  // list of areas
-                    session.setAttribute("MOBILE", model.getMobile());  // list of areas
+                    session.setAttribute("USERNAME", model.getUsername());
+                    session.setAttribute("EMPID", model.getEmpId());
+                    session.setAttribute("FNAME", model.getFirstname());
+                    session.setAttribute("LNAME", model.getLastname());
+                    session.setAttribute("MOBILE", model.getMobile());
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);

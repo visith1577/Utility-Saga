@@ -12,8 +12,8 @@ import model.ElectricityAdminModel;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/electricity/regional-admin/update-details")
-public class ElectricityMainAdminDetails extends HttpServlet {
+@WebServlet("/electricity/main-admin/update-details")
+public class ElectricityMainMainAdminDetails extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Request URL: " + req.getRequestURL());
