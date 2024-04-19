@@ -14,4 +14,8 @@ public interface WaterAdminImpl {
     String getPasswordByNic(String nic) throws SQLException;
 
     void updatePassword(ElectricityAdminModel user) throws SQLException;
+
+    public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException;
+
+    public int updateAdminDetails(ElectricityAdminModel admin) throws Exception;
 }
