@@ -147,7 +147,7 @@
         </a>
     </div>
 
-    <div>
+    <div class="searchbar">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">
             <label for="nic"></label>
             <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">

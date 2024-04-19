@@ -9,6 +9,9 @@
 <%
     String contextPath = request.getContextPath();
 %>
+<%@ page import="DAO.dao.sendNotificationDao" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.SendNotificationModel" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -161,8 +164,32 @@
 
 </div>
 </div>
-</div>
-
+<%--<div class="GetNotification-box">--%>
+<%--    <table>--%>
+<%--        <thead>--%>
+<%--        <tr>--%>
+<%--            <th>Title</th>--%>
+<%--            <th>Subject</th>--%>
+<%--            <th>Message</th>--%>
+<%--        </tr>--%>
+<%--        </thead>--%>
+<%--        <tbody>--%>
+<%--        <%--%>
+<%--            sendNotificationDao dao = new sendNotificationDao();--%>
+<%--            List<SendNotificationModel> notifications = dao.getNotifications(SendNotificationModel.Type.ELECTRICITY);--%>
+<%--            for (SendNotificationModel notification : notifications) {--%>
+<%--        %>--%>
+<%--        <tr>--%>
+<%--            <td><%= notification.getTitle() %></td>--%>
+<%--            <td><%= notification.getSubject() %></td>--%>
+<%--            <td><%= notification.getMessage() %></td>--%>
+<%--        </tr>--%>
+<%--        <%--%>
+<%--            }--%>
+<%--        %>--%>
+<%--        </tbody>--%>
+<%--    </table>--%>
+<%--</div>--%>
 </body>
 <script src="../../../JS/dashboard.js"></script>
 <script>

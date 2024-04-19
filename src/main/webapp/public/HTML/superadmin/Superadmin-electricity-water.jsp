@@ -55,26 +55,23 @@
             </header>
         </div>
 
-        <div style="margin-top: 100px">
-            <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
-                <label for="nic"></label>
-                <input name="id" type="text" id="nic" placeholder="Enter EMPID">
-
-                <button type="submit" name="search">Search</button>
-                <button type="button" id="resetButton">Reset</button>
-            </form>
-        </div>
-        <script>
-            document.getElementById('resetButton').addEventListener('click', function() {
-                document.getElementById('nic').value = '';
-                document.getElementById('searchForm').submit();
-            });
-        </script>
-
-
-
         <div class="middle" id="middle">
             <h2 class="title">Electricity Admins</h2>
+            <div class="search-container">
+                <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
+                    <label for="nic"></label>
+                    <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EMPID">
+
+                    <button type="submit" name="search" class="=searchbtn">Search</button>
+                    <button type="button" id="resetButton" class="=searchbtn">Reset</button>
+                </form>
+            </div>
+            <script>
+                document.getElementById('resetButton').addEventListener('click', function() {
+                    document.getElementById('nic').value = '';
+                    document.getElementById('searchForm').submit();
+                });
+            </script>
             <div class="buttons">
                 <button class="button" onclick="openPopup('popupForm')">Add Electricity Admins</button>
               </div>
@@ -172,13 +169,13 @@
 
             <h2 class="title">Water Admins</h2>
 
-            <div>
+            <div class="search-container">
                 <form id="searchForm2" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
                     <label for="nic"></label>
-                    <input name="id2" type="text" id="nic2" placeholder="Enter EMPID">
+                    <input name="id2" type="text" class="search-input" id="nic2" placeholder="Enter EMPID">
 
-                    <button type="submit" name="search">Search</button>
-                    <button type="button" id="resetButton2">Reset</button>
+                    <button type="submit" name="search" class="=searchbtn">Search</button>
+                    <button type="button" id="resetButton2" class="=searchbtn">Reset</button>
                 </form>
             </div>
             <script>
