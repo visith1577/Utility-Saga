@@ -79,21 +79,34 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
     }
 
     @Override
-    public List<ConnectionModel> getConnectionRegionalAdminByNIC(String region,String nic) throws SQLException{
+    public List<ConnectionModel> getConnectionRegionalAdminByNIC(String region,String searchValue) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
-        System.out.println("nic inside getConnectionbyNIC: "+ nic);
+        System.out.println("nic inside getConnectionbyNIC: "+ searchValue);
         String sql = "SELECT req.*\n" +
                 "FROM electricity_connection_request req\n" +
                 "JOIN electricity_admin admin ON req.region = admin.region\n" +
-                "WHERE (admin.region = ? AND req.account_status != 'ADDED' \n" +
-                "AND req.account_number = ?\n" +
-                "AND req.region = admin.region)";
+                "WHERE admin.region = ?\n" +
+                "  AND req.account_status != 'ADDED'\n" +
+                "  AND req.region = admin.region\n" +
+                "  AND (req.requester_name LIKE ? OR req.account_number LIKE ? OR req.nic LIKE ? OR req.email LIKE ? OR req.mobile LIKE ? OR\n" +
+                "       req.region LIKE ? OR req.current_address LIKE ? OR req.new_address LIKE ? OR req.nearest_account LIKE ? OR\n" +
+                "       req.connection_requirement LIKE ? OR req.connection_type LIKE ? OR req.account_status LIKE ?)";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,region);
-
-        stmt.setString(2, nic);
+        stmt.setString(2, "%" + searchValue + "%");
+        stmt.setString(3, "%" + searchValue + "%");
+        stmt.setString(4, "%" + searchValue + "%");
+        stmt.setString(5, "%" + searchValue + "%");
+        stmt.setString(6, "%" + searchValue + "%");
+        stmt.setString(7, "%" + searchValue + "%");
+        stmt.setString(8, "%" + searchValue + "%");
+        stmt.setString(9, "%" + searchValue + "%");
+        stmt.setString(10, "%" + searchValue + "%");
+        stmt.setString(11, "%" + searchValue + "%");
+        stmt.setString(12, "%" + searchValue + "%");
+        stmt.setString(13, "%" + searchValue + "%");
         System.out.println("nic inside getConnectionbyNIC: Succesful");
 
         ResultSet rs= stmt.executeQuery();
