@@ -41,17 +41,17 @@
         </header>
     </div>
     <div class="fcontainer">
-        <h2>Notification Handling | To Regional admins</h2>
+        <h2>Notification Handling | To Main admins</h2>
         <div class="form-box">
-            <form id="region">
+            <form id="addnotif" method="POST" action="${pageContext.request.contextPath}/elecNotif">
+                <%--@declare id="type"--%>
                 <label for="title">Notification Title:</label>
                 <input type="text" name="title" id="title" required>
-                <label for="region">Select the Region:</label>
-                <select id="regions-dropdown">
-                    <option value="R0">All Regions</option>
-                    <option value="R1">Region 1</option>
-                    <option value="R2">Region 2</option>
-                    <option value="R3">Region 3</option>
+                <label for="type">Service Type:</label>
+                <select id="type-dropdown" name="type">
+                    <option value="WATER" name="WATER">WATER</option>
+                    <option value="ELECTRICITY" name="ELECTRICITY">ELECTRICITY</option>
+                    <option value="SOLAR" name="SOLAR">SOLAR</option>
                 </select>
                 <label for="subject">Subject</label>
                 <input type="text" name="subject" id="subject" required>
