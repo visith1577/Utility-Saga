@@ -314,16 +314,25 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
-    public List<UserModel> getUserDetailsByNICRegionalAdmin(String acc) throws SQLException{
+    public List<UserModel> getUserDetailsByNICRegionalAdmin(String searchValue) throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
         String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
                 "FROM users u\n" +
                 "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
-                "JOIN electricity_admin ON eal.region= electricity_admin.region WHERE eal.account_number = ?";
+                "JOIN electricity_admin ON eal.region= electricity_admin.region\n"+
+                "WHERE eal.account_number LIKE ? OR u.nic LIKE ? OR u.firstname LIKE ? OR u.lastname LIKE ? OR u.address LIKE ?\n"+
+                "OR u.mobile LIKE ? OR u.email LIKE ? OR eal.meter_status LIKE ?";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, acc);
+        stmt.setString(1, "%" + searchValue + "%");
+        stmt.setString(2, "%" + searchValue + "%");
+        stmt.setString(3, "%" + searchValue + "%");
+        stmt.setString(4, "%" + searchValue + "%");
+        stmt.setString(5, "%" + searchValue + "%");
+        stmt.setString(6, "%" + searchValue + "%");
+        stmt.setString(7, "%" + searchValue + "%");
+        stmt.setString(8, "%" + searchValue + "%");
 
         ResultSet rs = stmt.executeQuery();
 

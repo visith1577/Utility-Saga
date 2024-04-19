@@ -163,7 +163,7 @@
             <label for="nic"></label>
             <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">
 
-            <button type="submit" name="search" class="btn">Search</button>
+            <button type="submit" name="search" class="btn" onclick="search(); return false;">Search</button>
             <button type="button" id="resetButton" class="btn">Reset</button>
         </form>
     </div>

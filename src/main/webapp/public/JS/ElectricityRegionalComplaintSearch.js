@@ -1,7 +1,7 @@
 function search() {
-    var nic = document.getElementById("nic").value;
+    var searchValue = document.getElementById("nic").value;
 
-    fetch(contextPath + '/electricity/complaint/search?nic=' + nic)
+    fetch(contextPath + '/electricity/complaint/search?nic=' + searchValue)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -18,7 +18,7 @@ function search() {
 }
 
 function displayResults(data) {
-    console.log("Data"+data);
+    console.log("Data: "+data);
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
     if (data.length === 0) {
