@@ -214,7 +214,7 @@ button {
 
 .searchbtn {
     padding: 12px 20px;
-    margin-left: 10x;
+    margin-left: 10px;
     background-color: var(--superadmin-color1);
     color: var(--tertiary-color);
     border: none;
