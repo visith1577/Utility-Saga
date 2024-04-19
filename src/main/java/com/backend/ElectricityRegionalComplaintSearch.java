@@ -23,6 +23,7 @@ public class ElectricityRegionalComplaintSearch extends HttpServlet {
         List<ComplaintModel> complaints = null;
         try {
             complaints = dao.getComplaintsByComplaintID(nic);
+            System.out.println(complaints);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

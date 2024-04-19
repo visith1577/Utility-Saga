@@ -59,6 +59,7 @@ public class ElectricityComplaintDao implements Complaints {
             complaint.setComplaintCategory(rs.getString("complaint_category"));
             complaint.setComplaintType(rs.getString("complaint_type"));
             complaint.setNic(rs.getString("nic"));
+            complaint.setEmail(rs.getString("email"));
             complaint.setAccountNumber(rs.getString("account_number"));
             complaint.setMobile(rs.getString("mobile"));
             complaint.setComplaintStatus(ComplaintModel.ComplaintStatus.valueOf(rs.getString("complaint_status")));
@@ -77,6 +78,7 @@ public class ElectricityComplaintDao implements Complaints {
     @Override
     public List<ComplaintModel> getComplaintsByComplaintID(String id) throws SQLException {
         List<ComplaintModel> complaint_list = new ArrayList<>();
+        String searchValue = "%" + id + "%";
 
         Connection conn = Connectdb.getConnection();
 
@@ -84,12 +86,22 @@ public class ElectricityComplaintDao implements Complaints {
                 "FROM electricity_complaint ec\n" +
                 "JOIN eAccount_list ea ON ec.account_number = ea.account_number\n" +
                 "JOIN electricity_admin ead ON ea.region = ead.region WHERE ea.region = ead.region\n" +
-                "AND ec.account_number = ea.account_number AND ec.complaint_no = ?";
+                "AND ec.account_number = ea.account_number AND \n"+
+                "(ec.complaint_no LIKE ? OR ec.complaint_category LIKE ? OR ec.complaint_type LIKE ? OR ec.account_number LIKE ? OR ec.nic LIKE ?\n"+
+                "OR ec.email LIKE ? OR ec.mobile LIKE ? OR ec.complaint LIKE ? OR ec.complaint_status LIKE ?)";
 
 //        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setString(1, id);
+        stmt.setString(1, searchValue);
+        stmt.setString(2, searchValue);
+        stmt.setString(3, searchValue);
+        stmt.setString(4, searchValue);
+        stmt.setString(5, searchValue);
+        stmt.setString(6, searchValue);
+        stmt.setString(7, searchValue);
+        stmt.setString(8, searchValue);
+        stmt.setString(9, searchValue);
 
         ResultSet rs = stmt.executeQuery();
 
@@ -103,6 +115,7 @@ public class ElectricityComplaintDao implements Complaints {
             complaint.setEmail(rs.getString("email"));
             complaint.setPhoneNumber(rs.getString("mobile"));
             complaint.setComplaintDescription(rs.getString("complaint"));
+            complaint.setComplaintStatus(ComplaintModel.ComplaintStatus.valueOf(rs.getString("complaint_status")));
 
             complaint_list.add(complaint);
         }
