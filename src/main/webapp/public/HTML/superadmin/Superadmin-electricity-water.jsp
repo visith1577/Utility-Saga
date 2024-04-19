@@ -6,10 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.ElectricityAdminModel" %>
-<%@ page import="DAO.dao.ElectricityAdminDAO" %>
-<%@ page import="DAO.dao.WaterAdminDAO" %>
-<%@ page import="java.util.List" %>
 
 <%
     String contextPath = request.getContextPath();
@@ -134,7 +130,6 @@
                     <th>Region</th>
                     <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>CEB/LECO</th>
                     <th>Employee ID</th>
                     <th>Username</th>
@@ -154,7 +149,6 @@
                     <td>${admin.region}</td>
                     <td>${admin.contactNumber}</td>
                     <td>${admin.email}</td>
-                    <td>${admin.password}</td>
                     <td> ${admin.utilityType} </td>
                     <td> ${admin.empId} </td>
                     <td> ${admin.username}</td>
@@ -239,7 +233,6 @@
                     <th>Region</th>
                     <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Employee ID</th>
                     <th>Username</th>
                     <th>First Name</th>
@@ -259,8 +252,6 @@
                     <td>${admin.region}</td>
                     <td>${admin.contactNumber}</td>
                     <td>${admin.email}</td>
-                    <td>${admin.password}</td>
-                    <td> ${admin.utilityType} </td>
                     <td> ${admin.empId} </td>
                     <td> ${admin.username}</td>
                     <td> ${admin.firstName} </td>

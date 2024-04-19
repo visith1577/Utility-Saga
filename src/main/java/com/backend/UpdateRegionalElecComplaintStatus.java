@@ -1,9 +1,7 @@
 package com.backend;
 
 import DAO.dao.ElectricityComplaintDao;
-import DAO.dao.RegisterSolarDAO;
 import DAO.impl.Complaints;
-import DAO.impl.SolarCompanyImpl;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -13,12 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ComplaintModel;
-import model.SolarCompanyModel;
-import utils.Connectdb;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @WebServlet("/UpdateRegionalComplaintStatus")

@@ -26,6 +26,8 @@ public class UserModel {
     public UserModel(String firstName, String lastName, String mobile) {
     }
 
+
+
     public UserModel(){}
 
 

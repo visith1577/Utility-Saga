@@ -181,32 +181,11 @@
                         <div class="billcalculation">
                             <div class="a_row">
                                 <label for="month">Select Month:</label>
-                                <select name="month" id="month">
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
+                                <input id="month" type="text" name="month" readonly required>
                             </div>
                             <div class="a_row">
-                                <label for="expectedUnits">Expected Units:</label>
+                                <label for="expectedUnits">Set Budget :</label>
                                 <input type="number" id="expectedUnits" name="expectedUnits">
-                            </div>
-                            <div class="a_row">
-                                <label for="fixedTariff">Fixed Tariff Amount:</label>
-                                <input type="number" id="fixedTariff" name="fixedTariff">
-                            </div>
-                            <div class="a_row">
-                                <label for="variableTariff">Variable Tariff Amount:</label>
-                                <input type="number" id="variableTariff" name="variableTariff">
                             </div>
                             <div class="btn-a_row">
                                 <button type="button" name="add_row">Add to Table</button>
@@ -216,9 +195,9 @@
                     <table class="top-selling-products2">
                         <tr>
                             <th>Month</th>
-                            <th>Expected Units</th>
-                            <th>Expected Price(Fixed T.)</th>
-                            <th>Expected Price(Variable T.)</th>
+                            <th>Budget</th>
+                            <th>Final Bill</th>
+                            <th></th>
 
                         </tr>
                         <tr>
@@ -257,6 +236,23 @@
         </div>
     </div>
 </div>
+<script>
+    function getCurrentMonth() {
+        const date = new Date();
+        return date.getMonth() + 1;
+    }
+
+    function getCurrentMonthName() {
+        const date = new Date();
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        return monthNames[date.getMonth()];
+    }
+
+    window.onload = function() {
+        const monthInput = document.getElementById('month');
+        monthInput.value = getCurrentMonthName();
+    }
+</script>
 <script
         type="module"
         src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"

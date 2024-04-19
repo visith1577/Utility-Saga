@@ -66,6 +66,14 @@ function showError(message) {
     document.getElementById('error-message').textContent = message;
 }
 
+function resetErrorDetails() {
+    document.getElementById('error-message-details').textContent = '';
+}
+
+function showDetails(message) {
+    document.getElementById('error-message-details').textContent = message;
+}
+
 
 export function checkPasswordStrength(password) {
     // Define regex patterns for different character types

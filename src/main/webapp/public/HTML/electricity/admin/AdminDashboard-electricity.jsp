@@ -41,6 +41,7 @@
                 </div>
                 <ul class="menu-items">
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                 </ul>
                 <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
@@ -122,12 +123,32 @@
             </div>
         </div>
 
+        <div class="popup-form" id="editPopupForm" style="display: none;">
+            <div id="popupContainer2" class="popup-container">
+                <h3 class="popup-title">Edit Contact Information</h3>
+                <form id="editForm" method="POST" action="${pageContext.request.contextPath}/electricity/main-admin/update-regional-details">
+                    <label for="editRegion">Region:</label>
+                    <input type="text" name="editRegion" id="editRegion" readonly>
+
+                    <label for="editContact">Contact Number:</label>
+                    <input type="text" name="editContact" id="editContact" required>
+
+                    <label for="editEmail">Email:</label>
+                    <input type="email" name="editEmail" id="editEmail" required>
+
+                    <div class="form-button">
+                        <button type="submit" class="buttons">Save Changes</button>
+                        <button type="button" onclick="cancelEdit()" class="buttons">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <table class="table">
             <tr>
                 <th>Region</th>
                 <th>Contact Number </th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>CEB/LECO</th>
                 <th>Employee ID</th>
                 <th>Username</th>
@@ -145,10 +166,9 @@
             <c:if test="${not empty requestScope.electricityRegionalAdmins}">
                 <c:forEach items="${requestScope.electricityRegionalAdmins}" var="admin">
                     <tr>
-                        <td>${admin.region}</td>
+                        <td onclick="openEditPopup('${admin.region}' ,'${admin.contactNumber}', '${admin.email}')" style="cursor: pointer">${admin.region}</td>
                         <td>${admin.contactNumber}</td>
                         <td>${admin.email}</td>
-                        <td>${admin.password}</td>
                         <td> ${admin.utilityType} </td>
                         <td> ${admin.empId} </td>
                         <td> ${admin.username}</td>
@@ -219,6 +239,17 @@
         if (popup) {
             popup.style.display = "none";
         }
+    }
+
+    function openEditPopup(region,contactNumber, email) {
+        document.getElementById('editRegion').value = region;
+        document.getElementById('editContact').value = contactNumber;
+        document.getElementById('editEmail').value = email;
+        openPopup('editPopupForm');
+    }
+
+    function cancelEdit() {
+        document.getElementById('editPopupForm').style.display = 'none';
     }
 </script>
 

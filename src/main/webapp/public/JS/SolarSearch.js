@@ -45,3 +45,5 @@ function displayResults(data) {
         resultsDiv.innerHTML = table;
     }
 }
+
+
