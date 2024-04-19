@@ -88,6 +88,9 @@
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" required>
 
+                    <label for="re-password">Reenter Password:</label>
+                    <input type="password" name="re-password" id="re-password" required>
+
                     <label for="utility">Utility:</label>
                     <select name="utility" id="utility" required>
                         <option value="CEB">CEB</option>
