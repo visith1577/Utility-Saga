@@ -35,6 +35,17 @@ body {
     overflow: auto;
 }
 
+.madminmiddle{
+    height: 88vh;
+    margin-top: 80px;
+    background-color: var(--tertiary-color) ;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50px;
+    overflow: auto;
+    padding: 15px;
+}
+
 .buttons {
     display: flex;
     flex-direction: row;
@@ -140,14 +151,15 @@ button {
 .popup-container h2 {
     text-align: center;
     margin-top: 0;
+    font-size: 15px;
     justify-content: center;
     font-family: 'Poppins', sans-serif;
 }
 
 .popup-container form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 7px; /* Reduced gap between labels and inputs */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
 }
 
 .popup-container label {
