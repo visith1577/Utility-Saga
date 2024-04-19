@@ -5,12 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import DAO.impl.ElectricityAdminImpl;
-import model.UserModel;
 import utils.Connectdb;
 import model.ElectricityAdminModel;
 
@@ -204,6 +201,26 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
             Connectdb.closeConnection(connection);
         }
         return admin;
+    }
+
+    @Override
+    public int updateImportantDetails(ElectricityAdminModel admin) throws Exception{
+        Connection connection = Connectdb.getConnection();
+        String query= "UPDATE electricity_admin\n" +
+                "SET contact_number = ?, email = ?\n" +
+                "WHERE region = ?;\n";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        statement.setString(1, admin.getContactNumber());
+        statement.setString(2, admin.getEmail());
+        statement.setString(3, admin.getRegion());
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
+        connection.close();
+        return rowsAffected;
     }
 
 }

@@ -200,4 +200,24 @@ public class WaterAdminDAO implements WaterAdminImpl {
         return rowsAffected;
     }
 
+    @Override
+    public int updateImportantDetails(ElectricityAdminModel admin) throws Exception{
+        Connection connection = Connectdb.getConnection();
+        String query= "UPDATE water_admin\n" +
+                "SET contact_number = ?, email = ?\n" +
+                "WHERE region = ?;\n";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        statement.setString(1, admin.getContactNumber());
+        statement.setString(2, admin.getEmail());
+        statement.setString(3, admin.getRegion());
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
+        connection.close();
+        return rowsAffected;
+    }
+
 }

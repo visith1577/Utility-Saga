@@ -18,4 +18,6 @@ public interface WaterAdminImpl {
     public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException;
 
     public int updateAdminDetails(ElectricityAdminModel admin) throws Exception;
+
+    int updateImportantDetails(ElectricityAdminModel admin) throws Exception;
 }
