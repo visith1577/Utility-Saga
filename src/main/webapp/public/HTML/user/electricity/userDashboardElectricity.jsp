@@ -11,7 +11,6 @@
     <head>
         <title>Dashboard</title>
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-        <script type="module" src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
@@ -92,7 +91,7 @@
         </section>
 
         <section class="plan2 component electricity" style="background: #FCC7C7">
-            <h1 class="plan2__heading">Your Usage</h1>
+            <h1 id="graph-head" class="plan2__heading">Your Usage</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Select Your Account</h3>
 
@@ -140,15 +139,9 @@
                 <tr>
                     <td class="td-item">
                         <div class="suggestion-1-parent">
-                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <h3 class="suggestion-head" id="header1">Daily Consumption Analysis</h3>
                             <div class="description-the-water-container">
-                                <span class="description">Description: </span>
-                                <span class="the-water-coming"
-                                >The water coming out of our taps is consistently
-                        discolored, appearing brown and murky. This is concerning as
-                        it affects the usability and safety of the water for
-                        drinking, cooking, and general household use.</span
-                                >
+                                <span class="the-water-coming" id="report1"></span>
                             </div>
                         </div>
                     </td>
@@ -156,15 +149,9 @@
                 <tr>
                     <td class="td-item">
                         <div class="suggestion-1-parent">
-                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <h3 class="suggestion-head">Monthly Consumption Forecast</h3>
                             <div class="description-the-water-container">
-                                <span class="description">Description: </span>
-                                <span class="the-water-coming"
-                                >The water coming out of our taps is consistently
-                        discolored, appearing brown and murky. This is concerning as
-                        it affects the usability and safety of the water for
-                        drinking, cooking, and general household use.</span
-                                >
+                                <span class="the-water-coming" id="report2"></span>
                             </div>
                         </div>
                     </td>
@@ -172,22 +159,11 @@
                 <tr>
                     <td class="td-item">
                         <div class="suggestion-1-parent">
-                            <h3 class="suggestion-head">Suggestion 1</h3>
+                            <h3 class="suggestion-head">Energy-saving Recommendations</h3>
                             <div class="description-the-water-container">
-                                <span class="description">Description: </span>
-                                <span class="the-water-coming"
-                                >The water coming out of our taps is consistently
-                        discolored, appearing brown and murky. This is concerning as
-                        it affects the usability and safety of the water for
-                        drinking, cooking, and general household use.</span
-                                >
+                                <span class="the-water-coming" id="report3"></span>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-btn">
-                        <button class="see-more" style="color: darkred; background: #FCC7C7">See more</button>
                     </td>
                 </tr>
                 </tbody>
@@ -212,6 +188,11 @@
             }
         }
 
+        const e_ctx = document.getElementById('e-graph');
+
+        const labels = Array.from({length: 24}, (_, i) => (i+1).toString());
+
+
         function select_account(account) {
             document.getElementById('dropbtn').textContent = account;
 
@@ -223,18 +204,60 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Handle successful response
-                    console.log('Data:', data);
                     // Do something with the data
-                    document.getElementById('billAmount').textContent = data.amount
-                    document.getElementById('billDue').textContent = data.dueDate
-                    document.getElementById('billStatus').textContent = data.status
+                    document.getElementById('billAmount').textContent = data.bill.amount
+                    document.getElementById('billDue').textContent = data.bill.dueDate
+                    document.getElementById('billStatus').textContent = data.bill.status
+
+                    document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
+                    document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
+                    document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+
+                    document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+
+                    const dataset = {
+                        label: 'Hourly Fluctuation',
+                        data: data.data_list_daily.slice(1).map((d, i) => d.data - data.data_list_daily[i].data),
+                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    };
+
+
+                    const data_graph = {
+                        labels: data.data_list_daily.slice(1).map(d => d.time),
+                        datasets: [dataset],
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data_graph,
+                        options: {
+                            responsive: true, // Makes the chart responsive
+                            title: { // Add a title
+                                display: true,
+                                text: 'electricity meter reading fluctuations today',
+                            },
+                            plugins: {
+                                // Add legend labels for each dataset
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        // Customize legend text color
+                                        fontColor: 'black',
+                                    }
+                                }
+                            }
+                        },
+                    };
+                    new Chart(e_ctx, config);
                 })
                 .catch(error => {
                     // Handle error
                     console.error('Error:', error.message);
                 });
         }
+
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

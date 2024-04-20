@@ -261,4 +261,122 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         }
         return base64Image;
     }
+
+    @Override
+    public void updateServices(String nic, List<String> services) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE users SET services = ? WHERE nic = ?"
+            );
+
+            String serviceString = String.join(",", services);
+            statement.setString(1, serviceString);
+            statement.setString(2, nic);
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public List<UserModel> getUserDetailsRegionalAdmin() throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<UserModel> users = new ArrayList<>();
+        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
+                "FROM users u\n" +
+                "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
+                "JOIN electricity_admin ON eal.region= electricity_admin.region";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()){
+            UserModel user = new UserModel();
+            user.setNic(rs.getString("nic"));
+            user.setFirstName(rs.getString("firstname"));
+            user.setLastName(rs.getString("lastname"));
+            user.setMobile(rs.getString("mobile"));
+            user.setEmail(rs.getString("email"));
+            user.setConnectionStatus(rs.getString("meter_status"));
+            user.setAddress(rs.getString("address"));
+            user.setAccountNumber(rs.getString("account_number"));
+
+            users.add(user);
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+        return users;
+    }
+
+    @Override
+    public List<UserModel> getUserDetailsByNICRegionalAdmin(String searchValue) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<UserModel> users = new ArrayList<>();
+        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
+                "FROM users u\n" +
+                "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
+                "JOIN electricity_admin ON eal.region= electricity_admin.region\n"+
+                "WHERE eal.account_number LIKE ? OR u.nic LIKE ? OR u.firstname LIKE ? OR u.lastname LIKE ? OR u.address LIKE ?\n"+
+                "OR u.mobile LIKE ? OR u.email LIKE ? OR eal.meter_status LIKE ?";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, "%" + searchValue + "%");
+        stmt.setString(2, "%" + searchValue + "%");
+        stmt.setString(3, "%" + searchValue + "%");
+        stmt.setString(4, "%" + searchValue + "%");
+        stmt.setString(5, "%" + searchValue + "%");
+        stmt.setString(6, "%" + searchValue + "%");
+        stmt.setString(7, "%" + searchValue + "%");
+        stmt.setString(8, "%" + searchValue + "%");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()){
+            UserModel user = new UserModel();
+            user.setNic(rs.getString("nic"));
+            user.setFirstName(rs.getString("firstname"));
+            user.setLastName(rs.getString("lastname"));
+            user.setMobile(rs.getString("mobile"));
+            user.setEmail(rs.getString("email"));
+            user.setConnectionStatus(rs.getString("meter_status"));
+            user.setAddress(rs.getString("address"));
+            user.setAccountNumber(rs.getString("account_number"));
+
+            users.add(user);
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+        return users;
+    }
+
+    @Override
+    public  void updateAccountStatus(String accountNumber, String newStatus) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        System.out.println("Account before exec: "+accountNumber);
+        System.out.println("Status before exec: "+newStatus);
+
+        try {
+            String query = "UPDATE eaccount_list SET meter_status = ? WHERE account_number = ?";
+            System.out.println("SQL Query: " + query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, newStatus.toUpperCase());
+            preparedStatement.setString(2, accountNumber);
+
+            System.out.println("Prepared Statement Parameters:");
+            System.out.println("  newStatus (uppercase): " + newStatus.toUpperCase());
+            System.out.println("  accountNumber: " + accountNumber);
+
+            preparedStatement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
 }

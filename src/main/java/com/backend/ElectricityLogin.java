@@ -3,11 +3,13 @@ package com.backend;
 import java.io.*;
 import java.sql.*;
 
+import DAO.dao.ElectricityAdminDAO;
 import DAO.dao.ElectricityRegionalAdminDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.ElectricityAdminModel;
 import model.UserRAdmin;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -20,10 +22,10 @@ public class ElectricityLogin extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        loginDriver(req, resp, "electricityDashboard.jsp", "electricityLogin.jsp");
+        loginDriver(req, resp, "AdminDashboard-electricity.jsp");
     }
 
-    static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash, String login) throws ServletException, IOException {
+    static void loginDriver(HttpServletRequest req, HttpServletResponse resp, String dash) throws ServletException, IOException {
         String id = req.getParameter("Uname").trim();
         String pwd = req.getParameter("Pwd");
         HttpSession session = req.getSession();
@@ -39,8 +41,10 @@ public class ElectricityLogin extends HttpServlet{
         try {
             req.removeAttribute("errorMessage");
             DAO.impl.UserRegional userDao = new ElectricityRegionalAdminDAO();
+            DAO.impl.ElectricityAdminImpl admindao = new ElectricityAdminDAO();
             String pwdStored = userDao.getPasswordById(id);
             UserRAdmin.Role role = userDao.getUserRoleById(id);
+            ElectricityAdminModel model = admindao.getUserDetailsByRegion(id);
             if (pwdStored != null) {
                 if(BCrypt.checkpw(pwd, pwdStored)){
 //                    System.out.println("===================Password verified--------------------------------");
@@ -50,13 +54,18 @@ public class ElectricityLogin extends HttpServlet{
                     session.setAttribute("ID", id);
                     session.setAttribute("REGION", id); // region up
                     session.setAttribute("AREAS", id);  // list of areas
+                    session.setAttribute("USERNAME", model.getUsername());
+                    session.setAttribute("EMPID", model.getEmpId());
+                    session.setAttribute("FNAME", model.getFirstname());
+                    session.setAttribute("LNAME", model.getLastname());
+                    session.setAttribute("MOBILE", model.getMobile());
                     session.setMaxInactiveInterval(SESSION_TIMEOUT_IN_SECONDS);
                     c.setMaxAge(SESSION_TIMEOUT_IN_SECONDS);
                     resp.addCookie(c);
                     if (role == UserRAdmin.Role.MAIN) {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/admin/" + dash);
+                        resp.sendRedirect(req.getContextPath() + "/main-admin/electricity-accounts");//Change
                     } else {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/electricity/regionalAdmin/" + dash);
+                        resp.sendRedirect(req.getContextPath() + "/electricity/regional-admin/user-accounts");
                     }
 
                 } else {
@@ -65,7 +74,7 @@ public class ElectricityLogin extends HttpServlet{
                     req.setAttribute("errorMessage", "Incorrect Password");
                     RequestDispatcher dispatcher = req.getRequestDispatcher(
                             "/public/HTML/login/" +
-                                    login
+                                    "electricityLogin.jsp"
                     );
                     dispatcher.forward(req, resp);
                 }
@@ -75,7 +84,7 @@ public class ElectricityLogin extends HttpServlet{
                 req.setAttribute("errorMessage", "ID not registered");
                 RequestDispatcher dispatcher = req.getRequestDispatcher(
                         "/public/HTML/login/" +
-                                login
+                                "electricityLogin.jsp"
                 );
                 dispatcher.forward(req, resp);
             }

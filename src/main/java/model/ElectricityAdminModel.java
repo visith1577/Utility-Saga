@@ -10,9 +10,21 @@ public class ElectricityAdminModel {
     private String password;
 
     private UtilityType utilityType;
+    private String empId;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private Role role;
+    private String mobile;
+    public enum Role{
+        MAIN,
+        REGIONAL
+    }
+
 
     public enum UtilityType {
-        CEB, LECO
+        CEB,
+        LECO
     }
 
     public ElectricityAdminModel(){
@@ -20,12 +32,33 @@ public class ElectricityAdminModel {
         id= getId()+ uuid;
     }
 
-    public ElectricityAdminModel(String id, String region, String contactNumber, String email, String password) {
+    public ElectricityAdminModel(String id, String region, String contactNumber, String email, String password, UtilityType utilityType,String empId, String uname, String firstname, String lastname, Role role, String mobile) {
         this.id = id;
         this.region = region;
         this.contactNumber = contactNumber;
         this.email = email;
         this.password = password;
+        this.utilityType = utilityType;
+        this.empId= empId;
+        this.username = uname;
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.role = role;
+        this.mobile= mobile;
+    }
+
+    public ElectricityAdminModel(String id, String region, String contactNumber, String email, String password,String empId, String uname, String firstname, String lastname, Role role, String mobile) {
+        this.id = id;
+        this.region = region;
+        this.contactNumber = contactNumber;
+        this.email = email;
+        this.password = password;
+        this.empId= empId;
+        this.username = uname;
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.role = role;
+        this.mobile= mobile;
     }
 
     public String getId() {
@@ -74,5 +107,69 @@ public class ElectricityAdminModel {
 
     public void setUtilityType(UtilityType utilityType) {
         this.utilityType = utilityType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstname() {
+        return firstName;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstName = firstname;
+    }
+
+    public String getLastname() {
+        return lastName;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastName = lastname;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

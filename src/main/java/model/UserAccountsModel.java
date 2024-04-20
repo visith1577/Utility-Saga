@@ -10,6 +10,48 @@ public class UserAccountsModel {
     private String dueDate;
     private Status status;
     private Acc type;
+    private UserStatus userStatus;
+    private MeterStatus meterStatus;
+    private Iot iot;
+
+
+    public void setIot(Iot iot) {
+        this.iot = iot;
+    }
+    public Iot getIot() {
+        return iot;
+    }
+
+    public enum Iot {
+        YES,
+        NO
+    }
+
+    public MeterStatus getMeterStatus() {
+        return meterStatus;
+    }
+
+    public void setMeterStatus(MeterStatus meterStatus) {
+        this.meterStatus = meterStatus;
+    }
+
+    public enum MeterStatus {
+        ACTIVE,
+        INACTIVE
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
+
+    public enum UserStatus {
+        ACTIVE,
+        INACTIVE
+    }
 
     public Acc getType() {
         return type;

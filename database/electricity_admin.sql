@@ -19,9 +19,24 @@ CREATE TABLE electricity_admin (
   contact_number VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  CONSTRAINT check_email CHECK (email REGEXP '^[\\w-]+@[\\w-]+\\.[\\w-]{2,}$')
+  utilityType VARCHAR(255) NOT NULL,
+  empid VARCHAR(50) NOT NULL UNIQUE,
+  uname VARCHAR(25) NOT NULL,
+  firstname VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
+  role ENUM('MAIN', 'REGIONAL') NOT NULL,
+  mobile VARCHAR(20) NOT NULL,
+  CONSTRAINT check_email CHECK (email REGEXP '^[\\w-]+@[\\w-]+\\.[\\w-]{2,}$'),
+  CONSTRAINT check_role CHECK (role IN ('MAIN', 'REGIONAL'))
 );
 
 ALTER TABLE electricity_admin
-ADD COLUMN utilityType VARCHAR(255) NOT NULL;
+DROP CONSTRAINT check_email;
+
+ALTER TABLE electricity_admin
+ADD CONSTRAINT check_email
+CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+
+DELETE FROM electricity_admin;
+
 

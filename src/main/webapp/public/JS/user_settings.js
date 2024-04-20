@@ -66,8 +66,16 @@ function showError(message) {
     document.getElementById('error-message').textContent = message;
 }
 
+function resetErrorDetails() {
+    document.getElementById('error-message-details').textContent = '';
+}
 
-function checkPasswordStrength(password) {
+function showDetails(message) {
+    document.getElementById('error-message-details').textContent = message;
+}
+
+
+export function checkPasswordStrength(password) {
     // Define regex patterns for different character types
     const lowercaseRegex = /[a-z]/;
     const uppercaseRegex = /[A-Z]/;
@@ -116,23 +124,85 @@ let popup = document.getElementById('popup');
 let popupcontainer = document.getElementById('popupcontainer');
 let popup2 = document.getElementById('popup2');
 let popupcontainer2 = document.getElementById('popupcontainer2');
+const water_add = document.getElementById('water-add-btn');
+const electricity_add = document.getElementById('electricity-add-btn');
+
 
 function openPopup1() {
+    console.log('btn pressed')
       popup.classList.add("open-popup");
       popupcontainer.classList.add("open-popupcontainer");
 }
+
+document.getElementById('edit-btn_water').addEventListener('click', () => {
+    openPopup1();
+    document.getElementById('water-add_btn').textContent = 'De Activate';
+    document.getElementById('water-add_btn').value = 'INACTIVE';
+});
+
+document.getElementById('add-btn_water').addEventListener('click', () => {
+    openPopup1();
+    document.getElementById('water-add_btn').textContent = 'Activate';
+    document.getElementById('water-add_btn').value = 'ACTIVE';
+});
+
+document.getElementById('water-add_btn').addEventListener('click', (event) => {
+    event.preventDefault();
+    let value = document.getElementById('accountActive-Number').value;
+
+    if (document.getElementById(value) === null) {
+        document.getElementById('popup-header_water').textContent = "Account not found";
+        document.getElementById('popup-header_water').style.color = "red";
+    } else {
+        document.getElementById('action-water').value =  document.getElementById('water-add_btn').value;
+        const form = document.getElementById('accountForm_water');
+        form.submit();
+    }
+});
 
 function closePopup1() {
       popup.classList.remove("open-popup");
       popupcontainer.classList.remove("open-popupcontainer");
 }
 
+document.getElementById('close-btn_water').addEventListener('click', closePopup1);
+document.getElementById('close-btn2_water').addEventListener('click', closePopup1);
+
 function openPopup2() {
     popup2.classList.add("open-popup2");
     popupcontainer2.classList.add("open-popupcontainer2");
 }
 
+document.getElementById('edit-btn_electricity').addEventListener('click', () => {
+    openPopup2();
+    document.getElementById('electricity-add_btn').textContent = 'De Activate';
+    document.getElementById('electricity-add_btn').value = 'INACTIVE';
+});
+
+document.getElementById('add-btn_electricity').addEventListener('click', () => {
+    openPopup2();
+    document.getElementById('electricity-add_btn').textContent = 'Activate';
+    document.getElementById('electricity-add_btn').value = 'ACTIVE'
+});
+
+document.getElementById('electricity-add_btn').addEventListener('click', (event) => {
+    event.preventDefault();
+    let value = document.getElementById('accountNumber').value;
+
+    if (document.getElementById(value) === null) {
+        document.getElementById('popup-header_electricity').textContent = "Account not found";
+        document.getElementById('popup-header_electricity').style.color = "red";
+    } else {
+        document.getElementById('action-electricity').value =  document.getElementById('electricity-add_btn').value
+        const form = document.getElementById('accountForm_electricity');
+        form.submit();
+    }
+});
+
 function closePopup2() {
     popup2.classList.remove("open-popup2");
     popupcontainer2.classList.remove("open-popupcontainer2");
 }
+
+document.getElementById('close-btn_electricity').addEventListener('click', closePopup2);
+document.getElementById('close-btn2_electricity').addEventListener('click', closePopup2);

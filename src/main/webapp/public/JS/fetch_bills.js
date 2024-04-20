@@ -1,3 +1,33 @@
+// Get the search bar element
+const searchBar = document.querySelector('input[type="text"][placeholder="Search..."]');
+
+function searchFilter() {
+    // Get the text typed in the search bar
+    const searchText = searchBar.value.toLowerCase();
+
+    // Get all the rows in the table
+    const rows = document.querySelectorAll('#dataTable tr');
+
+    // Loop through all the rows
+    rows.forEach(function(row) {
+        // Get the account number in the row
+        const accountNumber = row.cells[0].textContent.toLowerCase();
+
+        // Check if the account number includes the search text
+        if (accountNumber.includes(searchText)) {
+            // If it does, display the row
+            row.style.display = '';
+        } else {
+            // If it doesn't, hide the row
+            row.style.display = 'none';
+        }
+    });
+}
+
+// Add an event listener to the search bar
+searchBar.addEventListener('keyup', searchFilter);
+
+
 // load data on scroll
 let page_number = 1;
 let is_fetching_data = false;
@@ -66,6 +96,8 @@ function fetchMoreData() {
                     document.querySelector('#dataTable').appendChild(row);
                 })
             }
+
+            searchFilter();
         })
         .catch(error => {
             console.error('Error fetching more data:', error);

@@ -10,7 +10,7 @@ import model.UserRAdmin;
 import java.io.IOException;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/electricity/regionalAdmin/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        urlPatterns = {"/public/HTML/electricity/regionalAdmin/*", "/public/HTML/pages/*", "/public/HTML/login/*", "/electricity/regional-admin/user-accounts/*", "/electricity/regional-admin/*"},
         filterName ="Auth-filter__electricity_regional",
         description = "Authentication middleware"
 )
@@ -35,7 +35,9 @@ public class AdminElectricityRegionalFilter implements Filter{
             } else {
                 Object isLogged = session.getAttribute("isLoggedIn");
                 Object role = session.getAttribute("ROLE");
+                System.out.println(role);
                 if (isLogged != null ){
+                    System.out.println(role);
                     boolean isLoggedIn = (boolean) isLogged;
                     UserRAdmin.Role currRole = UserRAdmin.Role.valueOf(role.toString());
                     if (isLoggedIn && currRole == UserRAdmin.Role.REGIONAL) {

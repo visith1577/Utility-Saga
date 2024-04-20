@@ -10,10 +10,16 @@
 <html>
 <head>
     <title>Analysis - Electricity</title>
-    <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../../CSS/ElectricityServices/electricityAnalysis.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/public/CSS/ElectricityServices/electricityAnalysis.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="../../../CSS/forms.css">
+    <link rel="stylesheet" href=".<%=request.getContextPath()%>/public/CSS/forms.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .item {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="navv">
@@ -70,193 +76,184 @@
 <div class="dashboard">
     <div class="content">
         <div class="main-content">
-
-            <div class="stats flex">
-                <div class="stats-box sales">
-                    <h2 class="heading">Daily Consumptions</h2>
-                    <canvas id="dailycons"></canvas>
-                </div>
-
-                <div class="stats-box earning">
-                    <h2 class="heading">Fluctuation</h2>
-                    <canvas id="monthcons"></canvas>
-                </div>
-            </div>
-
-            <div class="stats bills">
-                <div class="stats-box calc-box">
-                    <h2 class="heading">Bill Calculation</h2>
-                    <div class="billcalculation">
-                        <div class="a_row">
-                            <label for="Category">Select your Category</label>
-                            <select name="Category" id="Category">
-                                <option value="Domestic">Domestic</option>
-                                <option value="Industrial">Industrial</option>
-                                <option value="General">General</option>
-                                <option value="Government">Government</option>
-                                <option value="Hotel">Hotel</option>
-                                <option value="Educational">Educational</option>
-                                <option value="Religious">Religious</option>
-                            </select>
+            <section class="search component electricity">
+                    <h2 class="select-heading">Account Number</h2>
+                    <div class="select-box">
+                        <div class="options-container">
+                            <c:forEach var="entry" items="${requestScope.electricity_account_list}">
+                                <div class="option">
+                                    <input
+                                            type="radio"
+                                            class="radio"
+                                            id="${entry.key}"
+                                            name="category"
+                                    />
+                                    <label for="${entry.key}" class="${entry.value}">${entry.key}</label>
+                                </div>
+                            </c:forEach>
                         </div>
-                        <div class="Period">
-                            <div class="a_row">
-                                <label for="lastReadingDate">Last Reading Date:</label>
-                                <input type="date" id="lastReadingDate" name="lastReadingDate">
-                        
-                                <label for="currentReadingDate">Current Reading Date:</label>
-                                <input type="date" id="currentReadingDate" name="currentReadingDate">
-                            </div>
-                            <div class="a_row">
-                                <label for="lastReading">Last Reading:</label>
-                                <input type="number" id="lastReading" name="lastReading">
-                        
-                                <label for="currentReading">Current Reading:</label>
-                                <input type="number" id="currentReading" name="currentReading">
-                            </div>
-                        </div>
-                        <div class="calculation">
-                            <div class="btn-a_row">
-                                <button type="button" name="calculate">Calculate the amounts</button>
-                                <button type="button" name="reset">Reset</button>
-                            </div>
-                            <div class="a_row">
-                                <label for="result1">Bill Amount(Normal Tariff):</label>
-                                <input type="number" id="result1" name="result" readonly>
-                            </div>
-                            <div class="a_row">
-                                <label for="result2">Bill Amount(Variable Tariff):</label>
-                                <input type="number" id="result2" name="result" readonly>
-                            </div>
 
-                            <div class="a_row">
-                                <p>For more details on Tariffs,  <a href="">click here</a></p>
-                            </div>
-                                <label for="t_result">The most suitable tariff for you:</label>
-                                <input type="text" id="t_result" name="t_result" readonly>
+                        <div class="selected">
+                            Select Account Number
                         </div>
-                        
-                    </div>          
-                </div>
-            
-
-                <div class="top-selling stats-box">
-                    <div class="stats-box budget">
-                        <h2 class="heading">Budgeted Value Calculation</h2>
-                        <div class="billcalculation">
-                            <div class="a_row">
-                                <label for="month">Select Month:</label>
-                                <select name="month" id="month">
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                            </div>
-                            <div class="a_row">
-                                <label for="expectedUnits">Expected Units:</label>
-                                <input type="number" id="expectedUnits" name="expectedUnits">
-                            </div>
-                            <div class="a_row">
-                                <label for="fixedTariff">Fixed Tariff Amount:</label>
-                                <input type="number" id="fixedTariff" name="fixedTariff">
-                            </div>
-                            <div class="a_row">
-                                <label for="variableTariff">Variable Tariff Amount:</label>
-                                <input type="number" id="variableTariff" name="variableTariff">
-                            </div>
-                            <div class="btn-a_row">
-                                <button type="button" name="add_row">Add to Table</button>
-                            </div>
+                        <div class="search-box">
+                            <label>
+                                <input type="text" placeholder="search account">
+                            </label>
                         </div>
                     </div>
-                    <table class="top-selling-products2">
-                        <tr>
-                            <th>Month</th>
-                            <th>Expected Units</th>
-                            <th>Expected Price(Fixed T.)</th>
-                            <th>Expected Price(Variable T.)</th>
-
-                        </tr>
-                        <tr>
-                            <td>January</td>
-                            <td>150</td>
-                            <td>5000</td>
-                            <td>4750</td>
-                        </tr>
-                        <tr>
-                            <td>February</td>
-                            <td>140</td>
-                            <td>4000</td>
-                            <td>3800</td>
-                        </tr>
-                        <tr>
-                            <td>March</td>
-                            <td>150</td>
-                            <td>5200</td>
-                            <td>4850</td>
-                        </tr>
-                    </table>
+            </section>
+                <div id="navigation" class="navigation item">
+                    <div id="toggle" class="toggle-p">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                                    <span id="bill-val" class="title-nav visible">Current bill: </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-lightbulb" aria-hidden="true"></i></span>
+                                    <span id="kwh-val" class="title-nav visible">Kwh consumed: </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                                    <span class="title-nav visible">Device Status: Active</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-receipt" aria-hidden="true"></i></span>
+                                    <span id="reading-val" class="title-nav visible">last Reading: </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                <script>
+                    const navigation = document.getElementById('navigation');
+                    document.getElementById('toggle').ondblclick = function () {
+                        this.classList.toggle('active');
+                        navigation.classList.toggle('active');
+                    }
+                </script>
+                <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+                <script>
+                    $( function() {
+                        $( "#navigation" ).draggable();
+                    } );
+                </script>
+                <div class="stats flex item">
+                    <div class="stats-box sales">
+                        <h2 class="heading">Daily Consumptions</h2>
+                        <canvas id="dailycons"></canvas>
+                    </div>
 
-            <div class="stats flex">
-                <div class="stats-box bud_act">
-                    <h2 class="heading">Budgeted Vs. Actual Consumption</h2>
-                    <canvas id="bud_act"></canvas>
+                    <div class="stats-box earning">
+                        <h2 class="heading">Fluctuation</h2>
+                        <canvas id="monthcons"></canvas>
+                    </div>
                 </div>
 
-                <div class="stats-box sales">
-                    <h2 class="heading">Bill amount - Monthly</h2>
-                    <canvas id="bills"></canvas>
+                <div class="stats bills item">
+                    <div class="stats-box calc-box">
+                        <h1 class="heading">Calender</h1>
+                        <div class="calendar">
+                        <header>
+                            <h3 class="month"  style="color: #8c7400"></h3>
+                            <nav>
+                                <button id="prev"></button>
+                                <button id="next"></button>
+                            </nav>
+                        </header>
+                        <section>
+                            <ul class="days">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="dates"></ul>
+                        </section>
+                        </div>
+                    </div>
+            
+
+                    <div class="top-selling stats-box">
+                        <form action="<%=request.getContextPath()%>/user/electricity-analytics" method="post" class="stats-box budget">
+                            <h2 class="heading">Budgeted Value Calculation</h2>
+                            <div class="billcalculation">
+                                <div class="a_row">
+                                    <label for="month">Select Month:</label>
+                                    <input id="month" type="text" name="month" readonly required>
+                                </div>
+                                <div class="a_row">
+                                    <label for="expectedUnits">Set Budget :</label>
+                                    <input type="text" id="expectedUnits" name="expectedUnits" pattern="^[0-9]*$" required>
+                                </div>
+                                <div class="btn-a_row">
+                                    <button type="submit" name="add_row">Add to Table</button>
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                            document.getElementById('expectedUnits').addEventListener('keypress', function (e) {
+                                    if (e.key < '0' || e.key > '9') {
+                                        e.preventDefault();
+                                    }
+                            });
+                        </script>
+                        <table id="budget-table" class="top-selling-products2">
+                            <tr>
+                                <th>Month</th>
+                                <th>Budget</th>
+                                <th>Date Added</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-stats flex">
-                <div class="product-sales stats-box">
-                    <h2 class="heading">IOT Devices</h2>
-                    <canvas id="iot"></canvas>
+                <div class="stats flex item">
+                    <div class="stats-box bud_act">
+                        <h2 class="heading">Budgeted Vs. Actual Consumption</h2>
+                        <canvas id="bud_act"></canvas>
+                    </div>
+
+                    <div class="stats-box sales">
+                        <h2 class="heading">Bill amount - Monthly</h2>
+                        <canvas id="bills"></canvas>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="top-selling stats-box1">
-                    <h2 class="heading">Usages of iOT Devices</h2>
-                    <table class="top-selling-products1">
-                        <tr>
-                            <th>Device</th>
-                            <th>Usage</th>
-                            <th>Power Consumption</th>
-                        </tr>
-                        <tr>
-                            <td>AC</td>
-                            <td>25</td>
-                            <td>3000W</td>
-                        </tr>
-                        <tr>
-                            <td>Fan 1</td>
-                            <td>5</td>
-                            <td>250 W</td>
-                        </tr>
-
-                        <tr>
-                            <td>Fan 2</td>
-                            <td>10</td>
-                            <td>250 W</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
         </div>
     </div>
+<div style="height: 80px; width: 100%">
+
 </div>
+<script>
+    function getCurrentMonth() {
+        const date = new Date();
+        return date.getMonth() + 1;
+    }
+
+    function getCurrentMonthName() {
+        const date = new Date();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return monthNames[date.getMonth()];
+    }
+
+    window.onload = function() {
+        const monthInput = document.getElementById('month');
+        monthInput.value = getCurrentMonthName();
+    }
+</script>
 <script
         type="module"
         src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
@@ -267,7 +264,9 @@
 ></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script>
+    let contextPath = '<%=request.getContextPath()%>';
+</script>
 <script src="<%= request.getContextPath() %>/public/JS/electricityAnalysis.js"></script>
 </body>
 </html>

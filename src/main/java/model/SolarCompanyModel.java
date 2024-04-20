@@ -1,13 +1,12 @@
 package model;
 
-import java.io.InputStream;
-import java.util.Set;
+
 public class SolarCompanyModel {
     private String id;
     private String CompanyName;
     private String BNum;
     private String username;
-    private String OwnerNIC;
+    private String ownerNIC;
     private String pwd;
 
     private String mobile;
@@ -31,7 +30,7 @@ public class SolarCompanyModel {
         this.CompanyName = companyName;
         this.BNum = BNum;
         this.username = username;
-        this.OwnerNIC = ownerNIC;
+        this.ownerNIC = ownerNIC;
         this.pwd = pwd;
         this.mobile = mobile;
         this.landNo = landNo;
@@ -43,6 +42,11 @@ public class SolarCompanyModel {
     }
 
     public SolarCompanyModel(){}
+
+    public SolarCompanyModel(String BNum, ApprovalStatus approvalStatus){
+        this.BNum= BNum;
+        this.approvalStatus= approvalStatus;
+    }
 
     public String getId() {
         return id;
@@ -77,11 +81,11 @@ public class SolarCompanyModel {
     }
 
     public String getOwnerNIC() {
-        return OwnerNIC;
+        return ownerNIC;
     }
 
     public void setOwnerNIC(String ownerNIC) {
-        OwnerNIC = ownerNIC;
+        this.ownerNIC = ownerNIC;
     }
 
     public String getPwd() {

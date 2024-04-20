@@ -10,14 +10,14 @@ import model.UserRAdmin;
 import java.io.IOException;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/electricity/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        urlPatterns = {"/public/HTML/electricity/admin/*", "/public/HTML/pages/*", "/public/HTML/login/*", "/main-admin/electricity-accounts/*", "/electricity/main-admin/*"},
         filterName ="Auth-filter__electricity_admin",
         description = "Authentication middleware"
 )
 public class AdminElectricityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Authentication Filter <--------__in__-------->");
+        System.out.println("Authentication Filter Admin <--------__in__-------->");
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
@@ -35,8 +35,11 @@ public class AdminElectricityFilter implements Filter {
         } else {
             Object isLogged = session.getAttribute("isLoggedIn");
             Object role = session.getAttribute("ROLE");
+            System.out.println(role);
             if (isLogged != null ){
+                System.out.println(role);
                 boolean isLoggedIn = (boolean) isLogged;
+                System.out.println(isLoggedIn);
                 UserRAdmin.Role currRole = UserRAdmin.Role.valueOf(role.toString());
                 if (isLoggedIn && currRole == UserRAdmin.Role.MAIN) {
                     filterChain.doFilter(servletRequest, servletResponse);
