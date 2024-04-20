@@ -32,5 +32,11 @@ public interface UserDetails {
 
     List<UserModel> getUserDetailsByNICRegionalAdmin(String region,String nic) throws SQLException;
 
+    List<UserModel> getWaterDetailsRegionalAdmin(String id) throws SQLException;
+
+    List<UserModel> getWaterDetailsByNICRegionalAdmin(String id, String searchValue) throws SQLException;
+
     void updateAccountStatus(String accountNumber, String newStatus) throws SQLException;
+
+    void updateWaterAccountStatus(String accountNumber, String newStatus) throws SQLException;
 }
