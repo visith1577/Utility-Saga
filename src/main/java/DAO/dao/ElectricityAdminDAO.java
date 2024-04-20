@@ -36,6 +36,32 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
     }
 
     @Override
+    public int updateAdminDetails(ElectricityAdminModel admin) throws Exception {
+        System.out.println("Inside updateAdmin details");
+        Connection connection = Connectdb.getConnection();
+        String query = "UPDATE electricity_admin\n" +
+                "SET empid = ?, uname = ?, firstname = ?, lastname = ?, mobile = ?\n" +
+                "WHERE region = ?;";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, admin.getEmpId());
+        statement.setString(2, admin.getUsername());
+        statement.setString(3, admin.getFirstname());
+        statement.setString(4, admin.getLastname());
+        statement.setString(5, admin.getMobile());
+        statement.setString(6, admin.getRegion());
+
+        System.out.println("Region: "+ admin.getRegion());
+
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
+        connection.close();
+        return rowsAffected;
+    }
+
+    @Override
     public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception {
         List<ElectricityAdminModel> admins = new ArrayList<>();
         Connection connection = Connectdb.getConnection();;
@@ -103,6 +129,98 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
         stmt.close();
         con.close();
         return admins;
+    }
+
+    @Override
+    public String getPasswordByNic(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+
+        String storedHash;
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT password FROM electricity_admin WHERE region = ?"
+            );
+
+            statement.setString(1, nic);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    storedHash = result.getString("password");
+                } else {
+                    storedHash = null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return storedHash;
+    }
+
+    @Override
+    public void updatePassword(ElectricityAdminModel user) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE electricity_admin SET  password = ? WHERE region = ?"
+            );
+
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getRegion());
+
+            statement.executeUpdate();
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        ElectricityAdminModel admin = new ElectricityAdminModel();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT empid, uname, firstname, lastname, mobile FROM electricity_admin WHERE region = ?"
+            );
+
+            statement.setString(1, region);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if(result.next()){
+                    admin.setEmpId(result.getString("empid"));
+                    admin.setUsername(result.getString("uname"));
+                    admin.setFirstname(result.getString("firstname"));
+                    admin.setLastname(result.getString("lastname"));
+                    admin.setMobile(result.getString("mobile"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return admin;
+    }
+
+    @Override
+    public int updateImportantDetails(ElectricityAdminModel admin) throws Exception{
+        Connection connection = Connectdb.getConnection();
+        String query= "UPDATE electricity_admin\n" +
+                "SET contact_number = ?, email = ?\n" +
+                "WHERE region = ?;\n";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        statement.setString(1, admin.getContactNumber());
+        statement.setString(2, admin.getEmail());
+        statement.setString(3, admin.getRegion());
+
+        int rowsAffected = statement.executeUpdate();
+
+        System.out.println("Region: "+ admin.getRegion());
+        System.out.println("Rows affected: "+ rowsAffected);
+        connection.close();
+        return rowsAffected;
     }
 
 }

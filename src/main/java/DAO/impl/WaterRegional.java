@@ -11,4 +11,8 @@ public interface WaterRegional {
     String getPasswordById(String region) throws SQLException;
 
     UserRAdmin.Role getUserRoleById(String region) throws SQLException;
+
+    String getPasswordByNic(String nic) throws SQLException;
+
+    void updatePassword(ElectricityAdminModel user) throws SQLException;
 }

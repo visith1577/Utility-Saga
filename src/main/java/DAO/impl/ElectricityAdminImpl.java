@@ -8,7 +8,17 @@ import model.ElectricityAdminModel;
 public interface ElectricityAdminImpl {
         public int addElectricityAdmin(ElectricityAdminModel admin) throws Exception;
 
-        public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception;
+    int updateAdminDetails(ElectricityAdminModel admin) throws Exception;
+
+    public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception;
 
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
+
+    String getPasswordByNic(String nic) throws SQLException;
+
+    void updatePassword(ElectricityAdminModel user) throws SQLException;
+
+    public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException;
+
+    int updateImportantDetails(ElectricityAdminModel admin) throws Exception;
 }
