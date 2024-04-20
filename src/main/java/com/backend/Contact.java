@@ -29,7 +29,6 @@ public class Contact extends HttpServlet {
         String TelephoneNumber = req.getParameter("Sender-telephone");
         String message = req.getParameter("Sender-message");
 
-
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd:MM:yy HH:mm:ss");
         String formattedDateTime = now.format(formatter);
@@ -40,11 +39,12 @@ public class Contact extends HttpServlet {
                 "Telephone Number: " + TelephoneNumber + "\n" +
                 "Message: " + message;
 
-        if (req.getRequestURI().equals("/user/water-contact-us")) {
+
+        if (req.getServletPath().equals("/user/water-contact-us")) {
             SendEmail email_tmp = new SendEmail(fromEmail, new String[]{toEmailWater}, subject, body);
             email_tmp.sendEmail("<h1>Water Contact Us form Utility Saga</h1>");
             resp.sendRedirect(req.getHeader("referer"));
-        } else if (req.getRequestURI().equals("/user/electricity-contact-us")) {
+        } else if (req.getServletPath().equals("/user/electricity-contact-us")) {
             SendEmail email_tmp = new SendEmail(fromEmail, new String[]{toEmailElectricity}, subject, body);
             email_tmp.sendEmail("<h1>Electricity Contact Us form Utility Saga</h1>");
             resp.sendRedirect(req.getHeader("referer"));

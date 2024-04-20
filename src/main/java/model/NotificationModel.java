@@ -4,10 +4,11 @@ import java.util.Date;
 
 public class NotificationModel {
     private int id;
-    private String nic;
-    private String description;
+    private String message;
     private Date date;
-    private NotificationType type;
+    private String region;
+    private Category category;
+    private String sentTo;
 
     public int getId() {
         return id;
@@ -17,20 +18,12 @@ public class NotificationModel {
         this.id = id;
     }
 
-    public String getNic() {
-        return nic;
+    public String getMessage() {
+        return message;
     }
 
-    public void setNic(String nic) {
-        this.nic = nic;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Date getDate() {
@@ -41,16 +34,33 @@ public class NotificationModel {
         this.date = date;
     }
 
-    public NotificationType getType() {
-        return type;
+    public String getRegion() {
+        return region;
     }
 
-    public void setType(NotificationType type) {
-        this.type = type;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
-    public enum NotificationType {
-        REPORT,
-        NOTIFICATION
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getSentTo() {
+        return sentTo;
+    }
+
+    public void setSentTo(String sentTo) {
+        this.sentTo = sentTo;
+    }
+
+    public enum Category {
+        BREAKDOWN,
+        MAINTENANCE,
+        OTHER
     }
 }

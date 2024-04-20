@@ -525,3 +525,125 @@ button[name="goto-devicepage"]:hover {
 #next-budget:hover::before {
     border-color: #000;
 }
+
+.INACTIVE {
+    color: red;
+}
+
+.navigation {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    transition: width 0.5s, height 0.5s;
+    transition-delay: 0s, 0.75s;
+    z-index: 100000;
+    border-radius: 4px;
+    overflow: hidden;
+    bottom: 20px;
+    right: 20px;
+}
+
+.navigation.active {
+    width: 250px;
+    height: 350px;
+    transition: width 0.5s, height 0.5s;
+    transition-delay: 0s, 0.75s;
+}
+
+.navigation .toggle-p {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--electricity-color2);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.navigation .toggle-p::before {
+    content: "+";
+    position: absolute;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    color: #ffffff;
+    font-weight: 400;
+    transition: 0.5s;
+}
+
+.navigation .toggle-p.active{
+    background: rgb(76, 154, 255);
+}
+
+.navigation .toggle-p.active::before {
+    transform: rotate(315deg);
+}
+
+.navigation ul {
+    padding-left: 0;
+    margin: 0;
+    /*width: 100%;*/
+    height: 100%;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    padding-top: 100px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+
+.navigation ul li {
+    list-style: none;
+    width: 100%;
+    position: relative;
+}
+
+.navigation ul li a {
+    display: flex;
+    position: relative;
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+}
+
+#navigation ul li:hover {
+    background: rgb(76, 154, 255);
+}
+
+#navigation ul li a .icon {
+    position: relative;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    padding-right: 20px;
+    padding-left: 10px;
+    padding-top: 12px;
+}
+
+#navigation ul li a .icon .fa{
+    font-size: 24px;
+    color: black;
+}
+
+#navigation ul li a .title-nav {
+    position: relative;
+    display: inline-block;
+    line-height: 50px;
+    text-align: start;
+    white-space: nowrap;
+}
+
+#navigation ul li:hover a .icon .fa,
+#navigation ul li:hover a .title-nav {
+    color: #ebebeb;
+}

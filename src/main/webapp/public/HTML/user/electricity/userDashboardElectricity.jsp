@@ -11,7 +11,6 @@
     <head>
         <title>Dashboard</title>
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-        <script type="module" src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
@@ -92,7 +91,7 @@
         </section>
 
         <section class="plan2 component electricity" style="background: #FCC7C7">
-            <h1 class="plan2__heading">Your Usage</h1>
+            <h1 id="graph-head" class="plan2__heading">Your Usage</h1>
             <div class="element">
                 <h3 class="plan2__heading3">Select Your Account</h3>
 
@@ -189,6 +188,11 @@
             }
         }
 
+        const e_ctx = document.getElementById('e-graph');
+
+        const labels = Array.from({length: 24}, (_, i) => (i+1).toString());
+
+
         function select_account(account) {
             document.getElementById('dropbtn').textContent = account;
 
@@ -209,12 +213,51 @@
                     document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
                     document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
 
+                    document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+
+                    const dataset = {
+                        label: 'Hourly Fluctuation',
+                        data: data.data_list_daily.slice(1).map((d, i) => d.data - data.data_list_daily[i].data),
+                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    };
+
+
+                    const data_graph = {
+                        labels: data.data_list_daily.slice(1).map(d => d.time),
+                        datasets: [dataset],
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data_graph,
+                        options: {
+                            responsive: true, // Makes the chart responsive
+                            title: { // Add a title
+                                display: true,
+                                text: 'electricity meter reading fluctuations today',
+                            },
+                            plugins: {
+                                // Add legend labels for each dataset
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        // Customize legend text color
+                                        fontColor: 'black',
+                                    }
+                                }
+                            }
+                        },
+                    };
+                    new Chart(e_ctx, config);
                 })
                 .catch(error => {
                     // Handle error
                     console.error('Error:', error.message);
                 });
         }
+
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

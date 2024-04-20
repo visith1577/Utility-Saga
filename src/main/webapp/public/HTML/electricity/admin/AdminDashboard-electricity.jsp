@@ -24,6 +24,7 @@
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -40,6 +41,11 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
+                    <li class="menu-items-li">
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
+                            <span class="material-icons">notifications</span>
+                        </a>
+                    </li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
@@ -49,32 +55,31 @@
         </header>
     </div>
 
-    <div style="margin-top: 100px">
-        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/main-admin/electricity-accounts">
-            <label for="nic"></label>
-            <input name="id" type="text" id="nic" placeholder="Enter EmpID">
 
-            <button type="submit" name="search">Search</button>
-            <button type="button" id="resetButton">Reset</button>
-        </form>
-    </div>
-    <script>
-        document.getElementById('resetButton').addEventListener('click', function() {
-            document.getElementById('nic').value = '';
-            document.getElementById('searchForm').submit();
-        });
-    </script>
+    <div class="madminmiddle" id="middle">
+        <div style="margin-top: 100px">
+            <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/electricity-accounts">
+                <label for="nic"></label>
+                <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">
 
-
-    <div class="middle" id="middle">
+                <button type="submit" name="search" class="=searchbtn">Search</button>
+                <button type="button" id="resetButton" class="=searchbtn">Reset</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('resetButton').addEventListener('click', function() {
+                document.getElementById('nic').value = '';
+                document.getElementById('searchForm').submit();
+            });
+        </script>
         <div id="results"></div>
-        <h4 class="title">Electricity Admins</h4>
+        <h2 class="title">Electricity Main Admins</h2>
         <div class="buttons">
-            <button class="button" onclick="openPopup('popupForm')">Add</button>
+            <button class="button" onclick="openPopup('popupForm')">Add Regional Admins</button>
         </div>
         <div class="popup-form" id="popupForm" style="display: none;">
             <div id="popupContainer" class="popup-container">
-                <h3 class="popup-title">Add Electricity Admin</h3>
+                <h2 class="popup-title">Add Electricity Regional Admin</h2>
                 <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
                     <label for="region">Region:</label>
                     <input type="text" name="region" id="region" required>

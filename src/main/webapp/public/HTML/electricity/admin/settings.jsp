@@ -14,6 +14,7 @@
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
 </head>
 
@@ -30,6 +31,11 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
+                    <li class="menu-items-li">
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
+                            <span class="material-icons">notifications</span>
+                        </a>
+                    </li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
