@@ -1,7 +1,10 @@
-<%@ page import="model.UserModel" %>
-<%@ page import="java.util.List" %>
-<%@ page import="DAO.dao.UserDetailsDao" %>
-<% List<UserModel> users = new UserDetailsDao().getUserDetailsRegionalAdmin();%>
+<%
+    // Get the context path dynamically
+    String contextPath = request.getContextPath();
+%>
+<% String firstname = (String) session.getAttribute("FNAME"); %>
+<% String lastname = (String) session.getAttribute("LNAME"); %>
+<% String region = (String) session.getAttribute("REGION"); %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
@@ -10,21 +13,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Electricity Regional admin dashboard</title>
-<link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-jicI5S7PZg7NtOWKp6hv3zokYkaw9fdL3+M5uHyXr+1XNMe5W4/zJ3uiz5zgI5Fp9Pwe5VXvBsYHpma/8ZkC9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../../CSS/forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
+    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/RegionalAdminUsers.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.querySelector('table').addEventListener('click', function(event) {
-            if (event.target.classList.contains('change-status-btn')) {
-                changeUserStatus(event);
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            let contextPath = '<%= contextPath %>';
+            document.querySelector('table').addEventListener('click', function(event) {
+                if (event.target.classList.contains('change-status-btn')) {
+                    changeUserStatus(event);
+                }
+            });
         });
 
 
         function changeUserStatus(event) {
+            let contextPath = '<%= contextPath %>';
             console.log('changeUserStatus function called');
 
             const row = event.target.closest('tr');
@@ -36,10 +47,10 @@
             const currentStatus = row.querySelector('td:nth-child(7)').textContent;
             console.log('Current Status:', currentStatus);
 
-            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
             console.log('New Status:', newStatus);
 
-            fetch('/user-status', {
+            fetch(contextPath+ '/user-status', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -75,10 +86,17 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/AdminDashboard-electricity.jsp">Customers</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/complaints-electricity.jsp">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-payment.jsp">Payment</a></li>
-                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">Customers</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/complaints">Complaints</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/connections">New Connection</a></li>
+                    <li class="menu-items-li dropdown">
+                        <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
+                        <div class="dropdown-content">
+                            <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/settings.jsp">Settings</a>
+                            <a href="<%= request.getContextPath() %>/logout">LogOut</a>
+                        </div>
+                    </li>
                 </ul>
                 <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
             </div>
@@ -86,13 +104,12 @@
     </div>
 </header>
 <div class="topbar" style="margin-top: 12.5vh">
-    <div class="lefttop">
-        <h2>Hello (Name)</h2>
+    <div class="lefttop" style="font-size: larger">
+        <h2>Hello <%=firstname%> <%=lastname%> </h2>
     </div>
-    <div class="righttop">
+    <div class="righttop" style="font-size: x-large">
         <ul>
-            <li>Region:Biyagama</li>
-            <li>Areas:Dompe, Biyagama, Malwana</li>
+            <li style="list-style-type: none">Region: <%=region%></li>
         </ul>
     </div>
 </div>
@@ -141,6 +158,22 @@
         </a>
     </div>
 
+    <div class="searchbar">
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">
+            <label for="nic"></label>
+            <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">
+
+            <button type="submit" name="search" class="btn" onclick="search(); return false;">Search</button>
+            <button type="button" id="resetButton" class="btn">Reset</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.getElementById('nic').value = '';
+            document.getElementById('searchForm').submit();
+        });
+    </script>
+
     <!-- Users/Connections -->
     <div class="details">
         <div class="tablediv" style="width: 100% !important; max-width: 100% !important;">
@@ -151,6 +184,7 @@
                     <a href="#" class="btn">View All</a>
                 </div>
 
+                <div id="results"></div>
                 <!-- table body -->
                 <div class="table-container">
                     <table class="table">
@@ -168,18 +202,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (UserModel user : users) { %>
+
+                        <c:if test="${empty requestScope.electricityRegionalUsers}">
                             <tr>
-                                <td><%= user.getAccount_number() %></td>
-                                <td><%= user.getNic() %></td>
-                                <td><%= user.getFirstName() %> <%= user.getLastName() %></td>
-                                <td><%= user.getMobile() %></td>
-                                <td><%= user.getEmail() %></td>
-                                <td><%= user.getAddress() %></td>
-                                <td><%= user.getConnectionStatus()%></td>
+                                <td colspan="12">No companies found</td>
+                            </tr>
+                        </c:if>
+                        <c:if test="${not empty requestScope.electricityRegionalUsers}">
+                        <c:forEach items="${requestScope.electricityRegionalUsers}" var="user">
+
+                            <tr>
+                                <td>${user.accountNumber}</td>
+                                <td>${user.nic}</td>
+                                <td>${user.firstName} ${user.lastName}</td>
+                                <td>${user.mobile}</td>
+                                <td>${user.email}</td>
+                                <td>${user.address}</td>
+                                <td>${user.connectionStatus}</td>
                                 <td><button class="change-status-btn">Change Status</button></td>
                             </tr>
-                            <% } %>
+                        </c:forEach>
+                        </c:if>
 
                         </tbody>
                     </table>

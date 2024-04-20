@@ -39,26 +39,27 @@ public class WaterConnection extends HttpServlet {
         String connection = req.getParameter("connection-status");
 
         String new_con_address = req.getParameter("NewConnectionAddress");
-        String region = req.getParameter("region");
+        String region = req.getParameter("region").trim().toUpperCase();
 
         ConnectionModel wConnection = new ConnectionModel();
 
+      
         String requester_name = title + " " + initial + " " + name;;
         wConnection.setRequester_name(requester_name);
 
-        wConnection.setCurrent_address(curr_address);
+        wConnection.setCurrentAddress(curr_address);
         wConnection.setNic(nic);
         wConnection.setEmail(email);
         wConnection.setMobile(telNum);
         wConnection.setRegion(region);
-        wConnection.setAccount_number(accNum);
+        wConnection.setAccountNumber(accNum);
 
         ConnectionModel.ConnectionRequirement requirement = ConnectionModel.ConnectionRequirement.valueOf(connection);
-        wConnection.setConnection_requirements(requirement);
+        wConnection.setConnectionRequirements(requirement);
 
-        wConnection.setNew_address(new_con_address);
+        wConnection.setNewAddress(new_con_address);
 
-        wConnection.setNearest_account(nearest_acc_num);
+        wConnection.setNearestAccount(nearest_acc_num);
 
         WaterConnectionDao dao = new WaterConnectionDao();
 

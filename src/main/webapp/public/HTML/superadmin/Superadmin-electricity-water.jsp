@@ -6,10 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.ElectricityAdminModel" %>
-<%@ page import="DAO.dao.ElectricityAdminDAO" %>
-<%@ page import="DAO.dao.WaterAdminDAO" %>
-<%@ page import="java.util.List" %>
 
 <%
     String contextPath = request.getContextPath();
@@ -55,26 +51,23 @@
             </header>
         </div>
 
-        <div style="margin-top: 100px">
-            <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
-                <label for="nic"></label>
-                <input name="id" type="text" id="nic" placeholder="Enter EMPID">
-
-                <button type="submit" name="search">Search</button>
-                <button type="button" id="resetButton">Reset</button>
-            </form>
-        </div>
-        <script>
-            document.getElementById('resetButton').addEventListener('click', function() {
-                document.getElementById('nic').value = '';
-                document.getElementById('searchForm').submit();
-            });
-        </script>
-
-
-
         <div class="middle" id="middle">
             <h2 class="title">Electricity Admins</h2>
+            <div class="search-container">
+                <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
+                    <label for="nic"></label>
+                    <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EMPID">
+
+                    <button type="submit" name="search" class="=searchbtn">Search</button>
+                    <button type="button" id="resetButton" class="=searchbtn">Reset</button>
+                </form>
+            </div>
+            <script>
+                document.getElementById('resetButton').addEventListener('click', function() {
+                    document.getElementById('nic').value = '';
+                    document.getElementById('searchForm').submit();
+                });
+            </script>
             <div class="buttons">
                 <button class="button" onclick="openPopup('popupForm')">Add Electricity Admins</button>
               </div>
@@ -137,7 +130,6 @@
                     <th>Region</th>
                     <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>CEB/LECO</th>
                     <th>Employee ID</th>
                     <th>Username</th>
@@ -157,7 +149,6 @@
                     <td>${admin.region}</td>
                     <td>${admin.contactNumber}</td>
                     <td>${admin.email}</td>
-                    <td>${admin.password}</td>
                     <td> ${admin.utilityType} </td>
                     <td> ${admin.empId} </td>
                     <td> ${admin.username}</td>
@@ -172,13 +163,13 @@
 
             <h2 class="title">Water Admins</h2>
 
-            <div>
+            <div class="search-container">
                 <form id="searchForm2" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
                     <label for="nic"></label>
-                    <input name="id2" type="text" id="nic2" placeholder="Enter EMPID">
+                    <input name="id2" type="text" class="search-input" id="nic2" placeholder="Enter EMPID">
 
-                    <button type="submit" name="search">Search</button>
-                    <button type="button" id="resetButton2">Reset</button>
+                    <button type="submit" name="search" class="=searchbtn">Search</button>
+                    <button type="button" id="resetButton2" class="=searchbtn">Reset</button>
                 </form>
             </div>
             <script>
@@ -242,7 +233,6 @@
                     <th>Region</th>
                     <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Employee ID</th>
                     <th>Username</th>
                     <th>First Name</th>
@@ -262,8 +252,6 @@
                     <td>${admin.region}</td>
                     <td>${admin.contactNumber}</td>
                     <td>${admin.email}</td>
-                    <td>${admin.password}</td>
-                    <td> ${admin.utilityType} </td>
                     <td> ${admin.empId} </td>
                     <td> ${admin.username}</td>
                     <td> ${admin.firstName} </td>
