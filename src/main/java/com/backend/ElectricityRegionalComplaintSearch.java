@@ -18,11 +18,12 @@ public class ElectricityRegionalComplaintSearch extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         String nic = request.getParameter("nic");
+        HttpSession session = request.getSession();
 
         ElectricityComplaintDao dao = new ElectricityComplaintDao();
         List<ComplaintModel> complaints = null;
         try {
-            complaints = dao.getComplaintsByComplaintID(nic);
+            complaints = dao.getComplaintsByComplaintID(session.getAttribute("REGION").toString(),nic);
             System.out.println(complaints);
         } catch (Exception e) {
             throw new RuntimeException(e);

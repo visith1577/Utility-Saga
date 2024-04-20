@@ -281,15 +281,16 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
-    public List<UserModel> getUserDetailsRegionalAdmin() throws SQLException{
+    public List<UserModel> getUserDetailsRegionalAdmin(String id) throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
         String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
                 "FROM users u\n" +
                 "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
-                "JOIN electricity_admin ON eal.region= electricity_admin.region";
+                "JOIN electricity_admin ON eal.region= electricity_admin.region WHERE electricity_admin.region = ?";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1,id);
 
         ResultSet rs = stmt.executeQuery();
 
@@ -314,18 +315,18 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
-    public List<UserModel> getUserDetailsByNICRegionalAdmin(String searchValue) throws SQLException{
+    public List<UserModel> getUserDetailsByNICRegionalAdmin(String id,String searchValue) throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
         String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
                 "FROM users u\n" +
                 "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
                 "JOIN electricity_admin ON eal.region= electricity_admin.region\n"+
-                "WHERE eal.account_number LIKE ? OR u.nic LIKE ? OR u.firstname LIKE ? OR u.lastname LIKE ? OR u.address LIKE ?\n"+
-                "OR u.mobile LIKE ? OR u.email LIKE ? OR eal.meter_status LIKE ?";
+                "WHERE electricity_admin.region = ? AND (eal.account_number LIKE ? OR u.nic LIKE ? OR u.firstname LIKE ? OR u.lastname LIKE ? OR u.address LIKE ?\n"+
+                "OR u.mobile LIKE ? OR u.email LIKE ? OR eal.meter_status LIKE ?)";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, "%" + searchValue + "%");
+        stmt.setString(1, id);
         stmt.setString(2, "%" + searchValue + "%");
         stmt.setString(3, "%" + searchValue + "%");
         stmt.setString(4, "%" + searchValue + "%");
@@ -333,6 +334,7 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         stmt.setString(6, "%" + searchValue + "%");
         stmt.setString(7, "%" + searchValue + "%");
         stmt.setString(8, "%" + searchValue + "%");
+        stmt.setString(9, "%" + searchValue + "%");
 
         ResultSet rs = stmt.executeQuery();
 

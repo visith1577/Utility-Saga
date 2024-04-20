@@ -118,7 +118,7 @@
 <div style="margin-top: 12.5vh">
     <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/connections">
         <label for="nic"></label>
-        <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">
+        <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
 
         <button type="submit" name="search" class="btn">Search</button>
         <button type="button" id="resetButton" class="btn">Reset</button>
@@ -155,6 +155,9 @@
                         <label for="accountno">Account Number </label>
                         <input type="text" name="accountno" id="accountno" required>
 
+                        <label for="requestid">Request ID </label>
+                        <input type="text" name="requestid" id="requestid" required>
+
                         <label for="nicc">NIC</label>
                         <input type="text" name="nicc" id="nicc" required>
 
@@ -172,7 +175,7 @@
                     <thead>
                     <tr>
                         <th>Requester Name</th>
-                        <th>Account Number</th>
+                        <th>Request ID</th>
                         <th>NIC</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -199,7 +202,7 @@
 
                             <tr>
                                 <td>${connection.requesterName}</td>
-                                <td>${connection.accountNumber}</td>
+                                <td>${connection.requestId}</td>
                                 <td>${connection.nic}</td>
                                 <td>${connection.email}</td>
                                 <td>${connection.mobile}</td>

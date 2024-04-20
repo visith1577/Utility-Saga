@@ -21,6 +21,7 @@ public class ElectricityAdmin extends HttpServlet {
         String contact= req.getParameter("contact");
         String email= req.getParameter("email");
         String password = req.getParameter("password");
+        String repassword = req.getParameter("re-password");
         String utility = req.getParameter("utility");
         String empid = req.getParameter("empid");
         String uname = req.getParameter("uname");
@@ -29,7 +30,11 @@ public class ElectricityAdmin extends HttpServlet {
         String role = req.getParameter("role");
         String mobile = req.getParameter("mobile");
 
-
+        if(!password.equals(repassword)){
+            req.setAttribute("errorMessage", "Password not matching");
+            req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
+            return;
+        }
 
 
         ElectricityAdminModel admin = new ElectricityAdminModel();

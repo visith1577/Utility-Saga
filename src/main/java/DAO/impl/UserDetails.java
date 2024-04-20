@@ -28,9 +28,9 @@ public interface UserDetails {
 
     void updateServices(String nic, List<String> services) throws SQLException;
 
-     List<UserModel> getUserDetailsRegionalAdmin() throws SQLException;
+     List<UserModel> getUserDetailsRegionalAdmin(String region) throws SQLException;
 
-    List<UserModel> getUserDetailsByNICRegionalAdmin(String nic) throws SQLException;
+    List<UserModel> getUserDetailsByNICRegionalAdmin(String region,String nic) throws SQLException;
 
     void updateAccountStatus(String accountNumber, String newStatus) throws SQLException;
 }

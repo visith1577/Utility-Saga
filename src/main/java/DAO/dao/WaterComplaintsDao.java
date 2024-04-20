@@ -34,7 +34,7 @@ public class WaterComplaintsDao implements Complaints {
         conn.close();
     }
 
-    public List<ComplaintModel> getComplaints() throws SQLException{
+    public List<ComplaintModel> getComplaints(String id) throws SQLException{
         List<ComplaintModel> complaint_list = new ArrayList<>();
 
         Connection conn = Connectdb.getConnection();
@@ -66,7 +66,7 @@ public class WaterComplaintsDao implements Complaints {
     }
 
     @Override
-    public List<ComplaintModel> getComplaintsByComplaintID(String id) throws SQLException {
+    public List<ComplaintModel> getComplaintsByComplaintID(String region,String id) throws SQLException {
         return null;
     }
 

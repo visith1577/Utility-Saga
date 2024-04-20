@@ -15,6 +15,7 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String accountNo = req.getParameter("accountno");
+        String requestid = req.getParameter("requestid");
         String region = req.getParameter("region").toUpperCase();
         String subregion = req.getParameter("subregion").toUpperCase();
         String nic = req.getParameter("nicc");
@@ -23,6 +24,7 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
 
         account.setAccountNumber(accountNo);
         account.setNic(nic);
+        account.setRequestId((requestid));
         account.setRegion(region);
         account.setSubRegion(subregion);
 

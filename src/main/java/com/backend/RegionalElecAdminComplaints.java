@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.ComplaintModel;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class RegionalElecAdminComplaints extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ComplaintModel> electricityRegionalComplaints;
         String id = req.getParameter("id");
+        HttpSession session = req.getSession();
 
         System.out.println("ID: " + id);
 
@@ -27,9 +29,9 @@ public class RegionalElecAdminComplaints extends HttpServlet {
 
         try {
             if (id == null || id.isEmpty()) {
-                electricityRegionalComplaints = dao.getComplaints();
+                electricityRegionalComplaints = dao.getComplaints(session.getAttribute("REGION").toString());
             } else {
-                electricityRegionalComplaints = dao.getComplaintsByComplaintID(id);
+                electricityRegionalComplaints = dao.getComplaintsByComplaintID(session.getAttribute("REGION").toString(),id);
             }
 
             if (electricityRegionalComplaints.isEmpty()) {
