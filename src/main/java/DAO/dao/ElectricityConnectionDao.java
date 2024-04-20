@@ -56,7 +56,7 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setAccountNumber(rs.getString("account_number"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -114,7 +114,7 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setAccountNumber(rs.getString("account_number"));
+            conRequest.setRequestId(rs.getString("request_id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));

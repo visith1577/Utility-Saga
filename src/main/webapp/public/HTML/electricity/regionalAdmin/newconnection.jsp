@@ -155,6 +155,9 @@
                         <label for="accountno">Account Number </label>
                         <input type="text" name="accountno" id="accountno" required>
 
+                        <label for="requestid">Request ID </label>
+                        <input type="text" name="requestid" id="requestid" required>
+
                         <label for="nicc">NIC</label>
                         <input type="text" name="nicc" id="nicc" required>
 
@@ -172,7 +175,7 @@
                     <thead>
                     <tr>
                         <th>Requester Name</th>
-                        <th>Account Number</th>
+                        <th>Request ID</th>
                         <th>NIC</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -199,7 +202,7 @@
 
                             <tr>
                                 <td>${connection.requesterName}</td>
-                                <td>${connection.accountNumber}</td>
+                                <td>${connection.requestId}</td>
                                 <td>${connection.nic}</td>
                                 <td>${connection.email}</td>
                                 <td>${connection.mobile}</td>
