@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserAccountsDao implements UserAccounts {
 
@@ -19,17 +21,7 @@ public class UserAccountsDao implements UserAccounts {
         List<UserAccountsModel> account_list = new ArrayList<>();
 
         try {
-            String tableName;
-            switch (category.toUpperCase()) {
-                case "WATER":
-                    tableName = "wAccount_list";
-                    break;
-                case "ELECTRICITY":
-                    tableName = "eAccount_list";
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid table name: " + category);
-            }
+            String tableName = selectTable(category);
 
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT  account_number, user_status, meter_status, iot_meter FROM " + tableName + " WHERE nic = ?"
@@ -75,17 +67,7 @@ public class UserAccountsDao implements UserAccounts {
         List<String> account_list = new ArrayList<>();
 
         try {
-            String tableName;
-            switch (category.toUpperCase()) {
-                case "WATER":
-                    tableName = "wAccount_list";
-                    break;
-                case "ELECTRICITY":
-                    tableName = "eAccount_list";
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid table name: " + category);
-            }
+            String tableName = selectTable(category);
 
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT  account_number FROM " + tableName + " WHERE nic = ? AND user_status = ?"
@@ -96,6 +78,39 @@ public class UserAccountsDao implements UserAccounts {
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()){
                     account_list.add(result.getString("account_number"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return account_list;
+    }
+
+    @Override
+    public Map<String, String> getUserAccountsWithIotStatus(String nic, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Map<String, String> account_list = new HashMap<>();
+
+        try {
+            String tableName = selectTable(category);
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT  account_number, meter_status FROM " +
+                            tableName +
+                            " WHERE nic = ? AND " +
+                            "user_status = ? AND " +
+                            "iot_meter = ? "
+            );
+
+            statement.setString(1, nic);
+            statement.setString(2, "ACTIVE");
+            statement.setString(3, "YES");
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()){
+                    account_list.put(result.getString("account_number"), result.getString("meter_status"));
                 }
             }
         } catch (SQLException e) {
@@ -222,17 +237,7 @@ public class UserAccountsDao implements UserAccounts {
     public void updateAccountStatus(String nic, String account, String status, String table) throws SQLException {
         Connection connection = Connectdb.getConnection();
         try {
-            String tableName;
-            switch (table.toUpperCase()) {
-                case "WATER":
-                    tableName = "wAccount_list";
-                    break;
-                case "ELECTRICITY":
-                    tableName = "eAccount_list";
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid table name: " + table);
-            }
+             String tableName = selectTable(table);
 
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE " + tableName + " SET user_status = ? WHERE account_number = ? AND nic = ?"
@@ -255,17 +260,7 @@ public class UserAccountsDao implements UserAccounts {
         Connection connection = Connectdb.getConnection();
         boolean exists = false;
         try {
-            String tableName;
-            switch (category.toUpperCase()) {
-                case "WATER":
-                    tableName = "wAccount_list";
-                    break;
-                case "ELECTRICITY":
-                    tableName = "eAccount_list";
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid table name: " + category);
-            }
+            String tableName = selectTable(category);
 
             PreparedStatement statement;
 
@@ -293,5 +288,21 @@ public class UserAccountsDao implements UserAccounts {
             Connectdb.closeConnection(connection);
         }
         return exists;
+    }
+
+    private String selectTable(String category) {
+        String tableName;
+        switch (category.toUpperCase()) {
+            case "WATER":
+                tableName = "wAccount_list";
+                break;
+            case "ELECTRICITY":
+                tableName = "eAccount_list";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid table name: " + category);
+        }
+
+        return  tableName;
     }
 }

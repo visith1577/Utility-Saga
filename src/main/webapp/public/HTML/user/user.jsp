@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -223,26 +222,71 @@
         </div>
         <div class="user-profile__bottom card">
             <div class="box">
-                <form action="#">
+                <form action="#"  >
                     <div class="input_box">
 
                         <label>
-                            <input type="text" placeholder="Search..." required>
+                            <input type="text" placeholder="Search...">
                         </label>
                         <div class="selection"><p>Status</p></div>
 
-                        <div class="categories">
+                        <div class="categories" id="bill-status">
                             <p class="option">PAID</p>
                             <p class="option">PENDING</p>
                             <p class="option">OVERDUE</p>
                         </div>
-                        <input type="hidden" id="status" name="status" value="none">
+
+                        <input type="hidden" name="status" id="status" value="none">
 
                         <button type="reset" class="resetButton"><i class="fas fa-sync-alt"></i></button>
-                        <button type="submit" class="resetButton"><i class="fas fa-paper-plane"></i></button>
+                        <button id="get" type="button" class="resetButton"><i class="fas fa-paper-plane"></i></button>
 
                     </div>
                 </form>
+                <script>
+
+                    // Get the status options elements
+                    const statusOptions = document.querySelectorAll('#bill-status .option');
+
+                    // Add an event listener to each status option
+                    statusOptions.forEach(function(option) {
+                        option.addEventListener('click', function() {
+                            // Get the selected status
+                            const selectedStatus = option.textContent.toLowerCase();
+
+                            // Get all the rows in the table
+                            const rows = document.querySelectorAll('#dataTable tr');
+
+                            // Loop through all the rows
+                            rows.forEach(function(row) {
+                                // Get the status in the row
+                                const status = row.cells[3].textContent.toLowerCase();
+
+                                // Check if the status matches the selected status
+                                if (status === selectedStatus) {
+                                    // If it does, display the row
+                                    row.style.display = '';
+                                } else {
+                                    // If it doesn't, hide the row
+                                    row.style.display = 'none';
+                                }
+                            });
+                        });
+                    });
+
+                    // Get the #get button element
+                    const getButton = document.querySelector('#get');
+
+                    // Get the table element
+                    const table = document.querySelector('#dataTable');
+
+                    // Add an event listener to the #get button
+                    getButton.addEventListener('click', function() {
+                        // Scroll to the bottom of the table
+                        table.lastElementChild.scrollIntoView();
+                    });
+
+                </script>
             </div>
         </div>
     </section>
@@ -268,6 +312,12 @@
     function resetElements() {
         dropdown.innerHTML = "Status";
         document.getElementById('status').value = "none";
+
+        const rows = document.querySelectorAll('#dataTable tr');
+
+        rows.forEach(function(row) {
+            row.style.display = '';
+        });
     }
 
     // Add an event listener to the reset button
