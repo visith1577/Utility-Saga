@@ -1,10 +1,7 @@
 package utils;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import javax.net.ssl.SSLSocketFactory;
@@ -17,7 +14,8 @@ public class MQTTClient {
             .configure()
             .load();
     private static final String BROKER_URL = "ssl://" +  dotenv.get("HIVE_URL") + ":" + dotenv.get("HIVE_PORT");
-    private static final String TOPIC = "CEB/electricity-meter/readings/200114400385/account_v3_test";
+    private static final String TOPIC = dotenv.get("TOPIC");
+    private static final String CONTROL_TOPIC = dotenv.get("CNTR_TOPIC");
     private final MqttClient mqttClient;
 
     public MQTTClient() throws MqttException {
@@ -34,6 +32,11 @@ public class MQTTClient {
 
     public void setCallback(MqttCallback callback) throws MqttException {
         mqttClient.setCallback(callback);
+    }
+
+    public void publish(String message) throws MqttException {
+        MqttMessage mqttMessage = new MqttMessage(message.getBytes());
+        mqttClient.publish(CONTROL_TOPIC, mqttMessage.getPayload(), 2, true);
     }
 
     public void disconnect() throws MqttException {

@@ -1,5 +1,5 @@
 const w_ctx = document.getElementById('w-graph');
-const e_ctx = document.getElementById('e-graph');
+
 
 const labels = Array.from({length: 31}, (_, i) => (i+1).toString());
 

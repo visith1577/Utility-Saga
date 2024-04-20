@@ -43,8 +43,9 @@ public class WaterConnection extends HttpServlet {
 
         ConnectionModel wConnection = new ConnectionModel();
 
-        String requester_name = String.join(title, " ",  initial,  " ",  name);
-        wConnection.setRequesterName(requester_name);
+      
+        String requester_name = title + " " + initial + " " + name;;
+        wConnection.setRequester_name(requester_name);
 
         wConnection.setCurrentAddress(curr_address);
         wConnection.setNic(nic);

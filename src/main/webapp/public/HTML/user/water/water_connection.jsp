@@ -78,45 +78,51 @@
         <div class="forminput">
           <input id="Initial" name="Initial" type="text" required>
           <label for="Initial">Initial</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="Name" name="Name" type="text" value="<%= request.getAttribute("fullName") %>" required>
           <label for="Name">Name</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="Address" name="Address" type="text" value=" <%= request.getAttribute("ADDRESS") %>" required>
           <label for="Address">Address</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="CusNIC" name="CusNIC" type="text" value="<%= session.getAttribute("NIC") %>" required readonly>
           <label for="CusNIC">NIC</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="Email" name="Email" type="email" value="<%=session.getAttribute("EMAIL")%>" required readonly>
           <label for="Email">Email Address</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
           <input id="Telnum" name="Telnum" type="tel" value="<%=session.getAttribute("TELEPHONE")%>" required readonly oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           <label for="Telnum">Telephone Number(Mobile)</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput">
-          <input id="NearestAccNum" name="NearestAccNum" type="text" required>
+          <input id="NearestAccNum" name="NearestAccNum" type="text">
           <label for="NearestAccNum">Nearest Account Number</label>
         </div>
 
         <div>
           <label for="water-connection" class="l-radio water-radio">
-            <input type="radio" id="water-connection" name="connection-status" value="connection" tabindex="1">
+            <input type="radio" id="water-connection" name="connection-status" value="CONNECTION" tabindex="1">
             <span class="con-item">Connection</span>
           </label>
           <label for="water-disconnection" class="l-radio water-radio">
-            <input type="radio" id="water-disconnection" name="connection-status" value="disconnection" tabindex="2">
+            <input type="radio" id="water-disconnection" name="connection-status" value="DISCONNECTION" tabindex="2">
             <span class="con-item">Disconnection</span>
           </label>
         </div>
@@ -124,6 +130,7 @@
         <div class="hidden" id="new_addr-div">
           <input id="NewConnectionAddress" name="NewConnectionAddress" type="text" required>
           <label for="NewConnectionAddress">New Connection Address</label>
+          <div class="error"></div>
         </div>
 
         <div class="forminput" id="new_reg-div">

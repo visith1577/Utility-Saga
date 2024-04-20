@@ -1,5 +1,7 @@
 package model;
 
+import utils.AnalysisHelper;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -10,6 +12,11 @@ public class IoTModel {
     private int data;
     private boolean active;
     private Device device;
+    private double monthlyBill;
+    private String month;
+
+    private final AnalysisHelper analysisHelper = new AnalysisHelper();
+
 
     public int getId() {
         return id;
@@ -57,6 +64,22 @@ public class IoTModel {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public double getMonthlyBill() {
+        return monthlyBill;
+    }
+
+    public void setMonthlyBill(double monthlyBill) {
+        this.monthlyBill = monthlyBill;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     public enum Device {

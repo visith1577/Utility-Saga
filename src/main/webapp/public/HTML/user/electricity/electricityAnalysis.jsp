@@ -10,10 +10,16 @@
 <html>
 <head>
     <title>Analysis - Electricity</title>
-    <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="../../../CSS/ElectricityServices/electricityAnalysis.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/public/CSS/ElectricityServices/electricityAnalysis.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="../../../CSS/forms.css">
+    <link rel="stylesheet" href=".<%=request.getContextPath()%>/public/CSS/forms.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .item {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="navv">
@@ -74,55 +80,17 @@
                     <h2 class="select-heading">Account Number</h2>
                     <div class="select-box">
                         <div class="options-container">
-                            <div class="option">
-                                <input
-                                        type="radio"
-                                        class="radio"
-                                        id="automobiles"
-                                        name="category"
-                                />
-                                <label for="automobiles">Automobiles</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="film" name="category" />
-                                <label for="film">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="science" name="category" />
-                                <label for="science">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="art" name="category" />
-                                <label for="art">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="music" name="category" />
-                                <label for="music">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="travel" name="category" />
-                                <label for="travel">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="sports" name="category" />
-                                <label for="sports">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="news" name="category" />
-                                <label for="news">oreoAcc12</label>
-                            </div>
-
-                            <div class="option">
-                                <input type="radio" class="radio" id="tutorials" name="category" />
-                                <label for="tutorials">Tutorials</label>
-                            </div>
+                            <c:forEach var="entry" items="${requestScope.electricity_account_list}">
+                                <div class="option">
+                                    <input
+                                            type="radio"
+                                            class="radio"
+                                            id="${entry.key}"
+                                            name="category"
+                                    />
+                                    <label for="${entry.key}" class="${entry.value}">${entry.key}</label>
+                                </div>
+                            </c:forEach>
                         </div>
 
                         <div class="selected">
@@ -135,25 +103,68 @@
                         </div>
                     </div>
             </section>
+                <div id="navigation" class="navigation item">
+                    <div id="toggle" class="toggle-p">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                                    <span id="bill-val" class="title-nav visible">Current bill: </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-lightbulb" aria-hidden="true"></i></span>
+                                    <span id="kwh-val" class="title-nav visible">Kwh consumed: </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                                    <span class="title-nav visible">Device Status: Active</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon"><i class="fa fa-receipt" aria-hidden="true"></i></span>
+                                    <span id="reading-val" class="title-nav visible">last Reading: </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <script>
+                    const navigation = document.getElementById('navigation');
+                    document.getElementById('toggle').ondblclick = function () {
+                        this.classList.toggle('active');
+                        navigation.classList.toggle('active');
+                    }
+                </script>
+                <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+                <script>
+                    $( function() {
+                        $( "#navigation" ).draggable();
+                    } );
+                </script>
+                <div class="stats flex item">
+                    <div class="stats-box sales">
+                        <h2 class="heading">Daily Consumptions</h2>
+                        <canvas id="dailycons"></canvas>
+                    </div>
 
-            <div class="stats flex">
-                <div class="stats-box sales">
-                    <h2 class="heading">Daily Consumptions</h2>
-                    <canvas id="dailycons"></canvas>
+                    <div class="stats-box earning">
+                        <h2 class="heading">Fluctuation</h2>
+                        <canvas id="monthcons"></canvas>
+                    </div>
                 </div>
 
-                <div class="stats-box earning">
-                    <h2 class="heading">Fluctuation</h2>
-                    <canvas id="monthcons"></canvas>
-                </div>
-            </div>
-
-            <div class="stats bills">
-                <div class="stats-box calc-box">
-                    <h1 class="heading">Calender</h1>
-                    <div class="calendar">
+                <div class="stats bills item">
+                    <div class="stats-box calc-box">
+                        <h1 class="heading">Calender</h1>
+                        <div class="calendar">
                         <header>
-                            <h3 class="month"></h3>
+                            <h3 class="month"  style="color: #8c7400"></h3>
                             <nav>
                                 <button id="prev"></button>
                                 <button id="next"></button>
@@ -171,70 +182,60 @@
                             </ul>
                             <ul class="dates"></ul>
                         </section>
-                    </div>          
-                </div>
-            
-
-                <div class="top-selling stats-box">
-                    <div class="stats-box budget">
-                        <h2 class="heading">Budgeted Value Calculation</h2>
-                        <div class="billcalculation">
-                            <div class="a_row">
-                                <label for="month">Select Month:</label>
-                                <input id="month" type="text" name="month" readonly required>
-                            </div>
-                            <div class="a_row">
-                                <label for="expectedUnits">Set Budget :</label>
-                                <input type="number" id="expectedUnits" name="expectedUnits">
-                            </div>
-                            <div class="btn-a_row">
-                                <button type="button" name="add_row">Add to Table</button>
-                            </div>
                         </div>
                     </div>
-                    <table class="top-selling-products2">
-                        <tr>
-                            <th>Month</th>
-                            <th>Budget</th>
-                            <th>Final Bill</th>
-                            <th></th>
+            
 
-                        </tr>
-                        <tr>
-                            <td>January</td>
-                            <td>150</td>
-                            <td>5000</td>
-                            <td>4750</td>
-                        </tr>
-                        <tr>
-                            <td>February</td>
-                            <td>140</td>
-                            <td>4000</td>
-                            <td>3800</td>
-                        </tr>
-                        <tr>
-                            <td>March</td>
-                            <td>150</td>
-                            <td>5200</td>
-                            <td>4850</td>
-                        </tr>
-                    </table>
+                    <div class="top-selling stats-box">
+                        <form action="<%=request.getContextPath()%>/user/electricity-analytics" method="post" class="stats-box budget">
+                            <h2 class="heading">Budgeted Value Calculation</h2>
+                            <div class="billcalculation">
+                                <div class="a_row">
+                                    <label for="month">Select Month:</label>
+                                    <input id="month" type="text" name="month" readonly required>
+                                </div>
+                                <div class="a_row">
+                                    <label for="expectedUnits">Set Budget :</label>
+                                    <input type="text" id="expectedUnits" name="expectedUnits" pattern="^[0-9]*$" required>
+                                </div>
+                                <div class="btn-a_row">
+                                    <button type="submit" name="add_row">Add to Table</button>
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                            document.getElementById('expectedUnits').addEventListener('keypress', function (e) {
+                                    if (e.key < '0' || e.key > '9') {
+                                        e.preventDefault();
+                                    }
+                            });
+                        </script>
+                        <table id="budget-table" class="top-selling-products2">
+                            <tr>
+                                <th>Month</th>
+                                <th>Budget</th>
+                                <th>Date Added</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <div class="stats flex">
-                <div class="stats-box bud_act">
-                    <h2 class="heading">Budgeted Vs. Actual Consumption</h2>
-                    <canvas id="bud_act"></canvas>
-                </div>
+                <div class="stats flex item">
+                    <div class="stats-box bud_act">
+                        <h2 class="heading">Budgeted Vs. Actual Consumption</h2>
+                        <canvas id="bud_act"></canvas>
+                    </div>
 
-                <div class="stats-box sales">
-                    <h2 class="heading">Bill amount - Monthly</h2>
-                    <canvas id="bills"></canvas>
+                    <div class="stats-box sales">
+                        <h2 class="heading">Bill amount - Monthly</h2>
+                        <canvas id="bills"></canvas>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
+<div style="height: 80px; width: 100%">
+
 </div>
 <script>
     function getCurrentMonth() {
@@ -244,7 +245,7 @@
 
     function getCurrentMonthName() {
         const date = new Date();
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         return monthNames[date.getMonth()];
     }
 
@@ -263,7 +264,9 @@
 ></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script>
+    let contextPath = '<%=request.getContextPath()%>';
+</script>
 <script src="<%= request.getContextPath() %>/public/JS/electricityAnalysis.js"></script>
 </body>
 </html>
