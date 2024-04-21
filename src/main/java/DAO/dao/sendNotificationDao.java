@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
 import DAO.impl.SendNotificationImpl;
 import model.SendNotificationModel;
@@ -76,7 +77,7 @@ public class sendNotificationDao implements SendNotificationImpl {
                 SendNotificationModel notification = new SendNotificationModel();
                 notification.setTitle(rs.getString("title"));
                 notification.setRecipientType(SendNotificationModel.RecipientType.valueOf(rs.getString("recipientType")));
-                notification.setDate(LocalDateTime.parse(rs.getString("date")));
+                notification.setDate(rs.getTimestamp("date").toLocalDateTime());
                 notification.setSubject(rs.getString("subject"));
                 notification.setMessage(rs.getString("message"));
                 notifications.add(notification);
@@ -102,7 +103,7 @@ public class sendNotificationDao implements SendNotificationImpl {
                     SendNotificationModel notification = new SendNotificationModel();
                     notification.setTitle(rs.getString("title"));
                     notification.setRecipientType(SendNotificationModel.RecipientType.valueOf(rs.getString("recipientType")));
-                    notification.setDate(LocalDateTime.parse(rs.getString("date")));
+                    notification.setDate(rs.getTimestamp("date").toLocalDateTime());
                     notification.setSubject(rs.getString("subject"));
                     notification.setMessage(rs.getString("message"));
                     notifications.add(notification);

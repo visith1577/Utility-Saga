@@ -29,9 +29,7 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         if (recipientType == RecipientType.SPECIFIC) {
             recipientId = req.getParameter("recipientId");
         }
-        String dateStr = req.getParameter("date");
-        LocalDate date = LocalDate.parse(dateStr);
-        System.out.println(date);
+//        System.out.println(date);
         String subject = req.getParameter("subject");
         System.out.println(subject);
         String message = req.getParameter("message");
@@ -45,7 +43,6 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         notification.setTitle(title);
         notification.setRecipientType(recipientType);
         notification.setRecipientId(recipientId);
-        notification.setDate(date.atStartOfDay());
         notification.setSubject(subject);
         notification.setMessage(message);
 
@@ -72,7 +69,6 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         sendNotificationDao dao = new sendNotificationDao();
 
         try {
-
                 notifications.addAll(dao.getNotificationsByRecipientId(recipientId));
                 notifications.addAll(dao.getAllNotifications());
                 System.out.println("else is right");

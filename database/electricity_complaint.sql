@@ -22,6 +22,25 @@ BEGIN
     SET NEW.complaint_status = 'ACTIVE';
 END;
 
+DELIMITER $$
+CREATE TRIGGER update_eran_after_ec_update
+AFTER UPDATE ON electricity_complaint
+FOR EACH ROW
+BEGIN
+    IF OLD.complaint_status <> NEW.complaint_status THEN
+        INSERT INTO electricity_regionaladmin_notification (title, recipientType, recipientId, `date`, subject, message)
+        VALUES (
+'Electricity Complaint',
+            'SPECIFIC',
+            NEW.nic,
+            CURRENT_TIMESTAMP,
+            'Status Update Electricity- Complaint',
+            CONCAT('The complaint is in ', NEW.complaint_status, ' status')
+        );
+    END IF;
+END$$
+DELIMITER ;
+
 INSERT INTO electricity_complaint (complaint_no, complaint_category, complaint_type, account_number, nic, email, mobile, complaint)
 VALUES
 ('CMP0001', 'Breakdown', 'Power Outages', '0001', '200123632412', 'example@email.com', '1234567890', 'The power is out in our area and we need immediate assistance.'),
