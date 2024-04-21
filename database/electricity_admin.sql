@@ -40,5 +40,10 @@ CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
 ALTER TABLE electricity_admin
 ALTER COLUMN region SET DEFAULT 'HEADOFFICE';
 
+ALTER TABLE electricity_admin
+ADD CONSTRAINT unique_region
+UNIQUE (region);
+
+
 
 
