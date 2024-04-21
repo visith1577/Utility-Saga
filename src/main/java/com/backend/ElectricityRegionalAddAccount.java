@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ElecWaterAccountsModel;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/electricity/regional-admin/create-account")
 public class ElectricityRegionalAddAccount extends HttpServlet {
@@ -25,7 +26,9 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
 
         account.setAccountNumber(accountNo);
         account.setNic(nic);
-        account.setRequestId((requestId));
+        if (!Objects.equals(requestId, "")) {
+            account.setRequestId((requestId));
+        }
         account.setRegion(region);
         account.setSubRegion(subregion);
         account.setIotId(deviceId);
@@ -38,6 +41,7 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
         } catch (Exception e) {
             req.setAttribute("errorMessage", e.getMessage());
             req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
+            throw new RuntimeException(e);
         }
     }
 }
