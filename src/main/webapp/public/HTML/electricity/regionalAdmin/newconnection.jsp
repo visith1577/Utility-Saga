@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid" required></td>
+                                <td><input type="text" name="requestid" id="requestid"></td>
                             </tr>
                             <tr>
                                 <td><label for="nicc">NIC</label></td>
@@ -257,6 +257,24 @@
         if (popup) {
             popup.style.display = "none";
         }
+    }
+
+    function isValidNic(nicNumber) {
+        let result;
+        if (nicNumber.length === 10 && !isNaN(nicNumber.substring(0, 9)) && isNaN(nicNumber.substring(9, 1)) && ['x', 'v'].includes(nicNumber.substring(9, 1).toLowerCase())) {
+            result = true;
+        } else result = nicNumber.length === 12 && !isNaN(nicNumber);
+        return result;
+    }
+
+    function validateForm() {
+        document.getElementById("nicc").addEventListener("input", function() {
+            if (!isValidNic(document.getElementById("nicc").value)) {
+                document.getElementById("nicc").setCustomValidity("Invalid NIC number");
+            } else {
+                document.getElementById("nicc").setCustomValidity("");
+            }
+        });
     }
 </script>
 

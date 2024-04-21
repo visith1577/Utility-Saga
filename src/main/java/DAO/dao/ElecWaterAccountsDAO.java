@@ -24,7 +24,13 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, account.getAccountNumber());
-            stmt.setString(2, account.getRequestId().toString());
+
+            if (account.getRequestId() != null) {
+                stmt.setString(2, account.getRequestId().toString());
+            } else {
+                stmt.setString(2, null);
+            }
+
             stmt.setString(3, account.getNic());
             stmt.setString(4, account.getRegion());
             stmt.setString(5, account.getSubRegion());
@@ -73,8 +79,8 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             conn.setAutoCommit(false);
 
 
-            String sql = "INSERT INTO wAccount_list (account_number,request_id, nic, region, sub_region) " +
-                    " VALUES (?,?, ?, ?, ?)";
+            String sql = "INSERT INTO wAccount_list (account_number,request_id, nic, region, sub_region, iot_id, iot_meter) " +
+                    " VALUES (?,?, ?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, account.getAccountNumber());
@@ -82,6 +88,12 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt.setString(3, account.getNic());
             stmt.setString(4, account.getRegion());
             stmt.setString(5, account.getSubRegion());
+            stmt.setString(6, account.getIotId());
+            if (account.getIotId() != null) {
+                stmt.setString(7, "YES");
+            } else {
+                stmt.setString(7, "NO");
+            }
             stmt.executeUpdate();
 
             if (account.getRequestId() != null) {
