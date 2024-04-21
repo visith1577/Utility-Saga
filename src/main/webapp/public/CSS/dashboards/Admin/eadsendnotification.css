@@ -20,6 +20,13 @@
     padding-bottom: 12px;
 }
 
+.heading_user{
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
 .fcontainer {
     width: 100%;
     max-width: 800px;
@@ -56,6 +63,19 @@ form label {
 
 form input[type="text"]{
     width: 100%;
+    border: none;
+    border-bottom: 1px solid #1e1c1c;
+    font-size: 15px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+.dateinput{
+    width: 50%;
     border: none;
     border-bottom: 1px solid #1e1c1c;
     font-size: 15px;
@@ -104,4 +124,19 @@ form .btn#cancel {
 
 form .btn#reset {
     background-color: #6c757d;
+}
+
+.radio-btn-class {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.radio-btn-class input[type="radio"] {
+    margin-right: 5px;
+}
+
+.radio-btn-class label {
+    margin-right: 20px;
+    font-size: 14px;
 }

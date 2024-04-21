@@ -24,37 +24,36 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <title>Electricity Main Admin Notifications</title>
+    <title>Water Main Admin Notifications</title>
 </head>
 <body>
 <div class="wrapper">
-    <div class="navv">
-        <header class="navbar">
-            <div class="navbar-container container">
-                <label for="hamburger"></label>
-                <input type="checkbox" name="hamburger" id="hamburger">
-                <div class="hamburger-lines">
-                    <span class="line line1"></span>
-                    <span class="line line2"></span>
-                    <span class="line line3"></span>
-                </div>
-                <ul class="menu-items">
-                    <li class="menu-items-li">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
-                            <span class="material-icons">notifications</span>
-                        </a>
-                    </li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
-                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
-                </ul>
-                <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
-            </div>
-        </header>
-    </div>
+<%--    <div class="navv">--%>
+<%--        <header class="navbar">--%>
+<%--            <div class="navbar-container container">--%>
+<%--                <label for="hamburger"></label>--%>
+<%--                <input type="checkbox" name="hamburger" id="hamburger">--%>
+<%--                <div class="hamburger-lines">--%>
+<%--                    <span class="line line1"></span>--%>
+<%--                    <span class="line line2"></span>--%>
+<%--                    <span class="line line3"></span>--%>
+<%--                </div>--%>
+<%--                <ul class="menu-items">--%>
+<%--                    <li class="menu-items-li">--%>
+<%--                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">--%>
+<%--                            <span class="material-icons">notifications</span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+<%--                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>--%>
+<%--                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>--%>
+<%--                </ul>--%>
+<%--                <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">--%>
+<%--            </div>--%>
+<%--        </header>--%>
+<%--    </div>--%>
 
 <div class="GetNotification-box">
-    <h2>Electricity Main admin Notifications</h2>
-
+    <h2>Water Main admin Notifications</h2>
     <table>
         <thead>
         <tr>
@@ -66,7 +65,7 @@
         <tbody>
         <%
             sendNotificationDao dao = new sendNotificationDao();
-            List<SendNotificationModel> notifications = dao.getNotifications(SendNotificationModel.Type.ELECTRICITY);
+            List<SendNotificationModel> notifications = dao.getNotifications(SendNotificationModel.Type.WATER);
             for (SendNotificationModel notification : notifications) {
         %>
         <tr>
