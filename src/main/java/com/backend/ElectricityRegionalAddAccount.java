@@ -44,4 +44,9 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
 }

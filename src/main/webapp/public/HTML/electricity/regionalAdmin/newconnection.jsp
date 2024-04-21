@@ -26,10 +26,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
-    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalConnectionSearch.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid"></td>
+                                <td><input type="text" name="requestid" id="requestid" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
                             </tr>
                             <tr>
                                 <td><label for="nicc">NIC</label></td>
@@ -267,15 +267,22 @@
         return result;
     }
 
-    function validateForm() {
-        document.getElementById("nicc").addEventListener("input", function() {
-            if (!isValidNic(document.getElementById("nicc").value)) {
-                document.getElementById("nicc").setCustomValidity("Invalid NIC number");
-            } else {
-                document.getElementById("nicc").setCustomValidity("");
-            }
-        });
-    }
+    document.getElementById('addForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const nic = document.getElementById('nicc').value;
+        if (!isValidNic(nic)) {
+            Swal.fire({
+                icon: "error",
+                title: "NIC Invalid",
+                text: "Check NIC number and try again."
+            });
+        } else {
+            this.submit();
+        }
+
+        // fetch from backend if account number is already in use || if request id has been fulfilled already || iot device is already owned
+
+    });
 </script>
 
 </body>
