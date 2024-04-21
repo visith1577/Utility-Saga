@@ -39,13 +39,13 @@ public class WaterConnectionDao implements Connection {
     }
 
     @Override
-    public List<ConnectionModel> getConnectionRegionalAdmin() throws SQLException{
+    public List<ConnectionModel> getConnectionRegionalAdmin(String region) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         java.sql.Connection connection = Connectdb.getConnection();
         String sql = "SELECT req.*\n" +
                 "FROM water_connection_requirement req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
-                "WHERE req.account_status != 'ADDED' AND req.region = admin.region;\n";
+                "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)\n";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -77,19 +77,20 @@ public class WaterConnectionDao implements Connection {
     }
 
     @Override
-    public List<ConnectionModel> getConnectionRegionalAdminByNIC(String nic) throws SQLException{
+    public List<ConnectionModel> getConnectionRegionalAdminByNIC(String region,String nic) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         java.sql.Connection connection = Connectdb.getConnection();
         String sql = "SELECT req.*\n" +
                 "FROM water_connection_requirement req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
-                "WHERE req.account_status != 'ADDED' \n" +
+                "WHERE (admin.region = ? AND req.account_status != 'ADDED' \n" +
                 "AND req.nic = ?\n" +
-                "AND req.region = admin.region;\n";
+                "AND req.region = admin.region)\n";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
 
-        stmt.setString(1, "nic");
+        stmt.setString(1,region);
+        stmt.setString(2, nic);
 
         ResultSet rs= stmt.executeQuery();
 

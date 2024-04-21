@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.UserModel;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class RegionalElecAdminUsers extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<UserModel> electricityRegionalUsers;
         String id = req.getParameter("id");
+        HttpSession session = req.getSession();
 
         System.out.println("ID: " + id);
 
@@ -27,9 +29,9 @@ public class RegionalElecAdminUsers extends HttpServlet {
 
         try {
             if (id == null || id.isEmpty()) {
-                electricityRegionalUsers = dao.getUserDetailsRegionalAdmin();
+                electricityRegionalUsers = dao.getUserDetailsRegionalAdmin(session.getAttribute("REGION").toString());
             } else {
-                electricityRegionalUsers = dao.getUserDetailsByNICRegionalAdmin(id);
+                electricityRegionalUsers = dao.getUserDetailsByNICRegionalAdmin(session.getAttribute("REGION").toString(), id);
             }
 
             if (electricityRegionalUsers.isEmpty()) {

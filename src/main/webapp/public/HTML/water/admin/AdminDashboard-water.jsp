@@ -86,6 +86,9 @@
                     <label for="password">Password:</label>
                     <input type="password" name="wpassword" id="password" required>
 
+                    <label for="re-password">Reenter Password:</label>
+                    <input type="password" name="re-wpassword" id="re-password" required>
+
                     <label for="empid">Employee ID:</label>
                     <input type="text" name="wempid" id="empid" required>
 
