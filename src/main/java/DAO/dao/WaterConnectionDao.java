@@ -55,7 +55,7 @@ public class WaterConnectionDao implements Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setAccountNumber(rs.getString("account_number"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -63,7 +63,6 @@ public class WaterConnectionDao implements Connection {
             conRequest.setCurrentAddress(rs.getString("current_address"));
             conRequest.setNewAddress(rs.getString("new_address"));
             conRequest.setNearestAccount(rs.getString("nearest_account"));
-            conRequest.setConnectionRequirements(ConnectionModel.ConnectionRequirement.valueOf(rs.getString("connection_requirement")));
             conRequest.setConnectionType(rs.getString("connection_type"));
             conRequest.setAccountStatus(ConnectionModel.AccountStatus.valueOf(rs.getString("account_status")));
 
@@ -90,7 +89,7 @@ public class WaterConnectionDao implements Connection {
                 "  AND req.region = admin.region\n" +
                 "  AND (req.requester_name LIKE ? OR req.account_number LIKE ? OR req.nic LIKE ? OR req.email LIKE ? OR req.mobile LIKE ? OR\n" +
                 "       req.region LIKE ? OR req.current_address LIKE ? OR req.new_address LIKE ? OR req.nearest_account LIKE ? OR\n" +
-                "       req.connection_requirement LIKE ? OR req.connection_type LIKE ? OR req.account_status LIKE ?)";
+                "        req.connection_type LIKE ? OR req.account_status LIKE ?)";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,region);
@@ -105,7 +104,6 @@ public class WaterConnectionDao implements Connection {
         stmt.setString(10, "%" + searchValue + "%");
         stmt.setString(11, "%" + searchValue + "%");
         stmt.setString(12, "%" + searchValue + "%");
-        stmt.setString(13, "%" + searchValue + "%");
         System.out.println("nic inside getConnectionbyNIC: Succesful");
 
         ResultSet rs= stmt.executeQuery();
@@ -113,7 +111,7 @@ public class WaterConnectionDao implements Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setRequestId(rs.getString("request_id"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -121,7 +119,6 @@ public class WaterConnectionDao implements Connection {
             conRequest.setCurrentAddress(rs.getString("current_address"));
             conRequest.setNewAddress(rs.getString("new_address"));
             conRequest.setNearestAccount(rs.getString("nearest_account"));
-            conRequest.setConnectionRequirements(ConnectionModel.ConnectionRequirement.valueOf(rs.getString("connection_requirement")));
             conRequest.setConnectionType(rs.getString("connection_type"));
             conRequest.setAccountStatus(ConnectionModel.AccountStatus.valueOf(rs.getString("account_status")));
 
@@ -142,7 +139,7 @@ public class WaterConnectionDao implements Connection {
         java.sql.Connection connection = Connectdb.getConnection();
 
 
-        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_connection_request SET account_status = ? WHERE account_number = ?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_connection_request SET account_status = ? WHERE id = ?")) {
 
             stmt.setString(1, status);
             stmt.setString(2, accountno);
@@ -163,7 +160,7 @@ public class WaterConnectionDao implements Connection {
         System.out.println("complaintno: "+ accountno);
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM water_connection_request WHERE account_number = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM water_connection_request WHERE id = ?");
             stmt.setString(1, accountno);
 
             try (ResultSet result = stmt.executeQuery()){

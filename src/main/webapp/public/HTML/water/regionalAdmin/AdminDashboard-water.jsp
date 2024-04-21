@@ -21,9 +21,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
+<%--    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">--%>
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/RegionalAdminWaterUsers.js"></script>
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admintable.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admincards.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionaladmin.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -151,8 +154,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers"><%= user.getTotalElectricityAccountsRegion(region)%></div>
-                <div class="cardName">Electricity Service Accounts</div>
+                <div class="numbers"><%= user.getTotalWaterAccountsRegion(region)%></div>
+                <div class="cardName">Water Service Accounts</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>
@@ -161,7 +164,7 @@
     </div>
 
     <div class="searchbar">
-        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/water/regional-admin/user-accounts">
             <label for="nic"></label>
             <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
 
@@ -176,21 +179,17 @@
         });
     </script>
 
-    <!-- Users/Connections -->
     <div class="details">
-        <div class="tablediv" style="width: 100% !important; max-width: 100% !important;">
+        <div class="tablediv">
             <div class="customerdetails">
                 <div class="titlebar">
                     <h2>Customer Details</h2>
-                    <!-- view all button -->
                     <a href="#" class="btn">View All</a>
                 </div>
 
                 <div id="results"></div>
-                <!-- table body -->
                 <div class="table-container">
                     <table class="table">
-                        <!-- table header -->
                         <thead>
                             <tr>
                                 <th>Account Number</th>
@@ -207,7 +206,7 @@
 
                         <c:if test="${empty requestScope.waterRegionalUsers}">
                             <tr>
-                                <td colspan="12">No companies found</td>
+                                <td colspan="12">No customers found</td>
                             </tr>
                         </c:if>
                         <c:if test="${not empty requestScope.waterRegionalUsers}">

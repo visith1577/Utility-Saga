@@ -29,9 +29,9 @@ public class RegionalWaterAdminUsers extends HttpServlet {
 
         try {
             if (id == null || id.isEmpty()) {
-                waterRegionalUsers = dao.getUserDetailsRegionalAdmin(session.getAttribute("REGION").toString());
+                waterRegionalUsers = dao.getWaterDetailsRegionalAdmin(session.getAttribute("REGION").toString());
             } else {
-                waterRegionalUsers = dao.getUserDetailsByNICRegionalAdmin(session.getAttribute("REGION").toString(), id);
+                waterRegionalUsers = dao.getWaterDetailsByNICRegionalAdmin(session.getAttribute("REGION").toString(), id);
             }
 
             if (waterRegionalUsers.isEmpty()) {
