@@ -323,7 +323,6 @@
     })
             .then(data => {
               const parsedData = data;
-              console.log(data);
               const isUsernameValid = parsedData.UsernameExists;
               const isNICExists = parsedData.NICExists;
 

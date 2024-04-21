@@ -26,10 +26,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
-    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalConnectionSearch.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -144,7 +144,7 @@
 
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
-                    <h2 class="popup-title">Add Electricity Admin</h2>
+                    <h2 class="popup-title">Add New Connection</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/regional-admin/create-account">
                         <table>
                             <tr>
@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid"></td>
+                                <td><input type="text" name="requestid" id="requestid" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
                             </tr>
                             <tr>
                                 <td><label for="nicc">NIC</label></td>
@@ -169,12 +169,12 @@
                             </tr>
                             <tr>
                                 <td><label for="iotId">IoT device ID</label></td>
-                                <td><input type="text" name="iotId" id="iotId" required></td>
+                                <td><input type="text" name="iotId" id="iotId"></td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="form-button">
                                     <button type="submit" class="buttons">Add Admin</button>
-                                    <button onclick="closePopup('popupForm')" class="buttons">Close</button>
+                                    <button type="reset" onclick="closePopup('popupForm')" class="buttons">Close</button>
                                 </td>
                             </tr>
                         </table>
@@ -253,7 +253,7 @@
     }
 
     function closePopup(popUpId) {
-        var popup = document.getElementById(popUpId);
+        const popup = document.getElementById(popUpId);
         if (popup) {
             popup.style.display = "none";
         }
@@ -267,15 +267,76 @@
         return result;
     }
 
-    function validateForm() {
-        document.getElementById("nicc").addEventListener("input", function() {
-            if (!isValidNic(document.getElementById("nicc").value)) {
-                document.getElementById("nicc").setCustomValidity("Invalid NIC number");
-            } else {
-                document.getElementById("nicc").setCustomValidity("");
-            }
-        });
-    }
+
+
+    document.getElementById('addForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const nic = document.getElementById('nicc').value;
+        const reqId = document.getElementById('requestid').value;
+        const accountNo = document.getElementById('accountno').value;
+        const iotId = document.getElementById('iotId').value;
+
+        if (!isValidNic(nic)) {
+            Swal.fire({
+                icon: "error",
+                title: "NIC Invalid",
+                text: "Check NIC number and try again."
+            });
+            // exit out of submit function
+        } else if (accountNo.length === 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Add Account Number",
+                text: "Please fill all fields."
+            });
+            // exit out of submit function
+        } else {
+            // fetch from backend if account number is already in use || if request id has been fulfilled already || iot device is already owned
+            fetch(contextPath + '/electricity/regional-admin/api/validate-add-account?reqId=' + encodeURIComponent(reqId) + '&accountNo=' + encodeURIComponent(accountNo) + '&iotId=' + encodeURIComponent(iotId))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Response was not ok');
+                    }
+                    return response.json();
+                }).then(data => {
+                    if (data.error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: data.error
+                        });
+                    } else if (data.AccountNoExists) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Account Exists",
+                            text: "Account number already in use."
+                        });
+                    } else if (!data.ReqIdExists && reqId.length > 0) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Request ID Invalid",
+                            text: "Request ID already fulfilled or does not exist."
+                        });
+                    } else if (data.IotIdExists && iotId.length > 0) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Device Invalid",
+                            text: "IoT device already Owned."
+                        });
+                    } else {
+                        toastr.success("Account added successfully.");
+                        document.getElementById('addForm').submit();
+                    }
+            }).catch(error => {
+                console.error("Problem checking for existing account: ", error);
+            }).finally(() => {
+                // close popup
+                closePopup('popupForm');
+                // reset form fields
+                document.getElementById('addForm').reset();
+            });
+        }
+    });
 </script>
 
 </body>

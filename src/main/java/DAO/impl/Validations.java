@@ -6,4 +6,7 @@ public interface Validations {
     boolean isUserNameExists(String username) throws SQLException;
     boolean isEmailExists(String email) throws SQLException;
     boolean isNICExists(String nic) throws SQLException;
+    boolean isMeterExists(String meterNo, String category) throws SQLException;
+    boolean isAccountExists(String accountNo, String category) throws SQLException;
+    boolean isRequestIdExist(int reqId, String category) throws SQLException;
 }
