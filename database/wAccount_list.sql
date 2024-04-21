@@ -41,7 +41,7 @@ BEGIN
             NEW.nic,
             CURRENT_TIMESTAMP,
             'IMPORTANT',
-            CONCAT('Your meter status of account', NEW.account_number , 'has been updated to status ', NEW.meter_status)
+            CONCAT('Your meter status of account ', NEW.account_number , ' has been updated to status ', NEW.meter_status)
         );
     END IF;
 END$$
