@@ -55,7 +55,7 @@ public class WaterConnectionDao implements Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setAccountNumber(rs.getString("account_number"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -111,7 +111,7 @@ public class WaterConnectionDao implements Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setRequestId(rs.getString("request_id"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -137,7 +137,7 @@ public class WaterConnectionDao implements Connection {
         java.sql.Connection connection = Connectdb.getConnection();
 
 
-        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_connection_request SET account_status = ? WHERE account_number = ?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_connection_request SET account_status = ? WHERE id = ?")) {
 
             stmt.setString(1, status);
             stmt.setString(2, accountno);
@@ -158,7 +158,7 @@ public class WaterConnectionDao implements Connection {
         System.out.println("complaintno: "+ accountno);
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM water_connection_request WHERE account_number = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM water_connection_request WHERE id = ?");
             stmt.setString(1, accountno);
 
             try (ResultSet result = stmt.executeQuery()){
