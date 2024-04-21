@@ -160,22 +160,26 @@
         </a>
     </div>
 
-    <div class="searchbar">
-        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">
-            <label for="nic"></label>
-            <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
+    <div class="bar-search-button">
+        <div class="searchbar">
+            <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">
+                <label for="nic"></label>
+                <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">
 
-            <button type="submit" name="search" class="btn" onclick="search(); return false;">Search</button>
-            <button type="button" id="resetButton" class="btn">Reset</button>
-        </form>
+                <button type="submit" name="search" class="btn" onclick="search(); return false;">Search</button>
+                <button type="button" id="resetButton" class="btn">Reset</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('resetButton').addEventListener('click', function() {
+                document.getElementById('nic').value = '';
+                document.getElementById('searchForm').submit();
+            });
+        </script>
+        <div class="button-noti">
+            <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/reg-eadmin-sendnotification.jsp" class="notificationsend">Send Notifications to users</a>
+        </div>
     </div>
-    <script>
-        document.getElementById('resetButton').addEventListener('click', function() {
-            document.getElementById('nic').value = '';
-            document.getElementById('searchForm').submit();
-        });
-    </script>
-
     <!-- Users/Connections -->
     <div class="details">
         <div class="tablediv" style="width: 100% !important; max-width: 100% !important;">
