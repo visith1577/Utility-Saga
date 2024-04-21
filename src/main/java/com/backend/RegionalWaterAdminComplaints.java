@@ -41,7 +41,7 @@ public class RegionalWaterAdminComplaints extends HttpServlet {
                 req.setAttribute("waterRegionalComplaints", waterRegionalComplaints);
             }
 
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/water/regionalAdmin/complaints-electricity.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/water/regionalAdmin/complaints-water.jsp");
             dispatcher.forward(req, resp);
 
         } catch (Exception e) {

@@ -483,4 +483,171 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         }
     }
 
+    @Override
+    public Integer getTotalElectricityAccountsRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT account_number) AS total FROM eaccount_list WHERE region = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getTotalElectricityUsersRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT nic) AS total FROM eaccount_list WHERE region = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getNewElectricityConnections(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT id) AS total FROM electricity_connection_request WHERE region = ? AND account_status != 'ADDED'";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getNewElectricityComplaints(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT ec.complaint_no) AS total\n" +
+                    "FROM electricity_complaint ec\n" +
+                    "JOIN eaccount_list el ON ec.account_number = el.account_number\n" +
+                    "WHERE el.region = ? AND ec.complaint_status != 'DONE'";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getTotalWaterAccountsRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT account_number) AS total FROM waccount_list WHERE region = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getTotalWaterUsersRegion(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT nic) AS total FROM waccount_list WHERE region = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getNewWaterConnections(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT id) AS total FROM water_connection_request WHERE region = ? AND account_status != 'ADDED'";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+    @Override
+    public Integer getNewWaterComplaints(String region) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Integer count = null;
+
+        try {
+            String query = "SELECT COUNT(DISTINCT ec.complaint_no) AS total\n" +
+                    "FROM water_complaint ec\n" +
+                    "JOIN waccount_list el ON ec.account_number = el.account_number\n" +
+                    "WHERE el.region = ? AND ec.complaint_status != 'DONE'";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, region);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("total");
+            }
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return count;
+    }
+
+
 }

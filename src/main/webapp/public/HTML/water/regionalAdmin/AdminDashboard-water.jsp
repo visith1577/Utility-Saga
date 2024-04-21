@@ -1,3 +1,4 @@
+<%@ page import="DAO.dao.UserDetailsDao" %>
 <%
     // Get the context path dynamically
     String contextPath = request.getContextPath();
@@ -5,6 +6,7 @@
 <% String firstname = (String) session.getAttribute("FNAME"); %>
 <% String lastname = (String) session.getAttribute("LNAME"); %>
 <% String region = (String) session.getAttribute("REGION"); %>
+<% UserDetailsDao user = new UserDetailsDao(); %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
@@ -12,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Electricity Regional admin dashboard</title>
+<title>Water Regional admin dashboard</title>
     <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-jicI5S7PZg7NtOWKp6hv3zokYkaw9fdL3+M5uHyXr+1XNMe5W4/zJ3uiz5zgI5Fp9Pwe5VXvBsYHpma/8ZkC9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
@@ -119,8 +121,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">15 000</div>
-                <div class="cardName">Electricity Service Users</div>
+                <div class="numbers"><%= user.getTotalWaterUsersRegion(region)%></div>
+                <div class="cardName">Water Service Users</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-users"></i>
@@ -129,8 +131,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">5 000</div>
-                <div class="cardName">New Electricity Connections</div>
+                <div class="numbers"><%= user.getNewWaterConnections(region)%></div>
+                <div class="cardName">New Active Connection Requests</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-faucet"></i>
@@ -139,8 +141,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">1 000</div>
-                <div class="cardName">No. of Complaints</div>
+                <div class="numbers"><%= user.getNewWaterComplaints(region)%></div>
+                <div class="cardName">Unresolved Complaints</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>
@@ -149,8 +151,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">15 000</div>
-                <div class="cardName">Electricity Service Users</div>
+                <div class="numbers"><%= user.getTotalElectricityAccountsRegion(region)%></div>
+                <div class="cardName">Electricity Service Accounts</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>

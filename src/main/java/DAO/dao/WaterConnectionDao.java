@@ -43,11 +43,12 @@ public class WaterConnectionDao implements Connection {
         List<ConnectionModel> connections = new ArrayList<>();
         java.sql.Connection connection = Connectdb.getConnection();
         String sql = "SELECT req.*\n" +
-                "FROM water_connection_requirement req\n" +
+                "FROM water_connection_request req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
                 "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)\n";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1,region);
 
         ResultSet rs= stmt.executeQuery();
 
