@@ -114,7 +114,7 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setRequestId(rs.getString("request_id"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -141,9 +141,10 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
     @Override
     public void updateApprovalStatus(String accountno, String status) throws SQLException {
         Connection connection = Connectdb.getConnection();
+        System.out.println("accountno: "+ accountno);
+        System.out.println("status: "+ status);
 
-
-        try (PreparedStatement stmt = connection.prepareStatement("UPDATE electricity_connection_request SET account_status = ? WHERE account_number = ?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE electricity_connection_request SET account_status = ? WHERE id = ?")) {
 
             stmt.setString(1, status);
             stmt.setString(2, accountno);
@@ -164,7 +165,7 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         System.out.println("complaintno: "+ accountno);
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM electricity_connection_request WHERE account_number = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM electricity_connection_request WHERE id = ?");
             stmt.setString(1, accountno);
 
             try (ResultSet result = stmt.executeQuery()){

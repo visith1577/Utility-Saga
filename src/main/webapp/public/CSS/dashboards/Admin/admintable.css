@@ -13,14 +13,62 @@
     --box-shadow: 0 0 02px rgba(0,0,0,0.9);
 }
 
+button {
+    border: 0;
+    background: var(--water-color2);
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #F6F9FE;
+    font-size: 12px;
+    margin-left: 50px;
+    margin-top: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.buttons button:hover {
+    background: var(--water-color);
+    cursor: pointer;
+    color: lavender;
+}
+
+.popup-container .form-button button:hover {
+    background: var(--water-color);
+    cursor: pointer;
+    color: lavender;
+}
+
 
 .details{
+    margin-top: 3vh;
     position: relative;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    /*grid-template-columns: 2fr 1fr;*/
     grid-gap: 10px;
     margin-left: 20px;
     margin-right: 20px;
+    width: calc(100%- 40px);
+}
+
+.btn {
+    position: relative;
+    padding: 5px 10px;
+    background-color: var(--water-color2);
+    text-decoration: none;
+    color: var(--tertiary-color);
+    border-radius: 6px;
+}
+
+.profile-icon {
+    text-decoration: none;
+    color: #333;
+    font-size: 36px;
+}
+
+.profile-icon:hover {
+    color: var(--water-color2);
 }
 
 .complaints{

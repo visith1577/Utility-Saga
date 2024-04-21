@@ -45,6 +45,8 @@ public class WaterConnection extends HttpServlet {
 
       
         String requester_name = title + " " + initial + " " + name;;
+        wConnection.setRequesterName(requester_name);
+
 
         ElectricityConnection.connection(curr_address, accNum, nic, email, telNum, connection, region, wConnection, requester_name);
 
