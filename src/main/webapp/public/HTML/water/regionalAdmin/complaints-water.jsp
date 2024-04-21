@@ -28,7 +28,7 @@
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalComplaintSearch.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/WaterRegionalComplaintSearch.js"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -63,7 +63,7 @@
 
             function updateApprovalStatus(bNum, status) {
                 const contextPath = '<%= contextPath %>';
-                fetch(contextPath + '/UpdateRegionalComplaintStatus?companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status), {
+                fetch(contextPath + '/UpdateWaterComplaintStatus?companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status), {
                     method: "POST"
                 })
                     .then(response => {
@@ -95,10 +95,10 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">Customers</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/complaints">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/connections">New Connection</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/water-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                     <li class="menu-items-li dropdown">
                         <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
                         <div class="dropdown-content">
@@ -115,7 +115,7 @@
 
 
     <div style="margin-top: 12.5vh">
-        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/complaints">
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/water/regional-admin/complaints">
             <label for="nic"></label>
             <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
 
@@ -157,13 +157,13 @@
                         </thead>
                         <tbody>
 
-                    <c:if test="${empty requestScope.electricityRegionalComplaints}">
+                    <c:if test="${empty requestScope.waterRegionalComplaints}">
                         <tr>
-                            <td colspan="12">No complaints found</td>
+                            <td colspan="12">No companies found</td>
                         </tr>
                     </c:if>
-                    <c:if test="${not empty requestScope.electricityRegionalComplaints}">
-                        <c:forEach items="${requestScope.electricityRegionalComplaints}" var="complaint">
+                    <c:if test="${not empty requestScope.waterRegionalComplaints}">
+                        <c:forEach items="${requestScope.waterRegionalComplaints}" var="complaint">
 
                         <tr>
                             <td>${complaint.complaintNo}</td>
