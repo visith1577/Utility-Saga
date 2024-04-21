@@ -104,7 +104,6 @@ public class WaterConnectionDao implements Connection {
         stmt.setString(10, "%" + searchValue + "%");
         stmt.setString(11, "%" + searchValue + "%");
         stmt.setString(12, "%" + searchValue + "%");
-        stmt.setString(13, "%" + searchValue + "%");
         System.out.println("nic inside getConnectionbyNIC: Succesful");
 
         ResultSet rs= stmt.executeQuery();
