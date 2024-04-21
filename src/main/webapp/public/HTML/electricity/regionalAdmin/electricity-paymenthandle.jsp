@@ -1,4 +1,6 @@
-<%--
+<%@ page import="DAO.dao.ElectricityManualPaymentDao" %>
+<%@ page import="model.ManualPaymentsModel" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: NETHMI LIYANAGE
   Date: 4/15/2024
@@ -51,72 +53,52 @@
     </div>
 </header>
 <div class="payment-handle">
-    <div class="top-bar">
-        <h2>Payment Handling</h2>
-        <div class="card-bar">
-            <div class="card">
-                <p>Payments via the application</p>
-            </div>
-            <div class="card">
-                <p>Manual Bill Payments</p>
-            </div>
-        </div>
-    </div>
     <div class="bottom-bar">
-        <div class="paymetbar">
-            <h3>Payment via the application</h3>
-            <p>Payments made via the application will be automatically updated in the system</p>
-            <table>
-                <tr>
-                    <th>Account Number</th>
-                    <th>NIC</th>
-                    <th>Amount</th>
-                    <th>Payment Date</th>
-                    <th>Payment Method</th>
-                    <th>Payment Status</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123456789V</td>
-                    <td>1000</td>
-                    <td>2020-10-10</td>
-                    <td>Card</td>
-                    <td>Success</td>
-                </tr>
-            </table>
-        </div>
         <div class="paymetbar2">
-            <h3>Manual Bill Payments</h3>
+            <h3>Handle Manual Bill Payments</h3>
             <p>Payments made manually have update into the system</p>
-            <form class="formbox">
-                <label for="account-number">Account Number</label>
-                <input type="text" id="account-number" name="account-number" required>
+            <form id="manualpaymentform" method="POST" class="formbox" action="${pageContext.request.contextPath}/elemanualpayment">
+                <label for="account_number">Account Number</label>
+                <input type="text" id="account_number" name="account_number" required>
                 <label for="nic">NIC</label>
                 <input type="text" id="nic" name="nic" required>
                 <label for="amount">Amount</label>
                 <input type="text" id="amount" name="amount" required>
-                <label for="payment-date">Payment Date</label>
-                <input type="date" id="payment-date" name="payment-date" required>
+                <label for="date">Payment Date</label>
+                <input type="date" id="date" name="date" required>
 
                 <div class="btnbar">
                     <button class="btn submit">Add to table</button>
-                    <button class="btn1">Close</button>
+<%--                    <button class="btn1">Close</button>--%>
                 </div>
             </form>
 
             <table>
+                <thead>
                 <tr>
                     <th>Account Number</th>
                     <th>NIC</th>
                     <th>Payment Amount</th>
                     <th>Payment Date</th>
                 </tr>
+                </thead>
+                <tbody>
+                <%
+                    ElectricityManualPaymentDao dao = new ElectricityManualPaymentDao();
+                    List<ManualPaymentsModel> manualpayements = dao.getManualPayments();
+                    for (ManualPaymentsModel manualpayement : manualpayements) {
+                %>
                 <tr>
-                    <td>1</td>
-                    <td>123456789V</td>
-                    <td>1000</td>
-                    <td>2020-10-10</td>
+                    <td><%= manualpayement.getAccount_number() %></td>
+                    <td><%= manualpayement.getNic() %></td>
+                    <td><%= manualpayement.getAmount() %></td>
+                    <td><%= manualpayement.getDate() %></td>
                 </tr>
+                <%
+                    }
+                %>
+                </tbody>
+
             </table>
         </div>
     </div>

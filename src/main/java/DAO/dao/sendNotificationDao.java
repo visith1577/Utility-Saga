@@ -87,31 +87,28 @@ public class sendNotificationDao implements SendNotificationImpl {
 
     @Override
     public List<SendNotificationModel> getNotificationsByRecipientId(String recipientId) throws SQLException {
-        System.out.println("Calling the get Not function for several user");
+        System.out.println("Calling the get Not function for several users");
         List<SendNotificationModel> notifications = new ArrayList<>();
 
         Connection connection = Connectdb.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT n.* FROM electricity_regionaladmin_notification n " +
-                "JOIN users u ON n.recipientId = u.nic " +  "WHERE n.recipientId = ?"); {
-                    System.out.println(recipientId);
-
-            stmt.setString(1, recipientId);
-            try (ResultSet rs = stmt.executeQuery())
-            {
-                while (rs.next()) {
-                    SendNotificationModel notification = new SendNotificationModel();
-                    notification.setTitle(rs.getString("title"));
-                    notification.setRecipientType(SendNotificationModel.RecipientType.valueOf(rs.getString("recipientType")));
-                    notification.setDate(LocalDateTime.parse(rs.getString("date")));
-                    notification.setSubject(rs.getString("subject"));
-                    notification.setMessage(rs.getString("message"));
-                    notifications.add(notification);
-                }
-                System.out.println("try execute fun 2");
-
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT n.* FROM electricity_regionaladmin_notification n " +
+                        "JOIN users u ON n.recipientId = u.nic " +
+                        "WHERE n.recipientId = ?");
+        stmt.setString(1, recipientId);
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                SendNotificationModel notification = new SendNotificationModel();
+                notification.setTitle(rs.getString("title"));
+                notification.setRecipientType(SendNotificationModel.RecipientType.valueOf(rs.getString("recipientType")));
+                notification.setDate(LocalDateTime.parse(rs.getString("date")));
+                notification.setSubject(rs.getString("subject"));
+                notification.setMessage(rs.getString("message"));
+                notifications.add(notification);
             }
         }
 
         return notifications;
     }
+
 }

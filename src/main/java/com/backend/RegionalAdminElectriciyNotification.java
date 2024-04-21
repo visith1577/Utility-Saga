@@ -30,11 +30,8 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         }
         String dateStr = req.getParameter("date");
         LocalDate date = LocalDate.parse(dateStr);
-        System.out.println(date);
         String subject = req.getParameter("subject");
-        System.out.println(subject);
         String message = req.getParameter("message");
-        System.out.println(message);
 
         SendNotificationModel notification = new SendNotificationModel();
 
@@ -75,9 +72,9 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
                 System.out.println("if is correct");
             } else {
                 notifications.addAll(dao.getNotificationsByRecipientId(recipientId));
-                notifications.addAll(dao.getAllNotifications());
                 System.out.println("else is right");
             }
+
 
             // Set the notifications attribute in the request
             request.setAttribute("notifications", notifications);
