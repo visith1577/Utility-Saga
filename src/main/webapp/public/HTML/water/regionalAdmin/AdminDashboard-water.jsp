@@ -154,8 +154,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers"><%= user.getTotalElectricityAccountsRegion(region)%></div>
-                <div class="cardName">Electricity Service Accounts</div>
+                <div class="numbers"><%= user.getTotalWaterAccountsRegion(region)%></div>
+                <div class="cardName">Water Service Accounts</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>

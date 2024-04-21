@@ -22,8 +22,11 @@ import java.sql.SQLException;
 public class UpdateRegionalElecConnectionStatus extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("Inside servlet");
         String bNum = req.getParameter("companyId");
         String status = req.getParameter("status");
+        System.out.println("CompanyId: "+ bNum);
+        System.out.println("Status: " + status);
 
         JsonObject responseData = new JsonObject();
 
