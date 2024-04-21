@@ -83,7 +83,7 @@ canvas {
 
  .tablediv .customerdetails{
     position: relative;
-    display: grid;
+    /*display: grid;*/
     max-height: 500px;
     background-color: var(--tertiary-color);
     border-radius: 10px;
