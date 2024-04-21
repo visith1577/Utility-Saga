@@ -41,4 +41,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+ALTER TABLE water_complaint
+ADD COLUMN date TIMESTAMP;
+
 

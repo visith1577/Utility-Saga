@@ -48,4 +48,8 @@ VALUES
 ('CMP0003', 'Breakdown', 'Voltage & frequency problems', '0005', '200145632147', 'third@example.com', '2468013579', 'The voltage in our building seems unstable, causing flickering lights.');
 
 
+ALTER TABLE electricity_complaint
+ADD COLUMN date TIMESTAMP;
+
+
 

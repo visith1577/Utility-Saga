@@ -44,7 +44,8 @@ public class WaterComplaintsDao implements Complaints {
                 "FROM water_complaint ec\n" +
                 "JOIN wAccount_list ea ON ec.account_number = ea.account_number\n" +
                 "JOIN water_admin ead ON ea.region = ead.region WHERE ead.region = ? AND ea.region = ead.region\n" +
-                "AND ec.account_number = ea.account_number";
+                "AND ec.account_number = ea.account_number\n"+
+                "ORDER BY ec.`date` DESC";
 
 //        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -87,7 +88,8 @@ public class WaterComplaintsDao implements Complaints {
                 "JOIN water_admin ead ON ea.region = ead.region WHERE ead.region = ? AND ea.region = ead.region\n" +
                 "AND ec.account_number = ea.account_number AND \n"+
                 "(ec.complaint_no LIKE ? OR ec.complaint_category LIKE ? OR ec.complaint_type LIKE ? OR ec.account_number LIKE ? OR ec.nic LIKE ?\n"+
-                "OR ec.email LIKE ? OR ec.mobile LIKE ? OR ec.complaint LIKE ? OR ec.complaint_status LIKE ?)";
+                "OR ec.email LIKE ? OR ec.mobile LIKE ? OR ec.complaint LIKE ? OR ec.complaint_status LIKE ?)\n"+
+                "ORDER BY ec.`date` DESC";
 
 //        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
