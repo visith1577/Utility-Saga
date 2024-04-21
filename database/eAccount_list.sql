@@ -1,7 +1,6 @@
 CREATE TABLE eAccount_list(
                               account_number varchar(255) PRIMARY KEY,
-                              nic varchar(13),
-                              FOREIGN KEY (nic) REFERENCES users(nic)
+                              nic varchar(13)
 );
 
 ALTER TABLE eAccount_list
@@ -59,3 +58,6 @@ CREATE TABLE eaccount_list (
     sub_region VARCHAR(25),
     balance DECIMAL(10,2) NOT NULL DEFAULT 0
 );
+
+ALTER TABLE eAccount_list
+    ADD COLUMN iot_id varchar(255) NOT NULL DEFAULT 'NO';

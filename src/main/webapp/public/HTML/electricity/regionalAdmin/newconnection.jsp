@@ -146,27 +146,39 @@
                 <div id="popupContainer" class="popup-container">
                     <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/regional-admin/create-account">
-                        <label for="region">Region </label>
-                        <input type="text" name="region" id="region" required>
-
-                        <label for="subregion">Sub Region</label>
-                        <input type="text" name="subregion" id="subregion" required>
-
-                        <label for="accountno">Account Number </label>
-                        <input type="text" name="accountno" id="accountno" required>
-
-                        <label for="requestid">Request ID </label>
-                        <input type="text" name="requestid" id="requestid" required>
-
-                        <label for="nicc">NIC</label>
-                        <input type="text" name="nicc" id="nicc" required>
-
-                        <div class="form-button">
-                            <button type="submit" class="buttons">Add Admin</button>
-                            <button  onclick="closePopup('popupForm')" class="buttons">Close</button>
-                        </div>
+                        <table>
+                            <tr>
+                                <td><label for="region">Region </label></td>
+                                <td><input type="text" name="region" id="region" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="subregion">Sub Region</label></td>
+                                <td><input type="text" name="subregion" id="subregion" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="accountno">Account Number </label></td>
+                                <td><input type="text" name="accountno" id="accountno" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="requestid">Request ID </label></td>
+                                <td><input type="text" name="requestid" id="requestid" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="nicc">NIC</label></td>
+                                <td><input type="text" name="nicc" id="nicc" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="iotId">IoT device ID</label></td>
+                                <td><input type="text" name="iotId" id="iotId" required></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="form-button">
+                                    <button type="submit" class="buttons">Add Admin</button>
+                                    <button onclick="closePopup('popupForm')" class="buttons">Close</button>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
-
                 </div>
             </div>
 
@@ -232,10 +244,9 @@
     <button class="button" onclick="openPopup('popupForm')">Add New Account</button>
 </div>
 
-</section>
 <script>
     function openPopup(popUpId) {
-        var popup= document.getElementById(popUpId);
+        const popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
         }

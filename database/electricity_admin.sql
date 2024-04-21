@@ -43,7 +43,3 @@ ALTER COLUMN region SET DEFAULT 'HEADOFFICE';
 ALTER TABLE electricity_admin
 ADD CONSTRAINT unique_region
 UNIQUE (region);
-
-
-
-

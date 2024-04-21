@@ -12,6 +12,15 @@ public class ElecWaterAccountsModel {
     private String subRegion;
     private Integer balance;
     private String requestId;
+    private String iotId;
+
+    public String getIotId() {
+        return iotId;
+    }
+
+    public void setIotId(String iotId) {
+        this.iotId = iotId;
+    }
 
     public enum UserStatus{
         ACTIVE,
