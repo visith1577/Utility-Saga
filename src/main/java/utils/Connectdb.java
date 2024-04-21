@@ -14,9 +14,7 @@ public class Connectdb {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String user = dotenv.get("DB_USERNAME");
-            System.out.println(user);
             String password = dotenv.get("DB_PASSWORD");
-            System.out.println(password);
             return DriverManager.getConnection(JDBC_URL, user, password);
         } catch (ClassNotFoundException e) {
             throw new SQLException("Database driver not found", e);

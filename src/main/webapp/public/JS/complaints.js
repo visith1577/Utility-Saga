@@ -142,7 +142,7 @@ export function toast_handle(result, btn_type) {
             }
         }, 3205);
         send_data();
-        connection_form.submit();
+        form.submit();
     } else {
         button.disabled = true;
         if (button.classList.contains('waterbtn')) {

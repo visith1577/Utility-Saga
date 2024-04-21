@@ -120,7 +120,6 @@ input[type="password"] {
 .popup-container input[type="email"],
 .popup-container input[type="password"],
 .popup-container select {
-    width: calc(100% - 8px);
     padding: 1px;
     border: none;
     border-bottom: 1px solid #ccc;
@@ -128,6 +127,7 @@ input[type="password"] {
     background-color: transparent;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
+    width: 200px;
 }
 
 .popup-container .form-button {
