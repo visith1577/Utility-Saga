@@ -10,30 +10,28 @@ import model.ElecWaterAccountsModel;
 
 import java.io.IOException;
 
-@WebServlet("/electricity/regional-admin/create-account")
-public class ElectricityRegionalAddAccount extends HttpServlet {
+@WebServlet("/water/regional-admin/create-account")
+public class WaterRegionalAddAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String accountNo = req.getParameter("accountno");
-        String requestId = req.getParameter("requestid");
+        String requestid = req.getParameter("requestid");
         String region = req.getParameter("region").toUpperCase();
         String subregion = req.getParameter("subregion").toUpperCase();
         String nic = req.getParameter("nicc");
-        String deviceId = req.getParameter("iotId");
 
         ElecWaterAccountsModel account = new ElecWaterAccountsModel();
 
         account.setAccountNumber(accountNo);
         account.setNic(nic);
-        account.setRequestId((requestId));
+        account.setRequestId((requestid));
         account.setRegion(region);
         account.setSubRegion(subregion);
-        account.setIotId(deviceId);
 
         ElecWaterAccountsDAO dao = new ElecWaterAccountsDAO();
 
         try {
-            dao.saveAccount(account);
+            dao.saveWaterAccount(account);
             resp.sendRedirect(req.getHeader("referer"));
         } catch (Exception e) {
             req.setAttribute("errorMessage", e.getMessage());

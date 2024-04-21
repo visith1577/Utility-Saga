@@ -18,11 +18,12 @@ public class RegionalElecAdminUserSearch extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         String nic = request.getParameter("nic");
+        HttpSession session = request.getSession();
 
         UserDetailsDao dao = new UserDetailsDao();
         List<UserModel> users = null;
         try {
-            users = dao.getUserDetailsByNICRegionalAdmin(nic);
+            users = dao.getUserDetailsByNICRegionalAdmin(session.getAttribute("REGION").toString(),nic);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

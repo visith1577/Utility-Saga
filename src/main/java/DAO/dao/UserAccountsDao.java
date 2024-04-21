@@ -122,6 +122,33 @@ public class UserAccountsDao implements UserAccounts {
     }
 
     @Override
+    public String getIotIdForAccount(String account, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        String iotId = null;
+
+        try {
+            String tableName = selectTable(category);
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT iot_id FROM " + tableName + " WHERE account_number = ?"
+            );
+
+            statement.setString(1, account);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()){
+                    iotId = result.getString("iot_id");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return iotId;
+    }
+
+    @Override
     public List<UserAccountsModel> getUserBills(String nic, String category, int limit, int offset) throws SQLException {
         Connection connection = Connectdb.getConnection();
         List<UserAccountsModel> account_list = new ArrayList<>();
@@ -289,6 +316,8 @@ public class UserAccountsDao implements UserAccounts {
         }
         return exists;
     }
+
+
 
     private String selectTable(String category) {
         String tableName;

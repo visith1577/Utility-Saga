@@ -29,7 +29,7 @@
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalConnectionSearch.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/WaterRegionalConnectionSearch.js"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -64,7 +64,7 @@
 
             function updateApprovalStatus(bNum, status) {
                 const contextPath = '<%= contextPath %>';
-                fetch(contextPath + '/UpdateRegionalConnectionStatus?companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status), {
+                fetch(contextPath + '/UpdateWaterConnectionStatus?companyId=' + encodeURIComponent(bNum) + '&status=' + encodeURIComponent(status), {
                     method: "POST"
                 })
                     .then(response => {
@@ -96,14 +96,14 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">Customers</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/complaints">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/connections">New Connection</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                     <li class="menu-items-li dropdown">
                         <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/settings.jsp">Settings</a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/settings.jsp">Settings</a>
                             <a href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </li>
@@ -116,7 +116,7 @@
 
 
 <div style="margin-top: 12.5vh">
-    <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/connections">
+    <form id="searchForm" method="get" action="<%= request.getContextPath() %>/water/regional-admin/connections">
         <label for="nic"></label>
         <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
 
@@ -145,40 +145,28 @@
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
                     <h2 class="popup-title">Add Electricity Admin</h2>
-                    <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/regional-admin/create-account">
-                        <table>
-                            <tr>
-                                <td><label for="region">Region </label></td>
-                                <td><input type="text" name="region" id="region" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="subregion">Sub Region</label></td>
-                                <td><input type="text" name="subregion" id="subregion" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="accountno">Account Number </label></td>
-                                <td><input type="text" name="accountno" id="accountno" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="nicc">NIC</label></td>
-                                <td><input type="text" name="nicc" id="nicc" required></td>
-                            </tr>
-                            <tr>
-                                <td><label for="iotId">IoT device ID</label></td>
-                                <td><input type="text" name="iotId" id="iotId" required></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="form-button">
-                                    <button type="submit" class="buttons">Add Admin</button>
-                                    <button onclick="closePopup('popupForm')" class="buttons">Close</button>
-                                </td>
-                            </tr>
-                        </table>
+                    <form id="addForm" method="POST" action="${pageContext.request.contextPath}/water/regional-admin/create-account">
+                        <label for="region">Region </label>
+                        <input type="text" name="region" id="region" required>
+
+                        <label for="subregion">Sub Region</label>
+                        <input type="text" name="subregion" id="subregion" required>
+
+                        <label for="accountno">Account Number </label>
+                        <input type="text" name="accountno" id="accountno" required>
+
+                        <label for="requestid">Request ID </label>
+                        <input type="text" name="requestid" id="requestid" required>
+
+                        <label for="nicc">NIC</label>
+                        <input type="text" name="nicc" id="nicc" required>
+
+                        <div class="form-button">
+                            <button type="submit" class="buttons">Add Admin</button>
+                            <button  onclick="closePopup('popupForm')" class="buttons">Close</button>
+                        </div>
                     </form>
+
                 </div>
             </div>
 
@@ -204,13 +192,13 @@
                     </thead>
                     <tbody>
 
-                    <c:if test="${empty requestScope.electricityConnectionRequests}">
+                    <c:if test="${empty requestScope.waterConnectionRequests}">
                         <tr>
                             <td colspan="12">No new connections found</td>
                         </tr>
                     </c:if>
-                    <c:if test="${not empty requestScope.electricityConnectionRequests}">
-                        <c:forEach items="${requestScope.electricityConnectionRequests}" var="connection">
+                    <c:if test="${not empty requestScope.waterConnectionRequests}">
+                        <c:forEach items="${requestScope.waterConnectionRequests}" var="connection">
 
                             <tr>
                                 <td>${connection.requesterName}</td>
@@ -244,9 +232,10 @@
     <button class="button" onclick="openPopup('popupForm')">Add New Account</button>
 </div>
 
+</section>
 <script>
     function openPopup(popUpId) {
-        const popup= document.getElementById(popUpId);
+        var popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
         }

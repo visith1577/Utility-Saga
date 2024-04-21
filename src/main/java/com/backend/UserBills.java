@@ -58,13 +58,20 @@ public class UserBills extends HttpServlet {
 
                     wReport = summaryReport.getSummary("water", (String) session.getAttribute("NIC"), account);
                     Gson gson1 = new Gson();
-                    JsonElement jsonData1 = gson1.toJsonTree(wReport);
+                    JsonObject jsonObject = gson1.fromJson(wReport, JsonObject.class);
+                    JsonElement jsonData1 = gson1.toJsonTree(jsonObject);
                     responseData.add("report", jsonData1);
 
 
                     Gson gson2 = new Gson();
                     JsonElement jsonData2 = gson2.toJsonTree(account_bill);
                     responseData.add("bill", jsonData2);
+
+                    Gson gson3 = new Gson();
+                    String id = dao.getIotIdForAccount(account, "WATER");
+                    List<IoTModel> data_list_daily = analytics.getDataForCurrentDate(id);
+                    JsonElement jsonData = gson3.toJsonTree(data_list_daily);
+                    responseData.add("data_list_daily", jsonData);
 
 
                     resp.setContentType("application/json");

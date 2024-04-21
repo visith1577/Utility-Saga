@@ -4,33 +4,31 @@ package com.backend;
 import java.io.*;
 import java.util.List;
 
-import DAO.dao.ElectricityConnectionDao;
+import DAO.dao.UserDetailsDao;
+import model.UserModel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import com.google.gson.Gson;
-import model.ConnectionModel;
 
 
-@WebServlet("/electricity/connection/search")
-public class ElectricityRegionalConnectionSearch extends HttpServlet {
+@WebServlet("/water/user/search")
+public class RegionalWaterAdminUserSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         String nic = request.getParameter("nic");
-        System.out.println("nic in /electricity/connection/search: "+ nic);
         HttpSession session = request.getSession();
 
-        ElectricityConnectionDao dao = new ElectricityConnectionDao();
-        List<ConnectionModel> connections = null;
+        UserDetailsDao dao = new UserDetailsDao();
+        List<UserModel> users = null;
         try {
-            connections = dao.getConnectionRegionalAdminByNIC(session.getAttribute("REGION").toString(),nic);
-            System.out.println("getConnectionRegionalAdminByNIC called");
+            users = dao.getWaterDetailsByNICRegionalAdmin(session.getAttribute("REGION").toString(),nic);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         Gson gson = new Gson();
-        String json = gson.toJson(connections);
+        String json = gson.toJson(users);
 
         out.print(json);
         out.flush();

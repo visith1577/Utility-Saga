@@ -1,6 +1,6 @@
 package com.backend;
 
-import DAO.dao.ElectricityComplaintDao;
+import DAO.dao.WaterComplaintsDao;
 import DAO.impl.Complaints;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -15,33 +15,33 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/electricity/regional-admin/complaints")
-public class RegionalElecAdminComplaints extends HttpServlet {
+@WebServlet("/water/regional-admin/complaints")
+public class RegionalWaterAdminComplaints extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<ComplaintModel> electricityRegionalComplaints;
+        List<ComplaintModel> waterRegionalComplaints;
         String id = req.getParameter("id");
         HttpSession session = req.getSession();
 
         System.out.println("ID: " + id);
 
-        Complaints dao = new ElectricityComplaintDao();
+        Complaints dao = new WaterComplaintsDao();
 
         try {
             if (id == null || id.isEmpty()) {
-                electricityRegionalComplaints = dao.getComplaints(session.getAttribute("REGION").toString());
+                waterRegionalComplaints = dao.getComplaints(session.getAttribute("REGION").toString());
             } else {
-                electricityRegionalComplaints = dao.getComplaintsByComplaintID(session.getAttribute("REGION").toString(),id);
+                waterRegionalComplaints = dao.getComplaintsByComplaintID(session.getAttribute("REGION").toString(),id);
             }
 
-            if (electricityRegionalComplaints.isEmpty()) {
+            if (waterRegionalComplaints.isEmpty()) {
                 req.setAttribute("message", "No data found");
             } else {
-                System.out.println("Electricity Regional Complaints: " + electricityRegionalComplaints);
-                req.setAttribute("electricityRegionalComplaints", electricityRegionalComplaints);
+                System.out.println("Electricity Regional Complaints: " + waterRegionalComplaints);
+                req.setAttribute("waterRegionalComplaints", waterRegionalComplaints);
             }
 
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/electricity/regionalAdmin/complaints-electricity.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/water/regionalAdmin/complaints-water.jsp");
             dispatcher.forward(req, resp);
 
         } catch (Exception e) {
