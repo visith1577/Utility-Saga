@@ -45,17 +45,8 @@ public class WaterConnection extends HttpServlet {
 
       
         String requester_name = title + " " + initial + " " + name;;
-        wConnection.setRequesterName(requester_name);
 
-        wConnection.setCurrentAddress(curr_address);
-        wConnection.setNic(nic);
-        wConnection.setEmail(email);
-        wConnection.setMobile(telNum);
-        wConnection.setRegion(region);
-        wConnection.setAccountNumber(accNum);
-
-        ConnectionModel.ConnectionRequirement requirement = ConnectionModel.ConnectionRequirement.valueOf(connection);
-        wConnection.setConnectionRequirements(requirement);
+        ElectricityConnection.connection(curr_address, accNum, nic, email, telNum, connection, region, wConnection, requester_name);
 
         wConnection.setNewAddress(new_con_address);
 

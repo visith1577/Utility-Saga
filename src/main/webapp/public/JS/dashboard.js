@@ -1,6 +1,3 @@
-const w_ctx = document.getElementById('w-graph');
-
-
 const labels = Array.from({length: 31}, (_, i) => (i+1).toString());
 
 const dataset1 = {

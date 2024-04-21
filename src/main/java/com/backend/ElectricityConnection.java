@@ -46,17 +46,7 @@ public class ElectricityConnection extends HttpServlet {
         ConnectionModel eConnection = new ConnectionModel();
 
         String requester_name = title + " " + initial + " " + name;
-        eConnection.setRequesterName(requester_name);
-
-        eConnection.setCurrentAddress(curr_address);
-        eConnection.setNic(nic);
-        eConnection.setEmail(email);
-        eConnection.setMobile(telNum);
-        eConnection.setRegion(region);
-        eConnection.setAccountNumber(accNum);
-
-        ConnectionModel.ConnectionRequirement requirement = ConnectionModel.ConnectionRequirement.valueOf(connection);
-        eConnection.setConnectionRequirements(requirement);
+        connection(curr_address, accNum, nic, email, telNum, connection, region, eConnection, requester_name);
 
         if (required_type != null && new_con_address != null) {
             eConnection.setConnectionType(required_type);
@@ -83,6 +73,20 @@ public class ElectricityConnection extends HttpServlet {
             req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
         }
 
+    }
+
+    static void connection(String curr_address, String accNum, String nic, String email, String telNum, String connection, String region, ConnectionModel eConnection, String requester_name) {
+        eConnection.setRequesterName(requester_name);
+
+        eConnection.setCurrentAddress(curr_address);
+        eConnection.setNic(nic);
+        eConnection.setEmail(email);
+        eConnection.setMobile(telNum);
+        eConnection.setRegion(region);
+        eConnection.setAccountNumber(accNum);
+
+        ConnectionModel.ConnectionRequirement requirement = ConnectionModel.ConnectionRequirement.valueOf(connection);
+        eConnection.setConnectionRequirements(requirement);
     }
 
     @Override
