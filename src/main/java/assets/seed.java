@@ -2,6 +2,7 @@ package assets;
 
 import DAO.dao.ElectricityAdminDAO;
 import DAO.dao.ElectricityRegionalAdminDAO;
+import DAO.dao.WaterAdminDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,14 +35,14 @@ public class seed extends HttpServlet {
         String id = "Regional_Colombo";
         String fname = "CEB";
         String lname = "Regional";
-        String uname = "CEB Admin Colombo";
+        String uname = "WB Admin Colombo";
         String pwd = "rootAdmin";
         String tel = "1987";
         String email = "dgmp@ceb.lk";
         String address = "23 Claessen Pl ";
         String homePhone = "0114 498 498";
         String region = "Colombo";
-        String empid = "CEB001";
+        String empid = "WB001";
 //
         ElectricityAdminModel user = new ElectricityAdminModel();
         user.setId(id);
@@ -59,10 +60,10 @@ public class seed extends HttpServlet {
         user.setPassword(bcryptHashedPwd);
 
 
-        ElectricityAdminDAO dao = new ElectricityAdminDAO();
+        WaterAdminDAO dao = new WaterAdminDAO();
 
         try {
-            dao.addElectricityAdmin(user);
+            dao.addWaterAdmin(user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

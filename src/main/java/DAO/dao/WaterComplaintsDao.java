@@ -34,13 +34,21 @@ public class WaterComplaintsDao implements Complaints {
         conn.close();
     }
 
-    public List<ComplaintModel> getComplaints() throws SQLException{
+    @Override
+    public List<ComplaintModel> getComplaints(String id) throws SQLException {
         List<ComplaintModel> complaint_list = new ArrayList<>();
 
         Connection conn = Connectdb.getConnection();
 
-        String sql = "SELECT * FROM water_complaint";
+        String sql = "SELECT *\n" +
+                "FROM water_complaint ec\n" +
+                "JOIN wAccount_list ea ON ec.account_number = ea.account_number\n" +
+                "JOIN water_admin ead ON ea.region = ead.region WHERE ead.region = ? AND ea.region = ead.region\n" +
+                "AND ec.account_number = ea.account_number";
+
+//        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, id);
 
         ResultSet rs = stmt.executeQuery();
 
@@ -49,11 +57,12 @@ public class WaterComplaintsDao implements Complaints {
             complaint.setComplaintNo(rs.getString("complaint_no"));
             complaint.setComplaintCategory(rs.getString("complaint_category"));
             complaint.setComplaintType(rs.getString("complaint_type"));
-            complaint.setAccountNumber(rs.getString("account_number"));
             complaint.setNic(rs.getString("nic"));
             complaint.setEmail(rs.getString("email"));
-            complaint.setPhoneNumber(rs.getString("mobile"));
-            complaint.setComplaintDescription(rs.getString("account_number"));
+            complaint.setAccountNumber(rs.getString("account_number"));
+            complaint.setMobile(rs.getString("mobile"));
+            complaint.setComplaintStatus(ComplaintModel.ComplaintStatus.valueOf(rs.getString("complaint_status")));
+            complaint.setComplaintDescription(rs.getString("complaint"));
 
             complaint_list.add(complaint);
         }
@@ -66,17 +75,101 @@ public class WaterComplaintsDao implements Complaints {
     }
 
     @Override
-    public List<ComplaintModel> getComplaintsByComplaintID(String id) throws SQLException {
-        return null;
+    public List<ComplaintModel> getComplaintsByComplaintID(String region,String id) throws SQLException {
+        List<ComplaintModel> complaint_list = new ArrayList<>();
+        String searchValue = "%" + id + "%";
+
+        Connection conn = Connectdb.getConnection();
+
+        String sql = "SELECT *\n" +
+                "FROM water_complaint ec\n" +
+                "JOIN wAccount_list ea ON ec.account_number = ea.account_number\n" +
+                "JOIN water_admin ead ON ea.region = ead.region WHERE ead.region = ? AND ea.region = ead.region\n" +
+                "AND ec.account_number = ea.account_number AND \n"+
+                "(ec.complaint_no LIKE ? OR ec.complaint_category LIKE ? OR ec.complaint_type LIKE ? OR ec.account_number LIKE ? OR ec.nic LIKE ?\n"+
+                "OR ec.email LIKE ? OR ec.mobile LIKE ? OR ec.complaint LIKE ? OR ec.complaint_status LIKE ?)";
+
+//        String sql= "SELECT * FROM electricity_complaint";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+
+        stmt.setString(1, region);
+        stmt.setString(2, searchValue);
+        stmt.setString(3, searchValue);
+        stmt.setString(4, searchValue);
+        stmt.setString(5, searchValue);
+        stmt.setString(6, searchValue);
+        stmt.setString(7, searchValue);
+        stmt.setString(8, searchValue);
+        stmt.setString(9, searchValue);
+        stmt.setString(10, searchValue);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()){
+            ComplaintModel complaint = new ComplaintModel();
+            complaint.setComplaintNo(rs.getString("complaint_no"));
+            complaint.setComplaintCategory(rs.getString("complaint_category"));
+            complaint.setComplaintType(rs.getString("complaint_type"));
+            complaint.setAccountNumber(rs.getString("account_number"));
+            complaint.setNic(rs.getString("nic"));
+            complaint.setEmail(rs.getString("email"));
+            complaint.setPhoneNumber(rs.getString("mobile"));
+            complaint.setComplaintDescription(rs.getString("complaint"));
+            complaint.setComplaintStatus(ComplaintModel.ComplaintStatus.valueOf(rs.getString("complaint_status")));
+
+            complaint_list.add(complaint);
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        return complaint_list;
     }
 
     @Override
-    public void updateApprovalStatus(String bnum, String status) throws SQLException {
+    public void updateApprovalStatus(String complaintno, String status) throws SQLException {
+        Connection connection = Connectdb.getConnection();
 
+
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_complaint SET complaint_status = ? WHERE complaint_no = ?")) {
+
+            stmt.setString(1, status);
+            stmt.setString(2, complaintno);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException("Failed to update approval status: " + e.getMessage());
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
     }
 
     @Override
-    public ComplaintModel getApprovalStatus(String bnum) throws SQLException {
-        return null;
+    public ComplaintModel getApprovalStatus(String complaintno) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        ComplaintModel model = new ComplaintModel();
+        System.out.println("getApprovalStatus called");
+        System.out.println("complaintno: "+ complaintno);
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT complaint_status FROM water_complaint WHERE complaint_no = ?");
+            stmt.setString(1, complaintno);
+
+            try (ResultSet result = stmt.executeQuery()){
+                while(result.next()) {
+                    ComplaintModel.ComplaintStatus status = ComplaintModel.ComplaintStatus.valueOf(result.getString("complaint_status"));
+                    System.out.println("Final status: "+status);
+                    model.setComplaintStatus(status);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Failed to update approval status: " + e.getMessage());
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return model;
     }
 }

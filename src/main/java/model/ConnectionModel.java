@@ -15,6 +15,8 @@ public class ConnectionModel {
 
     private AccountStatus accountStatus;
 
+    private String requestId;
+
     public enum AccountStatus{
         PENDING,
         ADDED,
@@ -119,5 +121,13 @@ public class ConnectionModel {
 
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 }

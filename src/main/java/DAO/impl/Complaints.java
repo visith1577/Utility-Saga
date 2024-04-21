@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface Complaints {
     void saveComplaint(ComplaintModel complaint) throws SQLException;
-    List<ComplaintModel> getComplaints() throws SQLException;
+    List<ComplaintModel> getComplaints(String id) throws SQLException;
 
-    List<ComplaintModel> getComplaintsByComplaintID(String id) throws SQLException;
+    List<ComplaintModel> getComplaintsByComplaintID(String region,String id) throws SQLException;
 
     void updateApprovalStatus(String bnum, String status) throws SQLException;
 

@@ -1,3 +1,4 @@
+<%@ page import="DAO.dao.UserDetailsDao" %>
 <%
     // Get the context path dynamically
     String contextPath = request.getContextPath();
@@ -5,6 +6,7 @@
 <% String firstname = (String) session.getAttribute("FNAME"); %>
 <% String lastname = (String) session.getAttribute("LNAME"); %>
 <% String region = (String) session.getAttribute("REGION"); %>
+<% UserDetailsDao user = new UserDetailsDao(); %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
@@ -119,7 +121,7 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">15 000</div>
+                <div class="numbers"><%= user.getTotalElectricityUsersRegion(region)%></div>
                 <div class="cardName">Electricity Service Users</div>
             </div>
             <div class="iconBx">
@@ -129,8 +131,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">5 000</div>
-                <div class="cardName">New Electricity Connections</div>
+                <div class="numbers"><%= user.getNewElectricityConnections(region)%></div>
+                <div class="cardName">New Active Connection Requests</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-faucet"></i>
@@ -139,8 +141,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">1 000</div>
-                <div class="cardName">No. of Complaints</div>
+                <div class="numbers"><%= user.getNewElectricityComplaints(region)%></div>
+                <div class="cardName">Unresolved Complaints</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>
@@ -149,8 +151,8 @@
 
         <a class="card" href="#">
             <div class="infor">
-                <div class="numbers">15 000</div>
-                <div class="cardName">Electricity Service Users</div>
+                <div class="numbers"><%= user.getTotalElectricityAccountsRegion(region)%></div>
+                <div class="cardName">Electricity Service Accounts</div>
             </div>
             <div class="iconBx">
                 <i class="fa-solid fa-user-group"></i>

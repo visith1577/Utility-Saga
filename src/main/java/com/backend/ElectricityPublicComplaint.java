@@ -31,7 +31,7 @@ public class ElectricityPublicComplaint extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String accNum = req.getParameter("AccountNum");
+        String accNum = req.getParameter("accountNum");
         String complainCat = req.getParameter("Category");
         String complainType = req.getParameter("complaint_type");
         String nic = req.getParameter("CusNIC");
@@ -75,8 +75,8 @@ public class ElectricityPublicComplaint extends HttpServlet {
         DAO.impl.UserAccounts dao = new UserAccountsDao();
         UserDetails user = new UserDetailsDao();
         try {
-            List<UserAccountsModel> account_elist = dao.getUserAccounts(
-                    (String) session.getAttribute("NIC"), "ELECTRICITY"
+            List<String> account_elist = dao.getUserAccountsWithStatus(
+                    (String) session.getAttribute("NIC"), "WATER", "ACTIVE"
             );
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
 

@@ -26,10 +26,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
-    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalConnectionSearch.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -118,7 +118,7 @@
 <div style="margin-top: 12.5vh">
     <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/connections">
         <label for="nic"></label>
-        <input name="id" type="text" id="nic" placeholder="Enter Account Number" style="margin-left: 20px">
+        <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
 
         <button type="submit" name="search" class="btn">Search</button>
         <button type="button" id="resetButton" class="btn">Reset</button>
@@ -144,26 +144,41 @@
 
             <div class="popup-form" id="popupForm" style="display: none;">
                 <div id="popupContainer" class="popup-container">
-                    <h2 class="popup-title">Add Electricity Admin</h2>
+                    <h2 class="popup-title">Add New Connection</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/regional-admin/create-account">
-                        <label for="region">Region </label>
-                        <input type="text" name="region" id="region" required>
-
-                        <label for="subregion">Sub Region</label>
-                        <input type="text" name="subregion" id="subregion" required>
-
-                        <label for="accountno">Account Number </label>
-                        <input type="text" name="accountno" id="accountno" required>
-
-                        <label for="nicc">NIC</label>
-                        <input type="text" name="nicc" id="nicc" required>
-
-                        <div class="form-button">
-                            <button type="submit" class="buttons">Add Admin</button>
-                            <button  onclick="closePopup('popupForm')" class="buttons">Close</button>
-                        </div>
+                        <table>
+                            <tr>
+                                <td><label for="region">Region </label></td>
+                                <td><input type="text" name="region" id="region" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="subregion">Sub Region</label></td>
+                                <td><input type="text" name="subregion" id="subregion" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="accountno">Account Number </label></td>
+                                <td><input type="text" name="accountno" id="accountno" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="requestid">Request ID </label></td>
+                                <td><input type="text" name="requestid" id="requestid" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="nicc">NIC</label></td>
+                                <td><input type="text" name="nicc" id="nicc" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="iotId">IoT device ID</label></td>
+                                <td><input type="text" name="iotId" id="iotId"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="form-button">
+                                    <button type="submit" class="buttons">Add Admin</button>
+                                    <button type="reset" onclick="closePopup('popupForm')" class="buttons">Close</button>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
-
                 </div>
             </div>
 
@@ -172,7 +187,7 @@
                     <thead>
                     <tr>
                         <th>Requester Name</th>
-                        <th>Account Number</th>
+                        <th>Request ID</th>
                         <th>NIC</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -199,7 +214,7 @@
 
                             <tr>
                                 <td>${connection.requesterName}</td>
-                                <td>${connection.accountNumber}</td>
+                                <td>${connection.requestId}</td>
                                 <td>${connection.nic}</td>
                                 <td>${connection.email}</td>
                                 <td>${connection.mobile}</td>
@@ -229,21 +244,99 @@
     <button class="button" onclick="openPopup('popupForm')">Add New Account</button>
 </div>
 
-</section>
 <script>
     function openPopup(popUpId) {
-        var popup= document.getElementById(popUpId);
+        const popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
         }
     }
 
     function closePopup(popUpId) {
-        var popup = document.getElementById(popUpId);
+        const popup = document.getElementById(popUpId);
         if (popup) {
             popup.style.display = "none";
         }
     }
+
+    function isValidNic(nicNumber) {
+        let result;
+        if (nicNumber.length === 10 && !isNaN(nicNumber.substring(0, 9)) && isNaN(nicNumber.substring(9, 1)) && ['x', 'v'].includes(nicNumber.substring(9, 1).toLowerCase())) {
+            result = true;
+        } else result = nicNumber.length === 12 && !isNaN(nicNumber);
+        return result;
+    }
+
+
+
+    document.getElementById('addForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const nic = document.getElementById('nicc').value;
+        const reqId = document.getElementById('requestid').value;
+        const accountNo = document.getElementById('accountno').value;
+        const iotId = document.getElementById('iotId').value;
+
+        if (!isValidNic(nic)) {
+            Swal.fire({
+                icon: "error",
+                title: "NIC Invalid",
+                text: "Check NIC number and try again."
+            });
+            // exit out of submit function
+        } else if (accountNo.length === 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Add Account Number",
+                text: "Please fill all fields."
+            });
+            // exit out of submit function
+        } else {
+            // fetch from backend if account number is already in use || if request id has been fulfilled already || iot device is already owned
+            fetch(contextPath + '/electricity/regional-admin/api/validate-add-account?reqId=' + encodeURIComponent(reqId) + '&accountNo=' + encodeURIComponent(accountNo) + '&iotId=' + encodeURIComponent(iotId))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Response was not ok');
+                    }
+                    return response.json();
+                }).then(data => {
+                    if (data.error) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: data.error
+                        });
+                    } else if (data.AccountNoExists) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Account Exists",
+                            text: "Account number already in use."
+                        });
+                    } else if (!data.ReqIdExists && reqId.length > 0) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Request ID Invalid",
+                            text: "Request ID already fulfilled or does not exist."
+                        });
+                    } else if (data.IotIdExists && iotId.length > 0) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Device Invalid",
+                            text: "IoT device already Owned."
+                        });
+                    } else {
+                        toastr.success("Account added successfully.");
+                        document.getElementById('addForm').submit();
+                    }
+            }).catch(error => {
+                console.error("Problem checking for existing account: ", error);
+            }).finally(() => {
+                // close popup
+                closePopup('popupForm');
+                // reset form fields
+                document.getElementById('addForm').reset();
+            });
+        }
+    });
 </script>
 
 </body>

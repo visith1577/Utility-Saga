@@ -49,11 +49,13 @@ public class ElectricityAnalytics extends HttpServlet {
                 Gson gson = new Gson();
                 List<IoTModel> data_list_daily = analytics.getFinalReadingsDailyForCurrentMonth(account);
 
+                String id = dao.getIotIdForAccount(account, "ELECTRICITY");
+
                 AnalysisHelper analysisHelper = new AnalysisHelper();
-                List<IoTModel> data_list_monthly = analysisHelper.getDifferenceBetweenReadings(account);
+                List<IoTModel> data_list_monthly = analysisHelper.getDifferenceBetweenReadings(id);
                 List<IoTModel> final_models = calculateMonthlyBills(data_list_monthly);
-                Map<String, Integer> budgetMap = analytics.getBudgetAll(account);
-                IoTModel budget = analytics.getBudget(account);
+                Map<String, Integer> budgetMap = analytics.getBudgetAll(id);
+                IoTModel budget = analytics.getBudget(id);
 
 
                 JsonElement jsonDataMonthly = gson.toJsonTree(final_models);
@@ -95,11 +97,13 @@ public class ElectricityAnalytics extends HttpServlet {
         String account = session.getAttribute("page_account").toString();
 
         Analytics dao = new AnalyticDao();
+        UserAccounts iot = new UserAccountsDao();
 
 
         try {
             try {
-                dao.setBudget(account, Integer.parseInt(expectedUnits), month);
+                String id = iot.getIotIdForAccount(account, "ELECTRICITY");
+                dao.setBudget(id, Integer.parseInt(expectedUnits), month);
                 resp.sendRedirect(req.getHeader("referer"));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -111,15 +115,15 @@ public class ElectricityAnalytics extends HttpServlet {
     }
 
     public static List<IoTModel> calculateMonthlyBills(List<IoTModel> iotModels) {
-    List<IoTModel> updatedModels = new ArrayList<>();
-    AnalysisHelper analysisHelper = new AnalysisHelper();
+        List<IoTModel> updatedModels = new ArrayList<>();
+        AnalysisHelper analysisHelper = new AnalysisHelper();
 
-    for (IoTModel model : iotModels) {
-        double monthlyBill = analysisHelper.calculateDomesticBill(model.getData(), 0, 0);
-        model.setMonthlyBill(monthlyBill);
-        updatedModels.add(model);
+        for (IoTModel model : iotModels) {
+            double monthlyBill = analysisHelper.calculateDomesticBill(model.getData(), 0, 0);
+            model.setMonthlyBill(monthlyBill);
+            updatedModels.add(model);
+        }
+
+        return updatedModels;
     }
-
-    return updatedModels;
-}
 }

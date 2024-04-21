@@ -19,7 +19,7 @@ public class WaterConnectionDao implements Connection {
 
         String sql = "INSERT INTO water_connection_request (requester_name, account_number, nic, email, " +
                 "mobile, region, current_address, new_address, nearest_account, " +
-                "connection_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "connection_requirement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setString(1, connection.getRequesterName());
@@ -39,22 +39,23 @@ public class WaterConnectionDao implements Connection {
     }
 
     @Override
-    public List<ConnectionModel> getConnectionRegionalAdmin() throws SQLException{
+    public List<ConnectionModel> getConnectionRegionalAdmin(String region) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         java.sql.Connection connection = Connectdb.getConnection();
         String sql = "SELECT req.*\n" +
-                "FROM water_connection_requirement req\n" +
+                "FROM water_connection_request req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
-                "WHERE req.account_status != 'ADDED' AND req.region = admin.region;\n";
+                "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)\n";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1,region);
 
         ResultSet rs= stmt.executeQuery();
 
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setAccountNumber(rs.getString("account_number"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -63,7 +64,6 @@ public class WaterConnectionDao implements Connection {
             conRequest.setNewAddress(rs.getString("new_address"));
             conRequest.setNearestAccount(rs.getString("nearest_account"));
             conRequest.setConnectionRequirements(ConnectionModel.ConnectionRequirement.valueOf(rs.getString("connection_requirement")));
-            conRequest.setConnectionType(rs.getString("connection_type"));
             conRequest.setAccountStatus(ConnectionModel.AccountStatus.valueOf(rs.getString("account_status")));
 
             connections.add(conRequest);
@@ -77,26 +77,41 @@ public class WaterConnectionDao implements Connection {
     }
 
     @Override
-    public List<ConnectionModel> getConnectionRegionalAdminByNIC(String nic) throws SQLException{
+    public List<ConnectionModel> getConnectionRegionalAdminByNIC(String region,String searchValue) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         java.sql.Connection connection = Connectdb.getConnection();
+//        System.out.println("nic inside getConnectionbyNIC: "+ searchValue);
         String sql = "SELECT req.*\n" +
-                "FROM water_connection_requirement req\n" +
+                "FROM water_connection_request req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
-                "WHERE req.account_status != 'ADDED' \n" +
-                "AND req.nic = ?\n" +
-                "AND req.region = admin.region;\n";
+                "WHERE admin.region = ?\n" +
+                "  AND req.account_status != 'ADDED'\n" +
+                "  AND req.region = admin.region\n" +
+                "  AND (req.requester_name LIKE ? OR req.account_number LIKE ? OR req.nic LIKE ? OR req.email LIKE ? OR req.mobile LIKE ? OR\n" +
+                "       req.region LIKE ? OR req.current_address LIKE ? OR req.new_address LIKE ? OR req.nearest_account LIKE ? OR\n" +
+                "       req.connection_requirement LIKE ? OR req.account_status LIKE ?)";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
-
-        stmt.setString(1, "nic");
+        stmt.setString(1,region);
+        stmt.setString(2, "%" + searchValue + "%");
+        stmt.setString(3, "%" + searchValue + "%");
+        stmt.setString(4, "%" + searchValue + "%");
+        stmt.setString(5, "%" + searchValue + "%");
+        stmt.setString(6, "%" + searchValue + "%");
+        stmt.setString(7, "%" + searchValue + "%");
+        stmt.setString(8, "%" + searchValue + "%");
+        stmt.setString(9, "%" + searchValue + "%");
+        stmt.setString(10, "%" + searchValue + "%");
+        stmt.setString(11, "%" + searchValue + "%");
+        stmt.setString(12, "%" + searchValue + "%");
+        System.out.println("nic inside getConnectionbyNIC: Succesful");
 
         ResultSet rs= stmt.executeQuery();
 
         while (rs.next()){
             ConnectionModel conRequest = new ConnectionModel();
             conRequest.setRequesterName(rs.getString("requester_name"));
-            conRequest.setAccountNumber(rs.getString("account_number"));
+            conRequest.setRequestId(rs.getString("id"));
             conRequest.setNic(rs.getString("nic"));
             conRequest.setEmail(rs.getString("email"));
             conRequest.setMobile(rs.getString("mobile"));
@@ -105,13 +120,12 @@ public class WaterConnectionDao implements Connection {
             conRequest.setNewAddress(rs.getString("new_address"));
             conRequest.setNearestAccount(rs.getString("nearest_account"));
             conRequest.setConnectionRequirements(ConnectionModel.ConnectionRequirement.valueOf(rs.getString("connection_requirement")));
-            conRequest.setConnectionType(rs.getString("connection_type"));
             conRequest.setAccountStatus(ConnectionModel.AccountStatus.valueOf(rs.getString("account_status")));
 
             connections.add(conRequest);
-
-
         }
+
+        System.out.println("Added connections: "+ connections.size());
         rs.close();
         stmt.close();
         connection.close();
@@ -123,7 +137,7 @@ public class WaterConnectionDao implements Connection {
         java.sql.Connection connection = Connectdb.getConnection();
 
 
-        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_connection_request SET account_status = ? WHERE account_number = ?")) {
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE water_connection_request SET account_status = ? WHERE id = ?")) {
 
             stmt.setString(1, status);
             stmt.setString(2, accountno);
@@ -144,7 +158,7 @@ public class WaterConnectionDao implements Connection {
         System.out.println("complaintno: "+ accountno);
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM water_connection_request WHERE account_number = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT account_status FROM water_connection_request WHERE id = ?");
             stmt.setString(1, accountno);
 
             try (ResultSet result = stmt.executeQuery()){

@@ -14,4 +14,6 @@ public interface UserAccounts {
     void updateAccountStatus(String nic, String account, String status, String table) throws SQLException;
     boolean checkAccountExists(String nic, String account, String category) throws SQLException;
     Map<String, String> getUserAccountsWithIotStatus(String nic, String category) throws SQLException;
+
+    String getIotIdForAccount(String account, String category) throws SQLException;
 }
