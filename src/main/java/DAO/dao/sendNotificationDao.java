@@ -68,7 +68,7 @@ public class sendNotificationDao implements SendNotificationImpl {
         List<SendNotificationModel> notifications = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM electricity_regionaladmin_notification");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM electricity_regionaladmin_notification WHERE recipientType = 'ALL'");
         ResultSet rs = stmt.executeQuery();
         System.out.println("Executed the query");
         {
@@ -92,7 +92,7 @@ public class sendNotificationDao implements SendNotificationImpl {
 
         Connection connection = Connectdb.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT n.* FROM electricity_regionaladmin_notification n " +
-                "JOIN users u ON n.recipientId = u.nic " +  "WHERE n.recipientId = ?"); {
+                "JOIN users u ON n.recipientId = u.nic " +  "WHERE n.recipientId = ? AND n.recipientType = 'SPECIFIC'"); {
                     System.out.println(recipientId);
 
             stmt.setString(1, recipientId);
