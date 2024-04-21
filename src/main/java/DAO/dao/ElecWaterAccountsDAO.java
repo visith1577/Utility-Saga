@@ -19,8 +19,8 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             conn.setAutoCommit(false);
 
 
-            String sql = "INSERT INTO eaccount_list (account_number,request_id, nic, region, sub_region) " +
-                    " VALUES (?,?, ?, ?, ?)";
+            String sql = "INSERT INTO eAccount_list (account_number,request_id, nic, region, sub_region, iot_id, iot_meter) " +
+                    " VALUES (?,?, ?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, account.getAccountNumber());
@@ -28,13 +28,22 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt.setString(3, account.getNic());
             stmt.setString(4, account.getRegion());
             stmt.setString(5, account.getSubRegion());
+            stmt.setString(6, account.getIotId());
+            if (account.getIotId() != null) {
+                stmt.setString(7, "YES");
+            } else {
+                stmt.setString(7, "NO");
+            }
             stmt.executeUpdate();
 
-            updatesql = "UPDATE electricity_connection_request AS r INNER JOIN eaccount_list AS e ON r.id = e.request_id SET r.account_status = 'ADDED' WHERE e.request_id = ? ";
-            stmt2 = conn.prepareStatement(updatesql);
-            stmt2.setString(1, account.getRequestId().toString());
-            stmt2.executeUpdate();
+            if (account.getRequestId() != null) {
+                updatesql = "UPDATE electricity_connection_request AS r INNER JOIN eAccount_list AS e ON r.id = e.request_id SET r.account_status = 'ADDED' WHERE e.request_id = ? ";
+                stmt2 = conn.prepareStatement(updatesql);
+                stmt2.setString(1, account.getRequestId().toString());
+                stmt2.executeUpdate();
+            }
             conn.commit();
+
         } catch (SQLException e) {
             if (conn != null) {
                 conn.rollback();
@@ -64,7 +73,7 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             conn.setAutoCommit(false);
 
 
-            String sql = "INSERT INTO waccount_list (account_number,request_id, nic, region, sub_region) " +
+            String sql = "INSERT INTO wAccount_list (account_number,request_id, nic, region, sub_region) " +
                     " VALUES (?,?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
 
@@ -75,11 +84,14 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt.setString(5, account.getSubRegion());
             stmt.executeUpdate();
 
-            updatesql = "UPDATE water_connection_request AS r INNER JOIN waccount_list AS e ON r.id = e.request_id SET r.account_status = 'ADDED' WHERE e.request_id = ? ";
-            stmt2 = conn.prepareStatement(updatesql);
-            stmt2.setString(1, account.getRequestId().toString());
-            stmt2.executeUpdate();
+            if (account.getRequestId() != null) {
+                updatesql = "UPDATE water_connection_request AS r INNER JOIN wAccount_list AS e ON r.id = e.request_id SET r.account_status = 'ADDED' WHERE e.request_id = ? ";
+                stmt2 = conn.prepareStatement(updatesql);
+                stmt2.setString(1, account.getRequestId().toString());
+                stmt2.executeUpdate();
+            }
             conn.commit();
+
         } catch (SQLException e) {
             if (conn != null) {
                 conn.rollback();
