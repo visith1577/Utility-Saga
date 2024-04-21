@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.Map;
 
 
-@WebServlet(name = "Analytics", value = "/user/electricity-analytics")
-public class ElectricityAnalytics extends HttpServlet {
-
+@WebServlet(name = "WaterAnalytics", value = "/user/water-analytics")
+public class WaterAnalytics extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         String account = req.getParameter("account");
 
@@ -40,16 +40,17 @@ public class ElectricityAnalytics extends HttpServlet {
         try {
             Map<String, String> account_list = dao.getUserAccountsWithIotStatus(
                     (String) session.getAttribute("NIC"),
-                    "ELECTRICITY"
+                    "WATER"
             );
 
-            req.setAttribute("electricity_account_list", account_list);
+            req.setAttribute("water_account_list", account_list);
 
             if (account != null) {
                 Gson gson = new Gson();
-                List<IoTModel> data_list_daily = analytics.getFinalReadingsDailyForCurrentMonth(account);
 
-                String id = dao.getIotIdForAccount(account, "ELECTRICITY");
+                String id = dao.getIotIdForAccount(account, "WATER");
+
+                List<IoTModel> data_list_daily = analytics.getFinalReadingsDailyForCurrentMonth(id);
 
                 AnalysisHelper analysisHelper = new AnalysisHelper();
                 List<IoTModel> data_list_monthly = analysisHelper.getDifferenceBetweenReadings(id);
@@ -79,7 +80,7 @@ public class ElectricityAnalytics extends HttpServlet {
                 resp.getWriter().write(responseData.toString());
             } else {
 
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/user/electricity/electricityAnalysis.jsp");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/user/water/waterAnalysis.jsp");
                 dispatcher.forward(req, resp);
 
             }
@@ -99,10 +100,9 @@ public class ElectricityAnalytics extends HttpServlet {
         Analytics dao = new AnalyticDao();
         UserAccounts iot = new UserAccountsDao();
 
-
         try {
             try {
-                String id = iot.getIotIdForAccount(account, "ELECTRICITY");
+                String id = iot.getIotIdForAccount(account, "WATER");
                 dao.setBudget(id, Integer.parseInt(expectedUnits), month);
                 resp.sendRedirect(req.getHeader("referer"));
             } catch (SQLException e) {
@@ -119,7 +119,7 @@ public class ElectricityAnalytics extends HttpServlet {
         AnalysisHelper analysisHelper = new AnalysisHelper();
 
         for (IoTModel model : iotModels) {
-            double monthlyBill = analysisHelper.calculateDomesticBill(model.getData(), 0, 0);
+            double monthlyBill = analysisHelper.calculateDomesticBillWater(model.getData());
             model.setMonthlyBill(monthlyBill);
             updatedModels.add(model);
         }
