@@ -102,7 +102,7 @@
                     <li class="menu-items-li dropdown">
                         <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/settings.jsp">Settings</a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/settings.jsp">Settings</a>
                             <a href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </li>
