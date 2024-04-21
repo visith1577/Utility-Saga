@@ -57,7 +57,6 @@ public class WaterPublicComplaint extends HttpServlet {
         try {
             try {
                 dao.saveComplaint(wComplaint);
-                System.out.println(req.getHeader("referer"));
                 resp.sendRedirect(req.getHeader("referer"));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
