@@ -74,4 +74,72 @@ public class ValidationDao implements Validations {
         }
         return value != 0;
     }
+
+    //RegionalAdmin- Electricity
+    @Override
+    public boolean isEmpIDExistsElectricity(String empid) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try{
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM electricity_admin WHERE empid = ?");
+            stmt.setString(1,empid);
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next()) {
+                    value = result.getInt(1);
+                } else {
+                    value = 0;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
+    @Override
+    public boolean isEmailExistsElectricity(String email) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try{
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM electricity_admin WHERE email = ?");
+            stmt.setString(1,email);
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next()) {
+                    value = result.getInt(1);
+                } else {
+                    value = 0;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
+    @Override
+    public boolean isRegionExistsElectricity(String email) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try{
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM electricity_admin WHERE region = ?");//check
+            stmt.setString(1,email);
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next()) {
+                    value = result.getInt(1);
+                } else {
+                    value = 0;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
 }
