@@ -19,7 +19,7 @@ public class WaterConnectionDao implements Connection {
 
         String sql = "INSERT INTO water_connection_request (requester_name, account_number, nic, email, " +
                 "mobile, region, current_address, new_address, nearest_account, " +
-                "connection_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "connection_requirement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setString(1, connection.getRequesterName());
@@ -64,7 +64,7 @@ public class WaterConnectionDao implements Connection {
             conRequest.setCurrentAddress(rs.getString("current_address"));
             conRequest.setNewAddress(rs.getString("new_address"));
             conRequest.setNearestAccount(rs.getString("nearest_account"));
-            conRequest.setConnectionType(rs.getString("connection_type"));
+            conRequest.setConnectionRequirements(ConnectionModel.ConnectionRequirement.valueOf(rs.getString("connection_requirement")));
             conRequest.setAccountStatus(ConnectionModel.AccountStatus.valueOf(rs.getString("account_status")));
 
             connections.add(conRequest);
@@ -81,7 +81,7 @@ public class WaterConnectionDao implements Connection {
     public List<ConnectionModel> getConnectionRegionalAdminByNIC(String region,String searchValue) throws SQLException{
         List<ConnectionModel> connections = new ArrayList<>();
         java.sql.Connection connection = Connectdb.getConnection();
-        System.out.println("nic inside getConnectionbyNIC: "+ searchValue);
+//        System.out.println("nic inside getConnectionbyNIC: "+ searchValue);
         String sql = "SELECT req.*\n" +
                 "FROM water_connection_request req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
@@ -121,12 +121,10 @@ public class WaterConnectionDao implements Connection {
             conRequest.setCurrentAddress(rs.getString("current_address"));
             conRequest.setNewAddress(rs.getString("new_address"));
             conRequest.setNearestAccount(rs.getString("nearest_account"));
-            conRequest.setConnectionType(rs.getString("connection_type"));
+            conRequest.setConnectionRequirements(ConnectionModel.ConnectionRequirement.valueOf(rs.getString("connection_requirement")));
             conRequest.setAccountStatus(ConnectionModel.AccountStatus.valueOf(rs.getString("account_status")));
 
             connections.add(conRequest);
-
-
         }
 
         System.out.println("Added connections: "+ connections.size());

@@ -37,11 +37,22 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
 
         try {
             dao.saveAccount(account);
+
+            if (!deviceId.isEmpty()) {
+                dao.createMeterTable(deviceId);
+                dao.createMeterBudgetTable(deviceId);
+                dao.insertInitialBudget(deviceId);
+            }
             resp.sendRedirect(req.getHeader("referer"));
         } catch (Exception e) {
             req.setAttribute("errorMessage", e.getMessage());
             req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }
