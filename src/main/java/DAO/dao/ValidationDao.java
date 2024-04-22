@@ -75,6 +75,133 @@ public class ValidationDao implements Validations {
         return value != 0;
     }
 
+    @Override
+    public boolean isMeterExists(String meterNo, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try {
+            switch (category.toUpperCase()) {
+                case "ELECTRICITY":
+                    PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM eAccount_list WHERE iot_id = ?");
+                    stmt.setString(1, meterNo);
+                    try (ResultSet result = stmt.executeQuery()) {
+                        if (result.next()) {
+                            value = result.getInt(1);
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    break;
+                case "WATER":
+                    PreparedStatement stmt1 = connection.prepareStatement("SELECT COUNT(*) FROM wAccount_list WHERE iot_id = ?");
+                    stmt1.setString(1, meterNo);
+                    try (ResultSet result = stmt1.executeQuery()) {
+                        if (result.next()) {
+                            value = result.getInt(1);
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    break;
+                default:
+                    value = 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
+    @Override
+    public boolean isAccountExists(String accountNo, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try {
+            switch (category.toUpperCase()) {
+                case "ELECTRICITY":
+                    PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM eAccount_list WHERE account_number = ?");
+                    stmt.setString(1, accountNo);
+                    try (ResultSet result = stmt.executeQuery()) {
+                        if (result.next()) {
+                            value = result.getInt(1);
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    break;
+                case "WATER":
+                    PreparedStatement stmt1 = connection.prepareStatement("SELECT COUNT(*) FROM wAccount_list WHERE account_number = ?");
+                    stmt1.setString(1, accountNo);
+                    try (ResultSet result = stmt1.executeQuery()) {
+                        if (result.next()) {
+                            value = result.getInt(1);
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    break;
+                default:
+                    value = 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
+    @Override
+    public boolean isRequestIdExist(int reqId, String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try {
+            switch (category.toUpperCase()) {
+                case "ELECTRICITY":
+                    PreparedStatement stmt = connection.prepareStatement(
+                            "SELECT COUNT(*) FROM electricity_connection_request " +
+                                    "WHERE id = ? AND connection_requirement = ? AND account_status = ?"
+                    );
+                    stmt.setInt(1, reqId);
+                    stmt.setString(2, "CONNECTION");
+                    stmt.setString(3, "PENDING");
+                    try (ResultSet result = stmt.executeQuery()) {
+                        if (result.next()) {
+                            value = result.getInt(1);
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    break;
+                case "WATER":
+                    PreparedStatement stmt1 = connection.prepareStatement(
+                            "SELECT COUNT(*) FROM water_connection_request " +
+                                    "WHERE id = ? AND connection_requirement = ? AND account_status = ?"
+                    );
+                    stmt1.setInt(1, reqId);
+                    stmt1.setString(2, "CONNECTION");
+                    stmt1.setString(3, "PENDING");
+                    try (ResultSet result = stmt1.executeQuery()) {
+                        if (result.next()) {
+                            value = result.getInt(1);
+                        } else {
+                            value = 0;
+                        }
+                    }
+                    break;
+                default:
+                    value = 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
     //RegionalAdmin- Electricity
     @Override
     public boolean isEmpIDExistsElectricity(String empid) throws SQLException{
