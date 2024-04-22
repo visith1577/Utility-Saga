@@ -75,9 +75,6 @@
             </div>
                 <br>
 
-                <label for="date">Date:</label>
-                <input type="date" id="date" class="dateinput" name="date" required>
-                <br>
 
                 <label for="subject">Subject</label>
                 <input type="text" id="subject" name="subject" required>

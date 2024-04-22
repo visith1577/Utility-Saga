@@ -57,7 +57,8 @@ public class sendNotificationDao implements SendNotificationImpl {
             preparedStatement.setString(1,notification.getTitle());
             preparedStatement.setString(2, String.valueOf(notification.getRecipientType()).toUpperCase());
             preparedStatement.setString(3,notification.getRecipientId());
-            preparedStatement.setString(4, String.valueOf(notification.getDate()));
+            Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+            preparedStatement.setTimestamp(4, currentTimestamp);
             preparedStatement.setString(5,notification.getSubject());
             preparedStatement.setString(6,notification.getMessage());
             preparedStatement.executeUpdate();
