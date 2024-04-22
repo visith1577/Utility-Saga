@@ -28,7 +28,7 @@ function initializeValidation() {
             const empid = empidInput.value.trim();
             if(empid) {
                 event.preventDefault();
-                fetch(contextPath + `/electricity/main-admin/validation?empid=` + empid
+                fetch(contextPath + `/water/main-admin/validation?empid=` + empid
                 ).then(response => {
                     return response.json();
                 }).then(data => {
@@ -46,7 +46,7 @@ function initializeValidation() {
             const email = emailInput.value.trim();
             if(email) {
                 event.preventDefault();
-                fetch(contextPath + `/electricity/main-admin/validation?email=` + email
+                fetch(contextPath + `/water/main-admin/validation?email=` + email
                 ).then(response => {
                     return response.json();
                 })
@@ -65,7 +65,7 @@ function initializeValidation() {
             const region = regionInput.value.trim();
             if(region) {
                 event.preventDefault();
-                fetch(contextPath + `/electricity/main-admin/validation?region=` + region
+                fetch(contextPath + `/water/main-admin/validation?region=` + region
                 ).then(response => {
                     return response.json(); // Parse response JSON
                 })

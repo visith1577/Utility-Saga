@@ -19,4 +19,10 @@ public interface Validations {
     boolean isEmailExistsElectricity(String email) throws SQLException;
 
     boolean isRegionExistsElectricity(String email) throws SQLException;
+
+    boolean isEmpIDExistsWater(String empid) throws SQLException;
+
+    boolean isEmailExistsWater(String email) throws SQLException;
+
+    boolean isRegionExistsWater(String email) throws SQLException;
 }

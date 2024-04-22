@@ -12,6 +12,7 @@
 <%@ page import="DAO.dao.sendNotificationDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.SendNotificationModel" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +21,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ValidationMainAdmin.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
@@ -102,7 +101,6 @@
                     <input type="password" name="password" id="password"
                            placeholder="Enter Password"
                            required>
-                    <div id="password-check" class="error"></div>
 
                     <label for="re-password">Reenter Password:</label>
                     <input type="password" name="re-password" id="re-password"
@@ -245,7 +243,7 @@
 </body>
 <script src="../../../JS/dashboard.js"></script>
 <script>
-    let contextPath = '<%= contextPath %>';
+    var contextPath = '<%= contextPath %>';
     window.onscroll = function () {
         scrollFunction()
     }
@@ -262,6 +260,7 @@
         var popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
+            initializeValidation();
         }
 
     }
@@ -284,5 +283,6 @@
         document.getElementById('editPopupForm').style.display = 'none';
     }
 </script>
+<script src="<%= request.getContextPath() %>/public/JS/ValidationMainAdmin.js"></script>
 
 </html>
