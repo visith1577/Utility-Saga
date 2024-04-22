@@ -6,6 +6,8 @@ CREATE TABLE electricity_regionaladmin_notification
     recipientId VARCHAR(13) NULL, -- User ID if recipient_type is 'specific', NULL if 'all'
     date VARCHAR(25) NOT NULL,
     subject VARCHAR(50),
-    message VARCHAR(500),
-    FOREIGN KEY (recipientId) REFERENCES users (nic)
+    message VARCHAR(500)
 );
+
+ALTER TABLE electricity_regionaladmin_notification
+MODIFY COLUMN date TIMESTAMP;

@@ -61,3 +61,22 @@ CREATE TABLE eaccount_list (
 
 ALTER TABLE eAccount_list
     ADD COLUMN iot_id varchar(255) NOT NULL DEFAULT 'NO';
+
+DELIMITER $$
+CREATE TRIGGER update_electricity_meter_update
+AFTER UPDATE ON utilitysaga.eaccount_list
+FOR EACH ROW
+BEGIN
+    IF OLD.meter_status <> NEW.meter_status THEN
+        INSERT INTO utilitysaga.electricity_regionaladmin_notification (title, recipientType, recipientId, `date`, subject, message)
+        VALUES (
+'Electricity Meter Status Update',
+            'SPECIFIC',
+            NEW.nic,
+            CURRENT_TIMESTAMP,
+            'IMPORTANT',
+            CONCAT('Your meter status of account ', NEW.account_number , ' has been updated to status ', NEW.meter_status)
+        );
+    END IF;
+END$$
+DELIMITER ;
