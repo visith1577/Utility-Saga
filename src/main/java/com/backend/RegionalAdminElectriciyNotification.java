@@ -69,9 +69,9 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         sendNotificationDao dao = new sendNotificationDao();
 
         try {
-                notifications.addAll(dao.getNotificationsByRecipientId(recipientId));
-                notifications.addAll(dao.getAllNotifications());
-                System.out.println("else is right");
+            notifications.addAll(dao.getNotificationsByRecipientId(recipientId));
+            notifications.addAll(dao.getAllNotifications());
+            System.out.println("else is right");
 
             // Set the notifications attribute in the request
             request.setAttribute("notifications", notifications);
@@ -85,5 +85,3 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         }
     }
 }
-
-
