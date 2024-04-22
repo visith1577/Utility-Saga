@@ -22,4 +22,26 @@ BEGIN
     SET NEW.complaint_status = 'ACTIVE';
 END;
 
+DELIMITER $$
+CREATE TRIGGER update_wran_after_ec_update
+AFTER UPDATE ON utilitysaga.water_complaint
+FOR EACH ROW
+BEGIN
+    IF OLD.complaint_status <> NEW.complaint_status THEN
+        INSERT INTO utilitysaga.water_regionaladmin_notification (title, recipientType, recipientId, `date`, subject, message)
+        VALUES (
+'Water Complaint',
+            'SPECIFIC',
+            NEW.nic,
+            CURRENT_TIMESTAMP,
+            'Status Update Electricity- Complaint',
+            CONCAT('The complaint is in ', NEW.complaint_status, ' status')
+        );
+    END IF;
+END$$
+DELIMITER ;
+
+ALTER TABLE water_complaint
+ADD COLUMN date TIMESTAMP;
+
 

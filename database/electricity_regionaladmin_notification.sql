@@ -8,3 +8,6 @@ CREATE TABLE electricity_regionaladmin_notification
     subject VARCHAR(50),
     message VARCHAR(500)
 );
+
+ALTER TABLE electricity_regionaladmin_notification
+MODIFY COLUMN your_date_column_name TIMESTAMP;

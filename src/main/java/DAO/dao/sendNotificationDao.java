@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
 import DAO.impl.SendNotificationImpl;
 import model.SendNotificationModel;
@@ -68,7 +69,7 @@ public class sendNotificationDao implements SendNotificationImpl {
         List<SendNotificationModel> notifications = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM electricity_regionaladmin_notification");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM electricity_regionaladmin_notification WHERE recipientType = 'ALL'");
         ResultSet rs = stmt.executeQuery();
         System.out.println("Executed the query");
         {
@@ -76,7 +77,7 @@ public class sendNotificationDao implements SendNotificationImpl {
                 SendNotificationModel notification = new SendNotificationModel();
                 notification.setTitle(rs.getString("title"));
                 notification.setRecipientType(SendNotificationModel.RecipientType.valueOf(rs.getString("recipientType")));
-                notification.setDate(LocalDateTime.parse(rs.getString("date")));
+                notification.setDate(rs.getTimestamp("date").toLocalDateTime());
                 notification.setSubject(rs.getString("subject"));
                 notification.setMessage(rs.getString("message"));
                 notifications.add(notification);
@@ -92,7 +93,7 @@ public class sendNotificationDao implements SendNotificationImpl {
 
         Connection connection = Connectdb.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT n.* FROM electricity_regionaladmin_notification n " +
-                "JOIN users u ON n.recipientId = u.nic " +  "WHERE n.recipientId = ?"); {
+                "JOIN users u ON n.recipientId = u.nic " +  "WHERE n.recipientId = ? AND n.recipientType = 'SPECIFIC'"); {
                     System.out.println(recipientId);
 
             stmt.setString(1, recipientId);
@@ -102,7 +103,7 @@ public class sendNotificationDao implements SendNotificationImpl {
                     SendNotificationModel notification = new SendNotificationModel();
                     notification.setTitle(rs.getString("title"));
                     notification.setRecipientType(SendNotificationModel.RecipientType.valueOf(rs.getString("recipientType")));
-                    notification.setDate(LocalDateTime.parse(rs.getString("date")));
+                    notification.setDate(rs.getTimestamp("date").toLocalDateTime());
                     notification.setSubject(rs.getString("subject"));
                     notification.setMessage(rs.getString("message"));
                     notifications.add(notification);
