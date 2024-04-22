@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
-    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<%= request.getContextPath() %>/public/JS/RegionalAdminUsers.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -30,6 +30,7 @@
             let contextPath = '<%= contextPath %>';
             document.querySelector('table').addEventListener('click', function(event) {
                 if (event.target.classList.contains('change-status-btn')) {
+
                     changeUserStatus(event);
                 }
             });
@@ -49,28 +50,44 @@
             const currentStatus = row.querySelector('td:nth-child(7)').textContent;
             console.log('Current Status:', currentStatus);
 
+            const hasIot = row.querySelector('td:nth-child(8) input').value;
+
             const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
             console.log('New Status:', newStatus);
 
-            fetch(contextPath+ '/user-status', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    accountNumber: accountNumber,
-                    newStatus: newStatus
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Response from server:', data);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Are you sure you want to change the status of account " + accountNumber + " to " + newStatus + " ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, change it!',
+                cancelButtonText: 'No, keep it',
+                footer: hasIot === 'YES' ? "User has an Iot meter installed proceeding changes will immediately take place" : "Normal meter detected, change status manually"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(contextPath+ '/electricity/regional-admin/user-status', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            accountNumber: accountNumber,
+                            newStatus: newStatus
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Response from server:', data);
 
-                    row.querySelector('td:nth-child(7)').textContent = data.status;
-                })
-                .catch(error => {
-                    console.error('Error updating user status:', error);
-                });
+                            row.querySelector('td:nth-child(7)').textContent = data.status;
+                        })
+                        .catch(error => {
+                            console.error('Error updating user status:', error);
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    console.log('Status change cancelled by user.');
+                }
+            });
         }
     </script>
 
@@ -204,6 +221,7 @@
                                 <th>Email</th>
                                 <th>Address</th>
                                 <th>Status</th>
+                                <th></th>
                                 <th>Change Status</th>
                             </tr>
                         </thead>
@@ -225,6 +243,7 @@
                                 <td>${user.email}</td>
                                 <td>${user.address}</td>
                                 <td>${user.connectionStatus}</td>
+                                <td><input type="hidden" value="${user.iotMeter}" readonly></td>
                                 <td><button class="change-status-btn">Change Status</button></td>
                             </tr>
                         </c:forEach>
