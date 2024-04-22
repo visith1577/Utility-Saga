@@ -29,7 +29,6 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         if (recipientType == RecipientType.SPECIFIC) {
             recipientId = req.getParameter("recipientId");
         }
-//        System.out.println(date);
         String subject = req.getParameter("subject");
         System.out.println(subject);
         String message = req.getParameter("message");
