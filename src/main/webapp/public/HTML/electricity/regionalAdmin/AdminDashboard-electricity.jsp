@@ -39,21 +39,19 @@
 
         function changeUserStatus(event) {
             let contextPath = '<%= contextPath %>';
-            console.log('changeUserStatus function called');
 
             const row = event.target.closest('tr');
-            console.log('Row:', row);
 
             const accountNumber = row.querySelector('td:nth-child(1)').textContent;
-            console.log('Account Number:', accountNumber);
 
             const currentStatus = row.querySelector('td:nth-child(7)').textContent;
-            console.log('Current Status:', currentStatus);
 
             const hasIot = row.querySelector('td:nth-child(8) input').value;
+            const iotId = row.querySelector('td:nth-child(9) input').value;
+
+            let changeStatus = true;
 
             const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
-            console.log('New Status:', newStatus);
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -65,31 +63,119 @@
                 footer: hasIot === 'YES' ? "User has an Iot meter installed proceeding changes will immediately take place" : "Normal meter detected, change status manually"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(contextPath+ '/electricity/regional-admin/user-status', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            accountNumber: accountNumber,
-                            newStatus: newStatus
-                        })
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Response from server:', data);
+                    if (hasIot === 'YES'){
+                        fetch(contextPath + '/electricity/regional-admin/iot-control?iotId=' + iotId + '&newStatus=' + newStatus)
+                            .then(response => response.text())
+                            .then(data => {
+                                if (data === 'Failed to publish action') {
+                                    Swal.fire({
+                                        title: 'Failed to change status!',
+                                        text: 'Failed to change the status of the IOT meter.',
+                                        icon: 'error',
+                                        footer: data
+                                    });
+                                    changeStatus = false;
+                                } else {
+                                    Swal.fire({
+                                        title: 'Status Changed!',
+                                        text: 'The status of the IOT meter has been changed successfully.',
+                                        icon: 'success',
+                                        footer: data
+                                    });
 
-                            row.querySelector('td:nth-child(7)').textContent = data.status;
+                                    if (changeStatus) {
+                                        fetch(contextPath+ '/electricity/regional-admin/user-status', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                accountNumber: accountNumber,
+                                                newStatus: newStatus,
+                                                changeStatus: changeStatus
+                                            })
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                console.log('Response from server:', data);
+
+                                                if (changeStatus) {
+                                                    row.querySelector('td:nth-child(7)').textContent = data.status;
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Error updating user status:', error);
+                                            });
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating IOT meter status:', error);
+                            });
+                    } else {
+                        fetch(contextPath+ '/electricity/regional-admin/user-status', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                accountNumber: accountNumber,
+                                newStatus: newStatus,
+                                changeStatus: changeStatus
+                            })
                         })
-                        .catch(error => {
-                            console.error('Error updating user status:', error);
-                        });
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Response from server:', data);
+
+                                if (changeStatus) {
+                                    row.querySelector('td:nth-child(7)').textContent = data.status;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating user status:', error);
+                            });
+                    }
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     console.log('Status change cancelled by user.');
                 }
             });
         }
     </script>
+    <style>
+        .popupdetails {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popupdetails .detail {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #open-popup-btn {
+            background-color: #4CAF50; /* Green background */
+            border: none; /* Remove border */
+            color: white; /* White text */
+            padding: 15px 32px; /* Some padding */
+            text-align: center; /* Centered text */
+            text-decoration: none; /* Remove underline */
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; /* Mouse pointer on hover */
+            transition-duration: 0.4s; /* Transition effect */
+        }
+
+        #open-popup-btn:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        table tr.selected {
+            background-color: #ddd; /* Light gray background */
+        }
+    </style>
 
 </head>
 <body>
@@ -222,11 +308,11 @@
                                 <th>Address</th>
                                 <th>Status</th>
                                 <th></th>
+                                <th></th>
                                 <th>Change Status</th>
                             </tr>
                         </thead>
                         <tbody>
-
                         <c:if test="${empty requestScope.electricityRegionalUsers}">
                             <tr>
                                 <td colspan="12">No companies found</td>
@@ -234,7 +320,6 @@
                         </c:if>
                         <c:if test="${not empty requestScope.electricityRegionalUsers}">
                         <c:forEach items="${requestScope.electricityRegionalUsers}" var="user">
-
                             <tr>
                                 <td>${user.accountNumber}</td>
                                 <td>${user.nic}</td>
@@ -244,58 +329,61 @@
                                 <td>${user.address}</td>
                                 <td>${user.connectionStatus}</td>
                                 <td><input type="hidden" value="${user.iotMeter}" readonly></td>
+                                <td><input type="hidden" value="${user.iotId}" readonly></td>
                                 <td><button class="change-status-btn">Change Status</button></td>
                             </tr>
                         </c:forEach>
                         </c:if>
-
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
+        <button id="open-popup-btn" type="button">Edit Device</button>
     </div>
 </section>
 
 <!-- popup -->
 <div class="popupcontainer" id="popupcontainer">
-    <div class="popup" id="popup">      
-          <span class="close" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></span>
-          <h2>User Details</h2>
-          <div class="popupdetails">
+    <div class="popup" id="popup">
+        <span class="close" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></span>
+        <h2>User Details</h2>
+        <form method="POST" action="${pageContext.request.contextPath}/electricity/regional-admin/api/update-device" id="user-details-form">
+            <div class="popupdetails">
                 <div class="detail">
-                      <h2 class="topic">Customer ID : </h2>
-                      <h2>1</h2>
+                    <label for="account-number">Account No.:</label>
+                    <input type="hidden" name="accountNo" id="hiddenAcc">
+                    <span id="account-number" class="editable-text">loading ...</span>
                 </div>
                 <div class="detail">
-                      <h2 class="topic">Customer Name: </h2>
-                      <h2>John Doe</h2>
+                    <label for="customer-nic">Customer NIC:</label>
+                    <span id="customer-nic" class="editable-text">loading ...</span>
                 </div>
                 <div class="detail">
-                      <h2 class="topic">Address : </h2>
-                      <h2>Colombo</h2>
+                    <label for="connection-status">Connection Status:</label>
+                    <span id="connection-status" class="editable-text">loading ...</span>
                 </div>
                 <div class="detail">
-                      <h2 class="topic">Telephone : </h2>
-                      <h2>0771234567</h2>
+                    <label for="device-id-input">Device ID:</label>
+                    <div id="device-id">
+                        <input id="device-id-input" name="deviceId" type="text" readonly>
+                    </div>
                 </div>
-                <div class="detail">
-                      <h2 class="topic">Connection Type : </h2>
-                      <h2>Domestic</h2>
-                </div>
-                <div class="detail">
-                      <h2 class="topic">Connection Status : </h2>
-                      <h2>Active</h2>
-                </div>
-          </div>
-
-          <div class="btns">
-                <button type="button">Edit</button>
-                <button class="button1">Delete the user</button>
-          </div>
+            </div>
+        </form>
+            <div class="btns">
+                <button id="update-device-btn" type="button">Update device</button>
+                <form action="${pageContext.request.contextPath}/electricity/regional-admin/api/delete-device" method="post" id="delete-form">
+                    <input type="hidden" name="deviceId" id="delete-device-id">
+                    <input type="hidden" name="accountNo" id="delete-account-no">
+                    <button id="delete-device-btn" type="button">Delete device</button>
+                </form>
+            </div>
     </div>
 </div>
+<script>
+    let contextPath = '<%= contextPath %>';
+</script>
 
 <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
 </body>

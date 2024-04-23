@@ -178,8 +178,7 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
         String tableName = iotId + "_budget_values";
         List<String> months = Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
-
-        String sql = "INSERT INTO " + iotId + "_budget_values (month, data) VALUES ('January', 0)";
+//        String sql = "INSERT INTO " + iotId + "_budget_values (month, data) VALUES ('January', 0)";
         String insertQuery = "INSERT INTO " + tableName + " (month, data) VALUES (?, 0)";
         PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
 
@@ -193,6 +192,27 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
         Connectdb.closeConnection(conn);
     }
 
+    @Override
+    public void deleteMeterTable(String iotId) throws SQLException {
+        // delete the meter table if it exists
+        Connection conn = Connectdb.getConnection();
+        String sql = "DROP TABLE IF EXISTS " + iotId + "_meter";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        stmt.close();
+        Connectdb.closeConnection(conn);
+    }
+
+    @Override
+    public void deleteMeterBudgetTable(String iotId) throws SQLException {
+        // delete the meter budget table if it exists
+        Connection conn = Connectdb.getConnection();
+        String sql = "DROP TABLE IF EXISTS " + iotId + "_budget_values";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        stmt.close();
+        Connectdb.closeConnection(conn);
+    }
 
 //    @Override
 //    public void saveAccount(ElecWaterAccountsModel account) throws SQLException {

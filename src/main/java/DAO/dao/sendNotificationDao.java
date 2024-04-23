@@ -89,7 +89,7 @@ public class sendNotificationDao implements SendNotificationImpl {
 
     @Override
     public List<SendNotificationModel> getNotificationsByRecipientId(String recipientId) throws SQLException {
-        System.out.println("Calling the get Not function for several user");
+        System.out.println("Calling the get Not function for several users");
         List<SendNotificationModel> notifications = new ArrayList<>();
 
         Connection connection = Connectdb.getConnection();
@@ -116,4 +116,5 @@ public class sendNotificationDao implements SendNotificationImpl {
 
         return notifications;
     }
+
 }

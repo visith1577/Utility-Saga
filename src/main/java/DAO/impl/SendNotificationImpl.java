@@ -8,10 +8,9 @@ import java.util.List;
 public interface SendNotificationImpl {
     public void insertNotification(SendNotificationModel notification) throws SQLException;
 
-        List<SendNotificationModel>getNotifications(SendNotificationModel.Type type)throws SQLException;
+    List<SendNotificationModel> getNotifications(SendNotificationModel.Type type) throws SQLException;
 
-    //    public void rainsertNotification(SendNotificationModel notification) throws SQLException{
-    public void rainsertNotification(SendNotificationModel notification)throws SQLException;
+    public void rainsertNotification(SendNotificationModel notification) throws SQLException;
 
     List<SendNotificationModel> getAllNotifications() throws SQLException;
 
