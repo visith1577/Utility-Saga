@@ -37,19 +37,15 @@
             </div>
             <ul class="menu-items">
                 <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About
-                    Us</a></li>
-                <li class="menu-items-li"><a
-                        href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a>
-                </li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
                 <li class="menu-items-li">
-                    <a href="<%= request.getContextPath() %>/raelecNotif">
+                    <a href="<%= request.getContextPath() %>/water/regional-admin/notification">
                         <span class="material-icons">notifications</span>
                     </a>
                 </li>
-                <li class="nxt-page electricity">
-                    <button class="button-17" type="button" onclick="toggle()">Water</button>
-                </li>
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
+
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
@@ -59,22 +55,18 @@
 
                                 if (image == null) {
                             %>
-                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg"
-                                 style="width: 4vh; height: 4vh">
+                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                             <%
                             } else {
                             %>
-                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image"
-                                 style="width: 5vh; height: 5vh">
+                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
                             <%
                                 }
                             %>
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out
-                                    value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out
-                                    value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
@@ -96,13 +88,13 @@
         </tr>
         </thead>
         <tbody>
-        <c:if test="${empty requestScope.notifications}">
+        <c:if test="${empty requestScope.waternotifications}">
             <tr>
                 <td colspan="4">No notifications found</td>
             </tr>
         </c:if>
-        <c:if test="${not empty requestScope.notifications}">
-            <c:forEach items="${requestScope.notifications}" var="notification">
+        <c:if test="${not empty requestScope.waternotifications}">
+            <c:forEach items="${requestScope.waternotifications}" var="notification">
                 <tr>
                     <td>${notification.title}</td>
                     <td>${notification.date}</td>

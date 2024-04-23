@@ -263,6 +263,7 @@
         </a>
     </div>
 
+    <div class="bar-search-button">
     <div class="searchbar">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/water/regional-admin/user-accounts">
             <label for="nic"></label>
@@ -278,6 +279,10 @@
             document.getElementById('searchForm').submit();
         });
     </script>
+    <div class="button-noti">
+        <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/reg-wadmin-sendnotification.jsp" class="notificationsend">Send Notifications to users</a>
+    </div>
+    </div>
 
     <div class="details">
         <div class="tablediv">

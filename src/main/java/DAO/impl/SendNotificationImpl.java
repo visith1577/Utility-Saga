@@ -15,4 +15,10 @@ public interface SendNotificationImpl {
     List<SendNotificationModel> getAllNotifications() throws SQLException;
 
     List<SendNotificationModel> getNotificationsByRecipientId(String recipientId) throws SQLException;
+
+    void rainsertWaterNotification(SendNotificationModel notification)throws SQLException;
+
+    List<SendNotificationModel> getAllWaterNotifications() throws SQLException;
+
+    List<SendNotificationModel> getWaterNotificationsByRecipientId(String recipientId) throws SQLException;
 }

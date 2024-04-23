@@ -164,7 +164,9 @@
                             </tr>
                             <tr>
                                 <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
+                                <td><input type="text" name="requestid" id="requestid"
+                                           placeholder="Keep empty on manual adding"
+                                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
                             </tr>
                             <tr>
                                 <td><label for="nicc">NIC</label></td>
@@ -176,7 +178,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="form-button">
-                                    <button type="submit" class="buttons">Add Admin</button>
+                                    <button type="submit" class="buttons">Add Account</button>
                                     <button type="reset" onclick="closePopup('popupForm')" class="buttons">Close</button>
                                 </td>
                             </tr>
