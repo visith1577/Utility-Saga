@@ -13,6 +13,7 @@ public class ElecWaterAccountsModel {
     private Integer balance;
     private String requestId;
     private String iotId;
+    private String address;
 
     public String getIotId() {
         return iotId;
@@ -107,5 +108,13 @@ public class ElecWaterAccountsModel {
 
     public void setRequestId(String requestId) {
         this.requestId = requestId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

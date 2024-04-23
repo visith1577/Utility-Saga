@@ -178,4 +178,9 @@ public class WaterConnectionDao implements Connection {
         }
         return model;
     }
+
+    @Override
+    public ConnectionModel getNewConnectionAddress(String id) throws SQLException {
+        return null;
+    }
 }

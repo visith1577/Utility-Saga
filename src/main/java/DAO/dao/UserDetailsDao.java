@@ -284,7 +284,7 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     public List<UserModel> getUserDetailsRegionalAdmin(String id) throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
-        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status, eal.iot_meter, eal.iot_id \n" +
+        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, eal.address, eal.meter_status, eal.iot_meter, eal.iot_id \n" +
                 "FROM users u\n" +
                 "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
                 "JOIN electricity_admin ON eal.region= electricity_admin.region WHERE electricity_admin.region = ?";
@@ -320,7 +320,7 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     public List<UserModel> getUserDetailsByNICRegionalAdmin(String id,String searchValue) throws SQLException{
         Connection connection = Connectdb.getConnection();
         List<UserModel> users = new ArrayList<>();
-        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, u.address, eal.meter_status \n" +
+        String sql = "SELECT eal.account_number, u.nic, u.firstname, u.lastname, u.mobile, u.email, eal.address, eal.meter_status \n" +
                 "FROM users u\n" +
                 "JOIN eaccount_list eal ON u.nic = eal.nic\n" +
                 "JOIN electricity_admin ON eal.region= electricity_admin.region\n"+

@@ -79,19 +79,30 @@
                     <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
                         <label for="region">Region:</label>
-                        <input type="text" name="region" id="region" required>
+                        <input type="text" name="region" id="region"
+                               placeholder="Enter the region"
+                               required>
 
                         <label for="contact">Contact Number:</label>
-                        <input type="text" name="contact" id="contact" required>
+                        <input type="text" name="contact" id="contact"
+                               placeholder="Enter the contact number of office"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                               required>
 
                         <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email"
+                               placeholder="Enter new email"
+                               required>
 
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" required>
+                        <input type="password" name="password" id="password"
+                               placeholder="Enter Password"
+                               required>
 
                         <label for="re-password">Reenter Password:</label>
-                        <input type="password" name="re-password" id="re-password" required>
+                        <input type="password" name="re-password" id="re-password"
+                               placeholder="Re- enter the password"
+                               required>
 
                         <label for="utility">Utility:</label>
                         <select name="utility" id="utility" required>
@@ -100,16 +111,24 @@
                         </select>
 
                         <label for="empid">Employee ID:</label>
-                        <input type="text" name="empid" id="empid" required>
+                        <input type="text" name="empid" id="empid"
+                               placeholder="Assigned Employee ID"
+                               required>
 
                         <label for="uname">Username:</label>
-                        <input type="text" name="uname" id="uname" required>
+                        <input type="text" name="uname" id="uname"
+                               placeholder="Enter new username"
+                               required>
 
                         <label for="fname">First Name:</label>
-                        <input type="text" name="fname" id="fname" required>
+                        <input type="text" name="fname" id="fname"
+                               placeholder="Enter firstname"
+                               required>
 
                         <label for="lname">Last Name:</label>
-                        <input type="text" name="lname" id="lname" required>
+                        <input type="text" name="lname" id="lname"
+                               placeholder="Enter lastname"
+                               required>
 
                         <label for="role">Admin Type:</label>
                         <select name="role" id="role" required>
@@ -117,7 +136,10 @@
                         </select>
 
                         <label for="mobile">Mobile:</label>
-                        <input type="text" name="mobile" id="mobile" required>
+                        <input type="text" name="mobile" id="mobile"
+                               placeholder="Enter mobile number"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                               required>
 
                         <div class="form-button">
                             <button type="submit" class="buttons">Add Admin</button>
@@ -191,31 +213,50 @@
                     <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="waddForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                         <label for="wregion">Region:</label>
-                        <input type="text" name="wregion" id="wregion" required>
+                        <input type="text" name="wregion" id="wregion"
+                               placeholder="Enter the region"
+                               required>
 
                         <label for="wcontact">Contact Number:</label>
-                        <input type="text" name="wcontact" id="wcontact" required>
+                        <input type="text" name="wcontact" id="wcontact"
+                               placeholder="Enter the contact number of office"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                               required>
 
                         <label for="wemail">Email:</label>
-                        <input type="email" name="wemail" id="wemail" required>
+                        <input type="email" name="wemail" id="wemail"
+                               placeholder="Enter new email"
+                               required>
 
                         <label for="wpassword">Password:</label>
-                        <input type="password" name="wpassword" id="wpassword" required>
+                        <input type="password" name="wpassword" id="wpassword"
+                               placeholder="Enter Password"
+                               required>
 
                         <label for="re-wpassword">Reenter Password:</label>
-                        <input type="password" name="re-wpassword" id="re-wpassword" required>
+                        <input type="password" name="re-wpassword" id="re-wpassword"
+                               placeholder="Re- enter the password"
+                               required>
 
                         <label for="wempid">Employee ID:</label>
-                        <input type="text" name="wempid" id="wempid" required>
+                        <input type="text" name="wempid" id="wempid"
+                               placeholder="Assigned Employee ID"
+                               required>
 
                         <label for="wuname">Username:</label>
-                        <input type="text" name="wuname" id="wuname" required>
+                        <input type="text" name="wuname" id="wuname"
+                               placeholder="Enter new username"
+                               required>
 
                         <label for="wfname">First Name:</label>
-                        <input type="text" name="wfname" id="wfname" required>
+                        <input type="text" name="wfname" id="wfname"
+                               placeholder="Enter firstname"
+                               required>
 
                         <label for="wlname">Last Name:</label>
-                        <input type="text" name="wlname" id="wlname" required>
+                        <input type="text" name="wlname" id="wlname"
+                               placeholder="Enter lastname"
+                               required>
 
                         <label for="wrole">Admin Type:</label>
                         <select name="wrole" id="wrole" required>
@@ -223,7 +264,10 @@
                         </select>
 
                         <label for="wmobile">Mobile:</label>
-                        <input type="text" name="wmobile" id="wmobile" required>
+                        <input type="text" name="wmobile" id="wmobile"
+                               placeholder="Enter mobile number"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                               required>
 
                         <div class="form-button">
                             <button type="submit" class="buttons">Add Admin</button>
@@ -295,7 +339,10 @@
         var popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
-        }
+            initializeValidationElectricity();
+            initializeValidationWater();
+            }
+
 
     }
 
@@ -306,5 +353,5 @@
         }
     }
 </script>
-
+<script src="<%= request.getContextPath() %>/public/JS/ValidationSuperAdmin.js"></script>
 </html>
