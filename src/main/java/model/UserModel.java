@@ -22,6 +22,9 @@ public class UserModel {
     private String connectionStatus;
     private InputStream image;
     private String accountNumber;
+    private String iotMeter;
+    private String iotId;
+
 
     public UserModel(String firstName, String lastName, String mobile) {
     }
@@ -135,6 +138,23 @@ public class UserModel {
     public void setImage(InputStream image) {
         this.image = image;
     }
+
+    public String getIotMeter() {
+        return iotMeter;
+    }
+
+    public void setIotMeter(String iotMeter) {
+        this.iotMeter = iotMeter;
+    }
+
+    public String getIotId() {
+        return iotId;
+    }
+
+    public void setIotId(String iotId) {
+        this.iotId = iotId;
+    }
+
 
     public enum ProviderInfo {
         CEB,

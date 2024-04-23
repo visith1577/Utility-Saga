@@ -67,7 +67,7 @@ public class WaterLogin extends HttpServlet{
                     if (role == UserRAdmin.Role.MAIN) {
                         resp.sendRedirect(req.getContextPath() + "/main-admin/water-accounts");
                     } else {
-                        resp.sendRedirect(req.getContextPath() + "/public/HTML/water/regionalAdmin/" + dash);
+                        resp.sendRedirect(req.getContextPath() + "/water/regional-admin/user-accounts");
                     }
 
                 } else {

@@ -63,7 +63,7 @@
   </header>
 </div>
 <div class="formbox electricity_form--complaint">
-    <form id="complaint_form" method="post" action="${pageContext.request.contextPath}/ePub-complaint">
+    <form id="complaint_form" method="post" action="${pageContext.request.contextPath}/user/electricity-public-complaint">
       <h2>Electricity Services - Public complaints</h2>
       <div class="formbody">
         <div class="forminput">

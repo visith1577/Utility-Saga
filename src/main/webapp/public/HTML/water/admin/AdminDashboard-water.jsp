@@ -75,28 +75,50 @@
                 <h3 class="popup-title">Add Electricity Admin</h3>
                 <form id="addForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                     <label for="region">Region:</label>
-                    <input type="text" name="wregion" id="region" required>
+                    <input type="text" name="wregion" id="region"
+                           placeholder="Enter the region"
+                           required>
 
                     <label for="contact">Contact Number:</label>
-                    <input type="text" name="wcontact" id="contact" required>
+                    <input type="text" name="wcontact" id="contact"
+                           placeholder="Enter the contact number of office"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           required>
 
                     <label for="email">Email:</label>
-                    <input type="email" name="wemail" id="email" required>
+                    <input type="email" name="wemail" id="email"
+                           placeholder="Enter new email"
+                           required>
 
                     <label for="password">Password:</label>
-                    <input type="password" name="wpassword" id="password" required>
+                    <input type="password" name="wpassword" id="password"
+                           placeholder="Enter the password"
+                           required>
+
+                    <label for="re-password">Reenter Password:</label>
+                    <input type="password" name="re-wpassword" id="re-password"
+                           placeholder="Re- enter the password"
+                           required>
 
                     <label for="empid">Employee ID:</label>
-                    <input type="text" name="wempid" id="empid" required>
+                    <input type="text" name="wempid" id="empid"
+                           placeholder="Assigned Employee ID"
+                           required>
 
                     <label for="uname">UserName:</label>
-                    <input type="text" name="wuname" id="uname" required>
+                    <input type="text" name="wuname" id="uname"
+                           placeholder="Enter new username"
+                           required>
 
                     <label for="fname">First Name:</label>
-                    <input type="text" name="wfname" id="fname" required>
+                    <input type="text" name="wfname" id="fname"
+                           placeholder="Enter firstname"
+                           required>
 
                     <label for="lname">Last Name:</label>
-                    <input type="text" name="wlname" id="lname" required>
+                    <input type="text" name="wlname" id="lname"
+                           placeholder="Enter lastname"
+                           required>
 
                     <label for="role">Admin Type:</label>
                     <select name="wrole" id="role" required>
@@ -104,7 +126,10 @@
                     </select>
 
                     <label for="mobile">Mobile:</label>
-                    <input type="text" name="wmobile" id="mobile" required>
+                    <input type="text" name="wmobile" id="mobile"
+                           placeholder="Enter mobile number"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           required>
 
                     <div class="form-button">
                         <button type="submit" class="buttons">Add Admin</button>
@@ -179,6 +204,7 @@
 </body>
 <script src="../../../JS/dashboard.js"></script>
 <script>
+    var contextPath = '<%= contextPath %>';
     window.onscroll = function () {
         scrollFunction()
     }
@@ -195,6 +221,7 @@
         var popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
+            initializeValidation();
         }
 
     }
@@ -217,5 +244,6 @@
         document.getElementById('editPopupForm').style.display = 'none';
     }
 </script>
+<script src="<%= request.getContextPath() %>/public/JS/ValidationMainAdminWater.js"></script>
 
 </html>

@@ -53,6 +53,8 @@
     </div>
 
 <div class="GetNotification-box">
+    <h2>Electricity Main admin Notifications</h2>
+
     <table>
         <thead>
         <tr>

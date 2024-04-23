@@ -15,3 +15,6 @@ CREATE TABLE water_admin(
 );
 
 DELETE from water_admin WHERE region = 'WDematagoda';
+
+ALTER TABLE water_admin
+ALTER COLUMN region SET DEFAULT 'HEADOFFICE';

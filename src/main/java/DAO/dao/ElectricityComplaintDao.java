@@ -37,7 +37,7 @@ public class ElectricityComplaintDao implements Complaints {
     }
 
     @Override
-    public List<ComplaintModel> getComplaints() throws SQLException {
+    public List<ComplaintModel> getComplaints(String id) throws SQLException {
         List<ComplaintModel> complaint_list = new ArrayList<>();
 
         Connection conn = Connectdb.getConnection();
@@ -45,11 +45,13 @@ public class ElectricityComplaintDao implements Complaints {
         String sql = "SELECT *\n" +
                 "FROM electricity_complaint ec\n" +
                 "JOIN eAccount_list ea ON ec.account_number = ea.account_number\n" +
-                "JOIN electricity_admin ead ON ea.region = ead.region WHERE ea.region = ead.region\n" +
-                "AND ec.account_number = ea.account_number";
+                "JOIN electricity_admin ead ON ea.region = ead.region WHERE ead.region = ? AND ea.region = ead.region\n" +
+                "AND ec.account_number = ea.account_number\n"+
+                "ORDER BY ec.`date` DESC";
 
 //        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, id);
 
         ResultSet rs = stmt.executeQuery();
 
@@ -76,7 +78,7 @@ public class ElectricityComplaintDao implements Complaints {
     }
 
     @Override
-    public List<ComplaintModel> getComplaintsByComplaintID(String id) throws SQLException {
+    public List<ComplaintModel> getComplaintsByComplaintID(String region,String id) throws SQLException {
         List<ComplaintModel> complaint_list = new ArrayList<>();
         String searchValue = "%" + id + "%";
 
@@ -85,15 +87,17 @@ public class ElectricityComplaintDao implements Complaints {
         String sql = "SELECT *\n" +
                 "FROM electricity_complaint ec\n" +
                 "JOIN eAccount_list ea ON ec.account_number = ea.account_number\n" +
-                "JOIN electricity_admin ead ON ea.region = ead.region WHERE ea.region = ead.region\n" +
+                "JOIN electricity_admin ead ON ea.region = ead.region WHERE ead.region = ? AND ea.region = ead.region\n" +
                 "AND ec.account_number = ea.account_number AND \n"+
                 "(ec.complaint_no LIKE ? OR ec.complaint_category LIKE ? OR ec.complaint_type LIKE ? OR ec.account_number LIKE ? OR ec.nic LIKE ?\n"+
-                "OR ec.email LIKE ? OR ec.mobile LIKE ? OR ec.complaint LIKE ? OR ec.complaint_status LIKE ?)";
+                "OR ec.email LIKE ? OR ec.mobile LIKE ? OR ec.complaint LIKE ? OR ec.complaint_status LIKE ?)\n"+
+                "ORDER BY ec.`date` DESC";
 
 //        String sql= "SELECT * FROM electricity_complaint";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setString(1, searchValue);
+
+        stmt.setString(1, region);
         stmt.setString(2, searchValue);
         stmt.setString(3, searchValue);
         stmt.setString(4, searchValue);
@@ -102,6 +106,7 @@ public class ElectricityComplaintDao implements Complaints {
         stmt.setString(7, searchValue);
         stmt.setString(8, searchValue);
         stmt.setString(9, searchValue);
+        stmt.setString(10, searchValue);
 
         ResultSet rs = stmt.executeQuery();
 

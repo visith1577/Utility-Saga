@@ -26,3 +26,28 @@ ALTER TABLE utilitysaga.eaccount_list
 ALTER TABLE eaccount_list
 ADD COLUMN request_id VARCHAR(50),
 ADD CONSTRAINT fk_eaccount_request_id FOREIGN KEY (request_id) REFERENCES electricity_connection_request(id);
+
+
+DELIMITER $$
+CREATE TRIGGER update_water_meter_update
+AFTER UPDATE ON utilitysaga.waccount_list
+FOR EACH ROW
+BEGIN
+    IF OLD.meter_status <> NEW.meter_status THEN
+        INSERT INTO utilitysaga.water_regionaladmin_notification (title, recipientType, recipientId, `date`, subject, message)
+        VALUES (
+'Water Meter Status Update',
+            'SPECIFIC',
+            NEW.nic,
+            CURRENT_TIMESTAMP,
+            'IMPORTANT',
+            CONCAT('Your meter status of account ', NEW.account_number , ' has been updated to status ', NEW.meter_status)
+        );
+    END IF;
+END$$
+DELIMITER ;
+
+
+ALTER TABLE waccount_list ADD COLUMN address VARCHAR(255) NOT NULL;
+ALTER TABLE waccount_list
+ALTER COLUMN address SET DEFAULT '';

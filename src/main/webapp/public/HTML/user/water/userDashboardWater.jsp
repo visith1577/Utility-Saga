@@ -11,10 +11,10 @@
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-    <script type="module" src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div class="navv">
@@ -31,6 +31,11 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
+                <li class="menu-items-li">
+                    <a href="<%= request.getContextPath() %>/water/regional-admin/notification">
+                        <span class="material-icons">notifications</span>
+                    </a>
+                </li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
 
                 <li class="img_user dropdown">
@@ -94,7 +99,7 @@
     </section>
 
     <section class="plan2 component water" style="background: lightblue">
-        <h1 class="plan2__heading">Your Usage</h1>
+        <h1 id="graph-head" class="plan2__heading">Your Usage</h1>
         <div class="element">
             <h3 class="plan2__heading3">Select Your Account</h3>
 
@@ -109,7 +114,6 @@
         </div>
         <div class="graph">
             <canvas id="w-graph" class="main-graph water-graph">
-
             </canvas>
         </div>
     </section>
@@ -183,6 +187,7 @@
 </main>
 </body>
 <script>
+    let ch = null;
     const electricity = "<%=session.getAttribute("electricity") != null%>"
     function toggle() {
         if (electricity === 'true'){
@@ -199,6 +204,9 @@
 
     function select_account(account) {
         document.getElementById('dropbtn').textContent = account;
+        if (ch != null) {
+            ch.destroy()
+        }
 
         fetch("<%= request.getContextPath() %>/user/my-bills?currDash=water&account=" + encodeURIComponent(account))
             .then(response => {
@@ -208,6 +216,7 @@
                 return response.json();
             })
             .then(data => {
+                const w_ctx = document.getElementById('w-graph');
 
                 // Do something with the data
                 document.getElementById('billAmount').textContent = data.bill.amount
@@ -217,6 +226,44 @@
                 document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
                 document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
                 document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+
+                document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+
+                const dataset = {
+                    label: 'Hourly Fluctuation',
+                    data: data.data_list_daily.slice(1).map((d, i) => d.data - data.data_list_daily[i].data),
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                };
+
+
+                const data_graph = {
+                    labels: data.data_list_daily.slice(1).map(d => d.time),
+                    datasets: [dataset],
+                };
+
+                const config = {
+                    type: 'line',
+                    data: data_graph,
+                    options: {
+                        responsive: true, // Makes the chart responsive
+                        title: { // Add a title
+                            display: true,
+                            text: 'water meter reading fluctuations today',
+                        },
+                        plugins: {
+                            // Add legend labels for each dataset
+                            legend: {
+                                display: true,
+                                labels: {
+                                    // Customize legend text color
+                                    fontColor: 'black',
+                                }
+                            }
+                        }
+                    },
+                };
+                ch = new Chart(w_ctx, config);
             })
             .catch(error => {
                 // Handle error

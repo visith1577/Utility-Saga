@@ -12,6 +12,7 @@
 <%@ page import="DAO.dao.sendNotificationDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.SendNotificationModel" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
@@ -82,16 +82,30 @@
                 <h2 class="popup-title">Add Electricity Regional Admin</h2>
                 <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
                     <label for="region">Region:</label>
-                    <input type="text" name="region" id="region" required>
+                    <input type="text" name="region" id="region"
+                           placeholder="Enter the region"
+                           required>
 
                     <label for="contact">Contact Number:</label>
-                    <input type="text" name="contact" id="contact" required>
+                    <input type="text" name="contact" id="contact"
+                           placeholder="Enter the contact number of office"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           required>
 
                     <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" id="email"
+                           placeholder="Enter new email"
+                           required>
 
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="password" id="password"
+                           placeholder="Enter Password"
+                           required>
+
+                    <label for="re-password">Reenter Password:</label>
+                    <input type="password" name="re-password" id="re-password"
+                           placeholder="Re- enter the password"
+                           required>
 
                     <label for="utility">Utility:</label>
                     <select name="utility" id="utility" required>
@@ -100,16 +114,24 @@
                     </select>
 
                     <label for="empid">Employee ID:</label>
-                    <input type="text" name="empid" id="empid" required>
+                    <input type="text" name="empid" id="empid"
+                           placeholder="Assigned Employee ID"
+                           required>
 
                     <label for="uname">UserName:</label>
-                    <input type="text" name="uname" id="uname" required>
+                    <input type="text" name="uname" id="uname"
+                           placeholder="Enter new username"
+                           required>
 
                     <label for="fname">First Name:</label>
-                    <input type="text" name="fname" id="fname" required>
+                    <input type="text" name="fname" id="fname"
+                           placeholder="Enter firstname"
+                           required>
 
                     <label for="lname">Last Name:</label>
-                    <input type="text" name="lname" id="lname" required>
+                    <input type="text" name="lname" id="lname"
+                           placeholder="Enter lastname"
+                           required>
 
                     <label for="role">Admin Type:</label>
                     <select name="role" id="role" required>
@@ -117,7 +139,10 @@
                     </select>
 
                     <label for="mobile">Mobile:</label>
-                    <input type="text" name="mobile" id="mobile" required>
+                    <input type="text" name="mobile" id="mobile"
+                           placeholder="Enter mobile number"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           required>
 
                     <div class="form-button">
                         <button type="submit" class="buttons">Add Admin</button>
@@ -218,7 +243,7 @@
 </body>
 <script src="../../../JS/dashboard.js"></script>
 <script>
-    let contextPath = '<%= contextPath %>';
+    var contextPath = '<%= contextPath %>';
     window.onscroll = function () {
         scrollFunction()
     }
@@ -235,6 +260,7 @@
         var popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
+            initializeValidation();
         }
 
     }
@@ -257,5 +283,6 @@
         document.getElementById('editPopupForm').style.display = 'none';
     }
 </script>
+<script src="<%= request.getContextPath() %>/public/JS/ValidationMainAdmin.js"></script>
 
 </html>

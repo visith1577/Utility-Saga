@@ -20,12 +20,19 @@ public class WaterAdmin extends HttpServlet {
         String contact = req.getParameter("wcontact");
         String email = req.getParameter("wemail");
         String password = req.getParameter("wpassword");
+        String repassword = req.getParameter("re-wpassword");
         String empid = req.getParameter("wempid");
         String uname = req.getParameter("wuname");
         String fname = req.getParameter("wfname");
         String lname = req.getParameter("wlname");
         String role = req.getParameter("wrole");
         String mobile = req.getParameter("wmobile");
+
+        if(!password.equals(repassword)){
+            req.setAttribute("errorMessage", "Password not matching");
+            req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
+            return;
+        }
 
         ElectricityAdminModel admin = new ElectricityAdminModel();
 

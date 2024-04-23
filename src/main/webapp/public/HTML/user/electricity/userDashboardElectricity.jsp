@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     </head>
     <body>
     <div class="navv">
@@ -29,6 +31,11 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
+                <li class="menu-items-li">
+                    <a href="<%= request.getContextPath() %>/raelecNotif">
+                        <span class="material-icons">notifications</span>
+                    </a>
+                </li>
                 <li class="nxt-page electricity"><button class="button-17" type="button" onclick="toggle()">Water</button></li>
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">

@@ -17,19 +17,18 @@ import java.util.Map;
 public class AnalyticDao implements Analytics {
 
     @Override
-    public List<IoTModel> getElectricityMeterDataMonthly(String account) throws SQLException {
-        List<IoTModel> elecMeterData = new ArrayList<>();
+    public List<IoTModel> getMeterDataMonthly(String meter) throws SQLException {
+        List<IoTModel> meterData = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
 
         try {
-
-            String tableName = account + "_emeter";
+            String tableName = meter + "_meter";
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT MAX(date) as date, MIN(time) as time, MAX(data) as data FROM " + tableName +
                             " WHERE date BETWEEN DATE_SUB(CURDATE(), INTERVAL 13 MONTH) AND  CURDATE() GROUP BY MONTH(date), YEAR(date)"
             );
 
-            dataDriver(elecMeterData, statement);
+            dataDriver(meterData, statement);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -37,7 +36,7 @@ public class AnalyticDao implements Analytics {
             Connectdb.closeConnection(connection);
         }
 
-        return elecMeterData;
+        return meterData;
     }
 
     @Override
@@ -46,7 +45,7 @@ public class AnalyticDao implements Analytics {
         Connection connection = Connectdb.getConnection();
 
         try {
-            String tableName = account + "_emeter";
+            String tableName = account + "_meter";
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT date, time, data FROM " + tableName +
                             " WHERE date = CURDATE()" +
@@ -68,25 +67,25 @@ public class AnalyticDao implements Analytics {
 
     @Override
     public List<IoTModel> getFinalReadingsDailyForCurrentMonth(String account) throws SQLException {
-        List<IoTModel> elecMeterData = new ArrayList<>();
+        List<IoTModel> meterData = new ArrayList<>();
         Connection connection = Connectdb.getConnection();
 
         try {
-            String tableName = account + "_emeter";
+            String tableName = account + "_meter";
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT date, MIN(time) as time, MIN(data) as data FROM " + tableName +
                             " WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())" +
                             " GROUP BY date"
             );
 
-            dataDriver(elecMeterData, statement);
+            dataDriver(meterData, statement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             Connectdb.closeConnection(connection);
         }
 
-        return elecMeterData;
+        return meterData;
     }
 
     @Override
@@ -169,14 +168,14 @@ public class AnalyticDao implements Analytics {
     }
 
 
-    private void dataDriver(List<IoTModel> elecMeterData, PreparedStatement statement) throws SQLException {
+    private void dataDriver(List<IoTModel> meterData, PreparedStatement statement) throws SQLException {
         try (ResultSet result = statement.executeQuery()){
             while (result.next()) {
                 IoTModel model = new IoTModel();
                 model.setDate(result.getDate("date"));
                 model.setTime(result.getTime("time"));
                 model.setData(result.getInt("data"));
-                elecMeterData.add(model);
+                meterData.add(model);
             }
         }
     }
