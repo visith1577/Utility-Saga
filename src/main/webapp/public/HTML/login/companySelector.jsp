@@ -43,19 +43,19 @@
             <section class="login-selector">
                 <div class="login-form" style="position: absolute; top: 50px; width: 600px">
                     <h1 class="login-panel__title login-panel__sub" style="margin-bottom: 15px;">
-                        Select Your User Type
+                        Login or Register to your Company
                     </h1>
                     <button class="login-selector__btn admin-btn">
-                        <a href="adminSelector.jsp">Administrator</a>
+                        <a href="companyLogin.jsp">Log in</a>
                     </button>
 
                     <button class="login-selector__btn cst-btn">
-                        <a href="userLogin.jsp">Customer</a>
+                        <a href="companyRegister.jsp">Register </a>
                     </button>
 
-                    <button class="login-selector__btn cmp-btn">
-                        <a href="companySelector.jsp">Company</a>
-                    </button>
+<%--                    <button class="login-selector__btn cmp-btn">--%>
+<%--                        <a href="../solar/store.jsp">Company</a>--%>
+<%--                    </button>--%>
                 </div>
             </section>
         </div>
