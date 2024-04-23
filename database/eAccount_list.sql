@@ -18,16 +18,15 @@ ALTER TABLE eAccount_list
 ALTER TABLE eAccount_list
     ADD COLUMN region VARCHAR(25) NOT NULL ;
 
-ALTER TABLE utilitysaga.eaccount_list
+ALTER TABLE eaccount_list
     ADD COLUMN sub_region VARCHAR(25),
     ADD COLUMN balance DECIMAL(10,2) NOT NULL DEFAULT 0;
 
 ALTER TABLE eaccount_list
-ADD COLUMN request_id VARCHAR(50),
 ADD CONSTRAINT fk_eaccount_request_id FOREIGN KEY (request_id) REFERENCES electricity_connection_request(id);
 
 ALTER TABLE eaccount_list
-MODIFY COLUMN request_id INT NULL;
+ADD COLUMN request_id INT NULL;
 
 INSERT INTO eAccount_list (account_number, nic) VALUES ('dummyAccount2', '200114400385');
 
@@ -77,6 +76,38 @@ BEGIN
             'IMPORTANT',
             CONCAT('Your meter status of account ', NEW.account_number , ' has been updated to status ', NEW.meter_status)
         );
+    END IF;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE TRIGGER update_eaccount_balance
+    AFTER INSERT ON utilitysaga.electricity_manual_payment
+    FOR EACH ROW
+BEGIN
+    UPDATE utilitysaga.eaccount_list
+    SET balance = balance - NEW.amount
+    WHERE account_number = NEW.account_number;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER update_balance_notification
+    AFTER UPDATE ON utilitysaga.eaccount_list
+    FOR EACH ROW
+BEGIN
+    IF OLD.balance <> NEW.balance THEN
+        INSERT INTO utilitysaga.electricity_regionaladmin_notification (title, recipientType, recipientId, `date`, subject, message)
+        VALUES (
+                   'Balance Update',
+                   'SPECIFIC',
+                   NEW.nic,
+                   CURRENT_TIMESTAMP,
+                   'Balance Updated',
+                   CONCAT('Your account balance for account ', NEW.account_number , ' has been updated to ', NEW.balance)
+               );
     END IF;
 END$$
 DELIMITER ;
