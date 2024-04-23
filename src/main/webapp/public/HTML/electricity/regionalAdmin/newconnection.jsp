@@ -10,7 +10,6 @@
 <%
     String contextPath = request.getContextPath();
 %>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -149,7 +148,7 @@
                         <table>
                             <tr>
                                 <td><label for="region">Region </label></td>
-                                <td><input type="text" name="region" id="region" required></td>
+                                <td><input type="text" name="region" id="region" value="${sessionScope.REGION}" readonly></td>
                             </tr>
                             <tr>
                                 <td><label for="subregion">Sub Region</label></td>
@@ -324,16 +323,17 @@
                             text: "IoT device already Owned."
                         });
                     } else {
+                        // close popup
+                        closePopup('popupForm');
                         toastr.success("Account added successfully.");
                         document.getElementById('addForm').submit();
+                        // reset form fields
+                        document.getElementById('addForm').reset();
                     }
             }).catch(error => {
                 console.error("Problem checking for existing account: ", error);
             }).finally(() => {
-                // close popup
                 closePopup('popupForm');
-                // reset form fields
-                document.getElementById('addForm').reset();
             });
         }
     });

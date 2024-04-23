@@ -53,7 +53,9 @@ public class ValidateAddAccount extends HttpServlet {
                 }
                 if (iotId != null) {
 
-                    boolean isIotIdExists = dao.isMeterExists(iotId, "ELECTRICITY");
+                    boolean iotIdExists = dao.isMeterExists(iotId, "ELECTRICITY");
+                    boolean check = dao.isMeterExists(iotId, "WATER");
+                    boolean isIotIdExists = iotIdExists && check;
                     Gson gson3 = new Gson();
                     JsonElement jsonData3 = gson3.toJsonTree(isIotIdExists);
                     responseData.add("IotIdExists", jsonData3);
@@ -80,7 +82,9 @@ public class ValidateAddAccount extends HttpServlet {
                 }
                 if (iotId != null) {
 
-                    boolean isIotIdExists = dao.isMeterExists(iotId, "WATER");
+                    boolean iotIdExists = dao.isMeterExists(iotId, "WATER");
+                    boolean check = dao.isMeterExists(iotId, "ELECTRICITY");
+                    boolean isIotIdExists = iotIdExists && check;
                     Gson gson3 = new Gson();
                     JsonElement jsonData3 = gson3.toJsonTree(isIotIdExists);
                     responseData.add("IotIdExists", jsonData3);
