@@ -652,6 +652,4 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
         }
         return count;
     }
-
-
 }

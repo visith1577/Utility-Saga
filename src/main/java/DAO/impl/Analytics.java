@@ -10,6 +10,9 @@ public interface Analytics {
     List<IoTModel> getMeterDataMonthly(String meter) throws SQLException;
     List<IoTModel> getDataForCurrentDate(String meter) throws SQLException;
     List<IoTModel> getFinalReadingsDailyForCurrentMonth(String meter) throws SQLException;
+    int getFinalReadingYesterday(String meter) throws SQLException;
+    int getFinalReadingLastMonth(String meter) throws SQLException;
+    int getBudgetCurrentMonth(String account) throws SQLException;
     void setBudget(String account, int budget, String month) throws SQLException;
     IoTModel getBudget(String account) throws SQLException;
     Map<String, Integer> getBudgetAll(String account) throws SQLException;

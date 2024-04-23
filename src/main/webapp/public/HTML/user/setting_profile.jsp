@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/setting_profile.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Account Setting</title>
 </head>
 <body>
@@ -169,19 +170,19 @@
                 <c:if test="${not empty sessionScope.water}">
                 <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
                     <input type="hidden" name="action" value="unsubscribe">
-                    <button class="content-btn" type="submit" id="unsubscribe-electricity">UnSubscribe</button>
+                    <button class="content-btn" type="button" id="unsubscribe-electricity">UnSubscribe</button>
                 </form>
                 </c:if>
             </div>
+            </c:if>
+            <c:if test="${empty sessionScope.electricity}">
+                <label for="account-details__water">Subscribe to view accounts.</label>
+                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
+                    <input type="hidden" name="action" value="subscribe">
+                    <button class="content-btn" type="button" id="subscribe-electricity">Subscribe</button>
+                </form>
+            </c:if>
         </section>
-        </c:if>
-        <c:if test="${empty sessionScope.electricity}">
-            <label for="account-details__water">Subscribe to view accounts.</label>
-            <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
-                <input type="hidden" name="action" value="subscribe">
-                <button class="content-btn" type="submit" id="subscribe-electricity">Subscribe</button>
-            </form>
-        </c:if>
         <section>
             <h3>Water Settings</h3>
             <c:if test="${not empty sessionScope.water}">
@@ -207,7 +208,7 @@
                 <c:if test="${not empty sessionScope.electricity}">
                 <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
                     <input type="hidden" name="action" value="unsubscribe">
-                    <button class="content-btn" type="submit" name="action" id="unsubscribe-water">UnSubscribe</button>
+                    <button class="content-btn" type="button" name="action" id="unsubscribe-water">UnSubscribe</button>
                 </form>
                 </c:if>
             </div>
@@ -216,7 +217,7 @@
                 <label for="account-details__water">Subscribe to view accounts.</label>
                 <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
                     <input type="hidden" name="action" value="subscribe">
-                    <button class="content-btn" type="submit" id="subscribe-water">Subscribe</button>
+                    <button class="content-btn" type="button" id="subscribe-water">Subscribe</button>
                 </form>
             </c:if>
         </section>
