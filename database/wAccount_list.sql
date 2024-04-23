@@ -46,3 +46,8 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
+
+ALTER TABLE waccount_list ADD COLUMN address VARCHAR(255) NOT NULL;
+ALTER TABLE waccount_list
+ALTER COLUMN address SET DEFAULT '';

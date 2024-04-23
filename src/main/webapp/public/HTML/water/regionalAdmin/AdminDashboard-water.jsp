@@ -55,7 +55,7 @@
             const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
             console.log('New Status:', newStatus);
 
-            fetch(contextPath+ '/user-status-water', {
+            fetch(contextPath+ '/water/regional-admin/user-status', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

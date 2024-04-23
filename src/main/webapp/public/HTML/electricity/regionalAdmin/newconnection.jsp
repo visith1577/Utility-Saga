@@ -1,4 +1,4 @@
-<%--
+
   Created by IntelliJ IDEA.
   User: Liviru Weerasinghe
   Date: 4/18/2024
@@ -10,6 +10,8 @@
 <%
     String contextPath = request.getContextPath();
 %>
+  <% String region = (String) session.getAttribute("REGION"); %>
+
 
 <html lang="en">
 <head>
@@ -149,11 +151,17 @@
                         <table>
                             <tr>
                                 <td><label for="region">Region </label></td>
-                                <td><input type="text" name="region" id="region" required></td>
+                                <td><input type="text" name="region" id="region" value="<%=region%>" readonly></td>
                             </tr>
                             <tr>
                                 <td><label for="subregion">Sub Region</label></td>
                                 <td><input type="text" name="subregion" id="subregion" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="address">Address</label></td>
+                                <td><input type="text" name="address" id="address"
+                                           placeholder="New Address"
+                                           required></td>
                             </tr>
                             <tr>
                                 <td><label for="accountno">Account Number </label></td>

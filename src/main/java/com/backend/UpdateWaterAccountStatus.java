@@ -14,7 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/user-status-water")
+@WebServlet("/water/regional-admin/user-status")
 public class UpdateWaterAccountStatus extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
         System.out.println("doPost method called");

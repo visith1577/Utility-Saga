@@ -185,4 +185,30 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         }
         return model;
     }
+
+    @Override
+    public ConnectionModel getNewConnectionAddress(String id) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        ConnectionModel model = new ConnectionModel();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT new_address FROM electricity_connection_request WHERE id = ?");
+            stmt.setString(1, id);
+
+            try (ResultSet result = stmt.executeQuery()){
+                while(result.next()) {
+                    ConnectionModel.AccountStatus newaddress = ConnectionModel.AccountStatus.valueOf(result.getString("account_status"));
+                    System.out.println("Final status: "+newaddress);
+                    model.setAccountStatus(newaddress);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Failed to update approval status: " + e.getMessage());
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return model;
+    }
+
 }

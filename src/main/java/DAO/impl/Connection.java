@@ -15,4 +15,6 @@ public interface Connection {
     void updateApprovalStatus(String accountno, String status) throws SQLException;
 
     ConnectionModel getApprovalStatus(String accountno) throws SQLException;
+
+    ConnectionModel getNewConnectionAddress(String id) throws SQLException;
 }

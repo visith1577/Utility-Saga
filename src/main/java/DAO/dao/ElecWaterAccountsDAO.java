@@ -22,8 +22,8 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             conn.setAutoCommit(false);
 
 
-            String sql = "INSERT INTO eAccount_list (account_number,request_id, nic, region, sub_region, iot_id, iot_meter) " +
-                    " VALUES (?,?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO eAccount_list (account_number,request_id, nic, region, sub_region, address, iot_id, iot_meter) " +
+                    " VALUES (?,?, ?, ?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, account.getAccountNumber());
@@ -37,11 +37,12 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt.setString(3, account.getNic());
             stmt.setString(4, account.getRegion());
             stmt.setString(5, account.getSubRegion());
-            stmt.setString(6, account.getIotId());
+            stmt.setString(6, account.getAddress());
+            stmt.setString(7, account.getIotId());
             if (!account.getIotId().isEmpty()) {
-                stmt.setString(7, "YES");
+                stmt.setString(8, "YES");
             } else {
-                stmt.setString(7, "NO");
+                stmt.setString(8, "NO");
             }
             stmt.executeUpdate();
 
@@ -82,8 +83,8 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             conn.setAutoCommit(false);
 
 
-            String sql = "INSERT INTO wAccount_list (account_number,request_id, nic, region, sub_region, iot_id, iot_meter) " +
-                    " VALUES (?,?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO wAccount_list (account_number,request_id, nic, region, sub_region, address, iot_id, iot_meter) " +
+                    " VALUES (?,?, ?, ?, ?, ?, ?,?)";
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, account.getAccountNumber());
@@ -97,11 +98,12 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt.setString(3, account.getNic());
             stmt.setString(4, account.getRegion());
             stmt.setString(5, account.getSubRegion());
-            stmt.setString(6, account.getIotId());
+            stmt.setString(6, account.getSubRegion());
+            stmt.setString(7, account.getIotId());
             if (!account.getIotId().isEmpty()) {
-                stmt.setString(7, "YES");
+                stmt.setString(8, "YES");
             } else {
-                stmt.setString(7, "NO");
+                stmt.setString(8, "NO");
             }
             stmt.executeUpdate();
 
