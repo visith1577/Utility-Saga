@@ -158,6 +158,10 @@
                                 <td><input type="text" name="subregion" id="subregion" required></td>
                             </tr>
                             <tr>
+                                <td><label for="address">Address</label></td>
+                                <td><input type="text" name="address" id="address" required></td>
+                            </tr>
+                            <tr>
                                 <td><label for="accountno">Account Number </label></td>
                                 <td><input type="text" name="accountno" id="accountno" required></td>
                             </tr>

@@ -98,7 +98,7 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             stmt.setString(3, account.getNic());
             stmt.setString(4, account.getRegion());
             stmt.setString(5, account.getSubRegion());
-            stmt.setString(6, account.getSubRegion());
+            stmt.setString(6, account.getAddress());
             stmt.setString(7, account.getIotId());
             if (!account.getIotId().isEmpty()) {
                 stmt.setString(8, "YES");
