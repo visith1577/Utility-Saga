@@ -15,7 +15,8 @@ public class MQTTClient {
             .load();
     private static final String BROKER_URL = "ssl://" +  dotenv.get("HIVE_URL") + ":" + dotenv.get("HIVE_PORT");
     private static final String TOPIC = dotenv.get("TOPIC");
-    private static final String CONTROL_TOPIC = dotenv.get("CNTR_TOPIC");
+    private static final String CONTROL_TOPIC_ELEC = dotenv.get("CNTR_TOPIC_ELEC");
+    private static final String CONTROL_TOPIC_WATER = dotenv.get("CNTR_TOPIC_WATER");
     private final MqttClient mqttClient;
 
     public MQTTClient() throws MqttException {
@@ -34,9 +35,12 @@ public class MQTTClient {
         mqttClient.setCallback(callback);
     }
 
-    public void publish(String message) throws MqttException {
+    public void publish(String message, String topic, String cat) throws MqttException {
         MqttMessage mqttMessage = new MqttMessage(message.getBytes());
-        mqttClient.publish(CONTROL_TOPIC, mqttMessage.getPayload(), 2, true);
+        if (cat.equals("ELECTRICITY"))
+            mqttClient.publish(CONTROL_TOPIC_ELEC + topic, mqttMessage.getPayload(), 2, true);
+        else if (cat.equals("WATER"))
+            mqttClient.publish(CONTROL_TOPIC_WATER + topic, mqttMessage.getPayload(), 2, true);
     }
 
     public void disconnect() throws MqttException {

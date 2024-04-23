@@ -13,8 +13,8 @@ document.head.appendChild(style);
 
 
 function openPopup() {
-      popup.classList.add("open-popup");
-      popupcontainer.classList.add("open-popupcontainer");
+    popup.classList.add("open-popup");
+    popupcontainer.classList.add("open-popupcontainer");
 }
 
 function closePopup() {
@@ -78,7 +78,7 @@ document.getElementById('open-popup-btn').addEventListener('click', function() {
 
                 if (document.getElementById('device-id-input').value !== deviceId) {
 
-                    fetch(contextPath + '/electricity/regional-admin/api/validate-add-account?iotId=' + encodeURIComponent(document.getElementById('device-id-input').value))
+                    fetch(contextPath + '/water/regional-admin/api/validate-add-account?iotId=' + encodeURIComponent(document.getElementById('device-id-input').value))
                         .then(response => response.json())
                         .then(data => {
                             if (data.IotIdExists) {
@@ -119,7 +119,7 @@ document.getElementById('open-popup-btn').addEventListener('click', function() {
                     cancelButtonText: 'No, keep it'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                       document.getElementById('delete-form').submit();
+                        document.getElementById('delete-form').submit();
                     }
                 });
             } else {

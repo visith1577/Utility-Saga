@@ -25,13 +25,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
-    <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/WaterRegionalConnectionSearch.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admintable.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admincards.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionaladmin.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let contextPath = '<%= contextPath %>';
         window.onscroll = function () {
@@ -151,7 +151,7 @@
                         <table>
                             <tr>
                                 <td><label for="region">Region </label></td>
-                                <td><input type="text" name="region" id="region" required></td>
+                                <td><input type="text" name="region" id="region" value="${sessionScope.REGION}" readonly></td>
                             </tr>
                             <tr>
                                 <td><label for="subregion">Sub Region</label></td>
@@ -245,7 +245,6 @@
     <button class="button" onclick="openPopup('popupForm')">Add New Account</button>
 </div>
 
-</section>
 <script>
     function openPopup(popUpId) {
         var popup= document.getElementById(popUpId);
@@ -326,16 +325,17 @@
                         text: "IoT device already Owned."
                     });
                 } else {
+                    // close popup
+                    closePopup('popupForm');
                     toastr.success("Account added successfully.");
                     document.getElementById('addForm').submit();
+                    // reset form fields
+                    document.getElementById('addForm').reset();
                 }
             }).catch(error => {
                 console.error("Problem checking for existing account: ", error);
             }).finally(() => {
-                // close popup
                 closePopup('popupForm');
-                // reset form fields
-                document.getElementById('addForm').reset();
             });
         }
     });
