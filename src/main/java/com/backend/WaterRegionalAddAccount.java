@@ -37,13 +37,7 @@ public class WaterRegionalAddAccount extends HttpServlet {
 
         try {
 
-            dao.saveWaterAccount(account);
-
-            if (!deviceId.isEmpty()) {
-                dao.createMeterTable(deviceId);
-                dao.createMeterBudgetTable(deviceId);
-                dao.insertInitialBudget(deviceId);
-            }
+            dao.saveWaterAccount(account, deviceId);
 
             resp.sendRedirect(req.getHeader("referer"));
         } catch (Exception e) {

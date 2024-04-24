@@ -3,6 +3,7 @@ package DAO.dao;
 import DAO.impl.ElecWaterAccountsModelImpl;
 import model.ElecWaterAccountsModel;
 import utils.Connectdb;
+import utils.PreparedStatementResults;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,11 +14,14 @@ import java.util.List;
 
 public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
     @Override
-    public void saveAccount(ElecWaterAccountsModel account) throws SQLException {
+    public void saveAccount(ElecWaterAccountsModel account, String deviceId) throws SQLException {
         Connection conn = Connectdb.getConnection();
         PreparedStatement stmt = null;
         String updatesql = null;
         PreparedStatement stmt2 = null;
+        PreparedStatementResults createMeterTableStmt = null;
+        PreparedStatement createMeterBudgetTableStmt = null;
+        PreparedStatement insertInitialBudgetStmt = null;
         try {
             conn.setAutoCommit(false);
 
@@ -51,12 +55,17 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
                 stmt2.setString(1, account.getRequestId().toString());
                 stmt2.executeUpdate();
             }
+
+            if (!deviceId.isEmpty()) {
+                createMeterTableStmt = createMeterTable(deviceId, conn);
+                createMeterBudgetTableStmt = createMeterBudgetTable(deviceId, conn);
+                insertInitialBudgetStmt = insertInitialBudget(deviceId, conn);
+            }
+
             conn.commit();
 
         } catch (SQLException e) {
-            if (conn != null) {
-                conn.rollback();
-            }
+            conn.rollback();
             throw e;
         } finally {
             if (stmt != null) {
@@ -64,6 +73,16 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             }
             if (stmt2 != null) {
                 stmt2.close();
+            }
+            if (createMeterBudgetTableStmt != null) {
+                createMeterBudgetTableStmt.close();
+            }
+            if (insertInitialBudgetStmt != null) {
+                insertInitialBudgetStmt.close();
+            }
+            if (createMeterTableStmt!= null) {
+                createMeterTableStmt.getStmt().close();
+                createMeterTableStmt.getInsertStmt().close();
             }
             if (conn != null) {
                 conn.setAutoCommit(true);
@@ -73,11 +92,14 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
     }
 
     @Override
-    public void saveWaterAccount(ElecWaterAccountsModel account) throws SQLException {
+    public void saveWaterAccount(ElecWaterAccountsModel account, String deviceId) throws SQLException {
         Connection conn = Connectdb.getConnection();
         PreparedStatement stmt = null;
         String updatesql = null;
         PreparedStatement stmt2 = null;
+        PreparedStatementResults createMeterTableStmt = null;
+        PreparedStatement createMeterBudgetTableStmt = null;
+        PreparedStatement insertInitialBudgetStmt = null;
         try {
             conn.setAutoCommit(false);
 
@@ -111,12 +133,17 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
                 stmt2.setString(1, account.getRequestId().toString());
                 stmt2.executeUpdate();
             }
+
+            if (!deviceId.isEmpty()) {
+                createMeterTableStmt = createMeterTable(deviceId, conn);
+                createMeterBudgetTableStmt = createMeterBudgetTable(deviceId, conn);
+                insertInitialBudgetStmt = insertInitialBudget(deviceId, conn);
+            }
+
             conn.commit();
 
         } catch (SQLException e) {
-            if (conn != null) {
-                conn.rollback();
-            }
+            conn.rollback();
             throw e;
         } finally {
             if (stmt != null) {
@@ -124,6 +151,16 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             }
             if (stmt2 != null) {
                 stmt2.close();
+            }
+            if (createMeterBudgetTableStmt != null) {
+                createMeterBudgetTableStmt.close();
+            }
+            if (insertInitialBudgetStmt != null) {
+                insertInitialBudgetStmt.close();
+            }
+            if (createMeterTableStmt!= null) {
+                createMeterTableStmt.getStmt().close();
+                createMeterTableStmt.getInsertStmt().close();
             }
             if (conn != null) {
                 conn.setAutoCommit(true);
@@ -133,8 +170,7 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
     }
 
     @Override
-    public void createMeterTable(String iotId) throws SQLException {
-        Connection conn = Connectdb.getConnection();
+    public PreparedStatementResults createMeterTable(String iotId, Connection conn) throws SQLException {
         String sql = "CREATE TABLE " + iotId + "_meter" +
                 " (id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "date DATE DEFAULT (CURRENT_DATE()), " +
@@ -151,14 +187,11 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
         insertStmt.setObject(1, prevMonthLastDay);
         insertStmt.executeUpdate();
 
-        stmt.close();
-        insertStmt.close();
-        Connectdb.closeConnection(conn);
+        return new PreparedStatementResults(stmt, insertStmt);
     }
 
     @Override
-    public void createMeterBudgetTable(String iotId) throws SQLException {
-        Connection conn = Connectdb.getConnection();
+    public PreparedStatement createMeterBudgetTable(String iotId, Connection conn) throws SQLException {
         String sql = "CREATE TABLE " + iotId + "_budget_values" +
                 " (id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "month VARCHAR(100), " +
@@ -166,13 +199,11 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
                 "date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.executeUpdate();
-        stmt.close();
-        Connectdb.closeConnection(conn);
+        return stmt;
     }
 
     @Override
-    public void insertInitialBudget(String iotId) throws SQLException {
-        Connection conn = Connectdb.getConnection();
+    public PreparedStatement insertInitialBudget(String iotId, Connection conn) throws SQLException {
         String tableName = iotId + "_budget_values";
         List<String> months = Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
@@ -185,50 +216,25 @@ public class ElecWaterAccountsDAO implements ElecWaterAccountsModelImpl {
             insertStmt.executeUpdate();
         }
 
-        // Clean up resources
-        insertStmt.close();
-        Connectdb.closeConnection(conn);
+        return insertStmt;
     }
 
     @Override
-    public void deleteMeterTable(String iotId) throws SQLException {
+    public PreparedStatement deleteMeterTable(String iotId, Connection conn) throws SQLException {
         // delete the meter table if it exists
-        Connection conn = Connectdb.getConnection();
         String sql = "DROP TABLE IF EXISTS " + iotId + "_meter";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.executeUpdate();
-        stmt.close();
-        Connectdb.closeConnection(conn);
+        return stmt;
     }
 
     @Override
-    public void deleteMeterBudgetTable(String iotId) throws SQLException {
+    public PreparedStatement deleteMeterBudgetTable(String iotId, Connection conn) throws SQLException {
         // delete the meter budget table if it exists
-        Connection conn = Connectdb.getConnection();
         String sql = "DROP TABLE IF EXISTS " + iotId + "_budget_values";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.executeUpdate();
-        stmt.close();
-        Connectdb.closeConnection(conn);
-    }
 
-//    @Override
-//    public void saveAccount(ElecWaterAccountsModel account) throws SQLException {
-//        Connection conn = Connectdb.getConnection();
-//
-//        String sql= "INSERT INTO eaccount_list (account_number, nic, region, sub_region) " +
-//                    " VALUES (?, ?, ?, ?)";
-//        PreparedStatement stmt = conn.prepareStatement(sql);
-//
-//        stmt.setString(1, account.getAccountNumber());
-//        stmt.setString(2, account.getNic());
-//        stmt.setString(3, account.getRegion());
-//        stmt.setString(4, account.getSubRegion());
-//
-//
-//        stmt.executeUpdate();
-//        stmt.close();
-//        Connectdb.closeConnection(conn);
-//
-//    }
+        return stmt;
+    }
 }

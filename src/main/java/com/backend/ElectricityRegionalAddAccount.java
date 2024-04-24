@@ -36,13 +36,8 @@ public class ElectricityRegionalAddAccount extends HttpServlet {
         ElecWaterAccountsDAO dao = new ElecWaterAccountsDAO();
 
         try {
-            dao.saveAccount(account);
+            dao.saveAccount(account, deviceId);
 
-            if (!deviceId.isEmpty()) {
-                dao.createMeterTable(deviceId);
-                dao.createMeterBudgetTable(deviceId);
-                dao.insertInitialBudget(deviceId);
-            }
             resp.sendRedirect(req.getHeader("referer"));
         } catch (Exception e) {
             req.setAttribute("errorMessage", e.getMessage());
