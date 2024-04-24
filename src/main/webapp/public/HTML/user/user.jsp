@@ -26,9 +26,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+<div class="loader"></div>
 <div class="navv">
     <header class="navbar">
         <div class="navbar-container container">
@@ -337,6 +339,7 @@
         }
     });
 </script>
+<script type="module" src="<%= request.getContextPath() %>/public/JS/loader.js" defer></script>
 <script type="module" src="<%= request.getContextPath() %>/public/JS/user.js" defer></script>
 <script type="module" src="<%= request.getContextPath() %>/public/JS/fetch_bills.js" defer></script>
 </body>

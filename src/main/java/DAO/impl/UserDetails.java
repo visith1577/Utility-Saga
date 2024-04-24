@@ -2,7 +2,6 @@ package DAO.impl;
 
 import model.UserModel;
 
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +13,7 @@ public interface UserDetails {
     String getUnameByNic(String nic) throws SQLException;
 
     UserModel getUserDetailsByNic(String nic) throws SQLException;
+
     UserModel getUserFullNameByNic(String nic) throws SQLException;
 
     void updateUserInfo(UserModel user) throws SQLException;

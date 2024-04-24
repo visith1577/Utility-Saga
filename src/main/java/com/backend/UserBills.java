@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,6 +21,7 @@ import utils.ReportGenerator;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,6 +37,9 @@ public class UserBills extends HttpServlet {
         ReportGenerator gen = new ReportGenerator();
         Analytics analytics = new AnalyticDao();
 
+        LocalDate date = LocalDate.now();
+        int day = date.getDayOfMonth();
+
         String eReport;
         String wReport;
 
@@ -49,29 +52,40 @@ public class UserBills extends HttpServlet {
                             (String) session.getAttribute("NIC"), account, "WATER"
                     );
 
-                    boolean water_report = summaryReport.checkSummaryExists("water", (String) session.getAttribute("NIC"), account);
-                    if (!water_report) {
-                        // create a new summary report
-                        wReport = gen.dailyReportWater(account, 180, 200, 10_000);
-                        summaryReport.insertSummary(wReport, "water", (String) session.getAttribute("NIC"), account);
-                    }
-
-                    wReport = summaryReport.getSummary("water", (String) session.getAttribute("NIC"), account);
                     Gson gson1 = new Gson();
-                    JsonObject jsonObject = gson1.fromJson(wReport, JsonObject.class);
-                    JsonElement jsonData1 = gson1.toJsonTree(jsonObject);
-                    responseData.add("report", jsonData1);
+                    JsonElement jsonData1 = gson1.toJsonTree(account_bill);
+                    responseData.add("bill", jsonData1);
 
 
-                    Gson gson2 = new Gson();
-                    JsonElement jsonData2 = gson2.toJsonTree(account_bill);
-                    responseData.add("bill", jsonData2);
-
-                    Gson gson3 = new Gson();
                     String id = dao.getIotIdForAccount(account, "WATER");
-                    List<IoTModel> data_list_daily = analytics.getDataForCurrentDate(id);
-                    JsonElement jsonData = gson3.toJsonTree(data_list_daily);
-                    responseData.add("data_list_daily", jsonData);
+
+                    if (!Objects.equals(id, "NO") && id != null) {
+
+                        boolean water_report = summaryReport.checkSummaryExists("water", (String) session.getAttribute("NIC"), account);
+                        if (!water_report) {
+                            // create a new summary report
+                            int monthlyBudget = analytics.getBudgetCurrentMonth(id);
+                            int final_reading_yesterday = analytics.getFinalReadingYesterday(id);
+                            int final_reading_last_month = analytics.getFinalReadingLastMonth(id);
+
+                            wReport = gen.dailyReportWater(account, (final_reading_yesterday - final_reading_last_month), day, monthlyBudget);
+                            summaryReport.insertSummary(wReport, "water", (String) session.getAttribute("NIC"), account);
+                        }
+
+                        wReport = summaryReport.getSummary("water", (String) session.getAttribute("NIC"), account);
+                        Gson gson2 = new Gson();
+                        JsonObject jsonObject = gson2.fromJson(wReport, JsonObject.class);
+                        JsonElement jsonData2 = gson2.toJsonTree(jsonObject);
+                        responseData.add("report", jsonData2);
+
+                        Gson gson3 = new Gson();
+                        List<IoTModel> data_list_daily = analytics.getDataForCurrentDate(id);
+                        JsonElement jsonData = gson3.toJsonTree(data_list_daily);
+                        responseData.add("data_list_daily", jsonData);
+                    } else {
+                        responseData.add("report", null);
+                        responseData.add("data_list_daily", null);
+                    }
 
 
                     resp.setContentType("application/json");
@@ -85,29 +99,40 @@ public class UserBills extends HttpServlet {
                             (String) session.getAttribute("NIC"), account, "ELECTRICITY"
                     );
 
-                    boolean elec_report = summaryReport.checkSummaryExists("electricity", (String) session.getAttribute("NIC"), account);
-                    if (!elec_report) {
-                        // create a new summary report
-                        eReport= gen.dailyReportElectricity(account, 180, 200, 10_000);
-                        summaryReport.insertSummary(eReport, "electricity", (String) session.getAttribute("NIC"), account);
-                    }
-
-                    eReport = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"), account);
                     Gson gson1 = new Gson();
-                    JsonObject jsonObject = gson1.fromJson(eReport, JsonObject.class);
-                    JsonElement jsonData1 = gson1.toJsonTree(jsonObject);
-                    responseData.add("report", jsonData1);
+                    JsonElement jsonData1 = gson1.toJsonTree(account_bill);
+                    responseData.add("bill", jsonData1);
 
 
-                    Gson gson2 = new Gson();
-                    JsonElement jsonData2 = gson2.toJsonTree(account_bill);
-                    responseData.add("bill", jsonData2);
+                    String id = dao.getIotIdForAccount(account, "ELECTRICITY");
 
+                    if (!Objects.equals(id, "NO") && id != null) {
 
-                    Gson gson3 = new Gson();
-                    List<IoTModel> data_list_daily = analytics.getDataForCurrentDate(account);
-                    JsonElement jsonData = gson3.toJsonTree(data_list_daily);
-                    responseData.add("data_list_daily", jsonData);
+                        boolean elec_report = summaryReport.checkSummaryExists("electricity", (String) session.getAttribute("NIC"), account);
+                        if (!elec_report) {
+
+                            int monthlyBudget = analytics.getBudgetCurrentMonth(id);
+                            int final_reading_yesterday = analytics.getFinalReadingYesterday(id);
+                            int final_reading_last_month = analytics.getFinalReadingLastMonth(id);
+
+                            eReport= gen.dailyReportElectricity(account, (final_reading_yesterday - final_reading_last_month), day, monthlyBudget);
+                            summaryReport.insertSummary(eReport, "electricity", (String) session.getAttribute("NIC"), account);
+                        }
+
+                        eReport = summaryReport.getSummary("electricity", (String) session.getAttribute("NIC"), account);
+                        Gson gson2 = new Gson();
+                        JsonObject jsonObject = gson2.fromJson(eReport, JsonObject.class);
+                        JsonElement jsonData2 = gson2.toJsonTree(jsonObject);
+                        responseData.add("report", jsonData2);
+
+                        Gson gson3 = new Gson();
+                        List<IoTModel> data_list_daily = analytics.getDataForCurrentDate(id);
+                        JsonElement jsonData = gson3.toJsonTree(data_list_daily);
+                        responseData.add("data_list_daily", jsonData);
+                    } else {
+                        responseData.add("report", null);
+                        responseData.add("data_list_daily", null);
+                    }
 
 
                     resp.setContentType("application/json");

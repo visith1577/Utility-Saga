@@ -118,24 +118,31 @@
         </section>
 
         <section class="plan2 component electricity" style="background: #FCC7C7">
-            <h1 class="plan2__heading">Bill Details</h1>
-            <div class="element">
-                <h3 class="plan2__heading3">Your Total Balance</h3>
-                <p id="billAmount" class="plan2__price"></p>
-                <h3 class="plan2__heading3">Due Date</h3>
-                <p id="billDue" class="plan2__price"></p>
-                <h3 class="plan2__heading3">Status</h3>
-                <p id="billStatus" class="plan2__price"></p>
-            </div>
-            <div class="element">
-                <button class="btn__plan2" style="background: red">Pay Now</button>
-            </div>
-            <div class="element">
-                <button class="btn__plan2" style="background: red">View Bill</button>
+            <h1 class="plan2__heading">Account Details</h1>
+            <table class="info-table">
+                <tr>
+                    <td><h3 class="plan2__heading3">Address</h3></td>
+                    <td><p id="Address" class="plan2__price"></p></td>
+                </tr>
+                <tr>
+                    <td><h3 class="plan2__heading3">Your Total Balance</h3></td>
+                    <td><p id="billAmount" class="plan2__price"></p></td>
+                </tr>
+                <tr>
+                    <td><h3 class="plan2__heading3">Due Date</h3></td>
+                    <td><p id="billDue" class="plan2__price"></p></td>
+                </tr>
+                <tr>
+                    <td><h3 class="plan2__heading3">Monthly Bill Status</h3></td>
+                    <td><p id="billStatus" class="plan2__price"></p></td>
+                </tr>
+            </table>
+            <div class="element-btn">
+                <button id="payNowButton" class="btn__plan2 element-pay" style="background: red" disabled>Pay Now</button>
             </div>
         </section>
 
-        <section class="suggestion-component component electricity" style="background: #FCC7C7">
+        <section class="suggestion-component component electricity" style="background: #FCC7C7; display: none">
             <table class="wrapper">
                 <tbody>
                 <tr>
@@ -181,6 +188,8 @@
     </main>
     </body>
     <script>
+        let ch = null;
+        let payNowButton = document.getElementById('payNowButton');
         const water = "<%=session.getAttribute("water") != null%>"
         function toggle() {
             if (water === 'true'){
@@ -202,6 +211,9 @@
 
         function select_account(account) {
             document.getElementById('dropbtn').textContent = account;
+            if (ch != null) {
+                ch.destroy();
+            }
 
             fetch("<%= request.getContextPath() %>/user/my-bills?currDash=electricity&account=" + encodeURIComponent(account))
                 .then(response => {
@@ -214,13 +226,47 @@
                     // Do something with the data
                     document.getElementById('billAmount').textContent = data.bill.amount
                     document.getElementById('billDue').textContent = data.bill.dueDate
+
+
+                    if (account) {
+                        if (data.bill.status === "PAID") {
+                            document.getElementById('billStatus').style.color = "green";
+                            payNowButton.style.background = "grey";
+                            payNowButton.disabled = true;
+                        } else if (data.bill.status === "PENDING"){
+                            document.getElementById('billStatus').style.color = "orange";
+                            payNowButton.style.background = "green";
+                            payNowButton.disabled = false;
+                        } else {
+                            document.getElementById('billStatus').style.color = "red";
+                            payNowButton.style.background = "green";
+                            payNowButton.disabled = false;
+                        }
+                    } else {
+                        let payNowButton = document.getElementById('payNowButton');
+                        payNowButton.style.background = "grey";
+                        payNowButton.disabled = true;
+                    }
+
                     document.getElementById('billStatus').textContent = data.bill.status
 
-                    document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
-                    document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
-                    document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+                    if (data.report !== null) {
+                        document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
+                        document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
+                        document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+                    }
 
-                    document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+                    const suggestionComponent = document.querySelector('.suggestion-component');
+
+
+                    if (data.data_list_daily === null) {
+                        document.getElementById('graph-head').textContent = "No data available meter not installed or not active";
+                        suggestionComponent.style.display = "none";
+                        return;
+                    } else {
+                        document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+                        suggestionComponent.style.display = "block";
+                    }
 
                     const dataset = {
                         label: 'Hourly Fluctuation',
@@ -256,15 +302,13 @@
                             }
                         },
                     };
-                    new Chart(e_ctx, config);
+                    ch = new Chart(e_ctx, config);
                 })
                 .catch(error => {
                     // Handle error
                     console.error('Error:', error.message);
                 });
         }
-
-
-    </script>
+     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
