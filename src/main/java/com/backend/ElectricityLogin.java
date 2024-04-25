@@ -2,6 +2,7 @@ package com.backend;
 
 import java.io.*;
 import java.sql.*;
+import java.util.Objects;
 
 import DAO.dao.ElectricityAdminDAO;
 import DAO.dao.ElectricityRegionalAdminDAO;
@@ -45,8 +46,9 @@ public class ElectricityLogin extends HttpServlet{
             String pwdStored = userDao.getPasswordById(id);
             UserRAdmin.Role role = userDao.getUserRoleById(id);
             ElectricityAdminModel model = admindao.getUserDetailsByRegion(id);
+            String status = admindao.getStatusByRegion(id);
             if (pwdStored != null) {
-                if(BCrypt.checkpw(pwd, pwdStored)){
+                if(BCrypt.checkpw(pwd, pwdStored) && !Objects.equals(status, "INACTIVE")){
 //                    System.out.println("===================Password verified--------------------------------");
                     session = req.getSession(true);
                     session.setAttribute("isLoggedIn", true);
@@ -68,7 +70,18 @@ public class ElectricityLogin extends HttpServlet{
                         resp.sendRedirect(req.getContextPath() + "/electricity/regional-admin/user-accounts");
                     }
 
-                } else {
+                } else if(Objects.equals(status, "INACTIVE")) {
+                    req.setAttribute("ID", id);
+                    resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    req.setAttribute("errorMessage", "Region is Deactivated");
+                    RequestDispatcher dispatcher = req.getRequestDispatcher(
+                            "/public/HTML/login/" +
+                                    "electricityLogin.jsp"
+                    );
+                    dispatcher.forward(req, resp);
+                }
+
+                else {
                     req.setAttribute("ID", id);
                     resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     req.setAttribute("errorMessage", "Incorrect Password");
@@ -78,7 +91,9 @@ public class ElectricityLogin extends HttpServlet{
                     );
                     dispatcher.forward(req, resp);
                 }
-            }else {
+            }
+
+            else {
                 req.setAttribute("ID", id);
                 resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 req.setAttribute("errorMessage", "ID not registered");
@@ -88,6 +103,7 @@ public class ElectricityLogin extends HttpServlet{
                 );
                 dispatcher.forward(req, resp);
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

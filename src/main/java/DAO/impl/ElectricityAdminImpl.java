@@ -21,4 +21,8 @@ public interface ElectricityAdminImpl {
     public ElectricityAdminModel getUserDetailsByRegion(String region) throws SQLException;
 
     int updateImportantDetails(ElectricityAdminModel admin) throws Exception;
+
+    void updateAccountStatus(String region, String newStatus) throws SQLException;
+
+    String getStatusByRegion(String region) throws SQLException;
 }

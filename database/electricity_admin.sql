@@ -43,3 +43,6 @@ ALTER COLUMN region SET DEFAULT 'HEADOFFICE';
 ALTER TABLE electricity_admin
 ADD CONSTRAINT unique_region
 UNIQUE (region);
+
+ALTER TABLE utilitysaga.electricity_admin
+ADD COLUMN activate_status ENUM('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'ACTIVE';

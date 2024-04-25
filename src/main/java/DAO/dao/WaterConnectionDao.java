@@ -90,7 +90,7 @@ public class WaterConnectionDao implements Connection {
                 "  AND req.region = admin.region\n" +
                 "  AND (req.requester_name LIKE ? OR req.account_number LIKE ? OR req.nic LIKE ? OR req.email LIKE ? OR req.mobile LIKE ? OR\n" +
                 "       req.region LIKE ? OR req.current_address LIKE ? OR req.new_address LIKE ? OR req.nearest_account LIKE ? OR\n" +
-                "        req.connection_type LIKE ? OR req.account_status LIKE ?)\n" +
+                "        req.connection_requirement LIKE ? OR req.account_status LIKE ?)\n" +
                 "ORDER BY req.`date` DESC";
 
         PreparedStatement stmt = connection.prepareStatement(sql);

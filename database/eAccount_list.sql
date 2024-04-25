@@ -28,6 +28,7 @@ ADD CONSTRAINT fk_eaccount_request_id FOREIGN KEY (request_id) REFERENCES electr
 ALTER TABLE eaccount_list
 ADD COLUMN request_id INT NULL;
 
+
 INSERT INTO eAccount_list (account_number, nic) VALUES ('dummyAccount2', '200114400385');
 
 ALTER TABLE other_table DROP FOREIGN KEY constraint_name;

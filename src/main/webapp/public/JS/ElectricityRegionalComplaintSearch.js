@@ -41,3 +41,35 @@ function displayResults(data) {
         resultsDiv.innerHTML = table;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Event Listner triggered");
+    const showActiveCheckbox = document.getElementById('showActive');
+    const showPendingCheckbox = document.getElementById('showPending');
+    const showDoneCheckbox = document.getElementById('showDone');
+    const tableRows = document.querySelectorAll('table tbody tr');
+
+    showActiveCheckbox.addEventListener('change', filterRows);
+    showPendingCheckbox.addEventListener('change', filterRows);
+    showDoneCheckbox.addEventListener('change', filterRows);
+
+    filterRows();
+
+    function filterRows() {
+        const showActive = showActiveCheckbox.checked;
+        console.log("Show Active: ",showActive);
+        const showPending = showPendingCheckbox.checked;
+        const showDone = showDoneCheckbox.checked;
+        console.log("Show Pending: ",showPending);
+        console.log("Show Done: ",showDone);
+
+        tableRows.forEach(row => {
+            const status = row.querySelector('td:nth-child(7)').textContent.trim();
+            const isActiveStatus = status === 'ACTIVE';
+            const isDoneStatus = status === 'DONE';
+            const isPendingStatus = status === 'PENDING';
+            const showRow = (showActive && isActiveStatus) || (showDone && isDoneStatus) || (showPending && isPendingStatus);
+            row.style.display = showRow ? '' : 'none';
+        });
+    }
+});
