@@ -63,6 +63,9 @@ public class DBConnectionManager {
     }
 
     public static Connection getConnection() {
+        if (connection == null) {
+            INSTANCE.connect();
+        }
         return connection;
     }
 

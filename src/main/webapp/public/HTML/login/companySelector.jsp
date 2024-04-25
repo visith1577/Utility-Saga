@@ -46,11 +46,11 @@
                         Login or Register to your Company
                     </h1>
                     <button class="login-selector__btn admin-btn">
-                        <a href="companyLogin.jsp">Log in</a>
+                        <a href="solarLogin.jsp">Log in</a>
                     </button>
 
                     <button class="login-selector__btn cst-btn">
-                        <a href="companyRegister.jsp">Register </a>
+                        <a href="solarRegisterForm.jsp">Register </a>
                     </button>
 
 <%--                    <button class="login-selector__btn cmp-btn">--%>

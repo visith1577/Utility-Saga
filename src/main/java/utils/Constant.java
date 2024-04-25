@@ -9,6 +9,7 @@ public class Constant {
     public final static String JDBC_DRIVER = "app.db.mysql.jdbc.driver";
 
     public final static String APPLICATION_PROPERTY_FILE_NAME = "application.properties";
+    public static final int SESSION_TIMEOUT_IN_SECONDS = 3600;
 
 
 }
