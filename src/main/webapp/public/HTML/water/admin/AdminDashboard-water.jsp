@@ -20,8 +20,86 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let contextPath = '<%= contextPath %>';
+            document.querySelector('table').addEventListener('click', function(event) {
+                if (event.target.classList.contains('change-status-btn')) {
+
+                    changeUserStatus(event);
+                }
+            });
+        });
+
+
+        function changeUserStatus(event) {
+            let contextPath = '<%= contextPath %>';
+
+            const row = event.target.closest('tr');
+
+            const region = row.querySelector('td:nth-child(1)').textContent;
+            console.log("region: " ,region);
+
+            const currentStatus = row.querySelector('td:nth-child(10)').textContent;
+            console.log("current sttaus: " ,currentStatus);
+
+            const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
+            console.log("New Status: ", newStatus);
+
+            const changeStatus = true;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Are you sure you want to change the status of region " + region + " to " + newStatus + " ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, change it!',
+                cancelButtonText: 'No, keep it',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const region = row.querySelector('td:nth-child(1)').textContent;
+                    if (region) {
+                        fetch(contextPath + '/water/main-admin/region-status', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                region: region,
+                                newStatus: newStatus,
+                                changeStatus: changeStatus
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Response from server:', data);
+
+                                if (data && data.status) {
+                                    row.querySelector('td:nth-child(10)').textContent = data.status;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating user status:', error);
+                            });
+                        console.log("Data successfully passed");
+                    } else {
+                        console.error('Region not found.');
+                    }
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    console.log('Status change cancelled.');
+                }
+            }).catch(error => {
+                console.error('Error updating Region status:', error);
+            });
+        }
+
+
+    </script>
 
 </head>
 
@@ -172,6 +250,8 @@
                 <th>Last Name</th>
                 <th>Main/Regional</th>
                 <th>Mobile</th>
+                <th>Activate/Deactivate</th>
+                <th>Change Status</th>
             </tr>
 
             <c:if test="${empty requestScope.waterRegionalAdmins}">
@@ -191,6 +271,8 @@
                         <td> ${admin.lastName}</td>
                         <td> ${admin.role} </td>
                         <td> ${admin.mobile}</td>
+                        <td>${admin.activeStatus}</td>
+                        <td><button class="change-status-btn">Change Status</button></td>
                     </tr>
                 </c:forEach>
             </c:if>
