@@ -25,7 +25,7 @@ public class ControlSubscriptions extends HttpServlet {
         String action = req.getParameter("action");
         String uri = req.getRequestURI();
         String[] uriParts = uri.split("/");
-        String subscriptionType = uriParts[1];
+        String subscriptionType = uriParts[uriParts.length -1];
 
         UserDetails user = new UserDetailsDao();
         UserAccounts accounts = new UserAccountsDao();

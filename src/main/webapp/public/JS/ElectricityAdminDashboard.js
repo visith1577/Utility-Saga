@@ -88,7 +88,35 @@ document.getElementById('open-popup-btn').addEventListener('click', function() {
                                     text: 'Device ID already exists!'
                                 });
                             } else {
-                                document.getElementById('user-details-form').submit();
+                                fetch(contextPath + '/electricity/regional-admin/api/update-device', {
+                                    method: 'POST',
+                                    body: new URLSearchParams({
+                                        'deviceId': document.getElementById('device-id-input').value,
+                                        'accountNo': accountNumber,
+                                        'prevDeviceId': deviceId
+                                    })
+                                })
+                                    .then(response => response.url)
+                                    .then(data => {
+                                        let url = new URL(data);
+                                        let params = new URLSearchParams(url.search);
+                                        let success = params.get('success');
+                                        if (success) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Success',
+                                                text: 'Device ID updated successfully!'
+                                            }).then(_ => {
+                                                closePopup();
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: 'Something went wrong!'
+                                            });
+                                        }
+                                    });
                             }
                         });
                 } else {
@@ -119,7 +147,34 @@ document.getElementById('open-popup-btn').addEventListener('click', function() {
                     cancelButtonText: 'No, keep it'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                       document.getElementById('delete-form').submit();
+                        fetch(contextPath + '/electricity/regional-admin/api/delete-device', {
+                            method: 'POST',
+                            body: new URLSearchParams({
+                                'deviceId': document.getElementById('delete-device-id').value,
+                                'accountNo': accountNumber
+                            })
+                        })
+                            .then(response => response.url)
+                            .then(data => {
+                                let url = new URL(data);
+                                let params = new URLSearchParams(url.search);
+                                let success = params.get('success');
+                                if (success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: 'Device deleted successfully!'
+                                    }).then(_ => {
+                                        closePopup();
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Something went wrong!'
+                                    });
+                                }
+                            });
                     }
                 });
             } else {

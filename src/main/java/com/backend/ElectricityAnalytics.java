@@ -47,9 +47,10 @@ public class ElectricityAnalytics extends HttpServlet {
 
             if (account != null) {
                 Gson gson = new Gson();
-                List<IoTModel> data_list_daily = analytics.getFinalReadingsDailyForCurrentMonth(account);
 
                 String id = dao.getIotIdForAccount(account, "ELECTRICITY");
+
+                List<IoTModel> data_list_daily = analytics.getFinalReadingsDailyForCurrentMonth(id);
 
                 AnalysisHelper analysisHelper = new AnalysisHelper();
                 List<IoTModel> data_list_monthly = analysisHelper.getDifferenceBetweenReadings(id);

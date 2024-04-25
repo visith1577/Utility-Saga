@@ -304,6 +304,7 @@
                     }
                     return response.json();
                 }).then(data => {
+                    console.log(data)
                     if (data.error) {
                         Swal.fire({
                             icon: "error",
