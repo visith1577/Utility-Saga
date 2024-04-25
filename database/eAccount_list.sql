@@ -61,10 +61,6 @@ CREATE TABLE eaccount_list (
 ALTER TABLE eAccount_list
     ADD COLUMN iot_id varchar(255) NOT NULL DEFAULT 'NO';
 
-ALTER TABLE waccount_list
-    ADD COLUMN iot_id varchar(255) NOT NULL DEFAULT 'NO';
-
-
 
 DELIMITER $$
 CREATE TRIGGER update_electricity_meter_update
