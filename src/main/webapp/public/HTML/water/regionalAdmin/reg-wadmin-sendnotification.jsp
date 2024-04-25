@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: NETHMI LIYANAGE
-  Date: 4/20/2024
-  Time: 12:48 AM
+  User: Liviru Weerasinghe
+  Date: 4/23/2024
+  Time: 01:55 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -25,8 +25,13 @@
     <link href="../../CSS/superadmin/superadmin-notifelecwater.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admintable.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admincards.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionaladmin.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
 
-    <title>Electricity Regional Admin Notifications</title>
+
+    <title>Water Regional Admin Notifications</title>
 </head>
 <body>
 <div class="wrapper">
@@ -41,15 +46,14 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">Customers</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/complaints">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/regional-admin/connections">New Connection</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                     <li class="menu-items-li dropdown">
-                        <a href="#" class="profile-icon" style="font-size: 36px">
-                            <i class="fa-solid fa-circle-user"></i></a>
+                        <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/settings.jsp">Settings</a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/settings.jsp">Settings</a>
                             <a href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </li>
@@ -62,7 +66,7 @@
 <div class="fcontainer">
     <h2 class="heading">Notification Handling | To Users</h2>
     <div class="form-box">
-        <form id="addnotif" method="POST" action="${pageContext.request.contextPath}/raelecNotif">
+        <form id="addnotif" method="POST" action="${pageContext.request.contextPath}/water/regional-admin/notification">
             <%--@declare id="startdate"--%><label for="title">Notification Title:</label>
             <input type="text" name="title" id="title" required>
             <br>

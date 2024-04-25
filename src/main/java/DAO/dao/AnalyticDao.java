@@ -48,7 +48,7 @@ public class AnalyticDao implements Analytics {
             String tableName = account + "_meter";
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT date, time, data FROM " + tableName +
-                            " WHERE date = CURDATE()" +
+                            " WHERE date = CURDATE() " +
                             "UNION " +
                             "(SELECT date, time, data FROM " + tableName +
                             " WHERE date = DATE_ADD(CURDATE(), INTERVAL 1 DAY) " +
@@ -86,6 +86,88 @@ public class AnalyticDao implements Analytics {
         }
 
         return meterData;
+    }
+
+    @Override
+    public int getFinalReadingYesterday(String meter) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int finalReading = 0;
+
+        try {
+            String tableName = meter + "_meter";
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT data FROM " + tableName +
+                            " WHERE date = DATE_SUB(CURDATE(), INTERVAL 1 DAY) " +
+                            "ORDER BY time DESC LIMIT 1"
+            );
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    finalReading = result.getInt("data");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+
+        return finalReading;
+    }
+
+    @Override
+    public int getFinalReadingLastMonth(String meter) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int finalReading = 0;
+
+        try {
+            String tableName = meter + "_meter";
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT data FROM " + tableName +
+                            " WHERE MONTH(date) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) " +
+                            "AND YEAR(date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) " +
+                            "ORDER BY date DESC, time DESC LIMIT 1"
+            );
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    finalReading = result.getInt("data");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+
+        return finalReading;
+    }
+
+    @Override
+    public int getBudgetCurrentMonth(String account) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int budget = 0;
+
+        try {
+            String tableName = account + "_budget_values";
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT data FROM " + tableName +
+                            " WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE()) " +
+                            "ORDER BY date DESC LIMIT 1"
+            );
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    budget = result.getInt("data");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+
+        return budget;
     }
 
     @Override

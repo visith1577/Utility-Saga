@@ -19,6 +19,7 @@ public class WaterRegionalAddAccount extends HttpServlet {
         String requestId = req.getParameter("requestid");
         String region = req.getParameter("region").toUpperCase();
         String subregion = req.getParameter("subregion").toUpperCase();
+        String address = req.getParameter("address");
         String nic = req.getParameter("nicc");
         String deviceId = req.getParameter("iotId");
 
@@ -31,19 +32,14 @@ public class WaterRegionalAddAccount extends HttpServlet {
         }
         account.setRegion(region);
         account.setSubRegion(subregion);
+        account.setAddress(address);
         account.setIotId(deviceId);
 
         ElecWaterAccountsDAO dao = new ElecWaterAccountsDAO();
 
         try {
 
-            dao.saveWaterAccount(account);
-
-            if (!deviceId.isEmpty()) {
-                dao.createMeterTable(deviceId);
-                dao.createMeterBudgetTable(deviceId);
-                dao.insertInitialBudget(deviceId);
-            }
+            dao.saveWaterAccount(account, deviceId);
 
             resp.sendRedirect(req.getHeader("referer"));
         } catch (Exception e) {

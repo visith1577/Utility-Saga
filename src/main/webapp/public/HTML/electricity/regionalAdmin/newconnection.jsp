@@ -10,7 +10,6 @@
 <%
     String contextPath = request.getContextPath();
 %>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -149,11 +148,15 @@
                         <table>
                             <tr>
                                 <td><label for="region">Region </label></td>
-                                <td><input type="text" name="region" id="region" required></td>
+                                <td><input type="text" name="region" id="region" value="${sessionScope.REGION}" readonly></td>
                             </tr>
                             <tr>
                                 <td><label for="subregion">Sub Region</label></td>
                                 <td><input type="text" name="subregion" id="subregion" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="address">Address</label></td>
+                                <td><input type="text" name="address" id="address" required></td>
                             </tr>
                             <tr>
                                 <td><label for="accountno">Account Number </label></td>
@@ -161,7 +164,9 @@
                             </tr>
                             <tr>
                                 <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
+                                <td><input type="text" name="requestid" id="requestid"
+                                           placeholder="Keep empty on manual adding"
+                                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
                             </tr>
                             <tr>
                                 <td><label for="nicc">NIC</label></td>
@@ -173,7 +178,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="form-button">
-                                    <button type="submit" class="buttons">Add Admin</button>
+                                    <button type="submit" class="buttons">Add Account</button>
                                     <button type="reset" onclick="closePopup('popupForm')" class="buttons">Close</button>
                                 </td>
                             </tr>
@@ -299,6 +304,7 @@
                     }
                     return response.json();
                 }).then(data => {
+                    console.log(data)
                     if (data.error) {
                         Swal.fire({
                             icon: "error",
@@ -324,16 +330,17 @@
                             text: "IoT device already Owned."
                         });
                     } else {
+                        // close popup
+                        closePopup('popupForm');
                         toastr.success("Account added successfully.");
                         document.getElementById('addForm').submit();
+                        // reset form fields
+                        document.getElementById('addForm').reset();
                     }
             }).catch(error => {
                 console.error("Problem checking for existing account: ", error);
             }).finally(() => {
-                // close popup
                 closePopup('popupForm');
-                // reset form fields
-                document.getElementById('addForm').reset();
             });
         }
     });

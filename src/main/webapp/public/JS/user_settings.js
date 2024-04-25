@@ -134,17 +134,24 @@ function openPopup1() {
       popupcontainer.classList.add("open-popupcontainer");
 }
 
-document.getElementById('edit-btn_water').addEventListener('click', () => {
-    openPopup1();
-    document.getElementById('water-add_btn').textContent = 'De Activate';
-    document.getElementById('water-add_btn').value = 'INACTIVE';
-});
+const edit_btn_water = document.getElementById('edit-btn_water');
+if(edit_btn_water !== null) {
+    edit_btn_water.addEventListener('click', () => {
+        openPopup1();
+        document.getElementById('water-add_btn').textContent = 'Deactivate';
+        document.getElementById('water-add_btn').value = 'INACTIVE';
+    });
+}
 
-document.getElementById('add-btn_water').addEventListener('click', () => {
-    openPopup1();
-    document.getElementById('water-add_btn').textContent = 'Activate';
-    document.getElementById('water-add_btn').value = 'ACTIVE';
-});
+
+const add_btn_water = document.getElementById('add-btn_water');
+if(add_btn_water !== null) {
+    add_btn_water.addEventListener('click', () => {
+        openPopup1();
+        document.getElementById('water-add_btn').textContent = 'Activate';
+        document.getElementById('water-add_btn').value = 'ACTIVE';
+    });
+}
 
 document.getElementById('water-add_btn').addEventListener('click', (event) => {
     event.preventDefault();
@@ -173,17 +180,24 @@ function openPopup2() {
     popupcontainer2.classList.add("open-popupcontainer2");
 }
 
-document.getElementById('edit-btn_electricity').addEventListener('click', () => {
-    openPopup2();
-    document.getElementById('electricity-add_btn').textContent = 'De Activate';
-    document.getElementById('electricity-add_btn').value = 'INACTIVE';
-});
+const edit_btn_electricity = document.getElementById('edit-btn_electricity');
+if (edit_btn_electricity !== null) {
+    edit_btn_electricity.addEventListener('click', () => {
+        openPopup2();
+        document.getElementById('electricity-add_btn').textContent = 'Deactivate';
+        document.getElementById('electricity-add_btn').value = 'INACTIVE';
+    });
+}
 
-document.getElementById('add-btn_electricity').addEventListener('click', () => {
-    openPopup2();
-    document.getElementById('electricity-add_btn').textContent = 'Activate';
-    document.getElementById('electricity-add_btn').value = 'ACTIVE'
-});
+
+const add_btn_electricity = document.getElementById('add-btn_electricity');
+if (add_btn_electricity !== null) {
+    document.getElementById('add-btn_electricity').addEventListener('click', () => {
+        openPopup2();
+        document.getElementById('electricity-add_btn').textContent = 'Activate';
+        document.getElementById('electricity-add_btn').value = 'ACTIVE'
+    });
+}
 
 document.getElementById('electricity-add_btn').addEventListener('click', (event) => {
     event.preventDefault();
@@ -206,3 +220,86 @@ function closePopup2() {
 
 document.getElementById('close-btn_electricity').addEventListener('click', closePopup2);
 document.getElementById('close-btn2_electricity').addEventListener('click', closePopup2);
+
+
+const sub_electricity = document.getElementById('subscribe-electricity');
+if (sub_electricity !== null) {
+    sub_electricity.addEventListener('click', function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to subscribe to electricity updates.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, subscribe!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('subscribe-electricity').form.submit();
+            }
+        })
+    });
+}
+
+
+const unsub_electricity = document.getElementById('unsubscribe-electricity');
+if (unsub_electricity !== null) {
+    unsub_electricity.addEventListener('click', function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to unsubscribe from electricity updates.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, unsubscribe!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('unsubscribe-electricity').form.submit();
+            }
+        })
+    });
+}
+
+const sub_water = document.getElementById('subscribe-water')
+if (sub_water !== null) {
+    sub_water.addEventListener('click', function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to subscribe to water updates.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, subscribe!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('subscribe-water').form.submit();
+            }
+        })
+    });
+}
+
+
+const  unsub_water = document.getElementById('unsubscribe-water')
+if (unsub_water !== null) {
+    unsub_water.addEventListener('click', function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to unsubscribe from water updates.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, unsubscribe!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('unsubscribe-water').form.submit();
+            }
+        })
+    });
+}

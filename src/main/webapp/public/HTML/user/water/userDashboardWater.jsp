@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div class="navv">
@@ -30,6 +31,11 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
+                <li class="menu-items-li">
+                    <a href="<%= request.getContextPath() %>/water/regional-admin/notification">
+                        <span class="material-icons">notifications</span>
+                    </a>
+                </li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
 
                 <li class="img_user dropdown">
@@ -113,24 +119,30 @@
     </section>
 
     <section class="plan2 component water" style="background: lightblue">
-        <h1 class="plan2__heading">Bill Details</h1>
-        <div class="element">
-            <h3 class="plan2__heading3">Your Total Balance</h3>
-            <p id="billAmount" class="plan2__price"></p>
-            <h3 class="plan2__heading3">Due Date</h3>
-            <p id="billDue" class="plan2__price"></p>
-            <h3 class="plan2__heading3">Status</h3>
-            <p id="billStatus" class="plan2__price"></p>
-        </div>
-        <div class="element">
-            <button class="btn__plan2" style="background: darkblue">Pay Now</button>
-        </div>
-        <div class="element">
-            <button class="btn__plan2" style="background: darkblue">View Bill</button>
+        <table class="info-table">
+            <tr>
+                <td><h3 class="plan2__heading3">Address</h3></td>
+                <td><p id="Address" class="plan2__price"></p></td>
+            </tr>
+            <tr>
+                <td><h3 class="plan2__heading3">Your Total Balance</h3></td>
+                <td><p id="billAmount" class="plan2__price"></p></td>
+            </tr>
+            <tr>
+                <td><h3 class="plan2__heading3">Due Date</h3></td>
+                <td><p id="billDue" class="plan2__price"></p></td>
+            </tr>
+            <tr>
+                <td><h3 class="plan2__heading3">Monthly Bill Status</h3></td>
+                <td><p id="billStatus" class="plan2__price"></p></td>
+            </tr>
+        </table>
+        <div class="element-btn">
+            <button id="payNowButton" class="btn__plan2 element-pay" style="background: darkblue" disabled>Pay Now</button>
         </div>
     </section>
 
-    <section class="suggestion-component component water" style="background: lightblue">
+    <section class="suggestion-component component water" style="background: lightblue; display: none">
         <table class="wrapper">
             <tbody>
             <tr>
@@ -168,11 +180,6 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td class="td-btn">
-                    <button class="see-more" style="color: darkblue; background: lightblue">See more</button>
-                </td>
-            </tr>
             </tbody>
         </table>
     </section>
@@ -182,6 +189,7 @@
 </body>
 <script>
     let ch = null;
+    let payNowButton = document.getElementById('payNowButton');
     const electricity = "<%=session.getAttribute("electricity") != null%>"
     function toggle() {
         if (electricity === 'true'){
@@ -195,6 +203,8 @@
             });
         }
     }
+
+    const w_ctx = document.getElementById('w-graph');
 
     function select_account(account) {
         document.getElementById('dropbtn').textContent = account;
@@ -210,9 +220,28 @@
                 return response.json();
             })
             .then(data => {
-                const w_ctx = document.getElementById('w-graph');
 
-                // Do something with the data
+                if (account) {
+                    if (data.bill.status === "PAID") {
+                        document.getElementById('billStatus').style.color = "green";
+                        payNowButton.style.background = "grey";
+                        payNowButton.disabled = true;
+                    } else if (data.bill.status === "PENDING"){
+                        document.getElementById('billStatus').style.color = "orange";
+                        payNowButton.style.background = "green";
+                        payNowButton.disabled = false;
+                    } else {
+                        document.getElementById('billStatus').style.color = "red";
+                        payNowButton.style.background = "green";
+                        payNowButton.disabled = false;
+                    }
+                } else {
+                    let payNowButton = document.getElementById('payNowButton');
+                    payNowButton.style.background = "grey";
+                    payNowButton.disabled = true;
+                }
+
+
                 document.getElementById('billAmount').textContent = data.bill.amount
                 document.getElementById('billDue').textContent = data.bill.dueDate
                 document.getElementById('billStatus').textContent = data.bill.status
@@ -221,7 +250,17 @@
                 document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
                 document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
 
-                document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+                const suggestionComponent = document.querySelector('.suggestion-component');
+
+
+                if (data.data_list_daily === null) {
+                    document.getElementById('graph-head').textContent = "No data available meter not installed or not active";
+                    suggestionComponent.style.display = "none";
+                    return;
+                } else {
+                    document.getElementById('graph-head').textContent = "Your usage pattern for " + data.data_list_daily[0].date;
+                    suggestionComponent.style.display = "block";
+                }
 
                 const dataset = {
                     label: 'Hourly Fluctuation',

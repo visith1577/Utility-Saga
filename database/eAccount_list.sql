@@ -61,6 +61,11 @@ CREATE TABLE eaccount_list (
 ALTER TABLE eAccount_list
     ADD COLUMN iot_id varchar(255) NOT NULL DEFAULT 'NO';
 
+ALTER TABLE waccount_list
+    ADD COLUMN iot_id varchar(255) NOT NULL DEFAULT 'NO';
+
+
+
 DELIMITER $$
 CREATE TRIGGER update_electricity_meter_update
 AFTER UPDATE ON utilitysaga.eaccount_list
@@ -79,6 +84,7 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
 
 
 
@@ -111,3 +117,9 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+ALTER TABLE eaccount_list ADD COLUMN address VARCHAR(255) NOT NULL;
+ALTER TABLE eaccount_list
+ALTER COLUMN address SET DEFAULT '';
+
+
+

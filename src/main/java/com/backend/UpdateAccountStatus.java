@@ -1,6 +1,7 @@
 package com.backend;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,10 +14,11 @@ import DAO.dao.UserDetailsDao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 @WebServlet("/electricity/regional-admin/user-status")
 public class UpdateAccountStatus extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         BufferedReader reader = request.getReader();
         StringBuilder sb = new StringBuilder();
@@ -30,13 +32,21 @@ public class UpdateAccountStatus extends HttpServlet {
         JsonObject jsonObject = gson.fromJson(requestBody, JsonObject.class);
         String accountNumber = jsonObject.get("accountNumber").getAsString();
         String newStatus = jsonObject.get("newStatus").getAsString();
+        JsonElement changeStatus = jsonObject.get("changeStatus");
 
         UserDetailsDao dao = new UserDetailsDao();
 
         try {
-            dao.updateAccountStatus(accountNumber, newStatus);
-            response.setContentType("application/json");
-            response.getWriter().write("{\"status\":\"" + newStatus + "\"}");
+
+            if (changeStatus.getAsBoolean()) {
+                dao.updateAccountStatus(accountNumber, newStatus);
+                response.setContentType("application/json");
+                response.getWriter().write("{\"status\":\"" + newStatus + "\"}");
+            } else {
+                String status = Objects.equals(newStatus, "ACTIVE") ? "INACTIVE" : "ACTIVE";
+                response.setContentType("application/json");
+                response.getWriter().write("{\"status\":\"" + status + "\"}");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
