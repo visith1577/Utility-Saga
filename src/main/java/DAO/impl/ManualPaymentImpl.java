@@ -8,7 +8,10 @@ import java.util.List;
     public interface ManualPaymentImpl {
         public void insertintomanualpayment(ManualPaymentsModel manualpayments) throws SQLException;
 
-        List<ManualPaymentsModel> getManualPayments(ManualPaymentsModel manualPayments) throws SQLException;
+//        public void insertwatermanualpayment(ManualPaymentsModel manualpayments) throws SQLException;
 
         List<ManualPaymentsModel> getManualPayments() throws SQLException;
+
+//        List<ManualPaymentsModel> getWaterManualPayments() throws SQLException;
+
     }

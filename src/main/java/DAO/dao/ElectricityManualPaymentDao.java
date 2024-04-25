@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ElectricityManualPaymentDao implements ManualPaymentImpl{
 
-        public void insertintomanualpayment(ManualPaymentsModel manualpayments) throws SQLException {
+    public void insertintomanualpayment(ManualPaymentsModel manualpayments) throws SQLException {
         Connection connection = Connectdb.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO electricity_manual_payment (account_number, nic, amount, date) VALUES (?, ?, ?, ?)");
         preparedStatement.setString(1, manualpayments.getAccount_number());
@@ -25,12 +25,7 @@ public class ElectricityManualPaymentDao implements ManualPaymentImpl{
     }
 
     @Override
-    public List<ManualPaymentsModel> getManualPayments(ManualPaymentsModel manualPayments) throws SQLException {
-        return null;
-    }
-
-    @Override
-        public List<ManualPaymentsModel> getManualPayments() throws SQLException {
+    public List<ManualPaymentsModel> getManualPayments() throws SQLException {
         Connection con = Connectdb.getConnection();
         List<ManualPaymentsModel> manualPaymentsList = new ArrayList<>();
 
@@ -56,6 +51,5 @@ public class ElectricityManualPaymentDao implements ManualPaymentImpl{
         con.close();
         return manualPaymentsList;
     }
-    }
-
+}
 
