@@ -92,7 +92,8 @@ document.getElementById('open-popup-btn').addEventListener('click', function() {
                                     method: 'POST',
                                     body: new URLSearchParams({
                                         'deviceId': document.getElementById('device-id-input').value,
-                                        'accountNo': accountNumber
+                                        'accountNo': accountNumber,
+                                        'prevDeviceId': deviceId
                                     })
                                 })
                                     .then(response => response.url)
