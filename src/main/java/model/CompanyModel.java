@@ -1,17 +1,36 @@
 package model;
 
 public class CompanyModel {
-    private String id;
+    private Integer id;
     private String name;
     private Integer addressId;
     private String email;
     private String contact;
+    private String userName;
+    private String password;
 
-    public String getId() {
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,5 +64,17 @@ public class CompanyModel {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public CompanyModel getEmptyObject() {
+        CompanyModel obj = new CompanyModel();
+
+        obj.setName("");
+        obj.setAddressId(0);
+        obj.setEmail("");
+        obj.setContact("");
+        obj.setUserName("");
+        obj.setPassword("");
+        return obj;
     }
 }

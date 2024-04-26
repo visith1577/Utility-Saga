@@ -5,7 +5,7 @@ import java.sql.*;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Connectdb {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/Store?useSSL=false&allowPublicKeyRetrieval=true";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/utilitySaga?useSSL=false&allowPublicKeyRetrieval=true";
     public static final Dotenv dotenv = Dotenv
             .configure()
             .load();

@@ -1,5 +1,7 @@
 package model;
 
+import java.io.InputStream;
+
 public class ItemModel {
     private Integer itemID;
     private String itemName;
@@ -10,6 +12,24 @@ public class ItemModel {
     private Integer warrantyPeriod;
     private Integer quantity;
     private Integer supplierID;
+    private String imageName;
+    private InputStream imageStream;
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public InputStream getImageStream() {
+        return imageStream;
+    }
+
+    public void setImageStream(InputStream imageStream) {
+        this.imageStream = imageStream;
+    }
 
     public Integer getItemID() {
         return itemID;

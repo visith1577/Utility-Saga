@@ -11,4 +11,7 @@ public interface CompanyDetails {
     void deleteCompanyById(Integer id) throws SQLException;
     CompanyModel selectCompanyById(Integer id) throws SQLException;
     List<CompanyModel> selectAllCompanies() throws SQLException;
+
+    CompanyModel selectCompanyByUserName(String userName);
+
 }

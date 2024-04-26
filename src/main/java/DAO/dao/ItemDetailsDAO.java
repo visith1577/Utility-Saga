@@ -18,7 +18,7 @@ public class ItemDetailsDAO implements ItemDetails {
     private static final String SELECT_ALL_ITEMS = "SELECT * FROM item";
     private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE id =?";
     private static final String SELECT_ALL_ITEMS_BY_SUPPLIER_ID = "SELECT * FROM item WHERE supplier_id =?";
-    private static final String ADD_ITEM = "INSERT INTO item (name, description, cost, profit_margin, price, warranty_period, quantity, supplier_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String ADD_ITEM = "INSERT INTO item (name, description, cost, profit_margin, price, warranty_period, quantity, supplier_id , image_name, image) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?, ?)";
     private static final String UPDATE_ITEM = "UPDATE item SET name = ?, description = ?, cost = ?, profit_margin = ?, price = ?, warranty_period = ?, quantity = ?, supplier_id = ? WHERE id = ?" ;
 
     private DBConnectionManager dbConnectionManager;
@@ -49,6 +49,8 @@ public class ItemDetailsDAO implements ItemDetails {
             preparedStatement.setInt(6, itemModel.getWarrantyPeriod());
             preparedStatement.setInt(7, itemModel.getQuantity());
             preparedStatement.setInt(8, itemModel.getSupplierID());
+            preparedStatement.setString(9, itemModel.getImageName());
+            preparedStatement.setBlob(10, itemModel.getImageStream());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.next();
@@ -81,19 +83,18 @@ public class ItemDetailsDAO implements ItemDetails {
     }
 
     @Override
-    public Integer deleteItemById(Integer id) {
-
+    public Boolean deleteItemById(Integer id) {
         PreparedStatement preparedStatement = null;
+        boolean falg = false;
         try{
             preparedStatement = this.dbConnectionManager.getConnection().prepareStatement(DELETE_ITEM_BY_ID);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-
+            falg = true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Item Id: " + id + " deleted");
-        return id;
+        return falg;
     }
 
     @Override

@@ -1,118 +1,79 @@
-<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!--
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+-->
+<% String contextPath = request.getContextPath();%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="../../CSS/solar/company.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link href='https://fonts.googleapis.com/css?family=Spartan' rel='stylesheet'>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/styleMain.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/form.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/store.css">
 </head>
 <body>
-<%--<section id="header"> </section>--%>
+<section id="header">
+    <a href="index.html"><img id="logo" src="../../images/solar/logo.png" alt=""></a>
+    <div id="proDe">
+        <p> Test.com${companyName}
+        </p>
+        <a href="#"><img id="proImg" src="../../images/solar/companyLogo.jpeg" alt=""></a>
+    </div>
+</section>
 
-<%--<section id="editPro">--%>
-<%--    <form action="">--%>
-<%--        <lable> </lable>--%>
-<%--    </form>--%>
-<%--</section>--%>
+<section id="hero">
+    <h4>Utility Saga</h4>
+    <h2>Manage your Trends</h2>
+    <h1>On all products</h1>
+    <p> Make an E-Day </p>
+    <form action="<%= request.getContextPath() %>/item/supplierItems" method="get">
+        <button type="submit"> See your Items</button>
+        <input type="text" name="supplierId" value="${supplierId}" placeholder="Enter Supplier ID"
+               style="visibility: hidden">
 
-<%--<section id="storeItem">--%>
-<%--    <div class="itemS">--%>
-<%--        <img src="" alt="">--%>
-<%--        <p>Name</p>--%>
-<%--        <p>Price</p>--%>
-<%--        <p>Quantity</p>--%>
-<%--        <i class="fas fa-plus"></i>--%>
-<%--        <i class="fas fa-minus"></i>--%>
-<%--    </div>--%>
-<%--</section>--%>
-
-<%--<section id="crud">--%>
-    <button> <i class="fas fa-plus"></i> </button>
-    <button> <i class="fas fa-minus"></i> </button>
-    <button> <i class="fas fa-edit"></i> </button>
-    <button> <i class="fas fa-trash"></i> </button>
-
-<%--</section>--%>
-
-<%--<section id="addItem">--%>
-<%--    <form action="<%= request.getContextPath() %>/story" >--%>
-<%--        <label for="iName"> Name </label>--%>
-<%--        <input type="text" name="iName" id="iName">--%>
-
-<%--        <label for="itemID"> Item ID</label>--%>
-<%--        <input type="number" name="I=itemID" id="itemID">--%>
-
-<%--        <label for="price"> Price </label>--%>
-<%--        <input type="number" name="price"  id="price">--%>
-
-<%--        <label for="qnty"> Quantity </label>--%>
-<%--        <input type="number" name="qnty" id="qnty">--%>
-
-<%--        <button type="submit">Submit</button>--%>
-<%--        <button type="reset">Reset</button>--%>
-<%--    </form>--%>
-<%--</section>--%>
-
-<%--<section>--%>
-<%--    <form action="<%= request.getContextPath() %>/story">--%>
-<%--        <label> Items to Add </label>--%>
-<%--        <input type="number" name="" >--%>
-<%--        <button type="submit">Submit</button>--%>
-<%--        <button type="reset">Reset</button>--%>
-<%--    </form>--%>
-<%--</section>--%>
-<%--<section id="footer">--%>
-
-<%--<% String iNameParam = request.getParameter("iName");%>--%>
-<%--    <% if (iNameParam == "1") { %>--%>
-<%--    <p> Item Added Successfully </p>--%>
-<%--    <% }--%>
-<%--     else{ %>--%>
-<%--    <p> Item Not Added </p>--%>
-<%--    <% } %>--%>
-<%--<%=iNameParam%>--%>
-<%--</section>--%>
-
-<section id="add">
-    <form action="<%= request.getContextPath() %>/story" >
-        <label for="iName"> Name </label>
-        <input type="text" name="iName" id="iName">
-
-        <label for="itemID"> Item ID</label>
-        <input type="number" name="I=itemID" id="itemID">
-
-        <label for="price"> Price </label>
-        <input type="number" name="price"  id="price">
-
-        <label for="qnty"> Quantity </label>
-        <input type="number" name="qnty" id="qnty">
-
-        <label for="ct"> Quantity </label>
-        <input type="number" name="ct" id="ct">
-
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
     </form>
 </section>
 
-<section id="remove">
-    <form action="<%= request.getContextPath() %>/story">
-        <label for="rm"> Items to Remove </label>
-        <input type="number" name="rm" id="rm" >
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-    </form>
+<section id="mainBody" class="section-p1">
+    <div id="welcomeNote">
+        <h2> Welcome ${companyName}</h2>
+    </div>
+    <div id="btn">
+        <a href="<%= request.getContextPath()%>/public/HTML/solar/addItem.jsp">Add Item</a>
+        <a href="<%= request.getContextPath()%>/public/HTML/solar/*"> Utility Saga Store </a>
+    </div>
 </section>
 
-<section id="listI">
-    <form action="<%= request.getContextPath() %>/story">
-        <label for="sr"> Items to search </label>
-        <input type="number" name="sr" id="sr" >
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-    </form>
+<footer class="section-p1">
+    <div class="footerCol">
+        <img class="logo" src="img/logo.png" alt="">
+        <h4>Contact</h4>
+        <p><strong>Address</strong>: 1234 Street Adress City Address, 1234</p>
+        <p><strong>Phone</strong>: (077) 456-7890</p>
+        <p><strong>Fax</strong>: (077) 456-7890</p>
+        <p><strong>Email</strong>: utilitySaga@gmail.com </p>
 
-</section>
+    </div>
+    <div class="footerCol">
+        <h4>About</h4>
+        <a href="<%= request.getContextPath()%>/public/HTML/pages/aboutUs.jsp">About us</a>
+        <a href="#">Privacy and Policy</a>
+        <a href="#">Terms and Condition</a>
+        <a href="#">Contact Us</a>
+    </div>
+    <div class="footerCol">
+        <h4>Account</h4>
+        <p>${companyName}</p>
+    </div>
+
+</footer>
+
+<form action="/logout" method="get">
+    <button type="submit">Logout</button>
+</form>
 
 </body>
 </html>

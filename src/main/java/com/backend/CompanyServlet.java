@@ -5,13 +5,18 @@ import DAO.dao.AddressDetailsDAO;
 import DAO.dao.CompanyDetailsDAO;
 import DAO.impl.AddressDetails;
 import DAO.impl.CompanyDetails;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.AddressModel;
 import model.CompanyModel;
+import utils.CompanyModelDTO;
+import utils.CompanyRegisterException;
+import utils.PasswordHashingUtility;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,12 +32,13 @@ public class CompanyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestURI = req.getRequestURI();
 
-        if (requestURI.startsWith( req.getContextPath() + "/company/all")) {
+        if (requestURI.startsWith(req.getContextPath() + "/company/all")) {
             System.out.println("All users");
-            // Handle request for /user/all
-        } else if (requestURI.equals(req.getContextPath() + "/company/1")) {
-            System.out.println("User with id 1");
-            // Handle request for /user/1
+
+        } else if (requestURI.equals(req.getContextPath() + "/company/check-username")) {
+            String userName = req.getParameter("userName");
+
+
         } else {
             System.out.println("Error");
             // Error
@@ -41,59 +47,88 @@ public class CompanyServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        int companyId = Integer.parseInt(req.getParameter("company_id"));
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String name = req.getParameter("name");
-        String email = req.getParameter("email");
-        String companyContact = req.getParameter("company_contact");
-
-        String street = req.getParameter("street");
-        String city = req.getParameter("city");
-        String state = req.getParameter("state");
-        String country = req.getParameter("country");
-        int zipCode = Integer.parseInt(req.getParameter("zipCode"));
-        String addressContact = req.getParameter("address_contact");
-
-        AddressModel address = new AddressModel();
-        address.setStreet(street);
-        address.setCity(city);
-        address.setState(state);
-        address.setCountry(country);
-        address.setZipCode(zipCode);
-        address.setContact(addressContact);
-
-        CompanyModel company = new CompanyModel();
-        company.setName(name);
-        company.setEmail(email);
-        company.setContact(companyContact);
+        CompanyModelDTO companyModelDTO = new CompanyModelDTO();
+        companyModelDTO.setName(req.getParameter("name"));
+        companyModelDTO.setEmail(req.getParameter("email"));
+        companyModelDTO.setCompanyContact(req.getParameter("company_contact"));
+        companyModelDTO.setUserName(req.getParameter("userName"));
+        companyModelDTO.setPassword(req.getParameter("password"));
+        companyModelDTO.setStreet(req.getParameter("street"));
+        companyModelDTO.setCity(req.getParameter("city"));
+        companyModelDTO.setState(req.getParameter("state"));
+        companyModelDTO.setCountry(req.getParameter("country"));
+        companyModelDTO.setZipCode(Integer.parseInt(req.getParameter("zipCode")));
+        companyModelDTO.setAddressContact(req.getParameter("address_contact"));
 
 
-        AddressDetails addressDetails = new AddressDetailsDAO();
         CompanyDetails companyDetails = new CompanyDetailsDAO();
-        try {
-            Integer addressId = addressDetails.addAddress(address);
+        CompanyModel companyModel = companyDetails.selectCompanyByUserName(companyModelDTO.getUserName());
+        if (companyModel != null) {
+            System.out.println("User Name already exists");
+            req.setAttribute("errorMessage", companyModelDTO.getUserName() + " :: already exists");
+            req.setAttribute("contextPath", req.getContextPath());
 
-            company.setAddressId(addressId);
-            Integer companyId =  companyDetails.addCompany(company);
-            System.out.println("Company Id: " + companyId);
+            HttpSession session = req.getSession();
+            companyModelDTO.setPassword("");
+            session.setAttribute("companyModelDTO", companyModelDTO);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            RequestDispatcher dispatcher = req.getRequestDispatcher( "/public/HTML/solar/error.jsp");
+            dispatcher.forward(req, resp);
+//            throw new CompanyRegisterException("User Name already exists");
+//            RequestDispatcher dispatcher = req.getRequestDispatcher(req.getContextPath() + "/public/HTML/login/companyRegister.jsp");
+//            req.setAttribute("errorMessage", "Error message here");
+        } else {
+            AddressModel address = new AddressModel();
+            address.setStreet(companyModelDTO.getStreet());
+            address.setCity(companyModelDTO.getCity());
+            address.setState(companyModelDTO.getState());
+            address.setCountry(companyModelDTO.getCountry());
+            address.setZipCode(companyModelDTO.getZipCode());
+            address.setContact(companyModelDTO.getAddressContact());
+
+            CompanyModel company = new CompanyModel();
+            company.setName(company.getName());
+            company.setEmail(company.getEmail());
+            company.setContact(companyModelDTO.getCompanyContact());
+            company.setUserName(companyModelDTO.getUserName());
+            company.setPassword(PasswordHashingUtility.hash(companyModelDTO.getPassword()));
+
+            AddressDetails addressDetails = new AddressDetailsDAO();
+            try {
+                Integer addressId = addressDetails.addAddress(address);
+
+                company.setAddressId(addressId);
+                Integer companyId =  companyDetails.addCompany(company);
+                System.out.println("Company Id: " + companyId);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/public/HTML/login/solarLogin.jsp");
+            requestDispatcher.forward(req, resp);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+
 
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        int companyId = Integer.parseInt(req.getParameter("company_id"));
+
     }
 
     @Override
     public void init() throws ServletException {
-        super.init();
+
     }
+
+
 }

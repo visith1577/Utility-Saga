@@ -5,10 +5,13 @@ import java.io.*;
 
 import DAO.dao.RegisterSolarDAO;
 import DAO.impl.SolarCompanyImpl;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.SolarCompanyModel;
 import org.mindrot.jbcrypt.BCrypt;
+import utils.PasswordHashingUtility;
 
 
 import java.sql.SQLException;
@@ -44,9 +47,22 @@ public class RegisterSolar extends HttpServlet {
         company.setAddress(address);
         company.setRemarks(comment);
 
+        SolarCompanyImpl solarCompany = new RegisterSolarDAO();
+
+        SolarCompanyModel dbCompanyModel = solarCompany.getRegisteredCompanyByUserName(company.getEmail());
+        if(dbCompanyModel != null){
+            resp.setStatus(HttpServletResponse.SC_CONFLICT);
+            req.setAttribute("errorMessage", "Company email already exist. Please enter a valid email.");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/login/solarLogin.jsp");
+            try {
+                dispatcher.forward(req, resp);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         if(Objects.equals(pwd,repwd)){
-            String bcryptHashedPwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
-            company.setPwd(bcryptHashedPwd);
+            company.setPwd(PasswordHashingUtility.hash(pwd));
         }
 
         SolarCompanyImpl dao = new RegisterSolarDAO();
