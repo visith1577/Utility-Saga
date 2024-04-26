@@ -125,7 +125,7 @@
     <div class="searchbar" style="margin-top: 12.5vh">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/complaints">
             <label for="nic"></label>
-            <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
+            <input name="id" type="text" id="nic" class="Comsearch-bar" placeholder="Enter Keyword" style="margin-left: 20px">
 
             <button type="submit" name="search" class="btn" onclick="search(); return false;">Search</button>
             <button type="button" id="resetButton" class="btn">Reset</button>

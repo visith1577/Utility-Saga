@@ -21,13 +21,13 @@
 .body{
     background-color:var(--tertiary-color);
     font-family: 'Roboto', sans-serif;
-  }
+}
 
 
 
 
-  /* Top bar*/
- .topbar {
+/* Top bar*/
+.topbar {
     margin-right:15px;
     display: flex;
     margin-left: 15px;
@@ -40,7 +40,7 @@
     border-radius: 10px;
 }
 
- .topbar .lefttop{
+.topbar .lefttop{
     align-self:flex-start;
 }
 
@@ -60,7 +60,7 @@ canvas {
 
 .home .details .connection-analyse .details-chart{
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 1px;
     padding-left: 50px;
 }
 
@@ -74,14 +74,13 @@ canvas {
     margin-right: 20px;
 }
 
-
 .complaints{
     position: relative;
     display: grid;
     margin: 20px;
 }
 
- .tablediv .customerdetails{
+.tablediv .customerdetails{
     position: relative;
     /*display: grid;*/
     max-height: 500px;
@@ -90,31 +89,33 @@ canvas {
     box-shadow: var(--box-shadow);
     padding: 20px;
 }
- .tablediv .customerdetails .table-container{
+.tablediv .customerdetails .table-container{
     position: relative;
     display: block;
     overflow-y: scroll;
     height: 100%;
 }
 
- .tablediv .customerdetails .titlebar{
+.tablediv .customerdetails .titlebar{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 12px;
 }
 
- .tablediv .customerdetails .titlebar .h2{
+.tablediv .customerdetails .titlebar .h2{
     font-weight: 600;
     color: var(--secondary-color);
 }
 
- .btn{
+.btn{
     position: relative;
+    font-size:14px;
     padding: 5px 10px;
     background-color: var(--electricity-color2);
     text-decoration: none;
     color: var(--tertiary-color);
+    border:none;
     border-radius: 6px;
 }
 
@@ -165,6 +166,13 @@ canvas {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
+.table .change-status-btn{
+    background-color:var(--electricity-color);
+    border:none;
+    padding:5px;
+    border-radius:8px;
+}
 /* ======================= Cards ====================== */
 .cardBox {
     position: relative;
@@ -173,9 +181,9 @@ canvas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
-  }
+}
 
-  .cardBox .card {
+.cardBox .card {
     position: relative;
     background: var(--tertiary-color);
     padding: 30px;
@@ -187,39 +195,39 @@ canvas {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     text-decoration: none;
 
-  }
-  .cardBox .card .infor{
+}
+.cardBox .card .infor{
     align-self: center;
-  }
+}
 
-  .cardBox .card .numbers {
+.cardBox .card .numbers {
     position: relative;
     font-weight: 500;
     font-size: 2.5rem;
     color: var(--primary-color);
-  }
+}
 
-  .cardBox .card .cardName {
+.cardBox .card .cardName {
     color: var(--primary-color);
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     margin-top: 5px;
     text-decoration: none;
-  }
+}
 
-  .cardBox .card .iconBx {
+.cardBox .card .iconBx {
     font-size: 3.5rem;
     color: var(--electricity-color2);
     align-self: center;
-  }
+}
 
-  .cardBox .card:hover {
+.cardBox .card:hover {
     background: var(--electricity-color);
-  }
-  .cardBox .card:hover .numbers,
-  .cardBox .card:hover .cardName,
-  .cardBox .card:hover .iconBx {
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx {
     color: var(--tertiary-color);
-  }
+}
 
 .dropdown {
     position: relative;
@@ -283,12 +291,14 @@ input[type="password"] {
 
 .bar-search-button .button-noti .notificationsend{
     position: relative;
-    padding: 5px 10px;
+    padding: 8px 10px;
     background-color: var(--electricity-color2);
     text-decoration: none;
     color: var(--tertiary-color);
     border-radius: 6px;
     margin-left: 50px;
+    font-size:13px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .bar-search-button input[type="text"] {
@@ -300,7 +310,7 @@ input[type="password"] {
 
 .bar-search-button .send-notification-button {
     margin-left: auto;
-    border: none;
+    border: 2px;
     padding: 8px 12px;
     cursor: pointer;
     background-color: var(--electricity-color2);
@@ -309,6 +319,14 @@ input[type="password"] {
     border-radius: 6px;
 }
 
+.Comsearch-bar{
+    border:none;
+    padding:8px;
+    padding-right:25px;
+    border-radius:7px;
+    border:1px solid #ccc;
+}
+=======
 .search-option {
     display: flex;
     align-items: center;
@@ -344,48 +362,47 @@ input[type="password"] {
     margin: 0 auto;
 }
 
-
-
 /* ====================== Responsive Design ========================== */
 @media (max-width: 1200px) {
     .cardBox {
-      grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 768px){
     .cardBox {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 610px) {
     .cardBox {
 
-      grid-template-columns: repeat(2, 1fr);
-      justify-content: space-between;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
     }
     .cardBox .card {
-      padding: 10px;
-      height: 100%;
-      border-radius: 10px;
-      justify-content: space-between;
+        padding: 10px;
+        height: 100%;
+        border-radius: 10px;
+        font-size:1.4rem;
+        justify-content: space-between;
     }
     .cardBox .card .numbers {
-      position: relative;
-      font-weight: 500;
-      font-size: 1rem;
-      color: var(--primary-color);
+        position: relative;
+        font-weight: 500;
+        font-size: 1.2rem;
+        color: var(--primary-color);
     }
 
     .cardBox .card .cardName {
-      font-size: 0.8rem;
-      margin-top: 3px;
+        font-size: 0.8rem;
+        margin-top: 3px;
     }
 
     .cardBox .card .iconBx {
-      margin-left: 10px;
-      font-size: 2rem;
+        margin-left: 10px;
+        font-size: 2rem;
     }
 }
 

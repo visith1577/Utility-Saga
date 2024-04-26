@@ -55,7 +55,7 @@
 <div class="payment-handle">
     <div class="bottom-bar">
         <div class="paymetbar2">
-            <h3>Handle Manual Bill Payments</h3>
+            <h3>Electricity - Handle Manual Bill Payments</h3>
             <p>Payments made manually have update into the system</p>
             <form id="manualpaymentform" method="POST" class="formbox" action="${pageContext.request.contextPath}/elemanualpayment">
                 <label for="account_number">Account Number</label>

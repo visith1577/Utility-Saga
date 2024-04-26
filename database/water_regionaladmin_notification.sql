@@ -5,6 +5,6 @@ CREATE TABLE water_regionaladmin_notification
     recipientType ENUM('ALL', 'SPECIFIC') NOT NULL,
     recipientId VARCHAR(25) NULL,
     date TIMESTAMP NOT NULL,
-    subject VARCHAR(50),
+    subject VARCHAR(100),
     message VARCHAR(500)
 );
