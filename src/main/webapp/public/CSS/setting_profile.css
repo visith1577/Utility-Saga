@@ -17,258 +17,312 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
-  
+
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12.5vh;
+  margin-left: 2vh;
+}
+
 .profile-container {
-    max-width: 90%;
-    background-color: rgb(215, 239, 250);
-    padding: 20px;
-    margin: 13vh auto 20px;
+  max-width: 90%;
+  background-color: rgb(215, 239, 250);
+  padding: 20px;
+  margin: 13vh auto 20px;
 }
 
 .profile-container h2 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .profile-container label {
-    display: block;
-    margin-bottom: 8px;
+  display: block;
+  margin-bottom: 8px;
 }
-  
+
 .content-btn {
-      margin-top: 10px;
-      background-color: #0d6605;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;   
-      border-radius: 5px;
+  margin-top: 10px;
+  background-color: #0d6605;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
 }
 
 .content-btn:hover {
-      background-color: #053f00;
-      color: #fff;
-      cursor: pointer;
-      transition-delay: 10ms;
+  background-color: #053f00;
+  color: #fff;
+  cursor: pointer;
+  transition-delay: 10ms;
 }
 
 .profile-container section{
-      /* max-width: 800px; */
-      margin: 20px auto;
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 15px;
+  /* max-width: 800px; */
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
 }
-  
-  /* User Setting */
+
+form{
+  width: 100%;
+  max-width:600px;
+  margin-top:2vh;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  width: calc(100% - 2rem);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* User Setting */
 section:nth-child(1) {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-  
-  /* Account Settings */
+
+/* Account Settings */
 section:nth-child(2) {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
+
 
 .profile-container input[type="text"],
-  select {
-    width: 100%;
-    padding: 5px;
-    /* background-color: yellowgreen; */
-    margin-bottom: 20px;
-    border-radius: 5px;
-    height: 30px;
-    border-color: rgb(172, 168, 168);
-  }
-  input[type="password"] {
-    width: 100%;
-    padding: 5px;
-    /* background-color: yellowgreen; */
-    margin-bottom: 20px;
-    border-radius: 5px;
-    height: 20px;
-    border-color: rgb(172, 168, 168);
-  }
-  
-  /* Appearance Settings */
+select {
+  width: 100%;
+  padding: 5px;
+  /* background-color: yellowgreen; */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  height: 30px;
+  border-color: rgb(172, 168, 168);
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  /* background-color: yellowgreen; */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  height: 20px;
+  border-color: rgb(172, 168, 168);
+}
+
+/* Appearance Settings */
 section:nth-child(3) {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-  
-  /* Service Settings */
+
+/* Service Settings */
 section:nth-child(4) {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-  
+
 section li {
-    list-style-type:none;
-    margin: 10px;
+  list-style-type:none;
+  margin: 10px;
 }
-  
-  .Edit{
-    background-color: rgb(2, 88, 88);
+
+.error {
+  color: red;
+  margin-top: 0.5rem;
+}
+
+
+#buttons {
+  margin-top: 1rem;
+}
+
+.content-btn {
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.Edit{
+  background-color: rgb(2, 88, 88);
+}
+.Delete{
+  background-color: rgb(163, 8, 8);
+}
+
+.Add {
+  background-color: rgb(3, 9, 94);
+  margin-bottom: 15px;
+}
+
+input[type="number"], input[type="text"], input[type="password"] {
+  width: 30%;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  height: 30px;
+  border-color: rgb(131, 128, 128);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
   }
-  .Delete{
-    background-color: rgb(163, 8, 8);
-  }
-  
-  .Add {
-    background-color: rgb(3, 9, 94);
-    margin-bottom: 15px;
-  }
-  
-  input[type="number"] {
-    width: 30%;
-    padding: 5px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    height: 30px;
-    border-color: rgb(131, 128, 128);
-  }
-  
-  /* Responsive Styles */
-  @media screen and (max-width: 600px) {
-    .container {
-      padding: 10px;
-    }
-  }
+}
 
 .image-profile {
-    border: 2px solid rgb(76, 154, 255);
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #f0f0f0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  border: 2px solid rgb(76, 154, 255);
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .popupcontainer,
-  .popupcontainer2 {
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    opacity: 0;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    transition: all 0.3s ease;
+.popupcontainer2 {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.open-popupcontainer,
+.open-popupcontainer2 {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup,
+.popup2 {
+  width: 400px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 10px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s;
+}
+
+.open-popup,
+.open-popup2 {
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popup h2 {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.popup .btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.accountType , option, input{
+  /* background-color: #00ffff; */
+  width: 150px;
+  font-family: inherit;
+  padding: 10px;
+  font-size: 11px;
+  border-radius: 40px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+hr{
+  margin-bottom: 20px;
+}
+
+.add-btn,
+.add-btn, .wateradd-btn,
+.close-btn {
+  width: 150px;
+  font-family: inherit;
+  padding: 10px;
+  font-size: 11px;
+  border-radius: 40px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.add-btn {
+  background: var(--electricity-color2);
+  color: #f8f8f8;
+}
+
+.wateradd-btn {
+  background: var(--water-color2);
+  color: #f8f8f8;
+}
+
+.close-btn {
+  background: var(--delete-color);
+  color: #f8f8f8;
+}
+
+.add-btn:hover {
+  background: var(--electricity-color);
+  cursor: pointer;
+}
+
+.close-btn:hover{
+  background-color: var(--delete-color2);
+  cursor: pointer;
+}
+
+@media screen and (max-device-width: 480px) {
+  .popup {
+    width: 300px;
   }
-  
-  .open-popupcontainer,
-  .open-popupcontainer2 {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  .popup,
-  .popup2 {
-    width: 400px;
-    background: #fff;
-    border-radius: 6px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
-    text-align: center;
-    padding: 10px;
-    color: #333;
-    visibility: hidden;
-    transition: transform 0.4s;
-  }
-  
-  .open-popup,
-  .open-popup2 {
-    visibility: visible;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
-  
+
   .popup h2 {
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 20px;
   }
-  
-  .popup .btns {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-  }
-
-  .accountType , option, input{
-    /* background-color: #00ffff; */
-    width: 150px;
-    font-family: inherit;
-    padding: 10px;
-    font-size: 11px;
-    border-radius: 40px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  }
-
-  hr{
-    margin-bottom: 20px;
-  }
-  
-  .add-btn,
-  .add-btn, .wateradd-btn,
-  .close-btn {
-    width: 150px;
-    font-family: inherit;
-    padding: 10px;
-    font-size: 11px;
-    border-radius: 40px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  }
-  
-  .add-btn {
-    background: var(--electricity-color2);
-    color: #f8f8f8;
-  }
-  
-  .wateradd-btn {
-    background: var(--water-color2);
-    color: #f8f8f8;
-  }
-  
-  .close-btn {
-    background: var(--delete-color);
-    color: #f8f8f8;
-  }
-  
-  .add-btn:hover {
-    background: var(--electricity-color);
-    cursor: pointer;
-  }
-
-  .close-btn:hover{
-    background-color: var(--delete-color2);
-    cursor: pointer;
-  }
-
-  @media screen and (max-device-width: 480px) {
-    .popup {
-      width: 300px;
-    }
-  
-    .popup h2 {
-      font-size: 20px;
-    }
-  }
+}
