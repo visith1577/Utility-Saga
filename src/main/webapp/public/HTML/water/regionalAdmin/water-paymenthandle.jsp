@@ -55,6 +55,7 @@
     <div class="payment-handle">
         <div class="bottom-bar">
             <div class="paymentbar2">
+                <h3>Water - Handle Manual Bill Payments</h3>
                 <p>Payments made manually have update into the system</p>
                 <form id="manualpaymentform" method="POST" class="formbox" action="${pageContext.request.contextPath}/watermanualpayment">
                     <label for="account_number">Account Number</label>
