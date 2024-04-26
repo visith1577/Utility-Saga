@@ -31,7 +31,8 @@ public class ReportGenerator {
                 "   - Highlight potential areas where energy efficiency can be improved (e.g., appliances, lighting, HVAC systems).\n" +
                 "\n" +
                 "4. Output Structure: \n" +
-                "   - should be in a JSON format. {Daily Consumption Analysis: content, Monthly Consumption Forecast: content, Energy-saving Recommendations: content}\n" +
+                "   - should be in a JSON format. with structure " +
+                        "{Daily Consumption Analysis: content, Monthly Consumption Forecast: content, Energy-saving Recommendations: content}\n" +
                 "Please provide a comprehensive report covering the above points, using clear language. The report should help me understand my electricity consumption patterns, identify potential areas of concern, \n" +
                 "and take informed actions to optimize energy usage and costs. limit the report to a maximum of 80 words. \n",
         account_no, total_units, no_of_days, monthly_budget);
@@ -56,11 +57,12 @@ public class ReportGenerator {
                         "Note: if budget is 0 or not set, Give Default answer for this category (key) : 'The user has not set a monthly budget for electricity consumption.'\n" +
                         "\n" +
                         "3. Energy-saving Recommendations:\n" +
-                        "   - Suggest practical tips and strategies to reduce electricity consumption without compromising essential needs.\n" +
+                        "   - Suggest practical tips and strategies to reduce water consumption without compromising essential needs.\n" +
                         "   - Highlight potential areas where water usage efficiency can be improved.\n" +
                         "\n" +
                         "4. Output Structure: \n" +
-                        "   - should be in a JSON format. {Daily Consumption Analysis: content, Monthly Consumption Forecast: content, Energy-saving Recommendations: content}\n" +
+                        "   - should be in a JSON format. with structure " +
+                        "{Daily Consumption Analysis: content, Monthly Consumption Forecast: content, Energy-saving Recommendations: content}\n" +
                         "Please provide a comprehensive report covering the above points, using clear language. The report should help me understand my water consumption patterns, identify potential areas of concern, \n" +
                         "and take informed actions to optimize energy usage and costs. limit the report to a maximum of 80 words. \n",
                 account_no, total_units, no_of_days, monthly_budget);
