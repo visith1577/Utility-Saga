@@ -118,7 +118,7 @@
 
 
             <div id="error-message" class="error"></div>
-            <button class="content-btn" type="submit">Save Account Settings</button>
+            <button class="content-btn" type="submit">Change Password</button>
         </form>
 
     </section>

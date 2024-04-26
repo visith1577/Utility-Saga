@@ -54,7 +54,7 @@
                         <input type="password" placeholder="Enter password" id="Pwd" name="Pwd"
                                class="login-field__pwd">
                     </label>
-                    <a href="#" class="fgt-pwd">
+                    <a href="./forget-password.jsp" class="fgt-pwd">
                         Forget Password
                     </a>
                     <button name="login-btn" class="login-btn">
