@@ -36,6 +36,64 @@ public class WaterAdminDAO implements WaterAdminImpl {
     }
 
     @Override
+    public int addRegion(ElectricityAdminModel admin) throws Exception {
+        Connection connection = Connectdb.getConnection();
+        String query = "INSERT INTO water_region (region) VALUES (?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, admin.getRegion());
+
+        int rowsAffected = statement.executeUpdate();
+        connection.close();
+        return rowsAffected;
+    }
+
+    @Override
+    public List<String> getRegions() throws Exception {
+        List<String> regions = new ArrayList<>();
+        Connection connection = Connectdb.getConnection();
+        ;
+        String query = "SELECT region FROM water_region";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        ResultSet rs = statement.executeQuery();
+
+
+        while (rs.next()) {
+            String region = rs.getString("region");
+            regions.add(region);
+
+            regions.add(region);
+        }
+
+        rs.close();
+        statement.close();
+        connection.close();
+        return regions;
+    }
+
+    @Override
+    public int resetPassword(ElectricityAdminModel admin) throws SQLException {
+        int rows;
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE water_admin SET  pasword = ? WHERE email = ?"
+            );
+
+            statement.setString(1, admin.getPassword());
+            System.out.println("Password: "+admin.getPassword());
+            statement.setString(2, admin.getEmail());
+            System.out.println("Email: "+admin.getEmail());
+
+            rows =statement.executeUpdate();
+            System.out.println("rows: "+rows);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return rows;
+    }
+
+    @Override
     public List<ElectricityAdminModel> getWaterAdmins(ElectricityAdminModel.Role role) throws Exception {
         List <ElectricityAdminModel> admins = new ArrayList<>();
         Connection connection = Connectdb.getConnection();

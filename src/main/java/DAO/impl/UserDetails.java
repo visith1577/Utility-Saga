@@ -24,6 +24,8 @@ public interface UserDetails {
 
     void updatePassword(UserModel user) throws SQLException;
 
+    int resetPassword(UserModel user) throws SQLException;
+
     String getImageByNic(String nic) throws SQLException;
 
     void updateServices(String nic, List<String> services) throws SQLException;

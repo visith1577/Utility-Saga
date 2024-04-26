@@ -230,6 +230,28 @@ public class UserDetailsDao implements DAO.impl.UserDetails {
     }
 
     @Override
+    public int resetPassword(UserModel user) throws SQLException {
+        int rows;
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE users SET  pwd = ? WHERE email = ?"
+            );
+
+            statement.setString(1, user.getPassword());
+            System.out.println("Password: "+user.getPassword());
+            statement.setString(2, user.getEmail());
+            System.out.println("Email: "+user.getEmail());
+
+            rows =statement.executeUpdate();
+            System.out.println("rows: "+rows);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return rows;
+    }
+
+    @Override
     public String getImageByNic(String nic) throws SQLException {
         Connection connection = Connectdb.getConnection();
         String base64Image = null;

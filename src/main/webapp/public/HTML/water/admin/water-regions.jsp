@@ -1,31 +1,34 @@
-<%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
-  User: NETHMI LIYANAGE
-  Date: 4/19/2024
-  Time: 5:04 PM
+  User: Liviru Weerasinghe
+  Date: 4/26/2024
+  Time: 9:38 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String contextPath = request.getContextPath();
 %>
-<%@ page import="DAO.dao.sendNotificationDao" %>
-<%@ page import="java.util.List" %>
-<%@ page import="model.SendNotificationModel" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Water Regions</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/adminnotification.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <title>Water Main Admin Notifications</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </head>
+
+<style>
+    table{
+        width: auto;
+        float: left;
+    }
+</style>
+
 <body>
 <div class="wrapper">
     <div class="navv">
@@ -53,34 +56,49 @@
             </div>
         </header>
     </div>
+    <div class="madminmiddle" id="middle">
+            <div id="popupContainer" class="popup-container">
+                <h2 class="popup-title">Add Regions</h2>
+                <form id="addForm" method="POST" action="${pageContext.request.contextPath}/water/main-admin/region">
+                    <label for="region">Region:</label>
+                    <input type="text" name="region" id="region"
+                           placeholder="Enter the region"
+                           required>
+                    <div class="form-button">
+                        <button type="submit" class="buttons">Add Region</button>
+            </div>
+            </form>
+    </div>
 
-<div class="GetNotification-box">
-    <h2>Water Main admin Notifications</h2>
-    <table>
-        <thead>
+    <table class="table">
         <tr>
-            <th>Title</th>
-            <th>Subject</th>
-            <th>Message</th>
+            <th>Region</th>
         </tr>
-        </thead>
-        <tbody>
+
         <%
-            sendNotificationDao dao = new sendNotificationDao();
-            List<SendNotificationModel> notifications = dao.getNotifications(SendNotificationModel.Type.WATER);
-            for (SendNotificationModel notification : notifications) {
-        %>
-        <tr>
-            <td><%= notification.getTitle() %></td>
-            <td><%= notification.getSubject() %></td>
-            <td><%= notification.getMessage() %></td>
-        </tr>
-        <%
+            List<String> waterRegion = (List<String>) request.getAttribute("waterRegion");
+            if (waterRegion != null) {
+                System.out.println("Contents of requestScope.electricityRegion in JSP: " + waterRegion);
+            } else {
+                System.out.println("requestScope.waterRegion is null in JSP");
             }
         %>
-        </tbody>
+
+        <c:if test="${not empty requestScope.waterRegion}">
+            <c:forEach items="${requestScope.waterRegion}" var="region">
+                <tr>
+                    <td style="cursor: pointer">${region}</td>
+                </tr>
+            </c:forEach>
+        </c:if>
+        <c:if test="${empty requestScope.waterRegion}">
+            <tr>
+                <td colspan="12"> No admins found </td>
+            </tr>
+        </c:if>
+
     </table>
-</div>
-</div>
+    </div>
+    </div>
 </body>
 </html>
