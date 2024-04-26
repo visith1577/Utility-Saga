@@ -100,26 +100,27 @@
         </header>
       </div>
 
-      <div style="margin-top: 100px">
+      <div class="middle" id="middle">
+        <h2 class="title">Solar Comapnies</h2>
+
+        <div style="margin-top: 100px">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/solar-accounts">
           <label for="nic"></label>
-          <input name="id" type="text" id="nic" placeholder="Enter Owner NIC">
+          <input name="id" type="text" id="nic" class="search-input" placeholder="Enter Owner NIC">
 
           <button type="submit" name="search">Search</button>
           <button type="button" id="resetButton">Reset</button>
         </form>
       </div>
-      <script>
+        <script>
         document.getElementById('resetButton').addEventListener('click', function() {
           document.getElementById('nic').value = '';
           document.getElementById('searchForm').submit();
         });
       </script>
 
-      <div class="middle" id="middle">
         <div id="results"></div>
 
-        <h4 class="title">Solar Companies</h4>
 
         <table class="table">
           <tr>
@@ -155,7 +156,7 @@
                 <td>${company.district}</td>
                 <td>${company.remarks}</td>
                 <td>
-                  <select name="approvalStatus">
+                  <select name="approvalStatus" class="custom-select">
                     <option  value="PENDING" ${company.approvalStatus == 'PENDING' ? 'selected' : ''}>Pending</option>
                     <option  value="APPROVED" ${company.approvalStatus == 'APPROVED' ? 'selected' : ''}>Approved</option>
                     <option  value="REJECTED" ${company.approvalStatus == 'REJECTED' ? 'selected' : ''}>Rejected</option>
