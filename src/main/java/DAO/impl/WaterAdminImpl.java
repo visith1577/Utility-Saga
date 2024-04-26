@@ -7,6 +7,10 @@ import model.ElectricityAdminModel;
 public interface WaterAdminImpl {
     public int addWaterAdmin(ElectricityAdminModel admin) throws Exception;
 
+    int addRegion(ElectricityAdminModel admin) throws Exception;
+
+    List<String> getRegions() throws Exception;
+
     public List<ElectricityAdminModel> getWaterAdmins(ElectricityAdminModel.Role role) throws Exception;
 
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
