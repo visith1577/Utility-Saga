@@ -252,7 +252,7 @@
                                 <td>${connection.currentAddress}</td>
                                 <td>${connection.newAddress}</td>
                                 <td>${connection.nearestAccount}</td>
-                                <td>${connection.connectionType}</td>
+                                <td>${connection.connectionRequirements}</td>
                                 <td><select name="accountStatus">
                                     <option  value="REJECTED" ${ connection.accountStatus == ConnectionModel.accountStatus.REJECTED ? "selected" : "" }>Rejected</option>
                                     <option  value="PENDING" ${ connection.accountStatus == ConnectionModel.accountStatus.PENDING ? "selected" : "" }>Pending</option>
