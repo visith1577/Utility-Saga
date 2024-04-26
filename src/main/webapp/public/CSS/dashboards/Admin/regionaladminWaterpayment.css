@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root{
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --electricity-color: #e2d412;
+    --electricity-color2: #b2ad0f;
+    --electricity-color3: #fbffdac4;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --warning-color: #ffff00;
+    --delete-color: #c00000;
+    --delete-color2: #ff0000;
+    --info-color: #00ffff;
+    --border-radius: 10px;
+    --box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* General styles */
+.payment-handle {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    width: 98%;
+    padding-top: 75px;
+}
+
+/* Payment Handle container */
+.payment-handle {
+    margin: 20px;
+}
+
+/* Top bar */
+.top-bar {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.top-bar h2 {
+    margin-top: 0;
+}
+
+.bottom-bar p{
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bottom-bar h3{
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+/* Card bar */
+.card-bar {
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    width: 48%;
+    height: 60px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    background-color: var(--water-color);
+    box-shadow: 0 0.4rem #dfd9d9;
+    border: none;
+}
+
+.card p{
+    padding-top: 10px;
+}
+
+.card:hover {
+    background-color: var(--warning-color);
+    cursor: pointer;
+}
+/* Payment bars */
+.paymentbar {
+    margin-bottom: 20px;
+    box-shadow: 0 0.4rem #dfd9d9;
+    border: none;
+}
+
+/* Table styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--water-color);
+}
+
+/* Form box */
+.formbox {
+    padding: 20px;
+    width: 75%;;
+    margin: 0 auto;
+}
+
+.formbox label {
+    display: inline-block;
+    width: 45%;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+    margin-left: 5%;
+    font-size: 12px;
+}
+
+.formbox input {
+    display: inline-block;
+    width: 45%;
+    padding: 10px;
+    border: none;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.formbox .btnbar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+.formbox button {
+    padding: 12px 24px;
+    background-color: var(--water-color);
+    color: var(--tertiary-color);
+    border: none;
+    margin: 0 auto;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.formbox button:hover {
+    background-color: var(--water-color2);
+}
+
+.formbox .form-group {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Close button */
+.btn1 {
+    background-color: #f44336;
+}
+
+.btn1:hover {
+    background-color: #d32f2f;
+}

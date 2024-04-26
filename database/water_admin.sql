@@ -18,3 +18,6 @@ DELETE from water_admin WHERE region = 'WDematagoda';
 
 ALTER TABLE water_admin
 ALTER COLUMN region SET DEFAULT 'HEADOFFICE';
+
+ALTER TABLE utilitysaga.water_admin
+ADD COLUMN activate_status ENUM('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'ACTIVE';

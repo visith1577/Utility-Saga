@@ -193,7 +193,7 @@
                 <ul class="menu-items">
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/water-paymenthandle.jsp">Payment</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                     <li class="menu-items-li dropdown">
                         <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
@@ -263,6 +263,7 @@
         </a>
     </div>
 
+    <div class="search-option">
     <div class="bar-search-button">
     <div class="searchbar">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/water/regional-admin/user-accounts">
@@ -281,6 +282,17 @@
     </script>
     <div class="button-noti">
         <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/reg-wadmin-sendnotification.jsp" class="notificationsend">Send Notifications to users</a>
+    </div>
+    </div>
+    <div class="edit-button"><button id="open-popup-btn" type="button">Edit Device</button></div>
+    <div class="filter-options">
+        <label>
+            <input type="checkbox" id="showActive" checked> Show Active
+        </label>
+        <label>
+            <input type="checkbox" id="showInactive" checked> Show Inactive
+        </label>
+    </div>
     </div>
     </div>
 
@@ -337,7 +349,6 @@
                 </div>
             </div>
         </div>
-        <button id="open-popup-btn" type="button">Edit Device</button>
     </div>
 </section>
 

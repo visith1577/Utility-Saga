@@ -53,6 +53,7 @@
 
         <div class="middle" id="middle">
             <h2 class="title">Electricity Admins</h2>
+
             <div class="search-container">
                 <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">
                     <label for="nic"></label>

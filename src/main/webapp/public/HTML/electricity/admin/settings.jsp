@@ -36,6 +36,7 @@
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/main-admin/region">Regions</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
@@ -117,7 +118,7 @@
 
 
             <div id="error-message" class="error"></div>
-            <button class="content-btn" type="submit">Save Account Settings</button>
+            <button class="content-btn" type="submit">Change Password</button>
         </form>
 
     </section>
