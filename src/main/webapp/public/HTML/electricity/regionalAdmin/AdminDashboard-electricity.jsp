@@ -143,6 +143,8 @@
         }
     </script>
     <style>
+
+
         .popupdetails {
             display: flex;
             flex-direction: column;
@@ -155,8 +157,11 @@
         }
 
         #open-popup-btn {
+            /*position: absolute;*/
+            /*bottom: 10px;*/
+            /*right: 10px;*/
             background-color: #4CAF50; /* Green background */
-            border: none; /* Remove border */
+            border: 1px solid black; /* Remove border */
             color: white; /* White text */
             padding: 15px 32px; /* Some padding */
             text-align: center; /* Centered text */
@@ -164,6 +169,7 @@
             display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
+            border-radius: 6px;
             cursor: pointer; /* Mouse pointer on hover */
             transition-duration: 0.4s; /* Transition effect */
         }
@@ -263,6 +269,7 @@
         </a>
     </div>
 
+    <div class="search-option">
     <div class="bar-search-button">
         <div class="searchbar">
             <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/user-accounts">
@@ -282,6 +289,16 @@
         <div class="button-noti">
             <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/reg-eadmin-sendnotification.jsp" class="notificationsend">Send Notifications to users</a>
         </div>
+    </div>
+        <div class="edit-button"><button id="open-popup-btn" type="button">Edit Device</button></div>
+    <div class="filter-options">
+        <label>
+            <input type="checkbox" id="showActive" checked> Show Active
+        </label>
+        <label>
+            <input type="checkbox" id="showInactive" checked> Show Inactive
+        </label>
+    </div>
     </div>
     <!-- Users/Connections -->
     <div class="details">
@@ -339,7 +356,6 @@
                 </div>
             </div>
         </div>
-        <button id="open-popup-btn" type="button">Edit Device</button>
     </div>
 </section>
 

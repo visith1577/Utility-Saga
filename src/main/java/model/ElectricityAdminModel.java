@@ -16,6 +16,14 @@ public class ElectricityAdminModel {
     private String lastName;
     private Role role;
     private String mobile;
+
+    private ActiveStatus activeStatus;
+
+    public enum ActiveStatus{
+        ACTIVE,
+        INACTIVE
+    }
+
     public enum Role{
         MAIN,
         REGIONAL
@@ -171,5 +179,13 @@ public class ElectricityAdminModel {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public ActiveStatus getActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(ActiveStatus activeStatus) {
+        this.activeStatus = activeStatus;
     }
 }

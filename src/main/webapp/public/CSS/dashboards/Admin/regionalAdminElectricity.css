@@ -286,7 +286,7 @@ input[type="password"] {
 .bar-search-button {
     display: flex;
     align-items: center;
-    width:100%;
+    /*width:100%;*/
 }
 
 .bar-search-button .button-noti .notificationsend{
@@ -325,6 +325,41 @@ input[type="password"] {
     padding-right:25px;
     border-radius:7px;
     border:1px solid #ccc;
+}
+=======
+.search-option {
+    display: flex;
+    align-items: center;
+}
+
+.filter-options {
+    background-color: var(--electricity-color2);
+    padding: 0.5%;
+    border-radius: 6px;
+    border: 1px solid black;
+    margin-right: 2.5%;
+    display: flex;
+    align-items: center;
+}
+
+.filter-options label {
+    display: inline-block;
+    margin-right: 10px;
+    white-space: nowrap;
+    color: #F6F9FE;
+}
+
+.filter-options input[type="checkbox"] {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.bar-search-button {
+    margin-left: 2.5%;
+}
+
+.edit-button{
+    margin: 0 auto;
 }
 
 /* ====================== Responsive Design ========================== */

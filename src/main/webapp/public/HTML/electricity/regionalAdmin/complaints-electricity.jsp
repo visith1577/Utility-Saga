@@ -79,7 +79,14 @@
             }
         });
     </script>
-
+    <style>
+        .search-option{
+            justify-content: space-between;
+        }
+        .filter-options{
+            margin-top: 12.5vh;
+        }
+    </style>
 
 </head>
 <body>
@@ -113,8 +120,9 @@
     </div>
 </header>
 
-
-    <div style="margin-top: 12.5vh">
+<div class="search-option">
+<div class="bar-search-button">
+    <div class="searchbar" style="margin-top: 12.5vh">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/electricity/regional-admin/complaints">
             <label for="nic"></label>
             <input name="id" type="text" id="nic" class="Comsearch-bar" placeholder="Enter Keyword" style="margin-left: 20px">
@@ -129,6 +137,19 @@
             document.getElementById('searchForm').submit();
         });
     </script>
+</div>
+    <div class="filter-options">
+        <label>
+            <input type="checkbox" id="showActive" checked> Show Active
+        </label>
+        <label>
+            <input type="checkbox" id="showPending" checked> Show Pending
+        </label>
+        <label>
+            <input type="checkbox" id="showDone" checked> Show Done
+        </label>
+    </div>
+</div>
 
     <div class="complaints">
         <div class="tablediv">
