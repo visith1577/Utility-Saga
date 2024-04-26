@@ -14,6 +14,8 @@ public interface ElectricityAdminImpl {
 
     public List<ElectricityAdminModel> getElectricityAdmins(ElectricityAdminModel.Role role) throws Exception;
 
+    int resetPassword(ElectricityAdminModel admin) throws SQLException;
+
     List<String> getRegions() throws Exception;
 
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;

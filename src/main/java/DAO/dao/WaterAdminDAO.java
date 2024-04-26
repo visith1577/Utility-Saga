@@ -72,6 +72,28 @@ public class WaterAdminDAO implements WaterAdminImpl {
     }
 
     @Override
+    public int resetPassword(ElectricityAdminModel admin) throws SQLException {
+        int rows;
+        Connection connection = Connectdb.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE water_admin SET  pasword = ? WHERE email = ?"
+            );
+
+            statement.setString(1, admin.getPassword());
+            System.out.println("Password: "+admin.getPassword());
+            statement.setString(2, admin.getEmail());
+            System.out.println("Email: "+admin.getEmail());
+
+            rows =statement.executeUpdate();
+            System.out.println("rows: "+rows);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return rows;
+    }
+
+    @Override
     public List<ElectricityAdminModel> getWaterAdmins(ElectricityAdminModel.Role role) throws Exception {
         List <ElectricityAdminModel> admins = new ArrayList<>();
         Connection connection = Connectdb.getConnection();

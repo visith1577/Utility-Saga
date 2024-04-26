@@ -53,15 +53,12 @@
                         <input type="password" placeholder="Enter password" id="Pwd" name="Pwd"
                                class="login-field__pwd">
                     </label>
-                    <a href="#" class="fgt-pwd">
+                    <a href="<%= request.getContextPath() %>/public/HTML/login/forget-password-water.jsp" class="fgt-pwd">
                         Forget Password
                     </a>
                     <button class="login-btn">
                         Log In
                     </button>
-                    <a href="#" class="register">
-                        Register
-                    </a>
                 </form>
             </section>
         </div>
