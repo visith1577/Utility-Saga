@@ -15,8 +15,7 @@
     <title>Electricity Regions</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<%--    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">--%>
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/ESuperadmin-editadmins.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/EWSuperadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -56,7 +55,7 @@
     <div class="madminmiddle" id="middle">
             <div id="popupContainer" class="addregionscontainer">
                 <div class="formdiv">
-                    <h2 class="popup-title">Add Regions</h2>
+                    <h2 class="popup-title">Add Electricity Regions</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/main-admin/region">
                         <label for="region">Region:</label>
                         <input type="text" name="region" id="region"

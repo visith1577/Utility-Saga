@@ -105,7 +105,7 @@
       <div class="middle" id="middle">
         <h2 class="title">Solar Comapnies</h2>
 
-        <div style="margin-top: 100px">
+        <div class="search-container">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/solar-accounts">
           <label for="nic"></label>
           <input name="id" type="text" id="nic" class="search-input" placeholder="Enter Owner NIC">

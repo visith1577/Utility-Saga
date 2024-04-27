@@ -16,8 +16,9 @@
     --electricity-color: #c7ba03;
     --electricity-color2: #8c7400;
     --electricity-color3: #feec98;
-    --superadmin-color1: #B52F9C;
-    --superadmin-color2: #a4037e;
+    --superadmin-color1: #DBA1F2;
+    --superadmin-color2: #450068;
+    --superadmin-color3: #86498b ;
 }
 
 body {
@@ -59,8 +60,8 @@ body {
 
 button {
     border: 0;
-    background: var(--water-color);
-    color:#fff;
+    background: var(--superadmin-color1);
+    color:#000000;
     padding: 10px;
     padding-left: 15px;
     padding-right: 15px;
@@ -79,7 +80,7 @@ button {
 }
 
 button:hover {
-    background: var(--water-color2);
+    background: var(--superadmin-color2);
     cursor: pointer;
     color: lavender;
 }
@@ -100,7 +101,7 @@ button:hover {
 }
 
 .table th {
-    background-color: var(--water-color2);
+    background-color: var(--superadmin-color3);
     color: #fff;
     font-weight: bold;
     padding: 10px;
@@ -114,7 +115,7 @@ button:hover {
 }
 
 .table tr:hover td {
-    background-color: var(--water-color4);
+    background-color: #f6ccff;
 }
 
 .table td {
