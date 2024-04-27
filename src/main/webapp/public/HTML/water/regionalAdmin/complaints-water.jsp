@@ -160,7 +160,6 @@
             <div class="customerdetails">
                 <div class="titlebar">
                     <h2>Complaint Details</h2>
-                    <a href="#" class="btn">View All</a>
                 </div>
 
                 <div id="results"></div>
@@ -178,6 +177,7 @@
                             <th>Complaint Status</th>
                             <th>Select</th>
                             <th>Description</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
