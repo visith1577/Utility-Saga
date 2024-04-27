@@ -153,7 +153,7 @@
     <div class="middle" id="middle">
         <div id="results"></div>
         <h4 class="title">Water Admins</h4>
-        <div style="margin-top: 100px">
+        <div>
             <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/water-accounts">
                 <label for="nic"></label>
                 <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">

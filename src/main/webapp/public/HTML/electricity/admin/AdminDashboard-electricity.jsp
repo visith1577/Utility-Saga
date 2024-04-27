@@ -135,7 +135,7 @@
 
 
     <div class="madminmiddle" id="middle">
-        <div style="margin-top: 100px">
+        <div>
             <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/electricity-accounts">
                 <label for="nic"></label>
                 <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">
