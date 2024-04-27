@@ -37,8 +37,7 @@
             </div>
             <ul class="menu-items">
                 <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About
-                    Us</a></li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
                 <li class="menu-items-li"><a
                         href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a>
                 </li>
@@ -47,9 +46,12 @@
                         <span class="material-icons">notifications</span>
                     </a>
                 </li>
-                <li class="nxt-page electricity">
-                    <button class="button-17" type="button" onclick="toggle()">Water</button>
-                </li>
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
+                <script>
+                    function toggle() {
+                        window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard"
+                    }
+                </script>
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
@@ -71,10 +73,8 @@
                             %>
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out
-                                    value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out
-                                    value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>

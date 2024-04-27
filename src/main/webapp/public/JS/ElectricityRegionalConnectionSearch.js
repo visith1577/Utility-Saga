@@ -46,29 +46,27 @@ function displayResults(data) {
     }
 }
 
+function filterRows(showPendingCheckbox, showRejectedCheckbox, tableRows) {
+    const showPending = showPendingCheckbox.checked;
+    console.log("Show Pending: ",showPending);
+    const showRejected = showRejectedCheckbox.checked;
+    console.log("Show Rejected: ",showRejected);
+
+    tableRows.forEach(row => {
+        const status = row.querySelector('td:nth-child(13)').textContent.trim();
+        console.log(status)
+        const showRow = (showPending && status === 'PENDING') || (showRejected && status === 'REJECTED') || (showPending && showRejected);
+        row.style.display = showRow ? '' : 'none';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Event Listner triggered");
     const showPendingCheckbox = document.getElementById('showPending');
     const showRejectedCheckbox = document.getElementById('showRejected');
-    const tableRows = document.querySelectorAll('table tbody tr');
+    const tableRows = document.querySelectorAll('.table tbody tr');
 
-    showPendingCheckbox.addEventListener('change', filterRows);
-    showRejectedCheckbox.addEventListener('change', filterRows);
+    showPendingCheckbox.addEventListener('change', () => filterRows(showPendingCheckbox, showRejectedCheckbox, tableRows));
+    showRejectedCheckbox.addEventListener('change', () => filterRows(showPendingCheckbox, showRejectedCheckbox, tableRows));
 
-    filterRows();
-
-    function filterRows() {
-        const showPending = showPendingCheckbox.checked;
-        console.log("Show Active: ",showPending);
-        const showRejected = showRejectedCheckbox.checked;
-        console.log("Show Inactive: ",showRejected);
-
-        tableRows.forEach(row => {
-            const statusCell = row.querySelector('td:nth-child(12)');
-            console.log(statusCell);
-            const status = row.querySelector('td:nth-child(12)').textContent.trim();
-            const showRow = (showPending && status === 'PENDING') || (showRejected && status === 'REJECTED') || (showPending && showRejected);
-            row.style.display = showRow ? '' : 'none';
-        });
-    }
+    filterRows(showPendingCheckbox, showRejectedCheckbox, tableRows);
 });

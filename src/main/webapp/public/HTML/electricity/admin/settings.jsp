@@ -67,7 +67,7 @@
             <div class="error" style="margin-top: 2vh"></div>
 
             <div id="error-message-details" class="error"></div>
-            <div id="buttons">
+            <div id="buttons" class="Electricity-btns">
                 <button class="content-btn" id="edit-btn">Edit</button>
                 <button class="content-btn" type="submit" id="submit-btn" style="display: none;">Save</button>
                 <button class="content-btn" id="cancel-btn" style="display: none;">Cancel</button>
@@ -118,7 +118,9 @@
 
 
             <div id="error-message" class="error"></div>
+            <div class="Electricity-btns">
             <button class="content-btn" type="submit">Change Password</button>
+            </div>
         </form>
 
     </section>

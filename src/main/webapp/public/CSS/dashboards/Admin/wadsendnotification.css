@@ -1,0 +1,142 @@
+:root{
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --electricity-color: #c7ba03;
+    --electricity-color2: #8c7400;
+    --electricity-color3: #8c7400;
+
+    --warning-color: #ffff00;
+    --info-color: #00ffff;
+    --border-radius: 7px;
+    --box-shadow: 0 0 05px rgba(0,0,0,0.9);
+}
+
+.heading{
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 12px;
+}
+
+.heading_user{
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
+.fcontainer {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    padding-top: 80px;
+    text-align: center;
+}
+
+.form-box {
+    background-color: var(--tertiary-color);
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 7px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+form input[type="text"]{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #1e1c1c;
+    font-size: 15px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+.dateinput{
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid #1e1c1c;
+    font-size: 15px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+}
+
+form textarea{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #1e1c1c;
+    font-size: 15px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    resize: none;
+    outline: none;
+    border-radius: var(--border-radius);
+}
+
+form .btn-container {
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+form .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--water-color);
+    color: white;
+}
+
+form .btn:hover {
+    background-color: var(--water-color2);
+}
+
+form .btn#cancel {
+    background-color: #dc3545;
+}
+
+form .btn#reset {
+    background-color: #6c757d;
+}
+
+.radio-btn-class {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.radio-btn-class input[type="radio"] {
+    margin-right: 5px;
+}
+
+.radio-btn-class label {
+    margin-right: 20px;
+    font-size: 14px;
+}
