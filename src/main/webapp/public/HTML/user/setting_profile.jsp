@@ -80,23 +80,25 @@
     </header>
 </div>
 <div class="profile-container">
-        <form method="post" class="edit-profile">
-            <section>
-                <h2>User Setting</h2>
+        <section>
+            <form method="post" class="edit-profile">
+                <section>
+                    <h2>User Setting</h2>
 
-                <label for="Name">First Name:</label>
-                <input id="Name" type="text" value="${requestScope.firstname}">
+                    <label for="Name">First Name:</label>
+                    <input id="Name" type="text" value="${requestScope.firstname}">
 
-                <label for="email">Last Name:</label>
-                <input id="email" type="text" value="${requestScope.lastname}">
+                    <label for="email">Last Name:</label>
+                    <input id="email" type="text" value="${requestScope.lastname}">
 
-                <label for="phone">Phone Number (Home):</label>
-                <input id="phone" type="text" value="${requestScope.home}">
+                    <label for="phone">Phone Number (Home):</label>
+                    <input id="phone" type="text" value="${requestScope.home}">
 
 
-                <button class="content-btn" type="submit" >Save Profile</button>
-            </section>
-        </form>
+                    <button class="content-btn" type="submit" >Save Profile</button>
+                </section>
+            </form>
+        </section>
 
         <section>
             <h2>Account  Settings</h2>
@@ -142,38 +144,40 @@
 
             <button class="content-btn" type="button">Save Appearance Settings</button>
         </section>
-        <section>
+
+    <div class="electwatersetting">
+        <section class="esection">
             <h2>Service Settings</h2>
             <h3>Electricity Settings</h3>
             <c:if test="${not empty sessionScope.electricity}">
-            <div>
-                <label for="account-details__electricity">Your Current Electricity Accounts:</label>
-                <ul id="account-details__electricity">
-                    <c:forEach items="${requestScope.electricity_account_list}" var="account">
-                        <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
-                    </c:forEach>
-                </ul>
+                <div>
+                    <label for="account-details__electricity">Your Current Electricity Accounts:</label>
+                    <ul id="account-details__electricity">
+                        <c:forEach items="${requestScope.electricity_account_list}" var="account">
+                            <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
+                        </c:forEach>
+                    </ul>
 
-                <button id="edit-btn_electricity" class="content-btn Delete" type="button">Deactivate</button>
-                <button id="add-btn_electricity" class="content-btn Edit" type="button">Activate</button>
+                    <button id="edit-btn_electricity" class="content-btn Delete" type="button">Deactivate</button>
+                    <button id="add-btn_electricity" class="content-btn Edit" type="button">Activate</button>
 
-                <label for="electricityNotifications">Receive Notifications:</label>
-                <select id="electricityNotifications" name="electricityNotifications">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <label for="electricityE-Notifications">Email Notifications:</label>
-                <select id="electricityE-Notifications" name="electricityE-Notifications">
-                    <option value="yes">Enable</option>
-                    <option value="no">Disable</option>
-                </select>
-                <c:if test="${not empty sessionScope.water}">
-                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
-                    <input type="hidden" name="action" value="unsubscribe">
-                    <button class="content-btn" type="button" id="unsubscribe-electricity">UnSubscribe</button>
-                </form>
-                </c:if>
-            </div>
+                    <label for="electricityNotifications">Receive Notifications:</label>
+                    <select id="electricityNotifications" name="electricityNotifications">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <label for="electricityE-Notifications">Email Notifications:</label>
+                    <select id="electricityE-Notifications" name="electricityE-Notifications">
+                        <option value="yes">Enable</option>
+                        <option value="no">Disable</option>
+                    </select>
+                    <c:if test="${not empty sessionScope.water}">
+                        <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
+                            <input type="hidden" name="action" value="unsubscribe">
+                            <button class="content-btn" type="button" id="unsubscribe-electricity">UnSubscribe</button>
+                        </form>
+                    </c:if>
+                </div>
             </c:if>
             <c:if test="${empty sessionScope.electricity}">
                 <label for="account-details__water">Subscribe to view accounts.</label>
@@ -183,35 +187,35 @@
                 </form>
             </c:if>
         </section>
-        <section>
+        <section class="wsection">
             <h3>Water Settings</h3>
             <c:if test="${not empty sessionScope.water}">
-            <div>
-                <label for="account-details__water">Your Current Water Accounts:</label>
-                <ul id="account-details__water">
-                    <c:forEach items="${requestScope.water_account_list}" var="account">
-                        <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
-                    </c:forEach>
-                </ul>
-                <button id="edit-btn_water" type="button" class="content-btn Delete">Deactivate</button>
-                <button id="add-btn_water" type="button" class="content-btn Edit">Activate</button>
-                <label for="waterNotifications">Receive Notifications:</label>
-                <select id="waterNotifications" name="waterNotifications">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <label for="waterE-Notifications">Email Notifications:</label>
-                <select id="waterE-Notifications" name="waterE-Notifications">
-                    <option value="yes">Enable</option>
-                    <option value="no">Disable</option>
-                </select>
-                <c:if test="${not empty sessionScope.electricity}">
-                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
-                    <input type="hidden" name="action" value="unsubscribe">
-                    <button class="content-btn" type="button" name="action" id="unsubscribe-water">UnSubscribe</button>
-                </form>
-                </c:if>
-            </div>
+                <div>
+                    <label for="account-details__water">Your Current Water Accounts:</label>
+                    <ul id="account-details__water">
+                        <c:forEach items="${requestScope.water_account_list}" var="account">
+                            <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
+                        </c:forEach>
+                    </ul>
+                    <button id="edit-btn_water" type="button" class="content-btn Delete">Deactivate</button>
+                    <button id="add-btn_water" type="button" class="content-btn Edit">Activate</button>
+                    <label for="waterNotifications">Receive Notifications:</label>
+                    <select id="waterNotifications" name="waterNotifications">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <label for="waterE-Notifications">Email Notifications:</label>
+                    <select id="waterE-Notifications" name="waterE-Notifications">
+                        <option value="yes">Enable</option>
+                        <option value="no">Disable</option>
+                    </select>
+                    <c:if test="${not empty sessionScope.electricity}">
+                        <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
+                            <input type="hidden" name="action" value="unsubscribe">
+                            <button class="content-btn" type="button" name="action" id="unsubscribe-water">UnSubscribe</button>
+                        </form>
+                    </c:if>
+                </div>
             </c:if>
             <c:if test="${empty sessionScope.water}">
                 <label for="account-details__water">Subscribe to view accounts.</label>
@@ -221,6 +225,8 @@
                 </form>
             </c:if>
         </section>
+    </div>
+
     </div>
     <div class="popupcontainer" id="popupcontainer">
         <div class="popup" id="popup">      
