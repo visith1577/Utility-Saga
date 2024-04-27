@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+    /* Colors */
+    --color-white: #fff;
+    --color-gray-100: #232020;
+    --color-gray-200: #202020;
+    --color-black: #000;
+
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --water-color4: #97b6fa;
+}
+
+.GetNotification-box {
+    padding: 10px;
+    margin-top: 120px;
+}
+
+.GetNotification-box table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top:15px;
+}
+
+.GetNotification-box th {
+    background-color: var(--water-color);
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ccc;
+}
+
+.GetNotification-box td{
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.GetNotification-box tbody tr:hover td {
+    background-color: var(--water-color4);
+}
+
+.GetNotification-box tbody tr:nth-child(even) td {
+    background-color: #d6eeff;
+}
+
+.GetNotification-box tbody tr:nth-child(even):hover td {
+    background-color: var(--water-color4);
+}

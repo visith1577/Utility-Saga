@@ -19,7 +19,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/adminnotification.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/wadminnotification.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

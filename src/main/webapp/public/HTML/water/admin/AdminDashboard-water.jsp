@@ -19,10 +19,12 @@
     <title>Water- Main Admin</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
-    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+<%--    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">--%>
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/WSuperadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
@@ -117,7 +119,7 @@
                 </div>
                 <ul class="menu-items">
                     <li class="menu-items-li">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
+                        <a href="<%= request.getContextPath() %>/public/HTML/water/admin/AdminNotificationPg-water.jsp">
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
@@ -131,32 +133,47 @@
         </header>
     </div>
 
-    <div style="margin-top: 100px">
-        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/main-admin/water-accounts">
-            <label for="nic"></label>
-            <input name="id" type="text" id="nic" placeholder="Enter EmpID">
+<%--    <div style="margin-top: 100px">--%>
+<%--        <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/water-accounts">--%>
+<%--            <label for="nic"></label>--%>
+<%--            <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">--%>
 
-            <button type="submit" name="search">Search</button>
-            <button type="button" id="resetButton">Reset</button>
-        </form>
-    </div>
-    <script>
-        document.getElementById('resetButton').addEventListener('click', function() {
-            document.getElementById('nic').value = '';
-            document.getElementById('searchForm').submit();
-        });
-    </script>
+<%--            <button type="submit" name="search">Search</button>--%>
+<%--            <button type="button" id="resetButton">Reset</button>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--    <script>--%>
+<%--        document.getElementById('resetButton').addEventListener('click', function() {--%>
+<%--            document.getElementById('nic').value = '';--%>
+<%--            document.getElementById('searchForm').submit();--%>
+<%--        });--%>
+<%--    </script>--%>
 
 
     <div class="middle" id="middle">
         <div id="results"></div>
         <h4 class="title">Water Admins</h4>
+        <div>
+            <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/water-accounts">
+                <label for="nic"></label>
+                <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">
+
+                <button type="submit" name="search">Search</button>
+                <button type="button" id="resetButton">Reset</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('resetButton').addEventListener('click', function() {
+                document.getElementById('nic').value = '';
+                document.getElementById('searchForm').submit();
+            });
+        </script>
         <div class="buttons">
-            <button class="button" onclick="openPopup('popupForm')">Add</button>
+            <button class="button" onclick="openPopup('popupForm')">Add Water Admins</button>
         </div>
         <div class="popup-form" id="popupForm" style="display: none;">
             <div id="popupContainer" class="popup-container">
-                <h3 class="popup-title">Add Electricity Admin</h3>
+                <h3 class="popup-title">Add Water Admin</h3>
                 <form id="addForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                     <label for="region">Region:</label>
                     <input type="text" name="wregion" id="region"

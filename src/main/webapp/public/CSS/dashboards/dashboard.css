@@ -69,6 +69,7 @@ html{
 }
 
 .navv{
+    font-family: Script MT Bold, serif;
     /*margin: 2vh;*/
     /*margin: 0 2vh;*/  /* changed for safari check browsers */
     margin: auto;

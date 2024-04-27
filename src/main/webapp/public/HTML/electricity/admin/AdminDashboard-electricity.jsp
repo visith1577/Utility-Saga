@@ -22,9 +22,8 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/ESuperadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script>
@@ -136,7 +135,7 @@
 
 
     <div class="madminmiddle" id="middle">
-        <div style="margin-top: 100px">
+        <div>
             <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/electricity-accounts">
                 <label for="nic"></label>
                 <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">
