@@ -64,7 +64,7 @@ public class SuperAdminElectricity extends HttpServlet {
                 System.out.println("2Water Admins: " + waterMainAdmins);
                 req.setAttribute("waterMainAdmins", waterMainAdmins);
             }else if(waterMainAdmins.isEmpty() && !(electricityMainAdmins.isEmpty())){
-                req.setAttribute("electricityMainAdmins", waterMainAdmins);
+                req.setAttribute("electricityMainAdmins", electricityMainAdmins);
                 System.out.println("3Electricity Admins: " + electricityMainAdmins);
                 System.out.println("3Water Admins: " + waterMainAdmins);
                 req.setAttribute("message2", "No data found");

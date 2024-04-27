@@ -123,7 +123,6 @@
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/main-admin/region">Regions</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/water-accounts">Regional Admins</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
@@ -133,10 +132,12 @@
         </header>
     </div>
 
-<%--    <div style="margin-top: 100px">--%>
-<%--        <form id="searchForm" method="get" class="search-container" action="<%= request.getContextPath() %>/main-admin/water-accounts">--%>
-<%--            <label for="nic"></label>--%>
-<%--            <input name="id" type="text" id="nic" class="search-input" placeholder="Enter EmpID">--%>
+
+    <div style="margin-top: 100px">
+        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/main-admin/water-accounts">
+            <label for="nic"></label>
+            <input name="id" type="text" id="nic" placeholder="Enter EmpID" style="margin-left: 2vh">
+
 
 <%--            <button type="submit" name="search">Search</button>--%>
 <%--            <button type="button" id="resetButton">Reset</button>--%>

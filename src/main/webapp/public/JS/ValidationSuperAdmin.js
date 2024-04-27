@@ -1,5 +1,10 @@
 const phone_regex = /^(?:\+94|0)(?:7\d{8}|11\d{7}|3\d{9})$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const lowercaseRegex = /[a-z]/;
+const uppercaseRegex = /[A-Z]/;
+const numberRegex = /[0-9]/;
+const specialCharRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+const minLength = 8;
 console.log("Context Path: ",contextPath);
 
 function initializeValidationWater() {
@@ -83,11 +88,32 @@ function initializeValidationWater() {
 
 
         form.addEventListener('submit', (event) => {
+            event.preventDefault();
             let isValid = true;
 
             if (passwordInput.value !== rePasswordInput.value) {
                 alert('Passwords do not match');
                 console.log("Password validation called");
+                isValid = false;
+            }
+            if (passwordInput.length < minLength) {
+                alert('Password must be at least ' + minLength + ' characters long');
+                isValid = false;
+            }
+            if (!lowercaseRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one lowercase letter');
+                isValid = false;
+            }
+            if (!uppercaseRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one uppercase letter');
+                isValid = false;
+            }
+            if (!numberRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one number');
+                isValid = false;
+            }
+            if (!specialCharRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one special character');
                 isValid = false;
             }
 
@@ -112,8 +138,9 @@ function initializeValidationWater() {
             if (!isValid) {
                 console.log("Invalidated");
                 event.preventDefault();
+            }else {
+                form.submit();
             }
-
         });
 
     }
@@ -200,11 +227,33 @@ function initializeValidationElectricity() {
 
 
         form.addEventListener('submit', (event) => {
+            event.preventDefault();
             let isValid = true;
 
             if (passwordInput.value !== rePasswordInput.value) {
                 alert('Passwords do not match');
                 console.log("Password validation called");
+                isValid = false;
+            }
+
+            if (passwordInput.length < minLength) {
+                alert('Password must be at least ' + minLength + ' characters long');
+                isValid = false;
+            }
+            if (!lowercaseRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one lowercase letter');
+                isValid = false;
+            }
+            if (!uppercaseRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one uppercase letter');
+                isValid = false;
+            }
+            if (!numberRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one number');
+                isValid = false;
+            }
+            if (!specialCharRegex.test(passwordInput.value)) {
+                alert('Password must contain at least one special character');
                 isValid = false;
             }
 
@@ -229,8 +278,9 @@ function initializeValidationElectricity() {
             if (!isValid) {
                 console.log("Invalidated");
                 event.preventDefault();
+            } else {
+                form.submit();
             }
-
         });
 
     }
