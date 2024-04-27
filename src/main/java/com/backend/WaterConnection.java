@@ -43,7 +43,7 @@ public class WaterConnection extends HttpServlet {
 
         ConnectionModel wConnection = new ConnectionModel();
 
-      
+
         String requester_name = title + " " + initial + " " + name;;
         wConnection.setRequesterName(requester_name);
 
