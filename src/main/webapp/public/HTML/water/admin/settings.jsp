@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
     <title>Settings- Main Admin</title>
@@ -31,7 +33,7 @@
                 </div>
                 <ul class="menu-items">
                     <li class="menu-items-li">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
+                        <a href="<%= request.getContextPath() %>/public/HTML/water/admin/AdminNotificationPg-water.jsp">
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
@@ -66,7 +68,7 @@
             <div class="error" style="margin-top: 2vh"></div>
 
             <div id="error-message-details" class="error"></div>
-            <div id="buttons">
+            <div id="buttons" class="Water-btns">
                 <button class="content-btn" id="edit-btn">Edit</button>
                 <button class="content-btn" type="submit" id="submit-btn" style="display: none;">Save</button>
                 <button class="content-btn" id="cancel-btn" style="display: none;">Cancel</button>
@@ -117,7 +119,8 @@
 
 
             <div id="error-message" class="error"></div>
-            <button class="content-btn" type="submit">Save Account Settings</button>
+            <div class="Water-btns">
+            <button class="content-btn" type="submit">Save Account Settings</button></div>
         </form>
 
     </section>
