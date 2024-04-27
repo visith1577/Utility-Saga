@@ -14,6 +14,15 @@ public class UserAccountsModel {
     private MeterStatus meterStatus;
     private Iot iot;
 
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    private Double balance;
 
     public void setIot(Iot iot) {
         this.iot = iot;

@@ -18,21 +18,21 @@ public class UserBillPaymentDAO {
 
         try {
             String tableName = selectTable(category);
-            System.out.println("Hell");
+//            System.out.println("Hell");
             System.out.println(tableName);
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT  account_number FROM " + tableName + " WHERE nic = ?"
+                    "SELECT  account_number,balance FROM " + tableName + " WHERE nic = ?"
             );
 
             statement.setString(1, nic);
             System.out.println(nic);
 
-
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
                     UserAccountsModel model = new UserAccountsModel();
                     model.setAccount_number(result.getString("account_number"));
+                    model.setBalance(result.getDouble("balance"));
 
                     if (category.equals("WATER")) {
                         model.setType(UserAccountsModel.Acc.WATER);
@@ -50,6 +50,7 @@ public class UserBillPaymentDAO {
         }
         return account_list;
     }
+
 
     private String selectTable(String category) {
         String tableName;
