@@ -12,15 +12,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ElectricityMeterCallback implements MqttCallback {
-    private static final int API_POLLING_INTERVAL = 30000; // 30 seconds
     private final AtomicReference<String> latestReading;
 
 
 
     public ElectricityMeterCallback(AtomicReference<String> latestReading) {
         this.latestReading = latestReading;
-//        Timer timer = new Timer();
-//        timer.scheduleAtFixedRate(new ApiPollingTask(), 0, API_POLLING_INTERVAL);
     }
 
     @Override
@@ -29,7 +26,7 @@ public class ElectricityMeterCallback implements MqttCallback {
     }
 
     @Override
-    public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+    public void messageArrived(String s, MqttMessage mqttMessage) {
         String payload = new String(mqttMessage.getPayload());
         // Process the electricity meter reading payload
         System.out.println("Received electricity meter reading: " + payload);
@@ -55,18 +52,6 @@ public class ElectricityMeterCallback implements MqttCallback {
         // ...
     }
 
-//    private static class ApiPollingTask extends TimerTask {
-//        @Override
-//        public void run() {
-//            try {
-//                String simulatedReading = APIClient.getSimulatedReading();
-//                System.out.println("Received simulated reading from API: " + simulatedReading);
-//                // Process the simulated reading if needed
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     private void getScheduledReading(String load) throws SQLException {
         latestReading.set(load);
