@@ -90,7 +90,7 @@
                 </li>
                 <li>
                     <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/public/HTML/user/electricity/electricityAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
+                        <a href="<%= request.getContextPath() %>/user/electricity-analytics"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
                     </div>
                     <p class="plan2__para">Analysis</p>
                 </li>
