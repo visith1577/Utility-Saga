@@ -133,11 +133,6 @@
     </div>
 
 
-    <div style="margin-top: 100px">
-        <form id="searchForm" method="get" action="<%= request.getContextPath() %>/main-admin/water-accounts">
-            <label for="nic"></label>
-            <input name="id" type="text" id="nic" placeholder="Enter EmpID" style="margin-left: 2vh">
-
 
 <%--            <button type="submit" name="search">Search</button>--%>
 <%--            <button type="button" id="resetButton">Reset</button>--%>
