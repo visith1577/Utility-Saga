@@ -69,7 +69,7 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/billpayment"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
@@ -80,70 +80,70 @@
     </header>
 </div>
 <div class="profile-container">
-        <section>
-            <form method="post" class="edit-profile">
-                <section>
-                    <h2>User Setting</h2>
+    <section>
+        <form method="post" class="edit-profile">
+            <section>
+                <h2>User Setting</h2>
 
-                    <label for="Name">First Name:</label>
-                    <input id="Name" type="text" value="${requestScope.firstname}">
+                <label for="Name">First Name:</label>
+                <input id="Name" type="text" value="${requestScope.firstname}">
 
-                    <label for="email">Last Name:</label>
-                    <input id="email" type="text" value="${requestScope.lastname}">
+                <label for="email">Last Name:</label>
+                <input id="email" type="text" value="${requestScope.lastname}">
 
-                    <label for="phone">Phone Number (Home):</label>
-                    <input id="phone" type="text" value="${requestScope.home}">
+                <label for="phone">Phone Number (Home):</label>
+                <input id="phone" type="text" value="${requestScope.home}">
 
 
-                    <button class="content-btn" type="submit" >Save Profile</button>
-                </section>
-            </form>
-        </section>
+                <button class="content-btn" type="submit" >Save Profile</button>
+            </section>
+        </form>
+    </section>
 
-        <section>
-            <h2>Account  Settings</h2>
-            <form id="password-reset" method="post" action="<%= request.getContextPath() %>/user/pwd-reset">
-                <label for="password">Old Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter new password" required>
-                <div id="old-pwd" class="error"></div>
-                <label for="new-password">New Password:</label>
-                <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
-                <div id="new-pwd" class="error"></div>
-                <label for="re-new-password">Confirm Password:</label>
-                <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
-                <div id="re-pwd" class="error"></div>
-                <label for="language">Preferred Language:</label>
-                <select id="language" name="language">
-                    <option value="english">English</option>
-                    <option value="sinhala">Sinhala</option>
-                    <option value="tamil">Tamil</option>
-                </select>
-
-                <div id="error-message" class="error"></div>
-                <button class="content-btn" type="submit">Save Account Settings</button>
-                <button class="content-btn" type="button">Edit Account Settings</button>
-            </form>
-
-        </section>
-
-        <section>
-            <h2>Appearance Settings</h2>
-
-            <label for="theme">Theme:</label>
-            <select id="theme" name="theme">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+    <section>
+        <h2>Account  Settings</h2>
+        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/user/pwd-reset">
+            <label for="password">Old Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter new password" required>
+            <div id="old-pwd" class="error"></div>
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
+            <div id="new-pwd" class="error"></div>
+            <label for="re-new-password">Confirm Password:</label>
+            <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
+            <div id="re-pwd" class="error"></div>
+            <label for="language">Preferred Language:</label>
+            <select id="language" name="language">
+                <option value="english">English</option>
+                <option value="sinhala">Sinhala</option>
+                <option value="tamil">Tamil</option>
             </select>
 
-            <label for="fontSize">Font Size:</label>
-            <select id="fontSize" name="fontSize">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-            </select>
+            <div id="error-message" class="error"></div>
+            <button class="content-btn" type="submit">Save Account Settings</button>
+            <button class="content-btn" type="button">Edit Account Settings</button>
+        </form>
 
-            <button class="content-btn" type="button">Save Appearance Settings</button>
-        </section>
+    </section>
+
+    <section>
+        <h2>Appearance Settings</h2>
+
+        <label for="theme">Theme:</label>
+        <select id="theme" name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+
+        <label for="fontSize">Font Size:</label>
+        <select id="fontSize" name="fontSize">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+
+        <button class="content-btn" type="button">Save Appearance Settings</button>
+    </section>
 
     <div class="electwatersetting">
         <section class="esection">
@@ -227,45 +227,45 @@
         </section>
     </div>
 
+</div>
+<div class="popupcontainer" id="popupcontainer">
+    <div class="popup" id="popup">
+        <span id="close-btn_water" class="close"><i class="fa-solid fa-xmark"></i></span>
+        <h2 id="popup-header_water">Add Water Account</h2>
+        <hr>
+        <form method="post" action="${pageContext.request.contextPath}/user/account-activity/water" id="accountForm_water">
+            <label for="accountNumber">Account Number:</label><br>
+            <input type="text" id="accountActive-Number" name="accountNumber" required><br><br>
+            <input type="hidden" id="action-water" name="action" required>
+            <div class="btn-div">
+                <button type="submit" class="wateradd-btn" id="water-add_btn"></button>
+                <button type="button" class="close-btn" id="close-btn2_water">Close</button>
+            </div>
+        </form>
     </div>
-    <div class="popupcontainer" id="popupcontainer">
-        <div class="popup" id="popup">      
-              <span id="close-btn_water" class="close"><i class="fa-solid fa-xmark"></i></span>
-              <h2 id="popup-header_water">Add Water Account</h2>
-              <hr>
-                <form method="post" action="${pageContext.request.contextPath}/user/account-activity/water" id="accountForm_water">
-                 <label for="accountNumber">Account Number:</label><br>
-                 <input type="text" id="accountActive-Number" name="accountNumber" required><br><br>
-                    <input type="hidden" id="action-water" name="action" required>
-                 <div class="btn-div">
-                     <button type="submit" class="wateradd-btn" id="water-add_btn"></button>
-                    <button type="button" class="close-btn" id="close-btn2_water">Close</button>
-                 </div>
-                </form>
-        </div>
-    </div>
+</div>
 
-    <div class="popupcontainer2" id="popupcontainer2">
-        <div class="popup2" id="popup2">      
-              <span class="close" id="close-btn_electricity"><i class="fa-solid fa-xmark"></i></span>
-              <h2 id="popup-header_electricity">Add Electricity Account</h2>
-              <hr>
-                <form method="post" action="${pageContext.request.contextPath}/user/account-activity/electricity" id="accountForm_electricity">
-                    <label for="accountType">Select Account Type:</label><br>
-                    <select id="accountType" name="accountType" class="accountType">
-                       <option value="ceb">CEB</option>
-                       <option value="leco">LECO</option>
-                    </select><br><br>
-                 <label for="accountNumber">Account Number:</label><br>
-                 <input type="text" id="accountNumber" name="accountNumber" required><br><br>
-                    <input type="hidden" id="action-electricity" name="action" required>
-                 <div class="btn-div">
-                    <button type="submit" class="add-btn" id="electricity-add_btn"></button>
-                    <button type="button" class="close-btn" id="close-btn2_electricity">Close</button>
-                 </div>
-                </form>
-        </div>
+<div class="popupcontainer2" id="popupcontainer2">
+    <div class="popup2" id="popup2">
+        <span class="close" id="close-btn_electricity"><i class="fa-solid fa-xmark"></i></span>
+        <h2 id="popup-header_electricity">Add Electricity Account</h2>
+        <hr>
+        <form method="post" action="${pageContext.request.contextPath}/user/account-activity/electricity" id="accountForm_electricity">
+            <label for="accountType">Select Account Type:</label><br>
+            <select id="accountType" name="accountType" class="accountType">
+                <option value="ceb">CEB</option>
+                <option value="leco">LECO</option>
+            </select><br><br>
+            <label for="accountNumber">Account Number:</label><br>
+            <input type="text" id="accountNumber" name="accountNumber" required><br><br>
+            <input type="hidden" id="action-electricity" name="action" required>
+            <div class="btn-div">
+                <button type="submit" class="add-btn" id="electricity-add_btn"></button>
+                <button type="button" class="close-btn" id="close-btn2_electricity">Close</button>
+            </div>
+        </form>
     </div>
+</div>
 </body>
 <script>
 </script>
