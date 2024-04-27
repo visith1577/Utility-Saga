@@ -226,7 +226,8 @@
                         <th>Current Address</th>
                         <th>New Address</th>
                         <th>Nearest Account</th>
-                        <th>Connection Type</th>
+                        <th></th>
+                        <th>Connection Requirement</th>
                         <th>Select Account Status</th>
                         <th>Account Status</th>
                         <th>Submit</th>
@@ -252,6 +253,7 @@
                                 <td>${connection.currentAddress}</td>
                                 <td>${connection.newAddress}</td>
                                 <td>${connection.nearestAccount}</td>
+                                <td></td>
                                 <td>${connection.connectionRequirements}</td>
                                 <td><select name="accountStatus">
                                     <option  value="REJECTED" ${ connection.accountStatus == ConnectionModel.accountStatus.REJECTED ? "selected" : "" }>Rejected</option>
