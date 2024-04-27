@@ -80,6 +80,7 @@
     </header>
 </div>
 <div class="profile-container">
+    <section>
         <form method="post" class="edit-profile">
             <section>
                 <h2>User Setting</h2>
@@ -97,83 +98,86 @@
                 <button class="content-btn" type="submit" >Save Profile</button>
             </section>
         </form>
+    </section>
 
-        <section>
-            <h2>Account  Settings</h2>
-            <form id="password-reset" method="post" action="<%= request.getContextPath() %>/user/pwd-reset">
-                <label for="password">Old Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter new password" required>
-                <div id="old-pwd" class="error"></div>
-                <label for="new-password">New Password:</label>
-                <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
-                <div id="new-pwd" class="error"></div>
-                <label for="re-new-password">Confirm Password:</label>
-                <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
-                <div id="re-pwd" class="error"></div>
-                <label for="language">Preferred Language:</label>
-                <select id="language" name="language">
-                    <option value="english">English</option>
-                    <option value="sinhala">Sinhala</option>
-                    <option value="tamil">Tamil</option>
-                </select>
-
-                <div id="error-message" class="error"></div>
-                <button class="content-btn" type="submit">Save Account Settings</button>
-                <button class="content-btn" type="button">Edit Account Settings</button>
-            </form>
-
-        </section>
-
-        <section>
-            <h2>Appearance Settings</h2>
-
-            <label for="theme">Theme:</label>
-            <select id="theme" name="theme">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+    <section>
+        <h2>Account  Settings</h2>
+        <form id="password-reset" method="post" action="<%= request.getContextPath() %>/user/pwd-reset">
+            <label for="password">Old Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter new password" required>
+            <div id="old-pwd" class="error"></div>
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
+            <div id="new-pwd" class="error"></div>
+            <label for="re-new-password">Confirm Password:</label>
+            <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
+            <div id="re-pwd" class="error"></div>
+            <label for="language">Preferred Language:</label>
+            <select id="language" name="language">
+                <option value="english">English</option>
+                <option value="sinhala">Sinhala</option>
+                <option value="tamil">Tamil</option>
             </select>
 
-            <label for="fontSize">Font Size:</label>
-            <select id="fontSize" name="fontSize">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-            </select>
+            <div id="error-message" class="error"></div>
+            <button class="content-btn" type="submit">Save Account Settings</button>
+            <button class="content-btn" type="button">Edit Account Settings</button>
+        </form>
 
-            <button class="content-btn" type="button">Save Appearance Settings</button>
-        </section>
-        <section>
+    </section>
+
+    <section>
+        <h2>Appearance Settings</h2>
+
+        <label for="theme">Theme:</label>
+        <select id="theme" name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+
+        <label for="fontSize">Font Size:</label>
+        <select id="fontSize" name="fontSize">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+
+        <button class="content-btn" type="button">Save Appearance Settings</button>
+    </section>
+
+    <div class="electwatersetting">
+        <section class="esection">
             <h2>Service Settings</h2>
             <h3>Electricity Settings</h3>
             <c:if test="${not empty sessionScope.electricity}">
-            <div>
-                <label for="account-details__electricity">Your Current Electricity Accounts:</label>
-                <ul id="account-details__electricity">
-                    <c:forEach items="${requestScope.electricity_account_list}" var="account">
-                        <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
-                    </c:forEach>
-                </ul>
+                <div>
+                    <label for="account-details__electricity">Your Current Electricity Accounts:</label>
+                    <ul id="account-details__electricity">
+                        <c:forEach items="${requestScope.electricity_account_list}" var="account">
+                            <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
+                        </c:forEach>
+                    </ul>
 
-                <button id="edit-btn_electricity" class="content-btn Delete" type="button">Deactivate</button>
-                <button id="add-btn_electricity" class="content-btn Edit" type="button">Activate</button>
+                    <button id="edit-btn_electricity" class="content-btn Delete" type="button">Deactivate</button>
+                    <button id="add-btn_electricity" class="content-btn Edit" type="button">Activate</button>
 
-                <label for="electricityNotifications">Receive Notifications:</label>
-                <select id="electricityNotifications" name="electricityNotifications">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <label for="electricityE-Notifications">Email Notifications:</label>
-                <select id="electricityE-Notifications" name="electricityE-Notifications">
-                    <option value="yes">Enable</option>
-                    <option value="no">Disable</option>
-                </select>
-                <c:if test="${not empty sessionScope.water}">
-                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
-                    <input type="hidden" name="action" value="unsubscribe">
-                    <button class="content-btn" type="button" id="unsubscribe-electricity">UnSubscribe</button>
-                </form>
-                </c:if>
-            </div>
+                    <label for="electricityNotifications">Receive Notifications:</label>
+                    <select id="electricityNotifications" name="electricityNotifications">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <label for="electricityE-Notifications">Email Notifications:</label>
+                    <select id="electricityE-Notifications" name="electricityE-Notifications">
+                        <option value="yes">Enable</option>
+                        <option value="no">Disable</option>
+                    </select>
+                    <c:if test="${not empty sessionScope.water}">
+                        <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
+                            <input type="hidden" name="action" value="unsubscribe">
+                            <button class="content-btn" type="button" id="unsubscribe-electricity">UnSubscribe</button>
+                        </form>
+                    </c:if>
+                </div>
             </c:if>
             <c:if test="${empty sessionScope.electricity}">
                 <label for="account-details__water">Subscribe to view accounts.</label>
@@ -183,35 +187,35 @@
                 </form>
             </c:if>
         </section>
-        <section>
+        <section class="wsection">
             <h3>Water Settings</h3>
             <c:if test="${not empty sessionScope.water}">
-            <div>
-                <label for="account-details__water">Your Current Water Accounts:</label>
-                <ul id="account-details__water">
-                    <c:forEach items="${requestScope.water_account_list}" var="account">
-                        <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
-                    </c:forEach>
-                </ul>
-                <button id="edit-btn_water" type="button" class="content-btn Delete">Deactivate</button>
-                <button id="add-btn_water" type="button" class="content-btn Edit">Activate</button>
-                <label for="waterNotifications">Receive Notifications:</label>
-                <select id="waterNotifications" name="waterNotifications">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <label for="waterE-Notifications">Email Notifications:</label>
-                <select id="waterE-Notifications" name="waterE-Notifications">
-                    <option value="yes">Enable</option>
-                    <option value="no">Disable</option>
-                </select>
-                <c:if test="${not empty sessionScope.electricity}">
-                <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
-                    <input type="hidden" name="action" value="unsubscribe">
-                    <button class="content-btn" type="button" name="action" id="unsubscribe-water">UnSubscribe</button>
-                </form>
-                </c:if>
-            </div>
+                <div>
+                    <label for="account-details__water">Your Current Water Accounts:</label>
+                    <ul id="account-details__water">
+                        <c:forEach items="${requestScope.water_account_list}" var="account">
+                            <li id="${account.account_number}" style="color: ${account.userStatus == 'ACTIVE' ? 'green' : 'red'}">${account.account_number}</li>
+                        </c:forEach>
+                    </ul>
+                    <button id="edit-btn_water" type="button" class="content-btn Delete">Deactivate</button>
+                    <button id="add-btn_water" type="button" class="content-btn Edit">Activate</button>
+                    <label for="waterNotifications">Receive Notifications:</label>
+                    <select id="waterNotifications" name="waterNotifications">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <label for="waterE-Notifications">Email Notifications:</label>
+                    <select id="waterE-Notifications" name="waterE-Notifications">
+                        <option value="yes">Enable</option>
+                        <option value="no">Disable</option>
+                    </select>
+                    <c:if test="${not empty sessionScope.electricity}">
+                        <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
+                            <input type="hidden" name="action" value="unsubscribe">
+                            <button class="content-btn" type="button" name="action" id="unsubscribe-water">UnSubscribe</button>
+                        </form>
+                    </c:if>
+                </div>
             </c:if>
             <c:if test="${empty sessionScope.water}">
                 <label for="account-details__water">Subscribe to view accounts.</label>
@@ -222,44 +226,46 @@
             </c:if>
         </section>
     </div>
-    <div class="popupcontainer" id="popupcontainer">
-        <div class="popup" id="popup">      
-              <span id="close-btn_water" class="close"><i class="fa-solid fa-xmark"></i></span>
-              <h2 id="popup-header_water">Add Water Account</h2>
-              <hr>
-                <form method="post" action="${pageContext.request.contextPath}/user/account-activity/water" id="accountForm_water">
-                 <label for="accountNumber">Account Number:</label><br>
-                 <input type="text" id="accountActive-Number" name="accountNumber" required><br><br>
-                    <input type="hidden" id="action-water" name="action" required>
-                 <div class="btn-div">
-                     <button type="submit" class="wateradd-btn" id="water-add_btn"></button>
-                    <button type="button" class="close-btn" id="close-btn2_water">Close</button>
-                 </div>
-                </form>
-        </div>
-    </div>
 
-    <div class="popupcontainer2" id="popupcontainer2">
-        <div class="popup2" id="popup2">      
-              <span class="close" id="close-btn_electricity"><i class="fa-solid fa-xmark"></i></span>
-              <h2 id="popup-header_electricity">Add Electricity Account</h2>
-              <hr>
-                <form method="post" action="${pageContext.request.contextPath}/user/account-activity/electricity" id="accountForm_electricity">
-                    <label for="accountType">Select Account Type:</label><br>
-                    <select id="accountType" name="accountType" class="accountType">
-                       <option value="ceb">CEB</option>
-                       <option value="leco">LECO</option>
-                    </select><br><br>
-                 <label for="accountNumber">Account Number:</label><br>
-                 <input type="text" id="accountNumber" name="accountNumber" required><br><br>
-                    <input type="hidden" id="action-electricity" name="action" required>
-                 <div class="btn-div">
-                    <button type="submit" class="add-btn" id="electricity-add_btn"></button>
-                    <button type="button" class="close-btn" id="close-btn2_electricity">Close</button>
-                 </div>
-                </form>
-        </div>
+</div>
+<div class="popupcontainer" id="popupcontainer">
+    <div class="popup" id="popup">
+        <span id="close-btn_water" class="close"><i class="fa-solid fa-xmark"></i></span>
+        <h2 id="popup-header_water">Add Water Account</h2>
+        <hr>
+        <form method="post" action="${pageContext.request.contextPath}/user/account-activity/water" id="accountForm_water">
+            <label for="accountNumber">Account Number:</label><br>
+            <input type="text" id="accountActive-Number" name="accountNumber" required><br><br>
+            <input type="hidden" id="action-water" name="action" required>
+            <div class="btn-div">
+                <button type="submit" class="wateradd-btn" id="water-add_btn"></button>
+                <button type="button" class="close-btn" id="close-btn2_water">Close</button>
+            </div>
+        </form>
     </div>
+</div>
+
+<div class="popupcontainer2" id="popupcontainer2">
+    <div class="popup2" id="popup2">
+        <span class="close" id="close-btn_electricity"><i class="fa-solid fa-xmark"></i></span>
+        <h2 id="popup-header_electricity">Add Electricity Account</h2>
+        <hr>
+        <form method="post" action="${pageContext.request.contextPath}/user/account-activity/electricity" id="accountForm_electricity">
+            <label for="accountType">Select Account Type:</label><br>
+            <select id="accountType" name="accountType" class="accountType">
+                <option value="ceb">CEB</option>
+                <option value="leco">LECO</option>
+            </select><br><br>
+            <label for="accountNumber">Account Number:</label><br>
+            <input type="text" id="accountNumber" name="accountNumber" required><br><br>
+            <input type="hidden" id="action-electricity" name="action" required>
+            <div class="btn-div">
+                <button type="submit" class="add-btn" id="electricity-add_btn"></button>
+                <button type="button" class="close-btn" id="close-btn2_electricity">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 <script>
 </script>
