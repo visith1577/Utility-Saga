@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@WebServlet("/electricity/main-admin/region")
+@WebServlet("/super-admin/region")
 public class ElectricityRegion extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String region = req.getParameter("region").toUpperCase();
@@ -51,7 +51,7 @@ public class ElectricityRegion extends HttpServlet {
                 req.setAttribute("electricityRegion", electricityRegion);
             }
 
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/electricity/admin/electricity-regions.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/superadmin/electricity-regions.jsp");
             dispatcher.forward(req, resp);
 
         } catch (Exception e) {
