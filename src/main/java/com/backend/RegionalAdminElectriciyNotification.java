@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import DAO.dao.sendNotificationDao;
+import jakarta.servlet.http.HttpSession;
 import model.SendNotificationModel;
 import model.SendNotificationModel.RecipientType;
 
@@ -28,9 +29,6 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         if (recipientType == RecipientType.SPECIFIC) {
             recipientId = req.getParameter("recipientId");
         }
-        String dateStr = req.getParameter("date");
-        LocalDate date = LocalDate.parse(dateStr);
-        System.out.println(date);
         String subject = req.getParameter("subject");
         System.out.println(subject);
         String message = req.getParameter("message");
@@ -44,7 +42,6 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         notification.setTitle(title);
         notification.setRecipientType(recipientType);
         notification.setRecipientId(recipientId);
-        notification.setDate(date.atStartOfDay());
         notification.setSubject(subject);
         notification.setMessage(message);
 
@@ -63,21 +60,17 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        HttpSession session = request.getSession();
         System.out.println("Go into doGet");
-        String recipientId = request.getParameter("recipientId");
+        String recipientId = session.getAttribute("NIC").toString();
 
         List<SendNotificationModel> notifications=new ArrayList<>();
         sendNotificationDao dao = new sendNotificationDao();
 
         try {
-            if (recipientId == null || recipientId.isEmpty()) {
-                notifications= dao.getAllNotifications();
-                System.out.println("if is correct");
-            } else {
-                notifications.addAll(dao.getNotificationsByRecipientId(recipientId));
-                notifications.addAll(dao.getAllNotifications());
-                System.out.println("else is right");
-            }
+            notifications.addAll(dao.getNotificationsByRecipientId(recipientId));
+            notifications.addAll(dao.getAllNotifications());
+            System.out.println("else is right");
 
             // Set the notifications attribute in the request
             request.setAttribute("notifications", notifications);
@@ -91,5 +84,3 @@ public class RegionalAdminElectriciyNotification extends HttpServlet {
         }
     }
 }
-
-

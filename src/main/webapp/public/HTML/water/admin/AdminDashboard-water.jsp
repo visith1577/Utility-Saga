@@ -20,8 +20,86 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let contextPath = '<%= contextPath %>';
+            document.querySelector('table').addEventListener('click', function(event) {
+                if (event.target.classList.contains('change-status-btn')) {
+
+                    changeUserStatus(event);
+                }
+            });
+        });
+
+
+        function changeUserStatus(event) {
+            let contextPath = '<%= contextPath %>';
+
+            const row = event.target.closest('tr');
+
+            const region = row.querySelector('td:nth-child(1)').textContent;
+            console.log("region: " ,region);
+
+            const currentStatus = row.querySelector('td:nth-child(10)').textContent;
+            console.log("current sttaus: " ,currentStatus);
+
+            const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
+            console.log("New Status: ", newStatus);
+
+            const changeStatus = true;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Are you sure you want to change the status of region " + region + " to " + newStatus + " ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, change it!',
+                cancelButtonText: 'No, keep it',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const region = row.querySelector('td:nth-child(1)').textContent;
+                    if (region) {
+                        fetch(contextPath + '/water/main-admin/region-status', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                region: region,
+                                newStatus: newStatus,
+                                changeStatus: changeStatus
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Response from server:', data);
+
+                                if (data && data.status) {
+                                    row.querySelector('td:nth-child(10)').textContent = data.status;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error updating user status:', error);
+                            });
+                        console.log("Data successfully passed");
+                    } else {
+                        console.error('Region not found.');
+                    }
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    console.log('Status change cancelled.');
+                }
+            }).catch(error => {
+                console.error('Error updating Region status:', error);
+            });
+        }
+
+
+    </script>
 
 </head>
 
@@ -38,6 +116,12 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
+                    <li class="menu-items-li">
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
+                            <span class="material-icons">notifications</span>
+                        </a>
+                    </li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/main-admin/region">Regions</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/water-accounts">Regional Admins</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
@@ -75,31 +159,50 @@
                 <h3 class="popup-title">Add Electricity Admin</h3>
                 <form id="addForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
                     <label for="region">Region:</label>
-                    <input type="text" name="wregion" id="region" required>
+                    <input type="text" name="wregion" id="region"
+                           placeholder="Enter the region"
+                           required>
 
                     <label for="contact">Contact Number:</label>
-                    <input type="text" name="wcontact" id="contact" required>
+                    <input type="text" name="wcontact" id="contact"
+                           placeholder="Enter the contact number of office"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           required>
 
                     <label for="email">Email:</label>
-                    <input type="email" name="wemail" id="email" required>
+                    <input type="email" name="wemail" id="email"
+                           placeholder="Enter new email"
+                           required>
 
                     <label for="password">Password:</label>
-                    <input type="password" name="wpassword" id="password" required>
+                    <input type="password" name="wpassword" id="password"
+                           placeholder="Enter the password"
+                           required>
 
                     <label for="re-password">Reenter Password:</label>
-                    <input type="password" name="re-wpassword" id="re-password" required>
+                    <input type="password" name="re-wpassword" id="re-password"
+                           placeholder="Re- enter the password"
+                           required>
 
                     <label for="empid">Employee ID:</label>
-                    <input type="text" name="wempid" id="empid" required>
+                    <input type="text" name="wempid" id="empid"
+                           placeholder="Assigned Employee ID"
+                           required>
 
                     <label for="uname">UserName:</label>
-                    <input type="text" name="wuname" id="uname" required>
+                    <input type="text" name="wuname" id="uname"
+                           placeholder="Enter new username"
+                           required>
 
                     <label for="fname">First Name:</label>
-                    <input type="text" name="wfname" id="fname" required>
+                    <input type="text" name="wfname" id="fname"
+                           placeholder="Enter firstname"
+                           required>
 
                     <label for="lname">Last Name:</label>
-                    <input type="text" name="wlname" id="lname" required>
+                    <input type="text" name="wlname" id="lname"
+                           placeholder="Enter lastname"
+                           required>
 
                     <label for="role">Admin Type:</label>
                     <select name="wrole" id="role" required>
@@ -107,7 +210,10 @@
                     </select>
 
                     <label for="mobile">Mobile:</label>
-                    <input type="text" name="wmobile" id="mobile" required>
+                    <input type="text" name="wmobile" id="mobile"
+                           placeholder="Enter mobile number"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           required>
 
                     <div class="form-button">
                         <button type="submit" class="buttons">Add Admin</button>
@@ -150,6 +256,8 @@
                 <th>Last Name</th>
                 <th>Main/Regional</th>
                 <th>Mobile</th>
+                <th>Activate/Deactivate</th>
+                <th>Change Status</th>
             </tr>
 
             <c:if test="${empty requestScope.waterRegionalAdmins}">
@@ -169,6 +277,8 @@
                         <td> ${admin.lastName}</td>
                         <td> ${admin.role} </td>
                         <td> ${admin.mobile}</td>
+                        <td>${admin.activeStatus}</td>
+                        <td><button class="change-status-btn">Change Status</button></td>
                     </tr>
                 </c:forEach>
             </c:if>
@@ -182,6 +292,7 @@
 </body>
 <script src="../../../JS/dashboard.js"></script>
 <script>
+    var contextPath = '<%= contextPath %>';
     window.onscroll = function () {
         scrollFunction()
     }
@@ -198,6 +309,7 @@
         var popup= document.getElementById(popUpId);
         if(popup){
             popup.style.display = "block";
+            initializeValidation();
         }
 
     }
@@ -220,5 +332,6 @@
         document.getElementById('editPopupForm').style.display = 'none';
     }
 </script>
+<script src="<%= request.getContextPath() %>/public/JS/ValidationMainAdminWater.js"></script>
 
 </html>

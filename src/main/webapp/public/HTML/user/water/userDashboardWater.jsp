@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div class="navv">
@@ -30,6 +31,11 @@
                 <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
+                <li class="menu-items-li">
+                    <a href="<%= request.getContextPath() %>/water/regional-admin/notification">
+                        <span class="material-icons">notifications</span>
+                    </a>
+                </li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
 
                 <li class="img_user dropdown">

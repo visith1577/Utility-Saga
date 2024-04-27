@@ -45,3 +45,30 @@ function displayResults(data) {
         resultsDiv.innerHTML = table;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Event Listner triggered");
+    const showPendingCheckbox = document.getElementById('showPending');
+    const showRejectedCheckbox = document.getElementById('showRejected');
+    const tableRows = document.querySelectorAll('table tbody tr');
+
+    showPendingCheckbox.addEventListener('change', filterRows);
+    showRejectedCheckbox.addEventListener('change', filterRows);
+
+    filterRows();
+
+    function filterRows() {
+        const showPending = showPendingCheckbox.checked;
+        console.log("Show Active: ",showPending);
+        const showRejected = showRejectedCheckbox.checked;
+        console.log("Show Inactive: ",showRejected);
+
+        tableRows.forEach(row => {
+            const statusCell = row.querySelector('td:nth-child(12)');
+            console.log(statusCell);
+            const status = row.querySelector('td:nth-child(12)').textContent.trim();
+            const showRow = (showPending && status === 'PENDING') || (showRejected && status === 'REJECTED') || (showPending && showRejected);
+            row.style.display = showRow ? '' : 'none';
+        });
+    }
+});

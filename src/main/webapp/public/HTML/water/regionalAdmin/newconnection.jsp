@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityAdminDashboard.js"></script>
+    <script src="<%= request.getContextPath() %>/public/JS/ElectricityRegionalConnectionSearch.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/WaterRegionalConnectionSearch.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admintable.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/admincards.css" rel="stylesheet">
@@ -82,6 +83,15 @@
             }
         });
     </script>
+    <style>
+    .search-option{
+        justify-content: space-between;
+    }
+    .filter-options{
+        margin-top: 12.5vh;
+    }
+</style>
+
 
 
 </head>
@@ -116,8 +126,9 @@
     </div>
 </header>
 
-
-<div style="margin-top: 12.5vh">
+<div class="search-option">
+<div class="bar-search-button">
+<div style="margin-top: 12.5vh" class="searchbar">
     <form id="searchForm" method="get" action="<%= request.getContextPath() %>/water/regional-admin/connections">
         <label for="nic"></label>
         <input name="id" type="text" id="nic" placeholder="Enter Keyword" style="margin-left: 20px">
@@ -132,6 +143,17 @@
         document.getElementById('searchForm').submit();
     });
 </script>
+</div>
+    <div class="filter-options">
+        <label>
+            <input type="checkbox" id="showPending" checked> Show Pending
+        </label>
+        <label>
+            <input type="checkbox" id="showRejected" checked> Show Rejected
+        </label>
+    </div>
+</div>
+</div>
 
 <div class="complaints">
     <div class="tablediv">
@@ -158,12 +180,18 @@
                                 <td><input type="text" name="subregion" id="subregion" required></td>
                             </tr>
                             <tr>
+                                <td><label for="address">Address</label></td>
+                                <td><input type="text" name="address" id="address" required></td>
+                            </tr>
+                            <tr>
                                 <td><label for="accountno">Account Number </label></td>
                                 <td><input type="text" name="accountno" id="accountno" required></td>
                             </tr>
                             <tr>
                                 <td><label for="requestid">Request ID </label></td>
-                                <td><input type="text" name="requestid" id="requestid" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
+                                <td><input type="text" name="requestid" id="requestid"
+                                           placeholder="Keep empty on manual adding"
+                                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"></td>
                             </tr>
                             <tr>
                                 <td><label for="nicc">NIC</label></td>
@@ -175,7 +203,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="form-button">
-                                    <button type="submit" class="buttons">Add Admin</button>
+                                    <button type="submit" class="buttons">Add Account</button>
                                     <button type="reset" onclick="closePopup('popupForm')" class="buttons">Close</button>
                                 </td>
                             </tr>
@@ -224,7 +252,7 @@
                                 <td>${connection.currentAddress}</td>
                                 <td>${connection.newAddress}</td>
                                 <td>${connection.nearestAccount}</td>
-                                <td>${connection.connectionType}</td>
+                                <td>${connection.connectionRequirements}</td>
                                 <td><select name="accountStatus">
                                     <option  value="REJECTED" ${ connection.accountStatus == ConnectionModel.accountStatus.REJECTED ? "selected" : "" }>Rejected</option>
                                     <option  value="PENDING" ${ connection.accountStatus == ConnectionModel.accountStatus.PENDING ? "selected" : "" }>Pending</option>

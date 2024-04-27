@@ -7,6 +7,12 @@ import model.ElectricityAdminModel;
 public interface WaterAdminImpl {
     public int addWaterAdmin(ElectricityAdminModel admin) throws Exception;
 
+    int addRegion(ElectricityAdminModel admin) throws Exception;
+
+    List<String> getRegions() throws Exception;
+
+    int resetPassword(ElectricityAdminModel admin) throws SQLException;
+
     public List<ElectricityAdminModel> getWaterAdmins(ElectricityAdminModel.Role role) throws Exception;
 
     List<ElectricityAdminModel> getAdminsByNIC(String nic) throws SQLException;
@@ -20,4 +26,8 @@ public interface WaterAdminImpl {
     public int updateAdminDetails(ElectricityAdminModel admin) throws Exception;
 
     int updateImportantDetails(ElectricityAdminModel admin) throws Exception;
+
+    void updateAccountStatus(String region, String newStatus) throws SQLException;
+
+    String getStatusByRegion(String region) throws SQLException;
 }

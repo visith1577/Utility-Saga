@@ -45,7 +45,8 @@ public class WaterConnectionDao implements Connection {
         String sql = "SELECT req.*\n" +
                 "FROM water_connection_request req\n" +
                 "JOIN water_admin admin ON req.region = admin.region\n" +
-                "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)\n";
+                "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)\n"+
+                "ORDER BY req.`date` DESC";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,region);
@@ -89,7 +90,8 @@ public class WaterConnectionDao implements Connection {
                 "  AND req.region = admin.region\n" +
                 "  AND (req.requester_name LIKE ? OR req.account_number LIKE ? OR req.nic LIKE ? OR req.email LIKE ? OR req.mobile LIKE ? OR\n" +
                 "       req.region LIKE ? OR req.current_address LIKE ? OR req.new_address LIKE ? OR req.nearest_account LIKE ? OR\n" +
-                "       req.connection_requirement LIKE ? OR req.account_status LIKE ?)";
+                "        req.connection_requirement LIKE ? OR req.account_status LIKE ?)\n" +
+                "ORDER BY req.`date` DESC";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,region);
@@ -175,5 +177,10 @@ public class WaterConnectionDao implements Connection {
             Connectdb.closeConnection(connection);
         }
         return model;
+    }
+
+    @Override
+    public ConnectionModel getNewConnectionAddress(String id) throws SQLException {
+        return null;
     }
 }

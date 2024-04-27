@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    margin-top:10px;
+    color: #333;
+    margin-bottom:0;
+}
+
+p{
+    margin-top:0;
+    text-align: center;
+}
+
+.formbox {
+    margin: 0 auto;
+    padding: 20px;
+    width: 60%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 05px rgba(105, 134, 134, 0.5);
+}
+
+.formbox label {
+    font-weight: bold;
+    font-size:13px;
+}
+
+.formbox input[type="text"], .formbox input[type="email"]  {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 9px;
+    border:none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+    font-size:10px
+}
+
+.formbox input[type="text"]:focus, .formbox input[type="email"]:focus {
+    outline: none;
+    border:none;
+    border-bottom:#66afe9;
+}
+
+.formbox hr {
+    border: 0;
+    border-top: 1px solid #ffffff0f;
+    margin: 15px 0;
+}
+
+.formbox .btnbox{
+    display: flex;
+    justify-content: center;
+}
+
+.formbox button {
+    background-image: linear-gradient(#28e0fd, #0d70ea);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 10px 148px;
+    text-align: center;
+    touch-action: manipulation;
+}
+
+.formbox button:hover {
+    background-image: linear-gradient(#057385, #044493);
+}
+
+@media (max-width: 568px) {
+    .formbox {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .formbox {
+        width: 70%;
+    }
+}

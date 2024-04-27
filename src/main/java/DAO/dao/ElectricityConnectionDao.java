@@ -46,7 +46,8 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         String sql = "SELECT req.*\n" +
                 "FROM electricity_connection_request req\n" +
                 "JOIN electricity_admin admin ON req.region = admin.region\n" +
-                "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)";
+                "WHERE (admin.region = ? AND req.account_status != 'ADDED' AND req.region = admin.region)\n"+
+                "ORDER BY req.`date` DESC";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,region);
@@ -91,7 +92,8 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
                 "  AND req.region = admin.region\n" +
                 "  AND (req.requester_name LIKE ? OR req.account_number LIKE ? OR req.nic LIKE ? OR req.email LIKE ? OR req.mobile LIKE ? OR\n" +
                 "       req.region LIKE ? OR req.current_address LIKE ? OR req.new_address LIKE ? OR req.nearest_account LIKE ? OR\n" +
-                "       req.connection_requirement LIKE ? OR req.connection_type LIKE ? OR req.account_status LIKE ?)";
+                "       req.connection_requirement LIKE ? OR req.connection_type LIKE ? OR req.account_status LIKE ?)\n"+
+                "\"ORDER BY req.`date` DESC\";";
 
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,region);
@@ -183,4 +185,30 @@ public class ElectricityConnectionDao implements DAO.impl.Connection {
         }
         return model;
     }
+
+    @Override
+    public ConnectionModel getNewConnectionAddress(String id) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        ConnectionModel model = new ConnectionModel();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT new_address FROM electricity_connection_request WHERE id = ?");
+            stmt.setString(1, id);
+
+            try (ResultSet result = stmt.executeQuery()){
+                while(result.next()) {
+                    ConnectionModel.AccountStatus newaddress = ConnectionModel.AccountStatus.valueOf(result.getString("account_status"));
+                    System.out.println("Final status: "+newaddress);
+                    model.setAccountStatus(newaddress);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Failed to update approval status: " + e.getMessage());
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return model;
+    }
+
 }

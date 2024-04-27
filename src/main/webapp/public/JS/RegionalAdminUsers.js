@@ -40,3 +40,28 @@ function displayResults(data) {
         resultsDiv.innerHTML = table;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Event Listner triggered");
+    const showActiveCheckbox = document.getElementById('showActive');
+    const showInactiveCheckbox = document.getElementById('showInactive');
+    const tableRows = document.querySelectorAll('table tbody tr');
+
+    showActiveCheckbox.addEventListener('change', filterRows);
+    showInactiveCheckbox.addEventListener('change', filterRows);
+
+    filterRows();
+
+    function filterRows() {
+        const showActive = showActiveCheckbox.checked;
+        console.log("Show Active: ",showActive);
+        const showInactive = showInactiveCheckbox.checked;
+        console.log("Show Inactive: ",showInactive);
+
+        tableRows.forEach(row => {
+            const status = row.querySelector('td:nth-child(7)').textContent.trim();
+            const showRow = (showActive && status === 'ACTIVE') || (showInactive && status === 'INACTIVE') || (showActive && showInactive);
+            row.style.display = showRow ? '' : 'none';
+        });
+    }
+});
