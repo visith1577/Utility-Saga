@@ -44,7 +44,6 @@
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/electricity/main-admin/region">Regions</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional
                         Admins</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
