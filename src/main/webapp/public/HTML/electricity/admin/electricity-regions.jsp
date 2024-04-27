@@ -58,18 +58,20 @@
         </header>
     </div>
     <div class="madminmiddle" id="middle">
-            <div id="popupContainer" class="popup-container">
-                <h2 class="popup-title">Add Regions</h2>
-                <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/main-admin/region">
-                    <label for="region">Region:</label>
-                    <input type="text" name="region" id="region"
-                           placeholder="Enter the region"
-                           required>
-                    <div class="form-button">
-                        <button type="submit" class="buttons">Add Region</button>
+            <div id="popupContainer" class="addregionscontainer">
+                <div class="formdiv">
+                    <h2 class="popup-title">Add Regions</h2>
+                    <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/main-admin/region">
+                        <label for="region">Region:</label>
+                        <input type="text" name="region" id="region"
+                               placeholder="Enter the region"
+                               required>
+                        <div class="form-button">
+                            <button type="submit" class="buttons">Add Region</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            </form>
-    </div>
 
     <table class="table">
         <tr>

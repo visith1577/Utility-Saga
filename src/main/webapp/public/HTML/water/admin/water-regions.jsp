@@ -58,7 +58,8 @@
         </header>
     </div>
     <div class="madminmiddle" id="middle">
-            <div id="popupContainer" class="popup-container">
+            <div id="popupContainer" class="addregionscontainer">
+                <div class="formdiv">
                 <h2 class="popup-title">Add Regions</h2>
                 <form id="addForm" method="POST" action="${pageContext.request.contextPath}/water/main-admin/region">
                     <label for="region">Region:</label>
@@ -67,8 +68,9 @@
                            required>
                     <div class="form-button">
                         <button type="submit" class="buttons">Add Region</button>
-            </div>
-            </form>
+                    </div>
+                </form>
+                </div>
     </div>
 
     <table class="table">
