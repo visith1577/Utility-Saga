@@ -86,29 +86,6 @@
         </div>
     </section>
 
-<%--    <section class="plan2 water" id="plan2">--%>
-<%--        <ul class="plan2__items">--%>
-<%--            <li>--%>
-<%--                <div class="plan2__item">--%>
-<%--                    <a href="<%= request.getContextPath() %>/user/water-connection"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>--%>
-<%--                </div>--%>
-<%--                <p class="plan2__para">New Connections</p>--%>
-<%--            </li>--%>
-<%--            <li>--%>
-<%--                <div class="plan2__item">--%>
-<%--                    <a href="<%= request.getContextPath() %>/user/water-public-complaint"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>--%>
-<%--                </div>--%>
-<%--                <p class="plan2__para">Public Complaints</p>--%>
-<%--            </li>--%>
-<%--            <li>--%>
-<%--                <div class="plan2__item">--%>
-<%--                    <a href="<%= request.getContextPath() %>/public/HTML/user/water/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>--%>
-<%--                </div>--%>
-<%--                <p class="plan2__para">Analysis</p>--%>
-<%--            </li>--%>
-<%--        </ul>--%>
-<%--    </section>--%>
-
     <section class="features" id="features">
         <h1 class="heading">Main Water Serivices</h1>
 
