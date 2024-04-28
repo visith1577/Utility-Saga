@@ -159,11 +159,6 @@
                   <input type="text" name="eBill" id="eBill" placeholder="electricity bill no." class="electricity-chk">
                 </div>
                 <div class="provider-selection">
-                  <p class="field-heading">Provider : </p>
-                  <label for="ceb">
-                    <input type="radio" name="provider" id="ceb" value="ceb">CEB
-                  </label>
-                  <label for="leco"><input type="radio" name="provider" id="leco" value="leco">LECO</label>
                 </div>
               </div>
               <div class="list-container">
@@ -491,52 +486,67 @@
     const eBill_value = eBill.value.trim();
     const wBill_value = wBill.value.trim();
     const service_value = Array.from(service).filter(item => item.checked).map(item => item.value);
-    const provider_value = Array.from(provider).filter(item => item.checked).map(item => item.value);
 
-    if (service_value.length === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Service not selected",
-        text: "Please select a service",
-        footer: ''
-      });
-    } else if (service_value.includes('electricity') && eBill_value === '') {
-      Swal.fire({
-        icon: "error",
-        title: "Electricity bill not provided",
-        text: "Please provide electricity bill number",
-        footer: ''
-      });
-    } else if (service_value.includes('electricity') && provider_value.length === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Provider not selected",
-        text: "Please select a provider",
-        footer: ''
-      });
-    } else if (service_value.includes('water') && wBill_value === '') {
-      Swal.fire({
-        icon: "error",
-        title: "Water bill not provided",
-        text: "Please provide water bill number",
-        footer: ''
-      });
-    } else if (!tc_value) {
-      Swal.fire({
-        icon: "error",
-        title: "Terms and conditions not accepted",
-        text: "Please accept terms and conditions",
-        footer: ''
-      });
-    } else {
-      Swal.fire({
-        icon: "success",
-        title: "Validation Successful",
-        text: "You can proceed to the next step",
-        footer: ''
-      });
-      signupContent.submit();
-    }
+    fetch(contextPath + '/api/validate-one?accounts=' +  document.getElementById('nic').value)
+            .then(response => {
+              return response.json(); // Parse response JSON
+            }).then((data) => {
+              let accountList = data.accountList;
+              console.log(accountList);
+              if (service_value.includes('water') && !accountList.includes(wBill_value) || service_value.includes('water') && (accountList === [])) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Water account not supported",
+                  text: "Please provide a valid water bill number",
+                  footer: ''
+                });
+              } else if (service_value.includes('electricity') && !accountList.includes(eBill_value) || service_value.includes('electricity') && (accountList === [])) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Electricity account not supported",
+                  text: "Please provide a valid electricity bill number",
+                  footer: ''
+                });
+              }else if (service_value.length === 0) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Service not selected",
+                  text: "Please select a service",
+                  footer: ''
+                });
+              } else if (service_value.includes('electricity') && eBill_value === '') {
+                Swal.fire({
+                  icon: "error",
+                  title: "Electricity bill not provided",
+                  text: "Please provide electricity bill number",
+                  footer: ''
+                });
+              } else if (service_value.includes('water') && wBill_value === '') {
+                Swal.fire({
+                  icon: "error",
+                  title: "Water bill not provided",
+                  text: "Please provide water bill number",
+                  footer: ''
+                });
+              } else if (!tc_value) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Terms and conditions not accepted",
+                  text: "Please accept terms and conditions",
+                  footer: ''
+                });
+              } else {
+                Swal.fire({
+                  icon: "success",
+                  title: "Validation Successful",
+                  text: "You can proceed to the next step",
+                  footer: ''
+                });
+                signupContent.submit();
+              }
+    }).catch(error => {
+      console.error('Error validating accounts:', error);
+    });
   })
 
 

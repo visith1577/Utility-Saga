@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ValidationDao implements Validations {
     @Override
@@ -335,4 +337,31 @@ public class ValidationDao implements Validations {
         return value != 0;
     }
 
+    public List<String> getAccountList(String nic) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        List<String> accountList = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT account_number FROM eAccount_list WHERE nic = ?");
+            stmt.setString(1, nic);
+            try (ResultSet result = stmt.executeQuery()) {
+                while (result.next()) {
+                    accountList.add(result.getString("account_number"));
+                }
+            }
+            PreparedStatement stmt1 = connection.prepareStatement("SELECT account_number FROM wAccount_list WHERE nic = ?");
+            stmt1.setString(1, nic);
+            try (ResultSet result = stmt1.executeQuery()) {
+                while (result.next()) {
+                    accountList.add(result.getString("account_number"));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return accountList;
+    }
 }

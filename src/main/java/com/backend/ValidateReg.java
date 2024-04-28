@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/api/validate-one")
 public class ValidateReg extends HttpServlet {
@@ -19,6 +20,8 @@ public class ValidateReg extends HttpServlet {
         String username = req.getParameter("username");
         String nic = req.getParameter("nic");
         String email = req.getParameter("email");
+        String accounts = req.getParameter("accounts");
+
 
         ValidationDao validationDao = new ValidationDao();
         try {
@@ -43,6 +46,13 @@ public class ValidateReg extends HttpServlet {
                 Gson gson3 = new Gson();
                 JsonElement jsonData3 = gson3.toJsonTree(isEmailExists);
                 responseData.add("EmailExists", jsonData3);
+            }
+
+            if (accounts != null) {
+                List<String> accountList = validationDao.getAccountList(accounts);
+                Gson gson4 = new Gson();
+                JsonElement jsonData4 = gson4.toJsonTree(accountList);
+                responseData.add("accountList", jsonData4);
             }
 
             resp.setContentType("application/json");

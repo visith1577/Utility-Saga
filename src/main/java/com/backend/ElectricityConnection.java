@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.ConnectionModel;
-import model.UserAccountsModel;
 import model.UserModel;
 
 import java.io.IOException;
@@ -99,10 +98,12 @@ public class ElectricityConnection extends HttpServlet {
             List<String> account_elist = dao.getUserAccountsWithStatus(
                     (String) session.getAttribute("NIC"), "ELECTRICITY", "ACTIVE"
             );
+            List<String> regions = dao.getAvailableRegions("ELECTRICITY");
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
 
 
             req.setAttribute("electricity_account_list", account_elist);
+            req.setAttribute("regions", regions);
             req.setAttribute("fullName", model.getFullName());
             req.setAttribute("ADDRESS", model.getAddress());
 
