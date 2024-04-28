@@ -14,6 +14,15 @@ public class ItemModel {
     private Integer supplierID;
     private String imageName;
     private InputStream imageStream;
+    private String base64Image;
+
+    public String getBase64Image() {
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
 
     public String getImageName() {
         return imageName;
@@ -101,5 +110,22 @@ public class ItemModel {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemModel{" +
+                "itemID=" + itemID +
+                ", itemName='" + itemName + '\'' +
+                ", description='" + description + '\'' +
+                ", cost=" + cost +
+                ", profitMargin=" + profitMargin +
+                ", price=" + price +
+                ", warrantyPeriod=" + warrantyPeriod +
+                ", quantity=" + quantity +
+                ", supplierID=" + supplierID +
+                ", imageName='" + imageName + '\'' +
+                ", imageStream=" + imageStream +
+                '}';
     }
 }

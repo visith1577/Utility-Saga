@@ -64,4 +64,17 @@ public class AddressModel {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+    @Override
+    public String toString() {
+        return "AddressModel{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode=" + zipCode +
+                ", contact='" + contact + '\'' +
+                '}';
+    }
 }

@@ -66,15 +66,16 @@ public class CompanyModel {
         this.contact = contact;
     }
 
-    public CompanyModel getEmptyObject() {
-        CompanyModel obj = new CompanyModel();
-
-        obj.setName("");
-        obj.setAddressId(0);
-        obj.setEmail("");
-        obj.setContact("");
-        obj.setUserName("");
-        obj.setPassword("");
-        return obj;
+    @Override
+    public String toString() {
+        return "CompanyModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", addressId=" + addressId +
+                ", email='" + email + '\'' +
+                ", contact='" + contact + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

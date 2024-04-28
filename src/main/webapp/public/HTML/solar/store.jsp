@@ -1,8 +1,11 @@
+<%@ page import="jakarta.mail.Session" %>
 <!--
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 -->
 <% String contextPath = request.getContextPath();%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 
 <html>
 <head>
@@ -16,11 +19,11 @@
 </head>
 <body>
 <section id="header">
-    <a href="index.html"><img id="logo" src="../../images/solar/logo.png" alt=""></a>
+    <a href="index.html"><img id="logo" src="<%= request.getContextPath() %>/public/images/solar/logo.png" alt=""></a>
     <div id="proDe">
-        <p> Test.com${companyName}
+        <p> ${sessionScope.companyName}
         </p>
-        <a href="#"><img id="proImg" src="../../images/solar/companyLogo.jpeg" alt=""></a>
+        <a href="#"><img id="proImg" src="<%= request.getContextPath() %>/public/images/solar/companyLogo.jpeg" alt=""></a>
     </div>
 </section>
 
@@ -29,21 +32,17 @@
     <h2>Manage your Trends</h2>
     <h1>On all products</h1>
     <p> Make an E-Day </p>
-    <form action="<%= request.getContextPath() %>/item/supplierItems" method="get">
-        <button type="submit"> See your Items</button>
-        <input type="text" name="supplierId" value="${supplierId}" placeholder="Enter Supplier ID"
-               style="visibility: hidden">
+     <button><a href="<%= request.getContextPath() %>/item/supplierItems?supplierId=${sessionScope.supplierId}"> See your Items</a></button>
 
-    </form>
 </section>
 
 <section id="mainBody" class="section-p1">
     <div id="welcomeNote">
-        <h2> Welcome ${companyName}</h2>
+        <h2> Welcome ${sessionScope.companyName} !</h2>
     </div>
     <div id="btn">
         <a href="<%= request.getContextPath()%>/public/HTML/solar/addItem.jsp">Add Item</a>
-        <a href="<%= request.getContextPath()%>/public/HTML/solar/*"> Utility Saga Store </a>
+        <a href="<%= request.getContextPath()%>/item/all"> Utility Saga Store </a>
     </div>
 </section>
 
@@ -71,9 +70,7 @@
 
 </footer>
 
-<form action="/logout" method="get">
-    <button type="submit">Logout</button>
-</form>
+<a href="<%= request.getContextPath() %>/logout">LogOut</a>
 
 </body>
 </html>

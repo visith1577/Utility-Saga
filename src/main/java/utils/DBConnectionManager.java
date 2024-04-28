@@ -24,6 +24,7 @@ public class DBConnectionManager {
 
     }
     static {
+        logger.info("Configuration properties are being loading..");
         propertyReader = new PropertyReader(Constant.APPLICATION_PROPERTY_FILE_NAME);
         try {
             dbName = propertyReader.get(Constant.DB_NAME).toString();
@@ -31,6 +32,7 @@ public class DBConnectionManager {
             user = propertyReader.get(Constant.DB_USER).toString();
             pass = propertyReader.get(Constant.DB_PASSWORD).toString();
             jdbcDriver = propertyReader.get(Constant.JDBC_DRIVER).toString();
+            logger.info("Database Connection is being created..");
             INSTANCE = new DBConnectionManager();
         } catch (IOException e) {
             throw new RuntimeException(e);

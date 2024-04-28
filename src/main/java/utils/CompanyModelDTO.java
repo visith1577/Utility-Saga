@@ -118,4 +118,23 @@ public class CompanyModelDTO {
     public void setAddressContact(String addressContact) {
         this.addressContact = addressContact;
     }
+
+    @Override
+    public String toString() {
+        return "CompanyModelDTO{" +
+                "companyId=" + companyId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", companyContact='" + companyContact + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", addressId=" + addressId +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode=" + zipCode +
+                ", addressContact='" + addressContact + '\'' +
+                '}';
+    }
 }

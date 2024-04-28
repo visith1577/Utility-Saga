@@ -21,7 +21,9 @@ public class PropertyReader {
     private void load() throws IOException {
         logger.info("Resource is being loaded..!");
         properties = new Properties();
-        properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(resourceName));
+        properties.load(Thread.currentThread()
+                .getContextClassLoader()
+                .getResourceAsStream(resourceName));
     }
     public Object get(final String key) throws IOException{
         logger.info("Resource key :: "+key);

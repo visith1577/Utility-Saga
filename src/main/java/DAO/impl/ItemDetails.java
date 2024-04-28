@@ -4,12 +4,13 @@ import model.ItemModel;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemDetails {
     Integer addItem(ItemModel itemModel) throws SQLException;
-    void updateItem(ItemModel itemModel , Integer id) throws SQLException;
+    Integer updateItem(ItemModel itemModel) throws SQLException;
     Boolean deleteItemById(Integer id) ;
-    ItemModel selectItemById(Integer id);
-    List<ItemModel> selectAllItemsBySupplierId(Integer id) throws SQLException;
-    List<ItemModel> selectAllItems() throws SQLException;
+    Optional<ItemModel> selectItemById(Integer id ) throws SQLException;
+    Optional<List<ItemModel>> selectAllItemsBySupplierId(Integer id) throws SQLException;
+    Optional<List<ItemModel>> selectAllItems() throws SQLException;
 }

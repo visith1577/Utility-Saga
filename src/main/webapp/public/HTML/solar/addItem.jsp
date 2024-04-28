@@ -30,10 +30,7 @@
     <h2>Add Item</h2>
     <form action="<%= request.getContextPath()%>/item/add" method="post" enctype="multipart/form-data">
 
-        <div class="form-group">
-            <label for="imageFile">Select image to upload:</label>
-            <input type="file" name="imageFile" id="imageFile">
-        </div>
+
         <div class="form-group">
             <label for="itemName">Item Name</label>
             <input type="text" id="itemName" name="itemName" placeholder="Item Name" required>
@@ -64,13 +61,32 @@
         </div>
         <div class="form-group">
             <label for="supplierID">Supplier ID</label>
-            <input type="number" id="supplierID" name="supplier_id" placeholder="Supplier ID" required>
+            <input type="number" id="supplierID" name="supplierId" placeholder="Supplier ID" required>
         </div>
-
+        <div class="form-group">
+            <label for="imageFile">Select image to upload (Max 2MB):</label>
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" required>
+        </div>
         <div class="form-group">
             <button type="submit">Add Item</button>
         </div>
     </form>
 </div>
+
+
+<script>
+    document.getElementById('imageFile').addEventListener('change', function() {
+        const file = this.files[0];
+        const fileSize = file.size; // in bytes
+        const maxSize = 2 * 1024 * 1024; // 2 MB
+
+        if (fileSize > maxSize) {
+            alert('File size exceeds 2MB. Please select a smaller file.');
+            this.value = ''; // Clear the file input
+        }
+    });
+</script>
 </body>
+
+
 </html>

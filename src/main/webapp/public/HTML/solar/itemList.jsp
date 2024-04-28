@@ -2,6 +2,7 @@
 <%@ page import="DAO.dao.ItemDetailsDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="jakarta.mail.Session" %>
 <%
     String contextPath = request.getContextPath();
 %>
@@ -19,7 +20,7 @@
 <section id="header" style="background-color: #5755FE;">
     <a href="index.html"><img id="logo" src="<%= request.getContextPath() %>/public/images/solar/logo.png" alt=""></a>
     <div id="proDe">
-        <p> Test.com${companyName}
+        <p> ${sessionScope.companyName}
         </p>
         <a href="#"><img id="proImg" src="<%= request.getContextPath() %>/public/images/solar/companyLogo.jpeg" alt=""></a>
     </div>
@@ -43,51 +44,6 @@
             <th>Quantity</th>
             <th>Supplier ID</th>
             <th>Action</th>
-        </tr>
-        <tr>
-            <td>Item Name</td>
-            <td>Description</td>
-            <td>Cost</td>
-            <td>Profit Margin</td>
-            <td>Price</td>
-            <td>Warranty Period</td>
-            <td>Quantity</td>
-            <td>Supplier ID</td>
-            <td class="btn-group">
-                <button class="btn edit-btn"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
-            </td>
-
-        </tr>
-        <tr>
-            <td>Item Name</td>
-            <td>Description</td>
-            <td>Cost</td>
-            <td>Profit Margin</td>
-            <td>Price</td>
-            <td>Warranty Period</td>
-            <td>Quantity</td>
-            <td>Supplier ID</td>
-            <td class="btn-group">
-                <button class="btn edit-btn"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
-            </td>
-
-        </tr>
-        <tr>
-            <td>Item Name</td>
-            <td>Description</td>
-            <td>Cost</td>
-            <td>Profit Margin</td>
-            <td>Price</td>
-            <td>Warranty Period</td>
-            <td>Quantity</td>
-            <td>Supplier ID</td>
-            <td class="btn-group">
-                <button class="btn edit-btn"><i class="fa fa-pencil-square-o"></i></button>
-                <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
-            </td>
-
         </tr>
         <c:forEach items="${listItems}" var="item">
             <tr>
@@ -116,13 +72,19 @@
                     <c:out value="${item.supplierID} "/>
                 </td>
                 <td class="btn-group">
-                    <button href="<%= contextPath %>/item?itemID=<c:out value='${item.itemID}'/>" class="btn edit-btn">
-                        <i class="fa fa-pencil-square-o"></i></button>
-                    <button href="<%= contextPath %>/public/HTML/solar/editItem.jsp"
-                        <c:out value="${item.itemID}" escapeXml="false"/>
-                        class="btn delete-btn">
-                        <i class="fa fa-trash"></i></button>
-                        <%--Make a popup--%>
+                        <%--                    <button type="button" >Update</button>--%>
+                    <form action="<%= contextPath %>/item/delete">
+                        <input type="hidden" name="itemId" value="<c:out value='${item.itemID}'/>">
+                        <input type="hidden" name="supplierId" value="<c:out value='${item.supplierID}'/>">
+
+                        <button type="submit"><i class="fa fa-trash">
+                        </i></button>
+                    </form>
+                    <form action="<%= contextPath %>/item/edit" method="get">
+                        <input type="hidden" name="itemId" value="<c:out value='${item.itemID}'/>">
+                        <button type="submit"><i class="fa fa-trash">
+                        </i></button>
+                    </form>
                 </td>
             </tr>
         </c:forEach>
@@ -130,6 +92,36 @@
     </table>
 </div>
 
-
+<script>
+    function submitForm(method) {
+        var form = document.getElementById('myForm');
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, '/items', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Handle successful response
+                } else {
+                    // Handle error response
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+</script>
 </body>
 </html>
+
+
+<button class="btn edit-btn" onclick="submitForm('PUT')">
+    <i class="fa fa-pencil-square-o">
+        <a href="<%= contextPath %>/item/edit?itemID=<c:out value='${item.itemID}'/>"></a>
+    </i>
+</button>
+<form action=">
+                    <%= contextPath %>/item/delete?itemID=<c:out value='${item.itemID}'/>" method="delete">
+    <button class="btn edit-btn" onclick="submitForm('DELETE')">
+
+    </button>
+</form>

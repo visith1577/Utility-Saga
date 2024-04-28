@@ -14,9 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.AddressModel;
 import model.CompanyModel;
-import utils.CompanyModelDTO;
-import utils.CompanyRegisterException;
-import utils.PasswordHashingUtility;
+import model.ItemModel;
+import utils.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -80,7 +79,7 @@ public class CompanyServlet extends HttpServlet {
             companyModelDTO.setPassword("");
             session.setAttribute("companyModelDTO", companyModelDTO);
 
-            RequestDispatcher dispatcher = req.getRequestDispatcher( "/public/HTML/solar/error.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher(Constant.SOLAR_ERROR_JSP);
             dispatcher.forward(req, resp);
 //            throw new CompanyRegisterException("User Name already exists");
 //            RequestDispatcher dispatcher = req.getRequestDispatcher(req.getContextPath() + "/public/HTML/login/companyRegister.jsp");
@@ -108,15 +107,12 @@ public class CompanyServlet extends HttpServlet {
                 company.setAddressId(addressId);
                 Integer companyId =  companyDetails.addCompany(company);
                 System.out.println("Company Id: " + companyId);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/public/HTML/login/solarLogin.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher(Constant.LOGIN_SOLARLOGIN_JSP);
             requestDispatcher.forward(req, resp);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-
-
-
     }
 
     @Override

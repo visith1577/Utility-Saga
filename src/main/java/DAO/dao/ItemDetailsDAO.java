@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class ItemDetailsDAO implements ItemDetails {
@@ -61,7 +62,7 @@ public class ItemDetailsDAO implements ItemDetails {
     }
 
     @Override
-    public void updateItem(ItemModel itemModel, Integer id) throws SQLException {
+    public Integer updateItem(ItemModel itemModel) throws SQLException {
 
         try(PreparedStatement preparedStatement = dbConnectionManager.getConnection().prepareStatement(UPDATE_ITEM)){
             preparedStatement.setString(1, itemModel.getItemName());
@@ -72,14 +73,14 @@ public class ItemDetailsDAO implements ItemDetails {
             preparedStatement.setInt(6, itemModel.getWarrantyPeriod());
             preparedStatement.setInt(7, itemModel.getQuantity());
             preparedStatement.setInt(8, itemModel.getSupplierID());
-            preparedStatement.setInt(9, id);
+            preparedStatement.setInt(9, itemModel.getItemID());
             preparedStatement.executeUpdate();
 //            ResultSet rs = preparedStatement.getGeneratedKeys();
 //            rs.next();
-            System.out.println("Item Id: " + id);
         }
 
 
+        return null;
     }
 
     @Override
@@ -91,6 +92,7 @@ public class ItemDetailsDAO implements ItemDetails {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             falg = true;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -98,7 +100,7 @@ public class ItemDetailsDAO implements ItemDetails {
     }
 
     @Override
-    public ItemModel selectItemById(Integer id) {
+    public Optional<ItemModel> selectItemById(Integer id) {
         ResultSet rs = null;
         PreparedStatement preparedStatement = null;
         ItemModel item = null;
@@ -121,11 +123,11 @@ public class ItemDetailsDAO implements ItemDetails {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return item;
+        return Optional.ofNullable(item);
     }
 
     @Override
-    public List<ItemModel> selectAllItemsBySupplierId(Integer supplierID) throws SQLException {
+    public Optional<List<ItemModel>> selectAllItemsBySupplierId(Integer supplierID) throws SQLException {
         List<ItemModel> items = new ArrayList<>();
         ResultSet rs =null;
         PreparedStatement preparedStatement = null;
@@ -151,12 +153,11 @@ public class ItemDetailsDAO implements ItemDetails {
             throw new RuntimeException(e);
         }
         System.out.println(items.size());
-        return items;
+        return Optional.ofNullable(items);
     }
 
-
     @Override
-    public List<ItemModel> selectAllItems() throws SQLException {
+    public Optional<List<ItemModel>> selectAllItems() throws SQLException {
         ResultSet rs = this.dbConnectionManager.executeQuery(SELECT_ALL_ITEMS);
         List<ItemModel> items = new ArrayList<>();
         while(rs.next()) {
@@ -170,8 +171,11 @@ public class ItemDetailsDAO implements ItemDetails {
             item.setWarrantyPeriod(rs.getInt("warranty_period"));
             item.setQuantity(rs.getInt("quantity"));
             item.setSupplierID(rs.getInt("supplier_id"));
+            item.setImageName(rs.getString("image_name"));
+            item.setImageStream(rs.getBlob("image").getBinaryStream());
+
             items.add(item);
         }
-        return items;
+        return Optional.ofNullable(items);
     }
 }
