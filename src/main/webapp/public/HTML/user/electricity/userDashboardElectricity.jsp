@@ -32,7 +32,7 @@
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
                 <li class="menu-items-li">
-                    <a href="<%= request.getContextPath() %>/raelecNotif">
+                    <a href="<%= request.getContextPath() %>/user/electricity-notification">
                         <span class="material-icons">notifications</span>
                     </a>
                 </li>

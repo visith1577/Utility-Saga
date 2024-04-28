@@ -56,29 +56,4 @@ public class RegionalAdminWaterNotification extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        HttpSession session = request.getSession();
-        System.out.println("Go into doGet");
-        String recipientId = session.getAttribute("NIC").toString();
-
-        List<SendNotificationModel> notifications=new ArrayList<>();
-        sendNotificationDao dao = new sendNotificationDao();
-
-        try {
-            notifications.addAll(dao.getWaterNotificationsByRecipientId(recipientId));
-            notifications.addAll(dao.getAllWaterNotifications());
-
-            // Set the notifications attribute in the request
-            request.setAttribute("waternotifications", notifications);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/public/HTML/user/water/water-notification.jsp");
-            dispatcher.forward(request, response);
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
