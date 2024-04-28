@@ -282,10 +282,14 @@ section {
 }
 
 .payment .info-table td {
-    padding: 1.5rem 0;
+    padding: 10px;
 }
 
-.payment .info-table .heading3 {
+.info-table td:nth-child(2) {
+    min-width: 150px;
+}
+
+    .payment .info-table .heading3 {
     font-size: 2rem;
     color: #666;
 }
@@ -304,7 +308,7 @@ section {
     cursor: pointer;
     display: inline-block;
     margin-top: 1rem;
-    padding: 1rem 3rem;
+    padding: 2rem 3rem;
     border-radius: 5rem;
     background: var(--gradient2);
     font-size: 1.7rem;
