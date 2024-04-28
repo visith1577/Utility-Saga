@@ -1,17 +1,14 @@
 package DAO.dao;
 
+import model.BillModel;
 import model.UserAccountsModel;
-import model.UserModel;
 import utils.Connectdb;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserBillPaymentDAO {
+public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
     public List<UserAccountsModel> getUserAccounts(String nic, String category) throws SQLException {
         Connection connection = Connectdb.getConnection();
         List<UserAccountsModel> account_list = new ArrayList<>();
@@ -67,4 +64,142 @@ public class UserBillPaymentDAO {
 
         return tableName;
     }
+
+    @Override
+    public List<BillModel> getOverdueElectricityBills(String region) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<BillModel> overdueBills = new ArrayList<>();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
+                "FROM electricity_bill eb\n" +
+                "INNER JOIN eaccount_list al ON eb.account_number = al.account_number\n" +
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' ORDER BY eb.billedDate DESC;");
+
+        stmt.setString(1,region);
+
+        try (ResultSet result = stmt.executeQuery()) {
+            while (result.next()) {
+                BillModel model = new BillModel();
+                model.setBillId(result.getString("billId"));
+                model.setAmount(Float.valueOf(result.getString("amount")));
+                model.setBilledDate(Date.valueOf(result.getString("billedDate")));
+                model.setDueDate(Date.valueOf(result.getString("dueDate")));
+                model.setStatus(BillModel.Status.valueOf(result.getString("status")));
+                model.setAccountNumber(result.getString("account_number"));
+
+
+                overdueBills.add(model);
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        Connectdb.closeConnection(connection);
+        return overdueBills;
+
+    }
+
+    @Override
+    public List<BillModel> getOverdueElectricityBillsByAN(String region, String account) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<BillModel> overdueBills = new ArrayList<>();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
+                "FROM electricity_bill eb\n" +
+                "INNER JOIN eaccount_list al ON eb.account_number = al.account_number\n" +
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' AND (eb.account_number LIKE ? OR eb.billId LIKE ?) ORDER BY eb.billedDate DESC;");
+
+        stmt.setString(1,region);
+        stmt.setString(2, "%"+account+ "%");
+        stmt.setString(3,"%"+account+ "%");
+
+        try (ResultSet result = stmt.executeQuery()) {
+            while (result.next()) {
+                BillModel model = new BillModel();
+                model.setBillId(result.getString("billId"));
+                model.setAmount(Float.valueOf(result.getString("amount")));
+                model.setBilledDate(Date.valueOf(result.getString("billedDate")));
+                model.setDueDate(Date.valueOf(result.getString("dueDate")));
+                model.setStatus(BillModel.Status.valueOf(result.getString("status")));
+                model.setAccountNumber(result.getString("account_number"));
+
+
+                overdueBills.add(model);
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        Connectdb.closeConnection(connection);
+        return overdueBills;
+
+    }
+
+    @Override
+    public List<BillModel> getOverdueWaterBills(String region) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<BillModel> overdueBills = new ArrayList<>();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
+                "FROM water_bill eb\n" +
+                "INNER JOIN waccount_list al ON eb.account_number = al.account_number\n" +
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' ORDER BY eb.billedDate DESC;");
+
+        stmt.setString(1,region);
+
+        try (ResultSet result = stmt.executeQuery()) {
+            while (result.next()) {
+                BillModel model = new BillModel();
+                model.setBillId(result.getString("billId"));
+                model.setAmount(Float.valueOf(result.getString("amount")));
+                model.setBilledDate(Date.valueOf(result.getString("billedDate")));
+                model.setDueDate(Date.valueOf(result.getString("dueDate")));
+                model.setStatus(BillModel.Status.valueOf(result.getString("status")));
+                model.setAccountNumber(result.getString("account_number"));
+
+
+                overdueBills.add(model);
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        Connectdb.closeConnection(connection);
+        return overdueBills;
+
+    }
+
+    @Override
+    public List<BillModel> getOverdueWaterBillsByAN(String region, String account) throws SQLException{
+        Connection connection = Connectdb.getConnection();
+        List<BillModel> overdueBills = new ArrayList<>();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
+                "FROM water_bill eb\n" +
+                "INNER JOIN waccount_list al ON eb.account_number = al.account_number\n" +
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' AND (eb.account_number LIKE ? OR eb.billId LIKE ?) ORDER BY eb.billedDate DESC;");
+
+        stmt.setString(1,region);
+        stmt.setString(2,"%"+account+ "%");
+        stmt.setString(3,"%"+account+ "%");
+
+        try (ResultSet result = stmt.executeQuery()) {
+            while (result.next()) {
+                BillModel model = new BillModel();
+                model.setBillId(result.getString("billId"));
+                model.setAmount(Float.valueOf(result.getString("amount")));
+                model.setBilledDate(Date.valueOf(result.getString("billedDate")));
+                model.setDueDate(Date.valueOf(result.getString("dueDate")));
+                model.setStatus(BillModel.Status.valueOf(result.getString("status")));
+                model.setAccountNumber(result.getString("account_number"));
+
+
+                overdueBills.add(model);
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        Connectdb.closeConnection(connection);
+        return overdueBills;
+
+    }
+
+
 }

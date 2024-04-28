@@ -1,4 +1,5 @@
 function search() {
+    console.log("Search function");
     var searchValue = document.getElementById("nic").value;
 
     fetch(contextPath + '/water/complaint/search?nic=' + searchValue)
@@ -18,6 +19,7 @@ function search() {
 }
 
 function displayResults(data) {
+    console.log("displayResults called");
     console.log("Data: "+data);
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
