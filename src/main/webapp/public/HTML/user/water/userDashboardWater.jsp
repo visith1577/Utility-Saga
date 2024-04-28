@@ -191,7 +191,7 @@
         </div>
     </section>
 
-    <section class="suggestion" >
+    <section class="suggestion" style="display: none">
         <h1 class="heading">Suggestions</h1>
         <table class="wrapper">
             <tbody>
