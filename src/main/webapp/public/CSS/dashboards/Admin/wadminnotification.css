@@ -21,11 +21,19 @@
 }
 
 .GetNotification-box table {
-    width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    width: 100%;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-align: left;
     border-radius: 10px;
-    margin-top:15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 0px;
+
 }
 
 .GetNotification-box th {
@@ -41,6 +49,10 @@
     background-color: #fff;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
 }
 
 .GetNotification-box tbody tr:hover td {
@@ -48,7 +60,7 @@
 }
 
 .GetNotification-box tbody tr:nth-child(even) td {
-    background-color: #d6eeff;
+    background-color: #f2f2f2;
 }
 
 .GetNotification-box tbody tr:nth-child(even):hover td {

@@ -11,6 +11,7 @@
     <head>
         <title>Dashboard</title>
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/electricitydash.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -68,39 +69,63 @@
     </header>
     </div>
 
-    <main class="component-container">
-        <div class="electricity-dashboard__header electricity">
-            <div class="component header-component-elec">
-            </div>
-        </div>
+    <div class="component-container">
 
-        <section class="plan2 electricity" id="plan2e">
-            <ul class="plan2__items">
-                <li>
-                    <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/user/electricity-connection"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
-                    </div>
-                    <p class="plan2__para">New Connections</p>
-                </li>
-                <li>
-                    <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/user/electricity-public-complaint"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
-                    </div>
-                    <p class="plan2__para">Public Complaints</p>
-                </li>
-                <li>
-                    <div class="plan2__item">
-                        <a href="<%= request.getContextPath() %>/user/electricity-analytics"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
-                    </div>
-                    <p class="plan2__para">Analysis</p>
-                </li>
-            </ul>
+        <section class="home" id="home">
+            <div class="content">
+                <h3>ELECTRICITY <span>SERVICE</span></h3>
+                <p>
+                    We provided interrupted electricity service to the citizens of Sri Lanka.
+                </p>
+                <a href="https://ceb.lk/" class="btn">About us</a>
+            </div>
+
+            <div class="image">
+                <img src="<%= request.getContextPath() %>/public/images/Electricity/Electricity-dashboard.png" alt="Electricity Dashboard">
+            </div>
         </section>
 
-        <section class="plan2 component electricity" style="background: #FCC7C7">
-            <h1 id="graph-head" class="plan2__heading">Your Usage</h1>
+        <section class="features" id="features">
+            <h1 class="heading">Main Electricity Serivices</h1>
+
+            <div class="box-container">
+                <div class="box">
+                    <div class="img1"></div>
+                    <h3>New Connections</h3>
+                    <p>
+                        Apply for a new Electricity connection by filling and submitting the form with documents.
+                        Await inspection within 7 days, pay any necessary charges, sign an agreement, and receive supply within 4 days.
+                    </p>
+                    <a href="<%= request.getContextPath() %>/user/electricity-connection" class="btn">New Connection</a>
+                </div>
+
+                <div class="box">
+                    <div class="img2"></div>
+
+                    <h3>Public Complaints</h3>
+                    <p>
+                        Report electricity issues promptly for reliable service. Outages, billing discrepancies, or service problems - your feedback matters. Let's ensure efficient and hassle-free electricity for all."
+                    </p>
+                    <a href="<%= request.getContextPath() %>/user/electricity-public-complaint" class="btn">Public Complaints</a>
+                </div>
+
+                <div class="box">
+                    <div class="img3"></div>
+
+                <%--                    <img src="images/f-icon3.png" alt="" />--%>
+                    <h3>Usage Analysis</h3>
+                    <p>
+                        Analyze electricity usage to optimize efficiency and reduce costs. Understand patterns, identify wastage, and implement strategies for sustainable consumption. Let's empower informed decisions for a greener future.
+                    </p>
+                    <a href="<%= request.getContextPath() %>/user/electricity-analytics" class="btn">Usage Analysis</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="usage" id="usage">
+            <h1 class="heading">Your Usage</h1>
             <div class="element">
-                <h3 class="plan2__heading3">Select Your Account</h3>
+                <h3 class="heading">Select Your Account</h3>
 
                 <div class="dropdown">
                     <button id="dropbtn" class="dropbtn">Account Number</button>
@@ -117,37 +142,40 @@
             </div>
         </section>
 
-        <section class="plan2 component electricity" style="background: #FCC7C7">
-            <h1 class="plan2__heading">Account Details</h1>
-            <table class="info-table">
-                <tr>
-                    <td><h3 class="plan2__heading3">Address</h3></td>
-                    <td><p id="Address" class="plan2__price"></p></td>
-                </tr>
-                <tr>
-                    <td><h3 class="plan2__heading3">Your Total Balance</h3></td>
-                    <td><p id="billAmount" class="plan2__price"></p></td>
-                </tr>
-                <tr>
-                    <td><h3 class="plan2__heading3">Due Date</h3></td>
-                    <td><p id="billDue" class="plan2__price"></p></td>
-                </tr>
-                <tr>
-                    <td><h3 class="plan2__heading3">Monthly Bill Status</h3></td>
-                    <td><p id="billStatus" class="plan2__price"></p></td>
-                </tr>
-            </table>
-            <div class="element-btn">
-                <button id="payNowButton" class="btn__plan2 element-pay" style="background: red" disabled>Pay Now</button>
+        <section class="payment">
+            <div class="main">
+                <h1 class="heading">Account Details</h1>
+                <table class="info-table">
+                    <tr>
+                        <td><h3 class="heading3">Address</h3></td>
+                        <td><p id="Address" class="plan2__price"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h3 class="heading3">Your Total Balance</h3></td>
+                        <td><p id="billAmount" class="plan2__price"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h3 class="heading3">Due Date</h3></td>
+                        <td><p id="billDue" class="plan2__price"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h3 class="heading3">Monthly Bill Status</h3></td>
+                        <td><p id="billStatus" class="plan2__price"></p></td>
+                    </tr>
+                </table>
+                <div class="element-btn">
+                    <button id="payNowButton" class="btn__plan2 element-pay" disabled>Pay Now</button>
+                </div>
             </div>
         </section>
 
-        <section class="suggestion-component component electricity" style="background: #FCC7C7; display: none">
+        <section class="suggestion" style="display: none">
+            <h1 class="heading">Suggestions</h1>
             <table class="wrapper">
                 <tbody>
                 <tr>
                     <td class="td">
-                        <h1 class="suggestions-head">Daily Summary</h1>
+                        <h2 class="suggestions-head">Daily Summary</h2>
                     </td>
                 </tr>
                 <tr>
@@ -183,9 +211,44 @@
                 </tbody>
             </table>
         </section>
+
+        <div class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3>about us</h3>
+                    <p>
+                        We utility Saga, is a hub which centralize the main Electricity and Water utility services in Sri Lanka and we also promote renewable energy in the form of solar power by providing a platform for a store.
+                    </p>
+                </div>
+
+                <div class="box">
+                    <h3>follow us</h3>
+                    <a href="https://ceb.lk/yt">youtube</a>
+                    <a href="https://www.facebook.com/www.ceb.lk/">facebook</a>
+                    <a href="https://twitter.com/CEB_lk">twitter</a>
+                </div>
+
+                <div class="box">
+                    <h3>contact info</h3>
+                    <div class="info">
+                        <i class="fas fa-phone"></i>
+                        <p>011 232 9934</p>
+                    </div>
+                    <div class="info">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@cebtu.lk</p>
+                    </div>
+                    <div class="info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>CEB, 6th Floor, No:50, Co.2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer>
         </footer>
-    </main>
+    </div>
     </body>
     <script>
         let ch = null;
