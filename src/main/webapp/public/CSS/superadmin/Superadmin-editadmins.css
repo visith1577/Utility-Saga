@@ -56,6 +56,32 @@ body {
     position: relative;
 }
 
+.btnnotif{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.btnnotif .notificationsend{
+    border: 0;
+    background: #DBA1F2;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    color:black;
+    text-decoration:none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.btnnotif .notificationsend:hover{
+    background: #6a049d;
+    cursor: pointer;
+    color: lavender;
+}
+
 button {
     border: 0;
     background: #DBA1F2;

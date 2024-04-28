@@ -1,5 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+    /* Colors */
+    --color-white: #fff;
+    --color-gray-100: #232020;
+    --color-gray-200: #202020;
+    --color-black: #000;
+
+    --primary-color: #100f0f;
+    --secondary-color: #787575;
+    --tertiary-color: #fff;
+    --water-color: #023e8a;
+    --water-color2: #012A4A;
+    --water-color4: #97b6fa;
+    --electricity-color: #c7ba03;
+    --electricity-color2: #8c7400;
+    --electricity-color3: #feec98;
+    --superadmin-color1: #DBA1F2;
+    --superadmin-color2: #450068;
+    --superadmin-color3: #86498b ;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -18,7 +38,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: vae(--tertiary-color);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -42,7 +62,7 @@ select {
     margin-bottom: 10px;
     padding: 8px;
     border: none;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #909090;
     border-radius: 4px;
     transition: border-bottom 0.3s;
 }
@@ -56,22 +76,16 @@ select:focus {
     display: flex;
     justify-content: space-between;
 }
-.btn {
+.btn{
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    background-color:var(--superadmin-color1);
+    color: #0c0808;
 }
-#send {
-    background-color: #ffc107; /* Yellow */
-    color: #fff;
-}
-#reset {
-    background-color: #6c757d; /* Gray */
-    color: #fff;
-}
-#cancel {
-    background-color: #dc3545; /* Red */
-    color: #fff;
+.btn:hover{
+    background-color: var(--superadmin-color2);
+    color: #FFFFFF;
 }
