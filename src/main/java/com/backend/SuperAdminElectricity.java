@@ -2,8 +2,10 @@ package com.backend;
 
 
 import DAO.dao.ElectricityAdminDAO;
+import DAO.dao.UserAccountsDao;
 import DAO.dao.WaterAdminDAO;
 import DAO.impl.ElectricityAdminImpl;
+import DAO.impl.UserAccounts;
 import DAO.impl.WaterAdminImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -32,6 +34,7 @@ public class SuperAdminElectricity extends HttpServlet {
 
         ElectricityAdminImpl dao = new ElectricityAdminDAO();
         WaterAdminImpl dao2 = new WaterAdminDAO();
+        UserAccounts dao3 = new UserAccountsDao();
 
         try {
             if ((id == null || id.isEmpty()) && (id2 == null || id2.isEmpty())) {
@@ -74,6 +77,11 @@ public class SuperAdminElectricity extends HttpServlet {
                 System.out.println("4Water Admins: " + waterMainAdmins);
                 req.setAttribute("waterMainAdmins", waterMainAdmins);
             }
+
+            List<String> wRegions = dao3.getAvailableRegions("WATER");
+            List<String> eRegions = dao3.getAvailableRegions("ELECTRICITY");
+            req.setAttribute("wRegions", wRegions);
+            req.setAttribute("eRegions", eRegions);
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/public/HTML/superadmin/Superadmin-electricity-water.jsp");
             dispatcher.forward(req, resp);
