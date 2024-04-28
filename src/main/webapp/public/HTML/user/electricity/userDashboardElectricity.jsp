@@ -123,7 +123,7 @@
         </section>
 
         <section class="usage" id="usage">
-            <h1 class="heading">Your Usage</h1>
+            <h1 class="heading" id="graph-head">Your Usage</h1>
             <div class="element">
                 <h3 class="heading">Select Your Account</h3>
 
@@ -217,15 +217,15 @@
                 <div class="box">
                     <h3>about us</h3>
                     <p>
-                        We utility Saga, is a hub which centralize the main Electricity and Water utility services in Sri Lanka and we also promote renewable energy in the form of solar power by providing a platform for a store.
+                        Utility Saga, is a hub which centralize the main Electricity and Water utility services in Sri Lanka and we also promote renewable energy in the form of solar power by providing a platform for a store.
                     </p>
                 </div>
 
                 <div class="box">
                     <h3>follow us</h3>
-                    <a href="https://ceb.lk/yt">youtube</a>
-                    <a href="https://www.facebook.com/www.ceb.lk/">facebook</a>
-                    <a href="https://twitter.com/CEB_lk">twitter</a>
+                    <a href="https://ceb.lk/yt">YouTube</a>
+                    <a href="https://www.facebook.com/www.ceb.lk/">Facebook</a>
+                    <a href="https://twitter.com/CEB_lk">Twitter</a>
                 </div>
 
                 <div class="box">
