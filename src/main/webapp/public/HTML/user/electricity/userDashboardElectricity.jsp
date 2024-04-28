@@ -86,7 +86,7 @@
         </section>
 
         <section class="features" id="features">
-            <h1 class="heading">Main Serivices</h1>
+            <h1 class="heading">Main Electricity Serivices</h1>
 
             <div class="box-container">
                 <div class="box">
@@ -211,7 +211,6 @@
                 </tbody>
             </table>
         </section>
-        <!-- Suggesions section ends -->
 
         <div class="footer">
             <div class="box-container">
