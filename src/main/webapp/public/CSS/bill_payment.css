@@ -96,6 +96,7 @@
 
 .btncls .wpay-now-button{
     background-image: linear-gradient(#283efd, #002bd1);
+    color: #FFFFFF;
 }
 
 .btncls .wpay-now-button:hover{

@@ -18,7 +18,6 @@ public class UserBillPaymentDAO {
 
         try {
             String tableName = selectTable(category);
-//            System.out.println("Hell");
             System.out.println(tableName);
 
             PreparedStatement statement = connection.prepareStatement(
@@ -51,6 +50,24 @@ public class UserBillPaymentDAO {
         return account_list;
     }
 
+    public void updateBalance(String account_number, Double balance, String category) throws  SQLException{
+        Connection connection = Connectdb.getConnection();
+        String tableName = selectTable(category);
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE " + tableName + " SET balance = balance - ? WHERE account_number = ?"
+            );
+
+            statement.setDouble(1, balance);
+            statement.setString(2, account_number);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+    }
 
     private String selectTable(String category) {
         String tableName;
