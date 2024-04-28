@@ -73,7 +73,7 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
         PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
                 "FROM electricity_bill eb\n" +
                 "INNER JOIN eaccount_list al ON eb.account_number = al.account_number\n" +
-                "WHERE al.region = ? AND eb.status = 'OVERDUE' ORDER BY eb.billedDate DESC;");
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' ORDER BY eb.billedDate ASC;");
 
         stmt.setString(1,region);
 
@@ -106,7 +106,7 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
         PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
                 "FROM electricity_bill eb\n" +
                 "INNER JOIN eaccount_list al ON eb.account_number = al.account_number\n" +
-                "WHERE al.region = ? AND eb.status = 'OVERDUE' AND (eb.account_number LIKE ? OR eb.billId LIKE ?) ORDER BY eb.billedDate DESC;");
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' AND (eb.account_number LIKE ? OR eb.billId LIKE ?) ORDER BY eb.billedDate ASC;");
 
         stmt.setString(1,region);
         stmt.setString(2, "%"+account+ "%");
@@ -141,7 +141,7 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
         PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
                 "FROM water_bill eb\n" +
                 "INNER JOIN waccount_list al ON eb.account_number = al.account_number\n" +
-                "WHERE al.region = ? AND eb.status = 'OVERDUE' ORDER BY eb.billedDate DESC;");
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' ORDER BY eb.billedDate ASC;");
 
         stmt.setString(1,region);
 
@@ -174,7 +174,7 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
         PreparedStatement stmt = connection.prepareStatement("SELECT eb.*\n" +
                 "FROM water_bill eb\n" +
                 "INNER JOIN waccount_list al ON eb.account_number = al.account_number\n" +
-                "WHERE al.region = ? AND eb.status = 'OVERDUE' AND (eb.account_number LIKE ? OR eb.billId LIKE ?) ORDER BY eb.billedDate DESC;");
+                "WHERE al.region = ? AND eb.status = 'OVERDUE' AND (eb.account_number LIKE ? OR eb.billId LIKE ?) ORDER BY eb.billedDate ASC;");
 
         stmt.setString(1,region);
         stmt.setString(2,"%"+account+ "%");
