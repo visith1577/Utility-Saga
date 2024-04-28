@@ -4,6 +4,7 @@ import java.io.*;
 
 import DAO.dao.UserDetailsDao;
 import DAO.impl.UserDetails;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.UserModel;
@@ -37,7 +38,6 @@ public class RegisterUser extends HttpServlet{
         String wBill = req.getParameter("wBill").strip();
         String homePhone = req.getParameter("home-phone").strip();
         String region = req.getParameter("region").strip().toUpperCase();
-        String electricityProvider = req.getParameter("provider").toUpperCase();
         String[] services = req.getParameterValues("service");
 
         UserModel user = new UserModel();
@@ -52,7 +52,7 @@ public class RegisterUser extends HttpServlet{
         user.setAddress(address);
         user.setServices(new HashSet<>(Arrays.asList(services)));
 
-        UserModel.ProviderInfo providerInfo = UserModel.ProviderInfo.valueOf(electricityProvider);
+        UserModel.ProviderInfo providerInfo = UserModel.ProviderInfo.valueOf("CEB");
         user.setProvider(providerInfo);
 
         if (Objects.equals(pwd, rePwd)) {

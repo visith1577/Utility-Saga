@@ -1,6 +1,7 @@
 package DAO.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface Validations {
     boolean isUserNameExists(String username) throws SQLException;
@@ -25,4 +26,5 @@ public interface Validations {
     boolean isEmailExistsWater(String email) throws SQLException;
 
     boolean isRegionExistsWater(String email) throws SQLException;
+    List<String> getAccountList(String nic) throws SQLException;
 }

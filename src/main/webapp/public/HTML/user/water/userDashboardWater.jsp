@@ -91,7 +91,7 @@
             </li>
             <li>
                 <div class="plan2__item">
-                    <a href="<%= request.getContextPath() %>/public/HTML/user/water/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
+                    <a href="<%= request.getContextPath() %>/user/water-analytics"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
                 </div>
                 <p class="plan2__para">Analysis</p>
             </li>
@@ -221,6 +221,11 @@
             })
             .then(data => {
 
+                document.getElementById('Address').textContent = data.bill.region
+                document.getElementById('billAmount').textContent = data.bill.amount
+                document.getElementById('billDue').textContent = data.bill.dueDate
+                document.getElementById('billStatus').textContent = data.bill.status
+
                 if (account) {
                     if (data.bill.status === "PAID") {
                         document.getElementById('billStatus').style.color = "green";
@@ -241,14 +246,11 @@
                     payNowButton.disabled = true;
                 }
 
-
-                document.getElementById('billAmount').textContent = data.bill.amount
-                document.getElementById('billDue').textContent = data.bill.dueDate
-                document.getElementById('billStatus').textContent = data.bill.status
-
-                document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
-                document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
-                document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+                if (data.report !== null) {
+                    document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
+                    document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
+                    document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+                }
 
                 const suggestionComponent = document.querySelector('.suggestion-component');
 
