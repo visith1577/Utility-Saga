@@ -16,4 +16,6 @@ public interface UserAccounts {
     Map<String, String> getUserAccountsWithIotStatus(String nic, String category) throws SQLException;
 
     String getIotIdForAccount(String account, String category) throws SQLException;
+    List<String> getAvailableRegions(String category) throws SQLException;
+    Map<String, String> getAccountsWithRegion(String account, String category, String status) throws SQLException;
 }

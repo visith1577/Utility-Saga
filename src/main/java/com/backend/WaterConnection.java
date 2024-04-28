@@ -79,10 +79,12 @@ public class WaterConnection extends HttpServlet {
             List<String> account_wlist = dao.getUserAccountsWithStatus(
                     (String) session.getAttribute("NIC"), "WATER", "ACTIVE"
             );
+            List<String> regions = dao.getAvailableRegions("ELECTRICITY");
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
 
 
             req.setAttribute("water_account_list", account_wlist);
+            req.setAttribute("regions", regions);
             req.setAttribute("fullName", model.getFullName());
             req.setAttribute("ADDRESS", model.getAddress());
 
