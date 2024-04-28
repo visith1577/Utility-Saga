@@ -116,14 +116,14 @@
                 <p>
                     Analyze water usage to optimize efficiency and reduce costs. Understand patterns, identify wastage, and implement strategies for sustainable consumption. Let's empower informed decisions for a greener future.
                 </p>
-                <a href="<%= request.getContextPath() %>/public/HTML/user/water/waterAnalysis.jsp" class="btn">Usage Analysis</a>
+                <a href="<%= request.getContextPath() %>/user/water-analytics" class="btn">Usage Analysis</a>
             </div>
         </div>
     </section>
 
 
     <section class="usage" id="usage">
-        <h1 id="heading">Your Usage</h1>
+        <h1 class="heading" id="graph-head">Your Usage</h1>
         <div class="element">
             <h3 class="heading">Select Your Account</h3>
 
@@ -168,7 +168,7 @@
         </div>
     </section>
 
-    <section class="suggestion" style="display: none">
+    <section class="suggestion suggestion-component" style="display: none">
         <h1 class="heading">Suggestions</h1>
         <table class="wrapper">
             <tbody>
@@ -216,16 +216,16 @@
             <div class="box">
                 <h3>about us</h3>
                 <p>
-                    We utility Saga, is a hub which centralize the main Electricity and Water utility services in Sri Lanka and we also promote renewable energy in the form of solar power by providing a platform for a store.
+                    Utility Saga, is a hub which centralize the main Electricity and Water utility services in Sri Lanka and we also promote renewable energy in the form of solar power by providing a platform for a store.
                 </p>
             </div>
 
             <div class="box">
                 <h3>follow us</h3>
-                <a href="https://www.youtube.com/@NWSDBOfficial">youtube</a>
-                <a href="https://www.facebook.com/NWSDB/">facebook</a>
+                <a href="https://www.youtube.com/@NWSDBOfficial">YouTube</a>
+                <a href="https://www.facebook.com/NWSDB/">Facebook</a>
                 <a href="https://www.instagram.com/nwsdb_official">Instagram</a>
-                <a href="https://twitter.com/NwsdbOfficial">twitter</a>
+                <a href="https://twitter.com/NwsdbOfficial">Twitter</a>
             </div>
 
             <div class="box">
