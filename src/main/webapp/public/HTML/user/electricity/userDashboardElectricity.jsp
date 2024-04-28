@@ -224,6 +224,7 @@
                 })
                 .then(data => {
                     // Do something with the data
+                    document.getElementById('Address').textContent = data.bill.region
                     document.getElementById('billAmount').textContent = data.bill.amount
                     document.getElementById('billDue').textContent = data.bill.dueDate
 

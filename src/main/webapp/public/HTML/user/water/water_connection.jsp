@@ -155,4 +155,22 @@
     </form>
   </div>
 </body>
+<script>
+  let regions = [<c:forEach items="${requestScope.regions}" var="region" varStatus="loop">"${region}"<c:if test="${!loop.last}">,</c:if></c:forEach>];
+
+  const regionInput = document.getElementById('region');
+
+  const errorDiv = regionInput.nextElementSibling;
+
+  regionInput.addEventListener('input', function() {
+
+    if (!regions.includes(regionInput.value.toUpperCase())) {
+
+      errorDiv.textContent = 'Region not supported';
+      errorDiv.style.color = 'red';
+    } else {
+      errorDiv.textContent = '';
+    }
+  });
+</script>
 </html>
