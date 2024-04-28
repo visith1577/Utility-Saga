@@ -34,6 +34,28 @@ public class ValidationDao implements Validations {
     }
 
     @Override
+    public boolean isBNumExists(String bnum) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        int value;
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM solar_company WHERE bnum = ?");
+            stmt.setString(1, bnum);
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next()) {
+                    value = result.getInt(1);
+                } else {
+                    value = 0;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return value != 0;
+    }
+
+    @Override
     public boolean isEmailExists(String email) throws SQLException {
         Connection connection = Connectdb.getConnection();
         int value;
