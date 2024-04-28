@@ -36,7 +36,13 @@
                 <ul class="menu-items">
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li dropdown">
+                        <a href="#" class="payment-dropdown">Payment</a>
+                        <div class="dropdown-content">
+                            <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a>
+                            <a href="<%= request.getContextPath() %>/water/regional-admin/due-payment">Due Payment</a>
+                        </div>
+                    </li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                     <li class="menu-items-li dropdown">
                         <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
@@ -72,7 +78,7 @@
             <div class="error" style="margin-top: 2vh"></div>
 
             <div id="error-message-details" class="error"></div>
-            <div id="buttons">
+            <div id="buttons" class="Electricity-btns">
                 <button class="content-btn" id="edit-btn">Edit</button>
                 <button class="content-btn" type="submit" id="submit-btn" style="display: none;">Save</button>
                 <button class="content-btn" id="cancel-btn" style="display: none;">Cancel</button>
@@ -122,7 +128,8 @@
 
 
             <div id="error-message" class="error"></div>
-            <button class="content-btn" type="submit">Save Account Settings</button>
+            <div class="Electricity-btns">
+                <button class="content-btn" type="submit">Save Account Settings</button></div>
         </form>
 
     </section>

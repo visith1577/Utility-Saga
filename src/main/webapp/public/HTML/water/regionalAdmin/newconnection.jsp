@@ -110,7 +110,13 @@
                 <ul class="menu-items">
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a></li>
+                    <li class="menu-items-li dropdown">
+                        <a href="#" class="payment-dropdown">Payment</a>
+                        <div class="dropdown-content">
+                            <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a>
+                            <a href="<%= request.getContextPath() %>/water/regional-admin/due-payment">Due Payment</a>
+                        </div>
+                    </li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                     <li class="menu-items-li dropdown">
                         <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>
@@ -226,7 +232,8 @@
                         <th>Current Address</th>
                         <th>New Address</th>
                         <th>Nearest Account</th>
-                        <th>Connection Type</th>
+                        <th></th>
+                        <th>Connection Requirement</th>
                         <th>Select Account Status</th>
                         <th>Account Status</th>
                         <th>Submit</th>
@@ -252,6 +259,7 @@
                                 <td>${connection.currentAddress}</td>
                                 <td>${connection.newAddress}</td>
                                 <td>${connection.nearestAccount}</td>
+                                <td></td>
                                 <td>${connection.connectionRequirements}</td>
                                 <td><select name="accountStatus">
                                     <option  value="REJECTED" ${ connection.accountStatus == ConnectionModel.accountStatus.REJECTED ? "selected" : "" }>Rejected</option>

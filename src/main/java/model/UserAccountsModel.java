@@ -13,13 +13,31 @@ public class UserAccountsModel {
     private UserStatus userStatus;
     private MeterStatus meterStatus;
     private Iot iot;
+    private String region;
 
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    private Double balance;
 
     public void setIot(Iot iot) {
         this.iot = iot;
     }
     public Iot getIot() {
         return iot;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public enum Iot {

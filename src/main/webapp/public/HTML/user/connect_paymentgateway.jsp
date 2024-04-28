@@ -44,13 +44,25 @@
         <input type="hidden" name="address" value="No.1, Galle Road">
         <input type="hidden" name="city" value="Colombo">
         <input type="hidden" name="country" value="Sri Lanka">
-        <input type="hidden" name="hash" id="hashInput"> <!-- Hash value will be filled by JavaScript -->
+        <input type="hidden" name="hash" id="hashInput"> <!-- HashValue from js  -->
         <div class="btnbox">
             <button type="button" onclick="submitPayHereForm()">Pay Now</button>
         </div>
     </form>
 </div>
 <script>
+
+    window.onload = function() {
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        var accountNumber = getQueryParam("accountNumber");
+
+        document.getElementById('order_id').value = accountNumber;
+    };
+
 
     async function submitPayHereForm() {
 
@@ -68,7 +80,6 @@
         } catch (error) {
             console.error("Error generating and setting hash:", error);
         }
-
     }
 
     async function generateHash(orderId, amount, currency) {
@@ -80,8 +91,6 @@
             };
 
             fetch("http://localhost:8080/UtilitySaga_war_exploded/payment?orderId=" + orderId + "&amount=" + amount + "&currency=" + currency, requestOptions)
-                // .then((response) => {
-                //     return response.text()
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -92,7 +101,6 @@
                 resolve(result);
             })
                 .catch((error) =>
-                    // console.error(error));
                 {
                     console.error("Failed to fetch hash:", error);
                     reject(error);

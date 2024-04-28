@@ -11,6 +11,7 @@
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/public/CSS/dashboards/waterdash.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -32,7 +33,7 @@
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
                 <li class="menu-items-li">
-                    <a href="<%= request.getContextPath() %>/water/regional-admin/notification">
+                    <a href="<%= request.getContextPath() %>/user/water-notification">
                         <span class="material-icons">notifications</span>
                     </a>
                 </li>
@@ -57,7 +58,7 @@
                             %>
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
                             <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
@@ -69,39 +70,85 @@
     </header>
 </div>
 
-<main class="component-container">
-    <div class="water-dashboard__header water">
-        <div class="component header-component-water">
-        </div>
-    </div>
+<div class="component-container">
 
-    <section class="plan2 water" id="plan2">
-        <ul class="plan2__items">
-            <li>
-                <div class="plan2__item">
-                    <a href="<%= request.getContextPath() %>/user/water-connection"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>
-                </div>
-                <p class="plan2__para">New Connections</p>
-            </li>
-            <li>
-                <div class="plan2__item">
-                    <a href="<%= request.getContextPath() %>/user/water-public-complaint"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>
-                </div>
-                <p class="plan2__para">Public Complaints</p>
-            </li>
-            <li>
-                <div class="plan2__item">
-                    <a href="<%= request.getContextPath() %>/public/HTML/user/water/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>
-                </div>
-                <p class="plan2__para">Analysis</p>
-            </li>
-        </ul>
+    <section class="home" id="home">
+        <div class="content">
+            <h3>WATER <span>SERVICE</span></h3>
+            <p>
+                We provided interrupted water service to the citizens of Sri Lanka.
+            </p>
+            <a href="https://www.waterboard.lk/" class="btn">About us</a>
+        </div>
+
+        <div class="image">
+            <img src="<%= request.getContextPath() %>/public/images/Water/Water-dashboard.png" alt="Water Dashboard">
+        </div>
     </section>
 
-    <section class="plan2 component water" style="background: lightblue">
-        <h1 id="graph-head" class="plan2__heading">Your Usage</h1>
+<%--    <section class="plan2 water" id="plan2">--%>
+<%--        <ul class="plan2__items">--%>
+<%--            <li>--%>
+<%--                <div class="plan2__item">--%>
+<%--                    <a href="<%= request.getContextPath() %>/user/water-connection"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>--%>
+<%--                </div>--%>
+<%--                <p class="plan2__para">New Connections</p>--%>
+<%--            </li>--%>
+<%--            <li>--%>
+<%--                <div class="plan2__item">--%>
+<%--                    <a href="<%= request.getContextPath() %>/user/water-public-complaint"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>--%>
+<%--                </div>--%>
+<%--                <p class="plan2__para">Public Complaints</p>--%>
+<%--            </li>--%>
+<%--            <li>--%>
+<%--                <div class="plan2__item">--%>
+<%--                    <a href="<%= request.getContextPath() %>/public/HTML/user/water/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>--%>
+<%--                </div>--%>
+<%--                <p class="plan2__para">Analysis</p>--%>
+<%--            </li>--%>
+<%--        </ul>--%>
+<%--    </section>--%>
+
+    <section class="features" id="features">
+        <h1 class="heading">Main Water Serivices</h1>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="img1"></div>
+                <h3>New Connections</h3>
+                <p>
+                    Apply for a new Water connection by filling and submitting the form with documents.
+                    Await inspection within 7 days, pay any necessary charges, sign an agreement, and receive supply within 4 days.
+                </p>
+                <a href="<%= request.getContextPath() %>/user/water-connection" class="btn">New Connection</a>
+            </div>
+
+            <div class="box">
+                <div class="img2"></div>
+
+                <h3>Public Complaints</h3>
+                <p>
+                    Report Water related issues promptly for reliable service. Outages, billing discrepancies, or service problems - your feedback matters. Let's ensure efficient and hassle-free electricity for all."
+                </p>
+                <a href="<%= request.getContextPath() %>/user/water-public-complaint" class="btn">Public Complaints</a>
+            </div>
+
+            <div class="box">
+                <div class="img3"></div>
+                <h3>Usage Analysis</h3>
+                <p>
+                    Analyze water usage to optimize efficiency and reduce costs. Understand patterns, identify wastage, and implement strategies for sustainable consumption. Let's empower informed decisions for a greener future.
+                </p>
+                <a href="<%= request.getContextPath() %>/user/water-analytics" class="btn">Usage Analysis</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="usage" id="usage">
+        <h1 class="heading" id="graph-head">Your Usage</h1>
         <div class="element">
-            <h3 class="plan2__heading3">Select Your Account</h3>
+            <h3 class="heading">Select Your Account</h3>
 
             <div class="dropdown">
                 <button id="dropbtn" class="dropbtn">Account Number</button>
@@ -118,31 +165,34 @@
         </div>
     </section>
 
-    <section class="plan2 component water" style="background: lightblue">
-        <table class="info-table">
-            <tr>
-                <td><h3 class="plan2__heading3">Address</h3></td>
-                <td><p id="Address" class="plan2__price"></p></td>
-            </tr>
-            <tr>
-                <td><h3 class="plan2__heading3">Your Total Balance</h3></td>
-                <td><p id="billAmount" class="plan2__price"></p></td>
-            </tr>
-            <tr>
-                <td><h3 class="plan2__heading3">Due Date</h3></td>
-                <td><p id="billDue" class="plan2__price"></p></td>
-            </tr>
-            <tr>
-                <td><h3 class="plan2__heading3">Monthly Bill Status</h3></td>
-                <td><p id="billStatus" class="plan2__price"></p></td>
-            </tr>
-        </table>
-        <div class="element-btn">
-            <button id="payNowButton" class="btn__plan2 element-pay" style="background: darkblue" disabled>Pay Now</button>
+    <section class="payment">
+        <div class="main">
+            <table class="info-table">
+                <tr>
+                    <td><h3 class="plan2__heading3">Address</h3></td>
+                    <td><p id="Address" class="plan2__price"></p></td>
+                </tr>
+                <tr>
+                    <td><h3 class="plan2__heading3">Your Total Balance</h3></td>
+                    <td><p id="billAmount" class="plan2__price"></p></td>
+                </tr>
+                <tr>
+                    <td><h3 class="plan2__heading3">Due Date</h3></td>
+                    <td><p id="billDue" class="plan2__price"></p></td>
+                </tr>
+                <tr>
+                    <td><h3 class="plan2__heading3">Monthly Bill Status</h3></td>
+                    <td><p id="billStatus" class="plan2__price"></p></td>
+                </tr>
+            </table>
+            <div class="element-btn">
+                <button id="payNowButton" class="btn__plan2 element-pay" style="background: darkblue" disabled>Pay Now</button>
+            </div>
         </div>
     </section>
 
-    <section class="suggestion-component component water" style="background: lightblue; display: none">
+    <section class="suggestion suggestion-component" style="display: none">
+        <h1 class="heading">Suggestions</h1>
         <table class="wrapper">
             <tbody>
             <tr>
@@ -183,9 +233,46 @@
             </tbody>
         </table>
     </section>
+
+    <div class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>about us</h3>
+                <p>
+                    Utility Saga, is a hub which centralize the main Electricity and Water utility services in Sri Lanka and we also promote renewable energy in the form of solar power by providing a platform for a store.
+                </p>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="https://www.youtube.com/@NWSDBOfficial">YouTube</a>
+                <a href="https://www.facebook.com/NWSDB/">Facebook</a>
+                <a href="https://www.instagram.com/nwsdb_official">Instagram</a>
+                <a href="https://twitter.com/NwsdbOfficial">Twitter</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <div class="info">
+                    <i class="fas fa-phone"></i>
+                    <p>011 2638999</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-envelope"></i>
+                    <p>infos@waterboard.lk</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>NWSD, Galle Road, Ratmalana</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <footer>
     </footer>
-</main>
+</div>
 </body>
 <script>
     let ch = null;
@@ -221,6 +308,11 @@
             })
             .then(data => {
 
+                document.getElementById('Address').textContent = data.bill.region
+                document.getElementById('billAmount').textContent = data.bill.amount
+                document.getElementById('billDue').textContent = data.bill.dueDate
+                document.getElementById('billStatus').textContent = data.bill.status
+
                 if (account) {
                     if (data.bill.status === "PAID") {
                         document.getElementById('billStatus').style.color = "green";
@@ -241,14 +333,11 @@
                     payNowButton.disabled = true;
                 }
 
-
-                document.getElementById('billAmount').textContent = data.bill.amount
-                document.getElementById('billDue').textContent = data.bill.dueDate
-                document.getElementById('billStatus').textContent = data.bill.status
-
-                document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
-                document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
-                document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+                if (data.report !== null) {
+                    document.getElementById('report1').textContent = data.report["Daily Consumption Analysis"];
+                    document.getElementById('report2').textContent = data.report["Monthly Consumption Forecast"];
+                    document.getElementById('report3').textContent = data.report["Energy-saving Recommendations"];
+                }
 
                 const suggestionComponent = document.querySelector('.suggestion-component');
 

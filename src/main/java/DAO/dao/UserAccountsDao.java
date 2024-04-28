@@ -149,6 +149,69 @@ public class UserAccountsDao implements UserAccounts {
     }
 
     @Override
+    public List<String> getAvailableRegions(String category) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        List<String> regions = new ArrayList<>();
+
+        try {
+            String tableName;
+            switch (category.toUpperCase()) {
+                case "WATER":
+                    tableName = "water_region";
+                    break;
+                case "ELECTRICITY":
+                    tableName = "electricity_region";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid table name: " + category);
+            }
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT DISTINCT region FROM " + tableName
+            );
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()){
+                    regions.add(result.getString("region"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return regions;
+    }
+
+    @Override
+    public Map<String, String> getAccountsWithRegion(String account, String category, String status) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        Map<String, String> account_list = new HashMap<>();
+
+        try {
+            String tableName = selectTable(category);
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT account_number, region FROM " + tableName + " WHERE account_number = ? AND user_status = ?"
+            );
+
+            statement.setString(1, account);
+            statement.setString(2, status);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()){
+                    account_list.put(result.getString("account_number"), result.getString("region"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return account_list;
+    }
+
+    @Override
     public List<UserAccountsModel> getUserBills(String nic, String category, int limit, int offset) throws SQLException {
         Connection connection = Connectdb.getConnection();
         List<UserAccountsModel> account_list = new ArrayList<>();
@@ -230,7 +293,7 @@ public class UserAccountsDao implements UserAccounts {
             }
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT " + primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
+                    "SELECT " + " region, balance, " + primaryName + ".*" + " FROM " + tableName + " JOIN " + primaryName +
                             " ON " + tableName + ".account_number = " +  primaryName + ".account_number" +
                             " WHERE " + tableName + ".nic = ? AND " + tableName + ".account_number = ?" +
                             " ORDER BY " + primaryName + ".dueDate DESC" + // Sort based on dueDate in descending order
@@ -242,7 +305,8 @@ public class UserAccountsDao implements UserAccounts {
 
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()){
-                    model.setAmount(result.getString("amount"));
+                    model.setRegion(result.getString("region"));
+                    model.setAmount(result.getString("balance"));
                     model.setBilled_date(result.getString("billedDate"));
                     model.setDueDate(result.getString("dueDate"));
                     UserAccountsModel.Status status = UserAccountsModel.Status.valueOf(
@@ -316,6 +380,7 @@ public class UserAccountsDao implements UserAccounts {
         }
         return exists;
     }
+
 
 
 

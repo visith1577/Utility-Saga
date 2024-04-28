@@ -128,6 +128,7 @@ input[type=text]:focus, input[type=password]:focus {
     font-size: 22px;
     padding: 10px;
     color: #E9F0FF;
+    cursor:pointer;
 }
 
 .fgt-pwd {
@@ -146,6 +147,7 @@ a {
 .register {
     position: absolute;
     top: 550px;
+    color: #0c0808;
 }
 
 .style-bar {

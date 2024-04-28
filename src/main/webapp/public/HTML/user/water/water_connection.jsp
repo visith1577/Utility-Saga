@@ -25,7 +25,7 @@
       <ul class="menu-items">
         <li class="menu-items-li"><a href="#">Home</a></li>
         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
-        <li class="menu-items-li"><a href="#">Contact Us</a></li>
+        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
         <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
         <script>
           function toggle() {
@@ -51,7 +51,7 @@
               %>
             </button>
             <div class="dropdown-content">
-              <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+              <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
               <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
               <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
             </div>
@@ -155,4 +155,22 @@
     </form>
   </div>
 </body>
+<script>
+  let regions = [<c:forEach items="${requestScope.regions}" var="region" varStatus="loop">"${region}"<c:if test="${!loop.last}">,</c:if></c:forEach>];
+
+  const regionInput = document.getElementById('region');
+
+  const errorDiv = regionInput.nextElementSibling;
+
+  regionInput.addEventListener('input', function() {
+
+    if (!regions.includes(regionInput.value.toUpperCase())) {
+
+      errorDiv.textContent = 'Region not supported';
+      errorDiv.style.color = 'red';
+    } else {
+      errorDiv.textContent = '';
+    }
+  });
+</script>
 </html>

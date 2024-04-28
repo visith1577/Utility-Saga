@@ -32,6 +32,8 @@
                     <span class="line line3"></span>
                 </div>
                 <ul class="menu-items">
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/region">Electricity Regions</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/wregion">Water Regions</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-electricity-water.jsp">Electricity/Water</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/superadmin/Superadmin-solar.jsp">Solar</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>

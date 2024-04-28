@@ -5,7 +5,7 @@
   --electricity-color: #e2d412;
   --electricity-color2: #b2ad0f;
   --electricity-color3: #fbffdac4;
-  --water-color1: #0011ff;
+  --water-color1: #1f2687;
   --water-color2: #0017ae;
   --warning-color: #ffff00;
   --delete-color: #c00000;
@@ -49,7 +49,7 @@ section{
 
 .content-btn {
   margin-top: 10px;
-  background-color: #0d6605;
+  /*background-color: #0d6605;*/
   color: #fff;
   padding: 10px 15px;
   border: none;
@@ -57,10 +57,32 @@ section{
 }
 
 .content-btn:hover {
-  background-color: #053f00;
+  /*background-color: #053f00;*/
   color: #fff;
   cursor: pointer;
   transition-delay: 10ms;
+}
+
+.Electricity-btns, .Water-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Electricity-btns .content-btn{
+  background-color: var(--electricity-color);
+}
+
+.Electricity-btns .content-btn:hover{
+  background-color: var(--electricity-color2);
+}
+
+.Water-btns .content-btn{
+  background-color: var(--water-color2);
+}
+
+.Water-btns .content-btn:hover{
+  background-color: var(--water-color1);
 }
 
 .profile-container section{
@@ -317,6 +339,20 @@ hr{
   cursor: pointer;
 }
 
+.electwatersetting{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:10px;
+}
+
+.electwatersetting .wsection, .electwatersetting .esection{
+  width:100%
+}
+
+.content1-btn{
+  background-color: #006b6b;
+}
+
 @media screen and (max-device-width: 480px) {
   .popup {
     width: 300px;
@@ -324,5 +360,10 @@ hr{
 
   .popup h2 {
     font-size: 20px;
+  }
+
+  .electwatersetting {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }

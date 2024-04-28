@@ -91,6 +91,8 @@
               <span class="line line3"></span>
             </div>
             <ul class="menu-items">
+              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/region">Electricity Regions</a></li>
+              <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/wregion">Water Regions</a></li>
               <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">Electricity/Water</a></li>
               <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/solar-accounts">Solar</a></li>
               <li class="menu-items-li"><a href="<%= request.getContextPath() %>/logout">Logout</a></li>
@@ -103,7 +105,7 @@
       <div class="middle" id="middle">
         <h2 class="title">Solar Comapnies</h2>
 
-        <div style="margin-top: 100px">
+        <div class="search-container">
         <form id="searchForm" method="get" action="<%= request.getContextPath() %>/super-admin/solar-accounts">
           <label for="nic"></label>
           <input name="id" type="text" id="nic" class="search-input" placeholder="Enter Owner NIC">

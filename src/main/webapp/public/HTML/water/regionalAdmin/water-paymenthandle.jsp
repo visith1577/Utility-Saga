@@ -37,7 +37,13 @@
                     <ul class="menu-items">
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/user-accounts">Customers</a></li>
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/complaints">Complaints</a></li>
-                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/water-paymenthandle.jsp">Payment</a></li>
+                        <li class="menu-items-li dropdown">
+                            <a href="#" class="payment-dropdown">Payment</a>
+                            <div class="dropdown-content">
+                                <a href="<%= request.getContextPath() %>/public/HTML/water/regionalAdmin/electricity-paymenthandle.jsp">Payment</a>
+                                <a href="<%= request.getContextPath() %>/water/regional-admin/due-payment">Due Payment</a>
+                            </div>
+                        </li>
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/regional-admin/connections">New Connection</a></li>
                         <li class="menu-items-li dropdown">
                             <a href="#" class="profile-icon"><i class="fa-solid fa-circle-user"></i></a>

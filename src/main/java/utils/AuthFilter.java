@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebFilter(
-        urlPatterns = {"/public/HTML/user/*", "/public/HTML/pages/*", "/public/HTML/login/*"},
+        urlPatterns = {"/public/HTML/user/*", "/public/HTML/pages/*", "/public/HTML/login/*", "/user/*"},
         filterName ="Auth-filter",
         description = "Authentication middleware"
 )

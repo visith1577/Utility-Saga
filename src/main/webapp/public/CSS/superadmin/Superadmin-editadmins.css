@@ -5,18 +5,18 @@
     --color-white: #fff;
     --color-gray-100: #232020;
     --color-gray-200: #202020;
-    --color-black: #000;
-
     --primary-color: #100f0f;
     --secondary-color: #787575;
     --tertiary-color: #fff;
     --water-color: #023e8a;
     --water-color2: #012A4A;
+    --water-color4: #97b6fa;
     --electricity-color: #c7ba03;
     --electricity-color2: #8c7400;
-    --electricity-color3: #8c7400;
-    --superadmin-color1: #B52F9C;
-    --superadmin-color2: #a4037e;
+    --electricity-color3: #feec98;
+    --superadmin-color1: #DBA1F2;
+    --superadmin-color2: #450068;
+    --superadmin-color3: #86498b ;
 }
 
 body {
@@ -56,6 +56,32 @@ body {
     position: relative;
 }
 
+.btnnotif{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.btnnotif .notificationsend{
+    border: 0;
+    background: #DBA1F2;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    color:black;
+    text-decoration:none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.btnnotif .notificationsend:hover{
+    background: #6a049d;
+    cursor: pointer;
+    color: lavender;
+}
+
 button {
     border: 0;
     background: #DBA1F2;
@@ -64,7 +90,6 @@ button {
     padding-right: 15px;
     font-size: 12px;
     margin-left: 50px;
-    margin-top: 10px;
     border-radius: 20px;
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -76,7 +101,7 @@ button {
     font-family: "Poppins", sans-serif;
 }
 
-.buttons button:hover {
+button:hover {
     background: #6a049d;
     cursor: pointer;
     color: lavender;
@@ -122,6 +147,26 @@ button {
     font-weight: bold;
 }
 
+.table .custom-select{
+    border: none;
+    background: #DBA1F2;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 5px;
+    font-size: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.table .custom-select:hover{
+    background: #6a049d;
+    color:white;
+
+}
+
+
+
 .popup-form {
     display: flex;
     justify-content: center;
@@ -156,11 +201,26 @@ button {
     font-family: 'Poppins', sans-serif;
 }
 
+/*.popup-container form {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(2, 1fr);*/
+/*    gap: 7px;*/
+/*}*/
+
 .popup-container form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 7px;
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.popup-container form > * {
+    flex: 0 0 calc(50% - 3.5px);
+    margin-bottom: 7px;
+}
+
+.popup-container form > *:nth-child(odd) {
+    margin-right: 7px;
+}
+
 
 .popup-container label {
     display: block;
@@ -188,7 +248,7 @@ button {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    margin-left: 55%;
+    margin-left: 15%;
 }
 
 .popup-container .form-button button {
@@ -211,8 +271,97 @@ button {
 }
 
 .search-container {
+    margin:12px 0;
     display: flex;
     align-items: center;
+}
+
+/* Styling for labels */
+#addForm label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Styling for input fields */
+#addForm input[type="text"],
+#addForm input[type="email"],
+#addForm [type="password"],
+#addForm select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Hover effect */
+#addForm input[type="text"]:hover,
+#addForm input[type="email"]:hover,
+#addForm input[type="password"]:hover,
+#addForm select:hover {
+    border-color: #888;
+    margin-top: 10px;
+}
+
+/* Focus effect */
+#addForm input[type="text"]:focus,
+#addForm input[type="email"]:focus,
+#addForm input[type="password"]:focus,
+#addForm select:focus {
+    border-color: #555;
+    outline: none;
+    margin-top: 10px;
+}
+
+/* Styling for labels */
+#waddForm label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Styling for input fields */
+#waddForm input[type="text"],
+#waddForm input[type="email"],
+#waddForm [type="password"],
+#waddForm select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Hover effect */
+#waddForm input[type="text"]:hover,
+#waddForm input[type="email"]:hover,
+#waddForm input[type="password"]:hover,
+#waddForm select:hover {
+    border-color: #888;
+    margin-top: 10px;
+}
+
+/* Focus effect */
+#waddForm input[type="text"]:focus,
+#waddForm input[type="email"]:focus,
+#waddForm input[type="password"]:focus,
+#waddForm select:focus {
+    border-color: #555;
+    outline: none;
+    margin-top: 10px;
 }
 
 .search-input {

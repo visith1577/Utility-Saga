@@ -42,6 +42,8 @@
                         <span class="line line3"></span>
                     </div>
                     <ul class="menu-items">
+                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/region">Electricity Regions</a></li>
+                        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/wregion">Water Regions</a></li>
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/main-electricity-accounts">Electricity/Water</a></li>
                         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/super-admin/solar-accounts">Solar</a></li>
                         <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
@@ -52,6 +54,9 @@
         </div>
 
         <div class="middle" id="middle">
+            <div class="btnnotif">
+                <a href="<%= request.getContextPath() %>/public/HTML/superadmin/superadmin-notificationform.jsp" class="notificationsend">Send Notifications to Main Admins</a>
+            </div>
             <h2 class="title">Electricity Admins</h2>
 
             <div class="search-container">
@@ -83,6 +88,19 @@
                         <input type="text" name="region" id="region"
                                placeholder="Enter the region"
                                required>
+                        <script>
+                            let regions = [<c:forEach items="${requestScope.eRegions}" var="region" varStatus="loop">"${region}"<c:if test="${!loop.last}">,</c:if></c:forEach>];
+
+                            let regionInput = document.getElementById('region');
+                            regionInput.addEventListener('blur', function() {
+                                let region = regionInput.value.toUpperCase();
+                                if (!regions.includes(region)) {
+                                    regionInput.setCustomValidity('Invalid region');
+                                } else {
+                                    regionInput.setCustomValidity('');
+                                }
+                            });
+                        </script>
 
                         <label for="contact">Contact Number:</label>
                         <input type="text" name="contact" id="contact"
@@ -217,7 +235,19 @@
                         <input type="text" name="wregion" id="wregion"
                                placeholder="Enter the region"
                                required>
+                        <script>
+                            let wRegions = [<c:forEach items="${requestScope.wRegions}" var="region" varStatus="loop">"${region}"<c:if test="${!loop.last}">,</c:if></c:forEach>];
 
+                            let regionInput = document.getElementById('wregion');
+                            regionInput.addEventListener('blur', function() {
+                            let region = regionInput.value.toUpperCase();
+                                if (!wRegions.includes(region)) {
+                                    regionInput.setCustomValidity('Invalid region');
+                                } else {
+                                    regionInput.setCustomValidity('');
+                                }
+                            });
+                        </script>
                         <label for="wcontact">Contact Number:</label>
                         <input type="text" name="wcontact" id="wcontact"
                                placeholder="Enter the contact number of office"

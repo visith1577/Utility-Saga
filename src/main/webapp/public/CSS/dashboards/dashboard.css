@@ -69,6 +69,7 @@ html{
 }
 
 .navv{
+    font-family: Script MT Bold, serif;
     /*margin: 2vh;*/
     /*margin: 0 2vh;*/  /* changed for safari check browsers */
     margin: auto;
@@ -78,7 +79,7 @@ html{
     width: 100%;
     background: #fff;
     color: #000;
-    opacity: 0.85;
+    /*opacity: 0.85;*/
     z-index: 100;
     display: block;
     position: fixed;
@@ -402,8 +403,6 @@ ul {
 .btn__plan2{
     margin-left: 20vh;
     width: 15vh;
-    height: 4vh;
-    /*background: #1a1d86;*/
     color: white;
     border-radius: 5%;
 }
@@ -462,7 +461,7 @@ ul {
 
 .dropdown {
     /*position: relative;*/
-    margin-top: 2.5vh;
+    /*margin-top: 2.5vh;*/
     /*margin-bottom: 5vh;*/
     margin-left: 4vw;
     display: inline-block;

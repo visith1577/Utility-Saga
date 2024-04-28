@@ -19,7 +19,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/adminnotification.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/wadminnotification.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -44,7 +44,6 @@
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/water/main-admin/region">Regions</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/water-accounts">Regional Admins</a></li>
                     <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/water/admin/settings.jsp">Settings</a></li>
                     <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
