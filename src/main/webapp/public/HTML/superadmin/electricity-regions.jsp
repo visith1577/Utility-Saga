@@ -56,7 +56,7 @@
             <div id="popupContainer" class="addregionscontainer">
                 <div class="formdiv">
                     <h2 class="popup-title">Add Electricity Regions</h2>
-                    <form id="addForm" method="POST" action="${pageContext.request.contextPath}/electricity/main-admin/region">
+                    <form id="addForm" method="POST" action="${pageContext.request.contextPath}/super-admin/region" onchange="validateForm()">
                         <label for="region">Region:</label>
                         <input type="text" name="region" id="region"
                                placeholder="Enter the region"
@@ -67,6 +67,28 @@
                     </form>
                 </div>
             </div>
+        <script>
+            function validateForm() {
+                console.log("Function called");
+                const regionInput = document.getElementById('region');
+                const form = document.getElementById('addForm');
+                const regex = /^[a-zA-Z0-9\s]+$/; // This regex allows only letters, digits, and whitespace
+
+                if (regionInput && form) {
+                    regionInput.addEventListener('keypress', (event) => {
+                        const char = String.fromCharCode(event.which);
+                        const regionValue = regionInput.value.trim() + char;
+
+                        if (!regex.test(regionValue)) {
+                            event.preventDefault();
+                            alert('Region can only contain letters, digits, and whitespace');
+                        }
+                    });
+                } else {
+                    console.error("Could not find region input or form element");
+                }
+            }
+        </script>
 
     <table class="table">
         <tr>
