@@ -15,8 +15,7 @@
     <title>Water Regions</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<%--    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">--%>
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/WSuperadmin-editadmins.css" rel="stylesheet">
+    <link href="<%= request.getContextPath() %>/public/CSS/superadmin/EWSuperadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -63,7 +62,7 @@
                            placeholder="Enter the region"
                            required>
                     <div class="form-button">
-                        <button type="submit" class="buttons">Add Region</button>
+                        <button type="submit" class="buttons">Add Water Region</button>
                     </div>
                 </form>
                 </div>

@@ -1,0 +1,264 @@
+/*****************************Hero*/
+
+#hero {
+    background-image: url(../../images/solar/storeMain.jpg);
+    height: 70vh;
+    width: 100%;
+    height: 70vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0px 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#hero h4 {
+    padding-bottom: 15px;
+    color: aliceblue;
+}
+#hero h2 {
+
+    color: aliceblue;
+}
+
+#hero h1 {
+    padding-bottom: 15px;
+    color: aliceblue;
+}
+
+#hero p {
+    color: aliceblue;
+}
+
+#hero button {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#hero button:hover {
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.9));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/*main Body*/
+#mainBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+#welcomeNote{
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    /*border: 1px solid #000000;*/
+    margin: 0;
+    padding: 0;
+}
+
+#btn{
+    margin:0 0 0 10px ;
+    display: flex;
+    width: 30%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    /*border: 1px solid #000000;*/
+    padding: 0;
+
+}
+#btn a  {
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+    margin-bottom: 2%;
+    margin-right: 4% ;
+    transition: all 0.3s ease;
+    border: 1px solid #000000;
+}
+
+#btn a:hover {
+    padding: 10px 30px;
+    font-size: 18px;
+    background-color: rgba(11, 51, 154, 0.5);
+    border-radius: 0px;
+    color: #040404;
+    border: 1px solid #2505d8;
+}
+
+
+
+
+
+
+/* Add button*/
+#addBtn {
+    text-align: right;
+    margin : 5px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#addBtn
+
+#addBtn a:hover {
+    background-color: #45a049;
+}
+
+
+
+
+/* Style for the item table */
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.item-table th, .item-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.item-table th {
+    background-color: #f2f2f2;
+}
+
+.item-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Style for the action buttons */
+.btn-group button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-group button:hover {
+    background-color: #45a049;
+}
+
+.btn-group i {
+    margin-right: 5px;
+}
+
+
+footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px solid #000000;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+footer .footerCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 300px;
+    padding: 30px 30px;
+    margin-bottom: 14px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+    text-decoration: none;
+    color: #222;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    font-size: 15px;
+    margin: 0 0 8px 0;
+    text-decoration: none;
+    color: #e10d0d;
+}
+
+footer .follow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 20px 0px 0 0;
+}
+
+footer .follow a {
+    font-size: 30px;
+    padding-bottom: 20px;
+    margin: 0 5px;
+    color: #2a06de;
+    transition: all 0.3s ease;
+}
+
+footer .follow a:nth-child(2) {
+    font-size: 30px;
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+footer .follow a:nth-child(3) {
+    color: #1DA1F2;
+}
+
+footer .follow a:nth-child(4) {
+    color: #c40505;
+}
+
+footer .follow a:nth-child(5) {
+    color: #E60023;
+}
+
+footer .follow a:hover {
+    font-size: 50px;
+}
+
+

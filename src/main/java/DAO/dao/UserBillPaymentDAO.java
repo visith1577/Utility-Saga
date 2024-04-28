@@ -15,21 +15,20 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
 
         try {
             String tableName = selectTable(category);
-            System.out.println("Hell");
             System.out.println(tableName);
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT  account_number FROM " + tableName + " WHERE nic = ?"
+                    "SELECT  account_number,balance FROM " + tableName + " WHERE nic = ?"
             );
 
             statement.setString(1, nic);
             System.out.println(nic);
 
-
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
                     UserAccountsModel model = new UserAccountsModel();
                     model.setAccount_number(result.getString("account_number"));
+                    model.setBalance(result.getDouble("balance"));
 
                     if (category.equals("WATER")) {
                         model.setType(UserAccountsModel.Acc.WATER);
@@ -46,6 +45,25 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
             Connectdb.closeConnection(connection);
         }
         return account_list;
+    }
+
+    public void updateBalance(String account_number, Double balance, String category) throws  SQLException{
+        Connection connection = Connectdb.getConnection();
+        String tableName = selectTable(category);
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE " + tableName + " SET balance = balance - ? WHERE account_number = ?"
+            );
+
+            statement.setDouble(1, balance);
+            statement.setString(2, account_number);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
     }
 
     private String selectTable(String category) {

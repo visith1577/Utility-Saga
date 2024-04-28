@@ -2,7 +2,7 @@ package model;
 
 
 public class SolarCompanyModel {
-    private String id;
+    private Integer id;
     private String CompanyName;
     private String BNum;
     private String username;
@@ -25,7 +25,7 @@ public class SolarCompanyModel {
         REJECTED
     }
 
-    public SolarCompanyModel(String id,String companyName, String BNum, String username, String ownerNIC, String pwd, String mobile, String landNo, String email, String district, String address, String remarks, ApprovalStatus approvalStatus) {
+    public SolarCompanyModel(Integer id,String companyName, String BNum, String username, String ownerNIC, String pwd, String mobile, String landNo, String email, String district, String address, String remarks, ApprovalStatus approvalStatus) {
         this.id= id;
         this.CompanyName = companyName;
         this.BNum = BNum;
@@ -48,11 +48,11 @@ public class SolarCompanyModel {
         this.approvalStatus= approvalStatus;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

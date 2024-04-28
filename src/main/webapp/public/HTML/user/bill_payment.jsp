@@ -62,22 +62,18 @@
 
                                 if (image == null) {
                             %>
-                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg"
-                                 style="width: 4vh; height: 4vh">
+                            <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
                             <%
                             } else {
                             %>
-                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image"
-                                 style="width: 5vh; height: 5vh">
+                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
                             <%
                                 }
                             %>
                         </button>
                         <div class="dropdown-content">
-                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out
-                                    value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out
-                                    value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/billpayment"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
@@ -111,61 +107,39 @@
     </div>
 
     <div class="account_numinput" id="account_numinput">
-
         <div class="inputbox" id="electricity_box" style="display: none;">
-            <div class="select-box">
-                <label for="electricity_account">Electricity Account Number</label>
-                <div class="dropdownclass">
-                    <select id="electricity_account">
-                        <% List<UserAccountsModel> electricityAccountList = (List<UserAccountsModel>) request.getAttribute("electricity_account_list"); %>
-                        <% if (electricityAccountList != null && !electricityAccountList.isEmpty()) { %>
-                        <option value="" disabled selected>Select your Account Number</option>
-                        <% for (UserAccountsModel account : electricityAccountList) { %>
-                        <option value="<%= account.getAccount_number() %>"><%= account.getAccount_number() %>
-                        </option>
-                        <% } %>
-                        <% } else { %>
-                        <p>No electricity accounts available.</p>
-                        <% } %>
-                    </select>
+            <h3>Electricity Accounts</h3>
+            <% List<UserAccountsModel> electricityAccountList = (List<UserAccountsModel>) request.getAttribute("electricity_account_list"); %>
+            <% if (electricityAccountList != null && !electricityAccountList.isEmpty()) { %>
+            <% for (UserAccountsModel account : electricityAccountList) { %>
+            <div class="bill-info">
+                <p>Account Number: <%= account.getAccount_number() %></p>
+                <p>Balance: <%= account.getBalance() %></p>
+                <div class="btncls">
+                    <button class="epay-now-button" onclick="redirectToPaymentGateway('<%= account.getAccount_number() %>')">Pay Now</button>
                 </div>
             </div>
-            <div class="inputbtn">
-                <button class="proceed-button" onclick="showBillDetails('electricity')">Proceed</button>
-            </div>
+            <% } %>
+            <% } else { %>
+            <p>No electricity accounts available.</p>
+            <% } %>
         </div>
 
         <div class="inputbox" id="water_box" style="display: none;">
-            <div class="select-box">
-                <label for="water_account">Water Account Number</label>
-                <div class="dropdownclass">
-                    <select id="water_account">
-                        <% List<UserAccountsModel> waterAccountList = (List<UserAccountsModel>) request.getAttribute("water_account_list"); %>
-                        <% if (waterAccountList != null && !waterAccountList.isEmpty()) { %>
-                        <option value="" disabled selected>Select your Account Number</option>
-                        <% for (UserAccountsModel account : waterAccountList) { %>
-                        <option value="<%= account.getAccount_number() %>"><%= account.getAccount_number() %>
-                        </option>
-                        <% } %>
-                        <% } else { %>
-                        <p>No water accounts available.</p>
-                        <% } %>
-                    </select>
+            <% List<UserAccountsModel> waterAccountList = (List<UserAccountsModel>) request.getAttribute("water_account_list"); %>
+            <% if (waterAccountList != null && !waterAccountList.isEmpty()) { %>
+            <% for (UserAccountsModel account : waterAccountList) { %>
+            <div class="bill-info">
+                <p>Account Number: <%= account.getAccount_number() %></p>
+                <p>Balance: <%= account.getBalance() %></p>
+                <div class="btncls">
+                    <button class="wpay-now-button" onclick="redirectToPaymentGateway('<%= account.getAccount_number() %>')">Pay Now</button>
                 </div>
             </div>
-            <div class="inputbtn">
-                <button class="proceed-button" onclick="showBillDetails('water')">Proceed</button>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="bill_detailsbox" id="bill_detailsbox" style="display: none;">
-
-        <div class="button_box">
-            <hr>
-            <button type="button" id="submitButton" class="btn" onclick="redirectToAnotherPage()">Submit</button>
-            <button type="button" id="resetButton" class="btn" onclick="resetForm()">Reset</button>
+            <% } %>
+            <% } else { %>
+            <p>No water accounts available.</p>
+            <% } %>
         </div>
     </div>
 
@@ -183,12 +157,10 @@
             electricityBox.style.display = 'none';
             waterBox.style.display = 'block';
         }
-        document.getElementById('bill_detailsbox').style.display = 'none'; // Hide bill details
+        document.getElementById('bill_detailsbox').style.display = 'none';
     }
 
-
     function select_account(account) {
-        document.getElementById('dropbtn').textContent = account;
 
         fetch("<%= request.getContextPath() %>/user/billpayment?account=" + encodeURIComponent(account))
             .then(response => {
@@ -205,37 +177,14 @@
             })
     }
 
-    function showBillDetails(utility) {
-        var billDetailsBox = document.getElementById('bill_detailsbox');
-        var accountNumber;
-
-        if (utility === 'electricity') {
-            billDetailsBox.innerHTML = 'Electricity Bill Details for Account Number ' + accountNumber;
-        } else if (utility === 'water') {
-            billDetailsBox.innerHTML = 'Water Bill Details for Account Number ' + accountNumber;
-        }
-
-        // Show bill details and buttons
-        billDetailsBox.style.display = 'block';
-        document.getElementById('submitButton').style.display = 'block';
-        document.getElementById('resetButton').style.display = 'block';
+        function redirectToPaymentGateway(accountNumber) {
+        var baseUrl = "http://localhost:8080/UtilitySaga_war_exploded/public/HTML/user/connect_paymentgateway.jsp";
+        // Append the account number as a query parameter
+        var url = baseUrl + "?accountNumber=" + encodeURIComponent(accountNumber);
+        window.location.href = url;
     }
 
 
-    function redirectToAnotherPage() {
-        // Redirect to another page upon submission
-        // window.location.href = 'page jsp';
-    }
-
-    function resetForm() {
-        document.getElementById('electricity_form').reset();
-        document.getElementById('water-form').reset();
-        document.getElementById('bill_detailsbox').style.display = 'none';
-        document.getElementById('ELECTRICITY').checked = false;
-        document.getElementById('WATER').checked = false;
-        document.getElementById('submitButton').style.display = 'none';
-        document.getElementById('resetButton').style.display = 'none';
-    }
 </script>
 
 </body>

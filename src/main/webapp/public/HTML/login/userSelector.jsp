@@ -54,7 +54,7 @@
                     </button>
 
                     <button class="login-selector__btn cmp-btn">
-                        <a href="solarLogin.jsp">Company</a>
+                        <a href="companySelector.jsp">Company</a>
                     </button>
                 </div>
             </section>

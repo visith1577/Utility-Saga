@@ -54,6 +54,9 @@
         </div>
 
         <div class="middle" id="middle">
+            <div class="btnnotif">
+                <a href="<%= request.getContextPath() %>/public/HTML/superadmin/superadmin-notificationform.jsp" class="notificationsend">Send Notifications to Main Admins</a>
+            </div>
             <h2 class="title">Electricity Admins</h2>
 
             <div class="search-container">
