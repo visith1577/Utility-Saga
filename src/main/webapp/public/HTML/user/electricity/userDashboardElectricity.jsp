@@ -70,12 +70,6 @@
     </div>
 
     <div class="component-container">
-<%--        <div class="electricity-dashboard__header electricity">--%>
-<%--            <div class="component header-component-elec">--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-        <!-- home section starts  -->
 
         <section class="home" id="home">
             <div class="content">
@@ -128,29 +122,6 @@
             </div>
         </section>
 
-        <!-- Service section ends -->
-
-<%--        <section class="plan2 component electricity" style="background: #FCC7C7">--%>
-<%--            <h1 id="graph-head" class="plan2__heading">Your Usage</h1>--%>
-<%--            <div class="element">--%>
-<%--                <h3 class="plan2__heading3">Select Your Account</h3>--%>
-
-<%--                <div class="dropdown">--%>
-<%--                    <button id="dropbtn" class="dropbtn">Account Number</button>--%>
-<%--                    <div class="dropdown-content">--%>
-<%--                        <c:forEach items="${requestScope.electricity_account_list}" var="account">--%>
-<%--                            <a onclick="select_account('${account}')">${account}</a>--%>
-<%--                        </c:forEach>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="graph">--%>
-<%--                <canvas id="e-graph" class="main-graph electricity-graph">--%>
-<%--                </canvas>--%>
-<%--            </div>--%>
-<%--        </section>--%>
-
-        <!-- Usage section starts  -->
         <section class="usage" id="usage">
             <h1 class="heading">Your Usage</h1>
             <div class="element">
@@ -170,34 +141,7 @@
                 </canvas>
             </div>
         </section>
-        <!-- Usage section ends -->
 
-<%--        <section class="plan2 component electricity" style="background: #FCC7C7">--%>
-<%--            <h1 class="plan2__heading">Account Details</h1>--%>
-<%--            <table class="info-table">--%>
-<%--                <tr>--%>
-<%--                    <td><h3 class="plan2__heading3">Address</h3></td>--%>
-<%--                    <td><p id="Address" class="plan2__price"></p></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td><h3 class="plan2__heading3">Your Total Balance</h3></td>--%>
-<%--                    <td><p id="billAmount" class="plan2__price"></p></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td><h3 class="plan2__heading3">Due Date</h3></td>--%>
-<%--                    <td><p id="billDue" class="plan2__price"></p></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td><h3 class="plan2__heading3">Monthly Bill Status</h3></td>--%>
-<%--                    <td><p id="billStatus" class="plan2__price"></p></td>--%>
-<%--                </tr>--%>
-<%--            </table>--%>
-<%--            <div class="element-btn">--%>
-<%--                <button id="payNowButton" class="btn__plan2 element-pay" style="background: red" disabled>Pay Now</button>--%>
-<%--            </div>--%>
-<%--        </section>--%>
-
-        <!-- Payment Section starts -->
         <section class="payment">
             <div class="main">
                 <h1 class="heading">Account Details</h1>
@@ -224,51 +168,7 @@
                 </div>
             </div>
         </section>
-        <!-- Payment Section ends -->
 
-<%--        <section class="suggestion-component component electricity" style="background: #FCC7C7; display: none">--%>
-<%--            <table class="wrapper">--%>
-<%--                <tbody>--%>
-<%--                <tr>--%>
-<%--                    <td class="td">--%>
-<%--                        <h1 class="suggestions-head">Daily Summary</h1>--%>
-<%--                    </td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td class="td-item">--%>
-<%--                        <div class="suggestion-1-parent">--%>
-<%--                            <h3 class="suggestion-head" id="header1">Daily Consumption Analysis</h3>--%>
-<%--                            <div class="description-the-water-container">--%>
-<%--                                <span class="the-water-coming" id="report1"></span>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td class="td-item">--%>
-<%--                        <div class="suggestion-1-parent">--%>
-<%--                            <h3 class="suggestion-head">Monthly Consumption Forecast</h3>--%>
-<%--                            <div class="description-the-water-container">--%>
-<%--                                <span class="the-water-coming" id="report2"></span>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td class="td-item">--%>
-<%--                        <div class="suggestion-1-parent">--%>
-<%--                            <h3 class="suggestion-head">Energy-saving Recommendations</h3>--%>
-<%--                            <div class="description-the-water-container">--%>
-<%--                                <span class="the-water-coming" id="report3"></span>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </td>--%>
-<%--                </tr>--%>
-<%--                </tbody>--%>
-<%--            </table>--%>
-<%--        </section>--%>
-
-        <!-- Suggestions section starts -->
         <section class="suggestion" style="display: none">
             <h1 class="heading">Suggestions</h1>
             <table class="wrapper">
