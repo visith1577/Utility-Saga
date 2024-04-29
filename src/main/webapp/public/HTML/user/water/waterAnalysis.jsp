@@ -37,7 +37,7 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="#">Home</a></li>
+                <li class="menu-items-li"><a href="<%=request.getContextPath()%>/user/water-dashboard">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
                 <li class="menu-items-li">
                     <a href="<%= request.getContextPath() %>/user/water-notification">
@@ -45,6 +45,11 @@
                     </a>
                 </li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
+                <script>
+                    function toggle() {
+                        window.location.href = "<%= request.getContextPath() %>/user/water-dashboard"
+                    }
+                </script>
 
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
