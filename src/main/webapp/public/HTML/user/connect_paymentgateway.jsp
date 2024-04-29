@@ -69,6 +69,7 @@
         var orderId = document.getElementById('order_id').value;
         var amount = document.getElementById('amount').value;
         var currency = document.getElementById('currency').value;
+        var accountNumber = document.getElementById('order_id').value;
         // console.log(orderId,amount,currency);
 
         // Generate hash value
