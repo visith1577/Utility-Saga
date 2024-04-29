@@ -21,6 +21,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/eadsendnotification.css" rel="stylesheet">
     <link href="../../CSS/superadmin/superadmin-notifelecwater.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">

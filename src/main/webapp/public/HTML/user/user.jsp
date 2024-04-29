@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/global.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>

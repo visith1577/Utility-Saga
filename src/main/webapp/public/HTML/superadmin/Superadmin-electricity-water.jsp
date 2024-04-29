@@ -22,6 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../JS/SuperAdminElectricityWater.js"></script>
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <script src="<%= request.getContextPath() %>/public/JS/SuperAdminElectricityWater.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/superadmin/Superadmin-editadmins.css" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">

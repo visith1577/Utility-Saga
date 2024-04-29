@@ -16,6 +16,7 @@
 <html>
 <head>
     <title>Payment</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
@@ -36,19 +37,15 @@
             </div>
             <ul class="menu-items">
                 <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About
-                    Us</a></li>
-                <li class="nxt-page water">
-                    <button class="button-17" type="button" onclick="toggle()">Dashboards</button>
-                </li>
+                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
                 <script>
                     const electricity = "<%=session.getAttribute("electricity") != null%>"
                     const water = "<%=session.getAttribute("water") != null%>"
-
                     function toggle() {
-                        if (electricity === 'true') {
+                        if (electricity === 'true'){
                             window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard";
-                        } else if (water === 'true') {
+                        } else if(water === 'true') {
                             window.location.href = "<%= request.getContextPath() %>/user/water-dashboard";
                         }
                     }
@@ -79,8 +76,7 @@
                     </a>
                 </li>
             </ul>
-            <img loading="lazy" src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga"
-                 class="logo">
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
         </div>
     </header>
 </div>

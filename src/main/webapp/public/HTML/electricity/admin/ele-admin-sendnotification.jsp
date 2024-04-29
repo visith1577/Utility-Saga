@@ -5,6 +5,7 @@
   Time: 12:48 AM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String contextPath = request.getContextPath();
@@ -18,6 +19,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <script src="<%= request.getContextPath() %>/public/JS/ElectricityMainAdmin.js"></script>
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/eadsendnotification.css" rel="stylesheet">
     <link href="../../CSS/superadmin/superadmin-notifelecwater.css" rel="stylesheet">
@@ -40,17 +42,15 @@
                 </div>
                 <ul class="menu-items">
                     <li class="menu-items-li">
-                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/regionalAdmin/RAdminNotificationPg-electricity.jsp">
+                        <a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/AdminNotificationPg-electricity.jsp">
                             <span class="material-icons">notifications</span>
                         </a>
                     </li>
-                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional
-                        Admins</a></li>
-                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
-                    </li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/main-admin/electricity-accounts">Regional Admins</a></li>
+                    <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/electricity/admin/settings.jsp">Settings</a></li>
+                    <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a></li>
                 </ul>
-                <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga"
-                     class="logo">
+                <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
             </div>
         </header>
     </div>
