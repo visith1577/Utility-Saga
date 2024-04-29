@@ -29,7 +29,6 @@
       <ul class="menu-items">
         <li class="menu-items-li"><a href="#">Home</a></li>
         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
-        <li class="menu-items-li"><a href="#">Contact Us</a></li>
         <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
         <script>
           const electricity = "<%=session.getAttribute("electricity") != null%>"

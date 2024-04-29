@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
 <body>
 <div class="navv">
@@ -77,7 +76,7 @@
     </header>
 </div>
 <div class="GetNotification-box">
-    <h2>Notifications from the Electricity Board</h2>
+    <h2>Notifications from the Water Board</h2>
     <table>
         <thead>
         <tr>
