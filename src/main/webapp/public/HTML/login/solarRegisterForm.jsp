@@ -145,6 +145,12 @@
           </div>
         </div>
         <div class="stage3-content">
+          <div class="tc-container">
+          <label for="commentBox" class="tc">
+            <textarea name="tc" id="commentBox" required></textarea>
+            By submitting your details, you agree to the <a href="#"> terms and conditions. </a>
+          </label>
+        </div>
 
           <div class="tc-container">
             <label for="tc" class="tc">
