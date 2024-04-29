@@ -14,6 +14,70 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/styleMain.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/form.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/itemList.css">
+
+    <style>
+        #itemList table {
+            border: none;
+            border-collapse: collapse;
+            width: 100%;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            text-align: left;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 0px;
+            border: 1px solid #ffffff;
+        }
+
+        #itemList table th {
+            background-color: #86498b;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            letter-spacing: 1px;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #itemList table tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+
+        #itemList table tr:hover td {
+            background-color: #f6ccff;
+        }
+
+        #itemList table td {
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            font-weight: bold;
+        }
+        #actionBtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #actionBtn i{
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #delete {
+            background-color: #ff6633;
+        }
+        #edit {
+            background-color:  #ffb84d;
+        }
+
+
+    </style>
 </head>
 <body>
 
@@ -37,10 +101,10 @@
         <tr>
             <th>Item Name</th>
             <th>Description</th>
-            <th>Cost</th>
-            <th>Profit Margin</th>
-            <th>Price</th>
-            <th>Warranty Period</th>
+            <th>Cost (Rs)</th>
+            <th>Profit Margin (Rs)</th>
+            <th>Price (Rs)</th>
+            <th>Warranty Period (Months)</th>
             <th>Quantity</th>
             <th>Supplier ID</th>
             <th>Action</th>
@@ -71,19 +135,16 @@
                 <td>
                     <c:out value="${item.supplierID} "/>
                 </td>
-                <td class="btn-group">
-                        <%--                    <button type="button" >Update</button>--%>
+                <td id="actionBtn">
+
                     <form action="<%= contextPath %>/item/delete">
                         <input type="hidden" name="itemId" value="<c:out value='${item.itemID}'/>">
                         <input type="hidden" name="supplierId" value="<c:out value='${item.supplierID}'/>">
-
-                        <button type="submit"><i class="fa fa-trash">
-                        </i></button>
+                        <button type="submit"><i class="fa fa-trash" id="delete"></i></button>
                     </form>
                     <form action="<%= contextPath %>/item/edit" method="get">
                         <input type="hidden" name="itemId" value="<c:out value='${item.itemID}'/>">
-                        <button type="submit"><i class="fa fa-trash">
-                        </i></button>
+                        <button type="submit"><i class="fa fa-pencil-square-o" id="edit"></i></button>
                     </form>
                 </td>
             </tr>
@@ -115,9 +176,7 @@
 
 
 <button class="btn edit-btn" onclick="submitForm('PUT')">
-    <i class="fa fa-pencil-square-o">
-        <a href="<%= contextPath %>/item/edit?itemID=<c:out value='${item.itemID}'/>"></a>
-    </i>
+
 </button>
 <form action=">
                     <%= contextPath %>/item/delete?itemID=<c:out value='${item.itemID}'/>" method="delete">

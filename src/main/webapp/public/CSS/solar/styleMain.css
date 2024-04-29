@@ -47,19 +47,21 @@ p {
 #header{
     display: flex;
     justify-content: space-between;
+    height: 60px;
     align-items: center;
     padding: 0px 50px;
-    background-color: #bdc0e8;
+    background-color: #c6c7d5;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     position: sticky;
     top: 0px;
     left: 0px;
     z-index: 999;
+    border-radius: 15px;
 }
 
 
 #header #logo , #header #proImg{
-    width: 60px;
+    height: 100%;
     margin: 5px;
     border-radius: 8px;
 }

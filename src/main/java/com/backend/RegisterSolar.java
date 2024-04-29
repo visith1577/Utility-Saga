@@ -22,9 +22,9 @@ public class RegisterSolar extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String cname= req.getParameter("cname").trim();
-        String bnum= req.getParameter("bnum").trim();
-        String uname= req.getParameter("uname").trim();
+        String cname= req.getParameter("Cname").trim();
+        String bnum= req.getParameter("Bnum").trim();
+        String uname= req.getParameter("Uname").trim();
         String nic= req.getParameter("nic").trim();
         String pwd= req.getParameter("pwd").trim();
         String repwd= req.getParameter("Re").trim();

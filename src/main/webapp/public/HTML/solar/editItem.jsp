@@ -19,8 +19,6 @@
     </div>
 </section>
 
-<p><%=request.getAttribute("item")%>
-</p>
 
 <div class="container">
     <h2>Edit Item</h2>
@@ -65,10 +63,7 @@
             <input type="number" id="supplierID" name="supplierId" value="${item.supplierID}" placeholder="Supplier ID"
                    required>
         </div>
-<%--        <div class="form-group">--%>
-<%--            <label for="imageFile">Select image to upload (Max 2MB):</label>--%>
-<%--            <input type="file" name="imageFile" id="imageFile" accept="image/*" >--%>
-<%--        </div>--%>
+
         <div class="form-group">
             <button type="submit">Submit</button>
         </div>

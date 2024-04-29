@@ -47,7 +47,7 @@
 
 </head>
 <body>
-<section id="header" style="background-color: #FFF5E0">
+<section id="header" >
     <a href="#"><img id="logo" src="<%= request.getContextPath() %>/public/images/solar/logo.png" alt=""></a>
     <p id="date-container" style="font-size: 25px"></p>
 </section>
@@ -71,25 +71,18 @@
 
 
         <c:forEach items="${listItems}" var="item" varStatus="loop">
-            <div class="pro">
-                <img src="data:image/jpeg;base64,${item.base64Image}" alt="Item Image">
-                <div class="dis">
-                    <span><c:out value="${item.itemName}" /></span>
-                    <h5><c:out value="${item.cost}" /></h5>
-                    <h4><c:out value="${item.quantity}" /></h4>
-                </div>
-                <a href="#" class="cart-link" data-view-id="view-${loop.index}"><i class="fas fa-shopping-cart cart"></i></a>
-            </div>
-            <section id="view-${loop.index}" class="section-p1" style="display: none;">
-                <i class="fas fa-x" id="cut"></i>
-                <div id="imgView">
-                    <img src="../../images/solar/solar_panal.png">
-                </div>
-                <div id="details">
+            <a href="">
+                <div class="pro">
+                    <img src="data:image/jpeg;base64,${item.base64Image}" alt="Item Image">
+                    <div class="dis">
+                        <span><c:out value="${item.itemName}" /></span>
+                        <h5><c:out value="${item.cost}" /></h5>
+                        <h4><c:out value="${item.quantity}" /></h4>
+                    </div>
 
-                    <h4><c:out value="${item.quantity}" /></h4>
                 </div>
-            </section>
+            </a>
+
         </c:forEach>
 
     </div>
@@ -105,28 +98,7 @@
 
 
 
-<footer class="section-p1">
-    <div class="footerCol">
-        <img class="logo" src="img/logo.png" alt="">
-        <h4>Contact</h4>
-        <p><strong>Address</strong>: 1234 Street Adress City Address, 1234</p>
-        <p><strong>Phone</strong>: (077) 456-7890</p>
-        <p><strong>Fax</strong>: (077) 456-7890</p>
-        <p><strong>Email</strong>: utilitySaga@gmail.com </p>
 
-    </div>
-    <div class="footerCol">
-        <h4>About</h4>
-        <a href="<%= request.getContextPath()%>/public/HTML/pages/aboutUs.jsp">About us</a>
-        <a href="#">Privacy and Policy</a>
-        <a href="#">Terms and Condition</a>
-        <a href="#">Contact Us</a>
-    </div>
-    <div class="footerCol">
-
-    </div>
-
-</footer>
 
 
 
