@@ -21,6 +21,15 @@
 }
 
 .GetNotification-box th {
+    background-color: #030052;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ccc;
+}
+
+.GetNotification-box .electricityth{
     background-color: #a0a000;
     color: #fff;
     font-weight: bold;
@@ -28,6 +37,7 @@
     letter-spacing: 1px;
     border-bottom: 1px solid #ccc;
 }
+
 
 .GetNotification-box td{
     background-color: #fff;

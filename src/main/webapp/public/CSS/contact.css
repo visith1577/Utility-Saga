@@ -32,6 +32,7 @@ body{
     color: black;
     background-color:var(--tertiary-color);
     font-family: 'Roboto', sans-serif;
+    font-size:14px;
 }
 
 .contact-contaiter{
@@ -50,13 +51,13 @@ body{
 
 .contact-contaiter .detail-container{
     background-color: rgb(245, 245, 245);
-    border-radius:5%;
-    padding: 8%;
+    border-radius:12px;
+    padding: 30px;
 }
 
 .contact-contaiter .detail-container .Detail{
-    /* background-color: indianred; */
-    border-radius: 5%;
+    background-color:white;
+    border-radius: 10px;
     width: 80%;
     /* align-items: center;
     justify-content: center; */
@@ -67,11 +68,11 @@ body{
 }
 
 .form-container{
+    font-size:15px;
     padding: 20px;
 }
 
 .form-container h3{
-    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -88,14 +89,13 @@ body{
     padding: 10px;
     border: none;
     border-bottom: 1px solid #1e1c1c;
-    font-size: 0.9rem;
     color: var(--primary-color);
     font-family: 'Roboto', sans-serif;
 }
 
 .contact-contaiter .form-container .contact-form textarea{
     resize: none;
-    height: 200px; 
+    height: 200px;
     font-family: 'Roboto', sans-serif;
     outline: none;
 }

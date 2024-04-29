@@ -90,10 +90,10 @@
     <table>
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Subject</th>
-            <th>Message</th>
+            <th class="electricityth">Title</th>
+            <th class="electricityth">Date</th>
+            <th class="electricityth">Subject</th>
+            <th class="electricityth">Message</th>
         </tr>
         </thead>
         <tbody>
