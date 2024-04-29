@@ -47,7 +47,6 @@
 <%--        </div>--%>
 
 
-
         <label>Account Number</label>
         <input type="text" name="order_id" id="order_id" readonly>
         <label>NIC: </label>
@@ -64,7 +63,12 @@
         <label>Email: </label>
         <input type="email" name="email" id="email" required><br>
         <label>Telephone Number: </label>
-        <input type="text" name="phone">
+        <input type="text" name="phone" id="phone"
+               placeholder="Enter mobile number"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+               required>
+
+
         <input type="hidden" name="address" value="No.1, Galle Road">
         <input type="hidden" name="city" value="Colombo">
         <input type="hidden" name="country" value="Sri Lanka">
@@ -74,12 +78,21 @@
         </div>
     </form>
 </div>
+
+
 <script>
 
+    const phone_regex = /^(?:\+94|0)(?:7\d{8}|11\d{7}|3\d{9})$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /[0-9]/;
+    const specialCharRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+    const minLength = 8;
     window.onload = function() {
-        function getQueryParam(name) {
+        function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+            return urlParams.get(param);
         }
 
         var accountNumber = getQueryParam("accountNumber");
@@ -93,15 +106,19 @@
         var orderId = document.getElementById('order_id').value;
         var amount = document.getElementById('amount').value;
         var currency = document.getElementById('currency').value;
-        var accountNumber = document.getElementById('order_id').value;
+        // var accountNumber = document.getElementById('order_id').value;
         // var billId = document.getElementById('billId').value;
         // console.log(orderId,amount,currency);
+
+        var mobileInput=document.getElementById('phone');
+        var emailInput=document.getElementById('email');
 
         // Generate hash value
         try {
             const hash = await generateHash(orderId, amount, currency);
             document.getElementById('hashInput').value = hash;
             console.log(hash);
+
             <%--if(accountNumber.length===10){--%>
             <%--    fetch('${pageContext.request.contextPath}/user/electricity/payment', {--%>
             <%--        method: 'POST',--%>
@@ -143,10 +160,56 @@
             <%--        alert("Error while posting data");--%>
             <%--    });--%>
             <%--}--%>
+
+            let isValid = true;
+
+            if (!phone_regex.test(mobileInput.value) || mobileInput.value.length !== 10) {
+                alert('Invalid mobile number');
+                console.log("Mobile number validation called");
+                isValid = false;
+            }
+
+            if (!emailRegex.test(emailInput.value)) {
+                alert('Invalid email address');
+                console.log("Contact number validation called");
+                isValid = false;
+            }
+
+            // Form submission based on validation
+            if (!isValid) {
+                console.log("Invalidated");
+                return; // Prevent form submission if validation fails
+            }
+
+            // If validation passes, submit the form
             document.getElementById('payhereForm').submit();
         } catch (error) {
             console.error("Error generating and setting hash:", error);
         }
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            let isValid = true;
+
+            if (!phone_regex.test(mobileInput.value) || mobileInput.value.length !== 10) {
+                alert('Invalid mobile number');
+                console.log("Mobile number validation called");
+                isValid = false;
+            }
+
+            if (!emailRegex.test(emailInput.value)) {
+                alert('Invalid email address');
+                console.log("Contact number validation called");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                console.log("Invalidated");
+                event.preventDefault();
+            } else {
+                form.submit();
+            }
+        });
+
     }
 
     async function generateHash(orderId, amount, currency) {

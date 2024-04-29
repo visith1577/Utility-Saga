@@ -6,3 +6,5 @@ const numberRegex = /[0-9]/;
 const specialCharRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
 const minLength = 8;
 console.log("Context Path: ",contextPath);
+
+
