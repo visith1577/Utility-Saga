@@ -110,7 +110,10 @@ public class CompanyServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher(Constant.LOGIN_SOLARLOGIN_JSP);
             requestDispatcher.forward(req, resp);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            resp.getWriter().write("{\"error\": \"Failed to update user image\"}");
+                req.setAttribute("errorMessage", "{\"error\": \"Failed to update user image\"}");
+                req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
             }
         }
     }

@@ -21,3 +21,9 @@ ALTER COLUMN region SET DEFAULT 'HEADOFFICE';
 
 ALTER TABLE utilitysaga.water_admin
 ADD COLUMN activate_status ENUM('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'ACTIVE';
+
+
+
+ALTER TABLE water_admin
+    ADD CONSTRAINT unique_region
+        UNIQUE (region);

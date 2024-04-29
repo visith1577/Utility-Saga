@@ -14,6 +14,7 @@
     <title>Electricity Regional admin dashboard</title>
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
     <link href="<%= request.getContextPath() %>/public/CSS/popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="../../../CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="../../../CSS/forms.css">

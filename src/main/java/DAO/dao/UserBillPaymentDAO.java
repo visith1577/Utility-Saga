@@ -219,5 +219,96 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
 
     }
 
+    @Override
+    public int updateElectricityBill(String accountnum, Double amount) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int rowsAffected = 0;
+
+        try {
+            connection = Connectdb.getConnection();
+
+            String insertSql = "UPDATE eaccount_list SET balance = balance - ? WHERE account_number = ?";
+            statement = connection.prepareStatement(insertSql);
+            statement.setDouble(1, amount);
+            statement.setString(2, accountnum);
+            rowsAffected = statement.executeUpdate();
+
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback(); // Rollback transaction
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw e;
+        }
+
+        return rowsAffected;
+    }
+
+    @Override
+    public int updateWaterBill(String accountnum, Double amount) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int rowsAffected = 0;
+
+        try {
+            connection = Connectdb.getConnection();
+
+            String insertSql = "UPDATE waccount_list SET balance = balance - ? WHERE account_number = ?";
+            statement = connection.prepareStatement(insertSql);
+            statement.setDouble(1, amount);
+            statement.setString(2, accountnum);
+            rowsAffected = statement.executeUpdate();
+
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback(); // Rollback transaction
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw e;
+        }
+
+        return rowsAffected;
+    }
+
+    public List<BillModel> getEBillsbyAccNum(String account_number, String billId) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        List<BillModel> billIdlist = new ArrayList<>();
+
+        try {
+//            String tableName = selectTable(account_number);
+//            System.out.println("Hell");
+//            System.out.println(tableName);
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT  billId FROM " + "electricity_bill" + " WHERE account_number = ?"
+            );
+
+            statement.setString(1, account_number);
+            System.out.println(account_number);
+
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    BillModel billmodel = new BillModel();
+                    billmodel.setBillId(result.getString("billId"));
+
+                    billIdlist.add(billmodel);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return billIdlist;
+    }
+
 
 }

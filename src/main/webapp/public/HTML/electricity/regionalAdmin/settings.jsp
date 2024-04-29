@@ -15,6 +15,7 @@
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
 </head>
 

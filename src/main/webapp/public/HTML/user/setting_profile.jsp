@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/setting_profile.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Account Setting</title>
@@ -112,37 +113,12 @@
             <label for="re-new-password">Confirm Password:</label>
             <input type="password" id="re-new-password" name="re-new-password" placeholder="Enter new password" required>
             <div id="re-pwd" class="error"></div>
-            <label for="language">Preferred Language:</label>
-            <select id="language" name="language">
-                <option value="english">English</option>
-                <option value="sinhala">Sinhala</option>
-                <option value="tamil">Tamil</option>
-            </select>
 
             <div id="error-message" class="error"></div>
             <button class="content-btn" type="submit">Save Account Settings</button>
             <button class="content-btn" type="button">Edit Account Settings</button>
         </form>
 
-    </section>
-
-    <section>
-        <h2>Appearance Settings</h2>
-
-        <label for="theme">Theme:</label>
-        <select id="theme" name="theme">
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-        </select>
-
-        <label for="fontSize">Font Size:</label>
-        <select id="fontSize" name="fontSize">
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-        </select>
-
-        <button class="content-btn" type="button">Save Appearance Settings</button>
     </section>
 
     <div class="electwatersetting">
@@ -174,7 +150,7 @@
                     <c:if test="${not empty sessionScope.water}">
                         <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
                             <input type="hidden" name="action" value="unsubscribe">
-                            <button class="content-btn" type="button" id="unsubscribe-electricity">UnSubscribe</button>
+                            <button class="content-btn" type="button" id="unsubscribe-electricity" style="background-color: darkred; color: white; font-weight: bold;">UnSubscribe</button>
                         </form>
                     </c:if>
                 </div>
@@ -183,7 +159,7 @@
                 <label for="account-details__water">Subscribe to view accounts.</label>
                 <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/electricity">
                     <input type="hidden" name="action" value="subscribe">
-                    <button class="content-btn" type="button" id="subscribe-electricity">Subscribe</button>
+                    <button class="content-btn" type="button" id="subscribe-electricity" style="background-color: green; color: white; font-weight: bold;">Subscribe</button>
                 </form>
             </c:if>
         </section>
@@ -212,7 +188,7 @@
                     <c:if test="${not empty sessionScope.electricity}">
                         <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
                             <input type="hidden" name="action" value="unsubscribe">
-                            <button class="content-btn" type="button" name="action" id="unsubscribe-water">UnSubscribe</button>
+                            <button class="content-btn" type="button" name="action" id="unsubscribe-water" style="background-color: darkred; color: white; font-weight: bold;">UnSubscribe</button>
                         </form>
                     </c:if>
                 </div>
@@ -221,7 +197,7 @@
                 <label for="account-details__water">Subscribe to view accounts.</label>
                 <form method="post" action="${pageContext.request.contextPath}/user/control-subscriptions/water">
                     <input type="hidden" name="action" value="subscribe">
-                    <button class="content-btn" type="button" id="subscribe-water">Subscribe</button>
+                    <button class="content-btn" type="button" id="subscribe-water" style="background-color: green; color: white; font-weight: bold;">Subscribe</button>
                 </form>
             </c:if>
         </section>
@@ -268,5 +244,28 @@
 </div>
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const queryString = window.location.search;
+
+        const urlParams = new URLSearchParams(queryString);
+
+        if (urlParams.has('success')) {
+            const successMessage = urlParams.get('success');
+            if (successMessage === 'true') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: "Your account settings have been updated successfully"
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: "An error occurred while updating your account settings"
+                });
+            }
+        }
+    });
 </script>
 </html>

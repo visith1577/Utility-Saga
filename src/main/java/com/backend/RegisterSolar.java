@@ -26,14 +26,14 @@ public class RegisterSolar extends HttpServlet {
         String bnum= req.getParameter("Bnum").trim();
         String uname= req.getParameter("Uname").trim();
         String nic= req.getParameter("nic").trim();
-        String pwd= req.getParameter("pwd").trim();
+        String pwd= req.getParameter("Pwd").trim();
         String repwd= req.getParameter("Re").trim();
         String phone= req.getParameter("phone").trim();
-        String cphone= req.getParameter("company-phone").trim();
+        String cphone= req.getParameter("home-phone").trim();
         String email= req.getParameter("email").trim();
-        String district= req.getParameter("district").trim();
+        String district= req.getParameter("region").trim();
         String address= req.getParameter("address").trim();
-        String comment= req.getParameter("comment").trim();
+        String comment= req.getParameter("comment");
 
         SolarCompanyModel company= new SolarCompanyModel();
         company.setCompanyName(cname);

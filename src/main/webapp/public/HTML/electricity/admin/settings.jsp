@@ -14,6 +14,7 @@
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/user_settings.js" defer></script>
 </head>

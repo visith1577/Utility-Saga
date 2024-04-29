@@ -12,6 +12,7 @@
 <head>
     <title>About Us</title>
   <link rel="stylesheet" href="../../CSS/dashboards/aboutUs.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
   <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
 </head>
 <body>
@@ -47,8 +48,8 @@
               <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
             </button>
             <div class="dropdown-content">
-              <a href="<%= request.getContextPath() %>/public/HTML/user/setting_profile.jsp"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-              <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+              <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
+              <a href="<%= request.getContextPath() %>/user/billpayment"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
               <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
             </div>
           </a>

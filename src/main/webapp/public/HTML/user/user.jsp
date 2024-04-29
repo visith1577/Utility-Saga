@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/user.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/skeleton.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/global.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -213,7 +214,7 @@
                             <tr>
                                 <td>${account.account_number}</td>
                                 <td>${account.amount}</td>
-                                <td>${account.dueDate}</td>
+                                <td id="date">${account.dueDate}</td>
                                 <td>${account.status}</td>
                             </tr>
                         </c:forEach>
@@ -287,6 +288,28 @@
                         // Scroll to the bottom of the table
                         table.lastElementChild.scrollIntoView();
                     });
+
+                    const tbody = document.querySelector('#dataTable');
+
+                    const rows = Array.from(tbody.rows);
+
+                    rows.sort((a, b) => {
+                        const dateA = new Date(a.cells[2].textContent);
+                        const dateB = new Date(b.cells[2].textContent);
+                        return dateB - dateA;
+                    });
+
+                    // while (tbody.firstChild) {
+                    //     tbody.removeChild(tbody.firstChild);
+                    // }
+
+                    while (tbody.firstChild) {
+                        tbody.firstChild.remove();
+                    }
+
+                    for (const row of rows) {
+                        tbody.appendChild(row);
+                    }
 
                 </script>
             </div>

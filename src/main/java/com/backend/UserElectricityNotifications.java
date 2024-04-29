@@ -44,7 +44,10 @@ public class UserElectricityNotifications extends HttpServlet{
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            resp.getWriter().write("{\"error\": \"Failed to update user image\"}");
+            request.setAttribute("errorMessage", "{\"error\": \"Failed to update user image\"}");
+            request.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(request, response);
         }
     }
 }
