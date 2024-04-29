@@ -54,9 +54,12 @@ public class ControlSubscriptions extends HttpServlet {
                 }
             }
 
-            resp.sendRedirect(req.getHeader("referer"));
+            resp.sendRedirect(req.getHeader("referer") + "?success=true");
         } catch (Exception e) {
-            e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            resp.getWriter().write("{\"error\": \"Failed to update user image\"}");
+            req.setAttribute("errorMessage", "{\"error\": \"Failed to update user image\"}");
+            req.getRequestDispatcher("/public/HTML/pages/error.jsp").forward(req, resp);
         }
     }
 }
