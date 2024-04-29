@@ -1,22 +1,24 @@
 #product1 {
     text-align: center;
+    text-decoration: none;
 
 }
 
 #product1 .pro {
     width: 300px;
-    height: 400px;
+    height: 450px;
     min-width: 220px;
     padding: 10px 15px;
     border: 1px solid #010318;
     transition: all 0.3s ease;
     margin: 10px 5px;
     position: relative;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Improved box-shadow for a lifted effect */
+    background-color: #fff;
 }
 
 #product1 .pro:hover {
-    transform: scale(1.05);
+    transform: scale(1);
 }
 
 #product1 .pro img {
@@ -27,53 +29,44 @@
 }
 
 .proContainer {
+
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
+
 }
 
 #product1 .pro .dis {
     text-align: start;
-    padding: 10px 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
 }
 
 #product1 .pro .dis span {
     font-size: 12px;
     color: #021414;
+    text-decoration: none;
 }
 
 #product1 .pro .dis h5 {
     font-size: 16px;
     color: #1c9595;
-    padding: 7px 0;
+    padding: 0;
 }
 
-#product1 .pro .dis .star {
-    color: #f1c40f;
-    font-size: 12px;
-}
 
 #product1 .pro .dis h4 {
     font-size: 16px;
     color: #1d0a9c;
     font-weight: 1000;
-    padding: 7px 0;
+    padding: 0;
 }
 
-#product1 .pro .cart {
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    line-height: 40px;
-    font-weight: 600;
-    color: rgb(32, 32, 174);
-    position: absolute;
-    bottom: 15px;
-    right: 5px;
-    background-color: rgb(205, 198, 193);
-    border: 1px solid rgb(32, 32, 174);
-}
+
 
 /*********************************************popup*/
 #view {
@@ -99,16 +92,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-#cut {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: red;
-    padding: 5px;
-    border-radius: 5px;
-}
+
 
 
 

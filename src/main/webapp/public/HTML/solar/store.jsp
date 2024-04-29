@@ -15,8 +15,46 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/styleMain.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/form.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/store.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <style>
+        #navv{
+            display: flex;
+            width: 100%;
+            padding: 0px 10px;
 
+        }
+        #navbar{
+            display: flex;
+            width: 100%;
+            margin: 0px;
+
+
+        }
+        #navCon{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 0px;
+            max-width: 2000px;
+        }
+        #hero{
+            margin-top:70px;
+        }
+        #hero a{
+            text-decoration: none;
+        }
+
+        #navLi  {
+            display: flex;
+            align-items: center;
+            margin-top: 0px ;
+        }
+        #navLi li {
+
+            margin-top: 0px ;
+        }
 
 
 
@@ -25,14 +63,27 @@
 <body>
 
 
-<section id="header" >
-    <a href="index.html"><img id="logo" src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt=""></a>
-    <div id="proDe">
-        <p> ${sessionScope.companyName}
-        </p>
-        <a href="#"><img id="proImg" src="<%= request.getContextPath() %>/public/images/solar/companyLogo.jpeg" alt=""></a>
-    </div>
-</section>
+<%--<section id="header" >--%>
+<%--    <a href="index.html"><img id="logo" src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt=""></a>--%>
+<%--    <div id="proDe">--%>
+<%--        <p> ${sessionScope.companyName}--%>
+<%--        </p>--%>
+<%--        <a href="#"><img id="proImg" src="<%= request.getContextPath() %>/public/images/solar/companyLogo.jpeg" alt=""></a>--%>
+<%--    </div>--%>
+<%--</section>--%>
+
+<div class="navv" id="navv">
+    <header class="navbar"  id="navbar">
+        <div class="navbar-container container" id="navCon" >
+            <ul class="menu-items" id="navLi">
+                <li class="menu-items-li">${companyName}</li>
+                <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout"><i class="fas fa-power-off"></i>
+                </a></li>
+            </ul>
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+        </div>
+    </header>
+</div>
 
 
 <section id="hero">
@@ -51,11 +102,13 @@
         <h2> Welcome ${sessionScope.companyName} !</h2>
     </div>
     <div id="btn">
-        <a href="<%= request.getContextPath()%>/public/HTML/solar/addItem.jsp">Add Item</a>
         <a href="<%= request.getContextPath()%>/item/all"> Utility Saga Store </a>
     </div>
 </section>
 
+<div id="addItemLink">
+    <a href="<%= request.getContextPath()%>/public/HTML/solar/addItem.jsp"><i class="fas fa-plus"> </i></a>
+</div>
 
 
 </body>

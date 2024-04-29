@@ -12,21 +12,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link href='https://fonts.googleapis.com/css?family=Spartan' rel='stylesheet'>
-    <link rel="stylesheet" href="../../CSS/solar/styleMain.css">
-    <link rel="stylesheet" href="../../CSS/solar/form.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/styleMain.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/form.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <title>Add item</title>
+    <style>
+        #navv{
+            display: flex;
+            width: 100%;
+            padding: 0px 10px;
+
+        }
+        #navbar{
+            display: flex;
+            width: 100%;
+            margin: 0px;
+
+
+        }
+        #navCon{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 0px;
+            max-width: 2000px;
+        }
+        #hero{
+            margin-top:70px;
+        }
+        #hero a{
+            text-decoration: none;
+        }
+
+        #navLi  {
+            display: flex;
+            align-items: center;
+            margin-top: 0px ;
+        }
+        #navLi li {
+
+            margin-top: 0px ;
+        }
+
+
+
+    </style>
 </head>
 <body>
-<section id="header" >
-    <a href="index.html"><img id="logo" src="../../images/solar/logo.png" alt=""></a>
-    <div id="proDe">
-        <p>Company Name</p>
-        <a href="#"><img id="proImg" src="../../images/solar/companyLogo.jpeg" alt=""></a>
+<div class="navv" id="navv">
+    <header class="navbar"  id="navbar">
+        <div class="navbar-container container" id="navCon" >
+            <ul class="menu-items" id="navLi">
+                <li class="menu-items-li">${companyName}</li>
+                <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout"><i class="fas fa-power-off"></i>
+                </a></li>
+            </ul>
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+        </div>
+    </header>
+</div>
 
-    </div>
-</section>
-
-<div class="container">
+<div class="container-1" style="margin-top: 70px">
     <h2>Add Item</h2>
     <form action="<%= request.getContextPath()%>/item/add" method="post" enctype="multipart/form-data">
 
@@ -40,16 +88,16 @@
             <input type="text" id="description" name="description" placeholder="Description" required>
         </div>
         <div class="form-group">
-            <label for="cost">Cost $</label>
-            <input type="number" id="cost" name="cost" placeholder="$Cost" step="any" min="0.00" required>
+            <label for="cost">Cost (Rs)</label>
+            <input type="number" id="cost" name="cost" placeholder="Rs 450.00" step="any" min="0.00" required>
         </div>
         <div class="form-group">
-            <label for="profitMargin">Profit Margin</label>
-            <input type="number" id="profitMargin" name="profit_margin" placeholder="$Profit Margin" step="any" min="0.00" required>
+            <label for="profitMargin">Profit Margin (Rs)</label>
+            <input type="number" id="profitMargin" name="profit_margin" placeholder="Rs 150.00" step="any" min="0.00" required>
         </div>
         <div class="form-group">
-            <label for="price">Price </label>
-            <input type="number" id="price" name="price" placeholder="$Price" step="any" min="0.00" required>
+            <label for="price">Price (Rs)</label>
+            <input type="number" id="price" name="price" placeholder="Rs 600.00" step="any" min="0.00" required>
         </div>
         <div class="form-group">
             <label for="warrantyPeriod">Warranty Period (Months)</label>

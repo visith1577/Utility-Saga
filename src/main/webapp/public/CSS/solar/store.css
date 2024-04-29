@@ -261,4 +261,36 @@ footer .follow a:hover {
     font-size: 50px;
 }
 
+#addItemLink {
+    position: fixed;
+    bottom: 20px; /* Adjust the distance from the bottom as needed */
+    right: 20px; /* Adjust the distance from the right as needed */
+    z-index: 1000; /* Ensure the icon appears above other content */
+}
+
+#addItemLink a {
+    display: block; /* Ensure the entire icon area is clickable */
+    width: 50px; /* Adjust the width of the icon container as needed */
+    height: 50px; /* Adjust the height of the icon container as needed */
+    background-color: #2f2fa1; /* Background color for the icon container */
+    color: white; /* Icon color */
+    text-align: center;
+    border-radius: 50%; /* Make the icon container circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Center the icon vertically */
+    line-height: 50px; /* Set line-height equal to height */
+}
+
+#addItemLink a i {
+    /* Adjust margin-top to center the icon */
+    margin: 15px; /* Adjust as needed */
+}
+
+#addItemLink a:hover {
+    background-color: #a83030; /* Change background color on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Change shadow on hover */
+}
+
+
 

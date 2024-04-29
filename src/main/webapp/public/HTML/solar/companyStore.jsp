@@ -5,6 +5,7 @@
 <%@ page import="java.util.Base64" %>
 <%@ page import="model.ItemModel" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
     // Assuming you have retrieved the list of ItemModel objects from the backend
@@ -43,14 +44,63 @@
     <link link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/styleMain.css">
     <link link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/store.css">
     <link link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/companyStoreMain.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/companyStoreMain.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/companySto    reMain.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
+    <style>
+        #navv{
+            display: flex;
+            width: 100%;
+            padding: 0px 10px;
 
+        }
+        #navbar{
+            display: flex;
+            width: 100%;
+            margin: 0px;
+
+
+        }
+        #navCon{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 0px;
+            max-width: 2000px;
+        }
+        #hero{
+            margin-top:70px;
+        }
+        #hero a{
+            text-decoration: none;
+        }
+
+        #navLi  {
+            display: flex;
+            align-items: center;
+            margin-top: 0px ;
+        }
+        #navLi li {
+
+            margin-top: 0px ;
+        }
+
+
+
+    </style>
 </head>
 <body>
-<section id="header" >
-    <a href="#"><img id="logo" src="<%= request.getContextPath() %>/public/images/solar/logo.png" alt=""></a>
-    <p id="date-container" style="font-size: 25px"></p>
-</section>
+<div class="navv" id="navv">
+    <header class="navbar"  id="navbar">
+        <div class="navbar-container container" id="navCon" >
+            <ul class="menu-items" id="navLi">
+                <p id="date-container" style="font-size: 25px"></p>
+            </ul>
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+        </div>
+    </header>
+</div>
 
 <section id="hero"
          style="background-image: url(<%= request.getContextPath() %>/public/images/solar/hero.jpg); color: black">
@@ -64,40 +114,24 @@
     </form>
 </section>
 
-<section id="product1" class="section-p1" >
+<section id="product1" class="section-p1">
     <h2>Arrivels</h2>
     <p>Suggestet For you</p>
     <div class="proContainer">
-
-
         <c:forEach items="${listItems}" var="item" varStatus="loop">
             <a href="">
                 <div class="pro">
                     <img src="data:image/jpeg;base64,${item.base64Image}" alt="Item Image">
                     <div class="dis">
-                        <span><c:out value="${item.itemName}" /></span>
-                        <h5><c:out value="${item.cost}" /></h5>
-                        <h4><c:out value="${item.quantity}" /></h4>
+                        <h4><c:out value="${item.itemName}" /></h4>
+                        <span> <p>Rs <fmt:formatNumber value="${item.cost}" type="number" minFractionDigits="2" maxFractionDigits="2" /></p> </span>
+                        <span> <p><c:out value="${item.warrantyPeriod}" /> Months</p></span>
                     </div>
-
                 </div>
             </a>
-
         </c:forEach>
-
     </div>
-
-
 </section>
-
-
-<%--<section id="view" class="section-p1">--%>
-
-<%--</section>--%>
-
-
-
-
 
 
 

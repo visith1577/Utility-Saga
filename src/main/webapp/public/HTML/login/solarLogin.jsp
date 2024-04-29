@@ -53,7 +53,7 @@
                 <input type="password" placeholder="Enter password" id="Pwd" name="password"
                        class="login-field__pwd">
             </label>
-            <a href="#" class="fgt-pwd">
+            <a href="<%= request.getContextPath() %>/public/HTML/login/forget-password-electricity.jsp" class="fgt-pwd" style="color: black">
                 Forget Password
             </a>
 

@@ -7,20 +7,68 @@
     <link href='https://fonts.googleapis.com/css?family=Spartan' rel='stylesheet'>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/styleMain.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/solar/form.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <title>Add item</title>
+    <style>
+        #navv{
+            display: flex;
+            width: 100%;
+            padding: 0px 10px;
+
+        }
+        #navbar{
+            display: flex;
+            width: 100%;
+            margin: 0px;
+
+
+        }
+        #navCon{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 0px;
+            max-width: 2000px;
+        }
+        #hero{
+            margin-top:70px;
+        }
+        #hero a{
+            text-decoration: none;
+        }
+
+        #navLi  {
+            display: flex;
+            align-items: center;
+            margin-top: 0px ;
+        }
+        #navLi li {
+
+            margin-top: 0px ;
+        }
+
+
+
+    </style>
 </head>
 <body>
-<section id="header">
-    <a href="index.html"><img id="logo" src="<%= request.getContextPath() %>/public/images/solar/logo.png" alt=""></a>
-    <div id="proDe">
-        <p>${sessionScope.companyName}</p>
-        <a href="#"><img id="proImg" src=".<%= request.getContextPath() %>/public/images/solar/companyLogo.jpeg" alt=""></a>
+<div class="navv" id="navv">
+    <header class="navbar"  id="navbar">
+        <div class="navbar-container container" id="navCon" >
+            <ul class="menu-items" id="navLi">
+                <li class="menu-items-li">${companyName}</li>
+                <li class="menu-items-li"><a id="logout" href="<%= request.getContextPath() %>/logout"><i class="fas fa-power-off"></i>
+                </a></li>
+            </ul>
+            <img src="<%= request.getContextPath() %>/public/images/utility_saga.svg" alt="Utility Saga" class="logo">
+        </div>
+    </header>
+</div>
 
-    </div>
-</section>
 
-
-<div class="container">
+<div class="container-1" style="margin-top: 70px">
     <h2>Edit Item</h2>
     <form action="<%= request.getContextPath()%>/item/edit" method="post">
         <div class="form-group" style="display: none;">
@@ -37,16 +85,16 @@
                    required>
         </div>
         <div class="form-group">
-            <label for="cost">Cost</label>
+            <label for="cost">Cost (Rs)</label>
             <input type="number" id="cost" name="cost" placeholder="Cost" value="${item.cost}" required>
         </div>
         <div class="form-group">
-            <label for="profitMargin">Profit Margin</label>
+            <label for="profitMargin">Profit Margin (Rs)</label>
             <input type="number" id="profitMargin" name="profit_margin" value="${item.profitMargin}"
                    placeholder="Profit Margin" required>
         </div>
         <div class="form-group">
-            <label for="price">Price</label>
+            <label for="price">Price (Rs)</label>
             <input type="number" id="price" name="price" placeholder="Price" value="${item.price}" required>
         </div>
         <div class="form-group">

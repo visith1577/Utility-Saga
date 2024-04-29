@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 
-.container {
+.container-1 {
     max-width: 500px;
     margin: 50px auto;
     padding: 20px;
@@ -16,7 +16,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container h2 {
+.container-1 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
