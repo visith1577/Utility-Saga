@@ -32,13 +32,15 @@ public class IotControl implements Device {
             }
 
             if (cat.equals("ELECTRICITY")) {
-                preparedStatement = connection.prepareStatement("UPDATE eAccount_list SET iot_id = ? WHERE account_number = ?");
-                preparedStatement.setString(1, deviceId);
-                preparedStatement.setString(2, accountNo);
+                preparedStatement = connection.prepareStatement("UPDATE eAccount_list SET iot_meter = ?, iot_id = ? WHERE account_number = ?");
+                preparedStatement.setString(1, "YES");
+                preparedStatement.setString(2, deviceId);
+                preparedStatement.setString(3, accountNo);
                 preparedStatement.executeUpdate();
 
             } else if (cat.equals("WATER")) {
-                preparedStatement = connection.prepareStatement("UPDATE wAccount_list SET iot_id = ? WHERE account_number = ?");
+                preparedStatement = connection.prepareStatement("UPDATE wAccount_list SET iot_meter = ?, iot_id = ? WHERE account_number = ?");
+                preparedStatement.setString(1, "YES");
                 preparedStatement.setString(1, deviceId);
                 preparedStatement.setString(2, accountNo);
                 preparedStatement.executeUpdate();
