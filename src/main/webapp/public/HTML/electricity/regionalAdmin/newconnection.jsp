@@ -307,6 +307,9 @@
         const accountNo = document.getElementById('accountno').value;
         const iotId = document.getElementById('iotId').value;
 
+
+
+
         if (!isValidNic(nic)) {
             Swal.fire({
                 icon: "error",
@@ -321,6 +324,12 @@
                 text: "Please fill all fields."
             });
             // exit out of submit function
+        }else if(accountNo.length !==10){
+            Swal.fire({
+                icon: "error",
+                title: "Account number should be 10 digits long",
+                text: "Check Account number and try again."
+            });
         } else {
             // fetch from backend if account number is already in use || if request id has been fulfilled already || iot device is already owned
             fetch(contextPath + '/electricity/regional-admin/api/validate-add-account?reqId=' + encodeURIComponent(reqId) + '&accountNo=' + encodeURIComponent(accountNo) + '&iotId=' + encodeURIComponent(iotId))

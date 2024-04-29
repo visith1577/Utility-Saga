@@ -244,5 +244,28 @@
 </div>
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const queryString = window.location.search;
+
+        const urlParams = new URLSearchParams(queryString);
+
+        if (urlParams.has('success')) {
+            const successMessage = urlParams.get('success');
+            if (successMessage === 'true') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: "Your account settings have been updated successfully"
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: "An error occurred while updating your account settings"
+                });
+            }
+        }
+    });
 </script>
 </html>

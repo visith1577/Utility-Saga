@@ -6,6 +6,7 @@ import utils.Connectdb;
 import utils.PreparedStatementResults;
 
 import java.sql.*;
+import java.util.Objects;
 
 public class IotControl implements Device {
 
@@ -24,16 +25,22 @@ public class IotControl implements Device {
 
         try {
             connection.setAutoCommit(false);
-            backupMeterTableStmt = createBackupTable(prevDeviceId, connection);
+            if (!Objects.equals(prevDeviceId, "NO")){
+                backupMeterTableStmt = createBackupTable(prevDeviceId, connection);
+                deleteMeterTableStmt = helpers.deleteMeterTable(prevDeviceId, connection);
+                deleteBudgetTableStmt = helpers.deleteMeterBudgetTable(prevDeviceId, connection);
+            }
 
             if (cat.equals("ELECTRICITY")) {
-                preparedStatement = connection.prepareStatement("UPDATE eAccount_list SET iot_id = ? WHERE account_number = ?");
-                preparedStatement.setString(1, deviceId);
-                preparedStatement.setString(2, accountNo);
+                preparedStatement = connection.prepareStatement("UPDATE eAccount_list SET iot_meter = ?, iot_id = ? WHERE account_number = ?");
+                preparedStatement.setString(1, "YES");
+                preparedStatement.setString(2, deviceId);
+                preparedStatement.setString(3, accountNo);
                 preparedStatement.executeUpdate();
 
             } else if (cat.equals("WATER")) {
-                preparedStatement = connection.prepareStatement("UPDATE wAccount_list SET iot_id = ? WHERE account_number = ?");
+                preparedStatement = connection.prepareStatement("UPDATE wAccount_list SET iot_meter = ?, iot_id = ? WHERE account_number = ?");
+                preparedStatement.setString(1, "YES");
                 preparedStatement.setString(1, deviceId);
                 preparedStatement.setString(2, accountNo);
                 preparedStatement.executeUpdate();
@@ -41,9 +48,6 @@ public class IotControl implements Device {
             } else {
                 throw new SQLException("Invalid category");
             }
-
-            deleteMeterTableStmt = helpers.deleteMeterTable(prevDeviceId, connection);
-            deleteBudgetTableStmt = helpers.deleteMeterBudgetTable(prevDeviceId, connection);
 
 
             createMeterTableStmt = helpers.createMeterTable(deviceId, connection);

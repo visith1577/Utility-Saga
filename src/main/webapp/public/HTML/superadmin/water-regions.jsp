@@ -57,7 +57,7 @@
             <div id="popupContainer" class="addregionscontainer">
                 <div class="formdiv">
                 <h2 class="popup-title">Add Regions</h2>
-                <form id="addForm" method="POST" action="${pageContext.request.contextPath}/water/main-admin/region">
+                <form id="addForm" method="POST" action="${pageContext.request.contextPath}/super-admin/wregion">
                     <label for="region">Region:</label>
                     <input type="text" name="region" id="region"
                            placeholder="Enter the region"
