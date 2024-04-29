@@ -106,7 +106,8 @@
         var orderId = document.getElementById('order_id').value;
         var amount = document.getElementById('amount').value;
         var currency = document.getElementById('currency').value;
-        // var accountNumber = document.getElementById('order_id').value;
+        var accountNumber = document.getElementById('order_id').value;
+        console.log(accountNumber);
         // var billId = document.getElementById('billId').value;
         // console.log(orderId,amount,currency);
 
@@ -119,47 +120,48 @@
             document.getElementById('hashInput').value = hash;
             console.log(hash);
 
-            <%--if(accountNumber.length===10){--%>
-            <%--    fetch('${pageContext.request.contextPath}/user/electricity/payment', {--%>
-            <%--        method: 'POST',--%>
-            <%--        headers: {--%>
-            <%--            'Content-Type': 'application/json'--%>
-            <%--        },--%>
-            <%--        body: JSON.stringify({--%>
-            <%--            accountNumber: accountNumber,--%>
-            <%--            // billId: billId,--%>
-            <%--            amount: amount--%>
-            <%--        })--%>
-            <%--    }).then(response =>{--%>
-            <%--        if(!response.ok){--%>
-            <%--            throw new Error('Response was not ok');--%>
-            <%--        }--%>
-            <%--    }).catch(error => {--%>
-            <%--        console.error('Error:', error);--%>
-            <%--        alert("Error while posting data");--%>
-            <%--    });--%>
-            <%--}--%>
+            if(accountNumber.length===10){
+                console.log(accountNumber);
+                fetch('${pageContext.request.contextPath}/user/electricity/payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        accountNumber: accountNumber,
+                        // billId: billId,
+                        amount: amount
+                    })
+                }).then(response =>{
+                    if(!response.ok){
+                        throw new Error('Response was not ok');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert("Error while posting data");
+                });
+            }
 
-            <%--else if(accountNumber.length===12){--%>
-            <%--    fetch('${pageContext.request.contextPath}/user/water/payment', {--%>
-            <%--        method: 'POST',--%>
-            <%--        headers: {--%>
-            <%--            'Content-Type': 'application/json'--%>
-            <%--        },--%>
-            <%--        body: JSON.stringify({--%>
-            <%--            accountNumber: accountNumber,--%>
-            <%--            // billId: billId,--%>
-            <%--            amount: amount--%>
-            <%--        })--%>
-            <%--    }).then(response =>{--%>
-            <%--        if(!response.ok){--%>
-            <%--            throw new Error('Response was not ok');--%>
-            <%--        }--%>
-            <%--    }).catch(error => {--%>
-            <%--        console.error('Error:', error);--%>
-            <%--        alert("Error while posting data");--%>
-            <%--    });--%>
-            <%--}--%>
+            else if(accountNumber.length===12){
+                fetch('${pageContext.request.contextPath}/user/water/payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        accountNumber: accountNumber,
+                        // billId: billId,
+                        amount: amount
+                    })
+                }).then(response =>{
+                    if(!response.ok){
+                        throw new Error('Response was not ok');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert("Error while posting data");
+                });
+            }
 
             let isValid = true;
 

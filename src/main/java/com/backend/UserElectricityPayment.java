@@ -27,13 +27,13 @@ public class UserElectricityPayment extends HttpServlet {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(requestBody, JsonObject.class);
         String accountNumber = jsonObject.get("accountNumber").getAsString();
-        String billId = jsonObject.get("billId").getAsString();
+//        String billId = jsonObject.get("billId").getAsString();
         Double amount = jsonObject.get("amount").getAsDouble();
 
         UserBillPaymentDAO dao = new UserBillPaymentDAO();
 
         try{
-            dao.updateElectricityBill(accountNumber, billId, amount);
+            dao.updateElectricityBill(accountNumber, amount);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
