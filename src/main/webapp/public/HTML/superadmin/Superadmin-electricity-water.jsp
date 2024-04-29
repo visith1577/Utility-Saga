@@ -84,9 +84,9 @@
                 <div id="popupContainer" class="popup-container">
                     <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="addForm" method="POST" action="${pageContext.request.contextPath}/elecAdmin">
-                        <label for="region">Region:</label>
+                        <label for="region">Office:</label>
                         <input type="text" name="region" id="region"
-                               placeholder="Enter the region"
+                               placeholder="Enter Office Number"
                                required>
                         <script>
                             let regions = [<c:forEach items="${requestScope.eRegions}" var="region" varStatus="loop">"${region}"<c:if test="${!loop.last}">,</c:if></c:forEach>];
@@ -231,9 +231,9 @@
                 <div id="wpopupContainer" class="popup-container">
                     <h2 class="popup-title">Add Electricity Admin</h2>
                     <form id="waddForm" method="POST" action="${pageContext.request.contextPath}/waterAdmin">
-                        <label for="wregion">Region:</label>
+                        <label for="wregion">Office:</label>
                         <input type="text" name="wregion" id="wregion"
-                               placeholder="Enter the region"
+                               placeholder="Enter Office Number"
                                required>
                         <script>
                             let wRegions = [<c:forEach items="${requestScope.wRegions}" var="region" varStatus="loop">"${region}"<c:if test="${!loop.last}">,</c:if></c:forEach>];
