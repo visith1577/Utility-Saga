@@ -9,6 +9,7 @@ public class BillModel {
     private Date dueDate;
     private Status status;
     private String accountNumber;
+    private Double balance;
 
     public enum Status{
         PAID,
@@ -62,5 +63,13 @@ public class BillModel {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }
