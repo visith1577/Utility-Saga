@@ -33,7 +33,7 @@ public class RegisterSolar extends HttpServlet {
         String email= req.getParameter("email").trim();
         String district= req.getParameter("region").trim();
         String address= req.getParameter("address").trim();
-        String comment= req.getParameter("comment");
+        String comment= req.getParameter("comment")+"2d";
 
         SolarCompanyModel company= new SolarCompanyModel();
         company.setCompanyName(cname);
