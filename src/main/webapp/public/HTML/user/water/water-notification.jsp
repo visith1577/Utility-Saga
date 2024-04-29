@@ -42,7 +42,7 @@
                         <span class="material-icons">notifications</span>
                     </a>
                 </li>
-                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Electricity</button></li>
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboard</button></li>
                 <script>
                     function toggle() {
                         window.location.href = "<%= request.getContextPath() %>/user/water-dashboard"
