@@ -17,7 +17,7 @@ public interface UserBillPaymentImpl {
 
     List<BillModel> getOverdueWaterBillsByAN(String region, String account) throws SQLException;
 
-    int updateElectricityBill(String accountnum, String billId, Double amount) throws Exception;
+    int updateElectricityBill(String accountnum, Double amount) throws Exception;
 
-    int updateWaterBill(String accountnum, String billId, Double amount) throws Exception;
+    int updateWaterBill(String accountnum, Double amount) throws Exception;
 }

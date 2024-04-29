@@ -220,38 +220,19 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
     }
 
     @Override
-    public int updateElectricityBill(String accountnum, String billId, Double amount) throws Exception {
+    public int updateElectricityBill(String accountnum, Double amount) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
         int rowsAffected = 0;
 
         try {
             connection = Connectdb.getConnection();
-            connection.setAutoCommit(false);
 
-            String insertSql = "INSERT INTO electricity_bill (billId, amount, account_number) VALUES (?, ?, ?)";
+            String insertSql = "UPDATE eaccount_list SET balance = balance - ? WHERE account_number = ?";
             statement = connection.prepareStatement(insertSql);
-            statement.setString(1, billId);
-            statement.setDouble(2, amount);
-            statement.setString(3, accountnum);
+            statement.setDouble(1, amount);
+            statement.setString(2, accountnum);
             rowsAffected = statement.executeUpdate();
-
-            if (rowsAffected > 0) {
-                String updateStatusSql = "UPDATE electricity_bill SET status = 'PAID' WHERE billId = ?";
-                statement = connection.prepareStatement(updateStatusSql);
-                statement.setString(1, billId);
-                statement.executeUpdate();
-
-                String updateBalanceSql = "UPDATE eaccount_list SET balance = balance - ? WHERE account_number = ?";
-                statement = connection.prepareStatement(updateBalanceSql);
-                statement.setDouble(1, amount);
-                statement.setString(2, accountnum);
-                statement.executeUpdate();
-
-                connection.commit();
-            } else {
-                throw new Exception("Failed to insert electricity bill.");
-            }
 
         } catch (SQLException e) {
             if (connection != null) {
@@ -262,52 +243,25 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
                 }
             }
             throw e;
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.setAutoCommit(true);
-                connection.close();
-            }
         }
 
         return rowsAffected;
     }
 
     @Override
-    public int updateWaterBill(String accountnum, String billId, Double amount) throws Exception {
+    public int updateWaterBill(String accountnum, Double amount) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
         int rowsAffected = 0;
 
         try {
             connection = Connectdb.getConnection();
-            connection.setAutoCommit(false);
 
-            String insertSql = "INSERT INTO water_bill (billId, amount, account_number) VALUES (?, ?, ?)";
+            String insertSql = "UPDATE waccount_list SET balance = balance - ? WHERE account_number = ?";
             statement = connection.prepareStatement(insertSql);
-            statement.setString(1, billId);
-            statement.setDouble(2, amount);
-            statement.setString(3, accountnum);
+            statement.setDouble(1, amount);
+            statement.setString(2, accountnum);
             rowsAffected = statement.executeUpdate();
-
-            if (rowsAffected > 0) {
-                String updateStatusSql = "UPDATE water_bill SET status = 'PAID' WHERE billId = ?";
-                statement = connection.prepareStatement(updateStatusSql);
-                statement.setString(1, billId);
-                statement.executeUpdate();
-
-                String updateBalanceSql = "UPDATE waccount_list SET balance = balance - ? WHERE account_number = ?";
-                statement = connection.prepareStatement(updateBalanceSql);
-                statement.setDouble(1, amount);
-                statement.setString(2, accountnum);
-                statement.executeUpdate();
-
-                connection.commit();
-            } else {
-                throw new Exception("Failed to insert electricity bill.");
-            }
 
         } catch (SQLException e) {
             if (connection != null) {
@@ -318,14 +272,6 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
                 }
             }
             throw e;
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.setAutoCommit(true);
-                connection.close();
-            }
         }
 
         return rowsAffected;

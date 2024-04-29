@@ -63,8 +63,8 @@ BEGIN
     UPDATE waccount_list
     SET balance = balance - NEW.amount
     WHERE account_number = NEW.account_number;
-END$$
-DELIMITER ;
+END;
+DELIMITER;
 
 DELIMITER $$
 CREATE TRIGGER update_wbalance_notification
@@ -82,5 +82,5 @@ BEGIN
                    CONCAT('Your account balance for account ', NEW.account_number, ' has been updated to ', NEW.balance)
                );
     END IF;
-END $$
+END;
 DELIMITER ;
