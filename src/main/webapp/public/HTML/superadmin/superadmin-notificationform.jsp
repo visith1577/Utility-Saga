@@ -14,6 +14,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link href="../../CSS/superadmin/superadmin-notifelecwater.css" rel="stylesheet">
     <link rel="stylesheet" href="../../CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="../../CSS/forms.css">

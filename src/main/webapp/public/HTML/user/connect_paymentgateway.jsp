@@ -1,4 +1,5 @@
-<%--
+<%@ page import="model.BillModel" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: NETHMI LIYANAGE
   Date: 4/26/2024
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% String nic = (String) session.getAttribute("NIC"); %>
 <%
     String contextPath = request.getContextPath();
 %>
@@ -27,10 +29,29 @@
         <input type="hidden" name="notify_url"
                value="http://localhost:8080/UtilitySaga_war_exploded/public/HTML/user/connect_paymentgateway.jsp">
 
+<%--        <label>Bill Number</label>--%>
+<%--        <input>--%>
+<%--        <div class="dropdownclass">--%>
+<%--            <select id="electricity_account">--%>
+<%--                <% List<BillModel> electricityAccountList = (List<BillModel>) request.getAttribute("billId"); %>--%>
+<%--                <% if (electricityAccountList != null && !electricityAccountList.isEmpty()) { %>--%>
+<%--                <option value="" disabled selected>Select your Account Number</option>--%>
+<%--                <% for (BillModel account : electricityAccountList) { %>--%>
+<%--                <option value="<%= account.getBillId() %>"><%= account.getBillId() %>--%>
+<%--                </option>--%>
+<%--                <% } %>--%>
+<%--                <% } else { %>--%>
+<%--                <p>No electricity accounts available.</p>--%>
+<%--                <% } %>--%>
+<%--            </select>--%>
+<%--        </div>--%>
+
+
+
         <label>Account Number</label>
-        <input type="text" name="order_id" id="order_id">
+        <input type="text" name="order_id" id="order_id" readonly>
         <label>NIC: </label>
-        <input type="text" name="items">
+        <input type="text" name="items" value="<%=nic%>" readonly>
         <label>Currency: </label>
         <input type="text" name="currency" id="currency" value="LKR" required>
         <label>Value: </label>
@@ -73,7 +94,7 @@
         var amount = document.getElementById('amount').value;
         var currency = document.getElementById('currency').value;
         var accountNumber = document.getElementById('order_id').value;
-        var billId = document.getElementById('billId').value;
+        // var billId = document.getElementById('billId').value;
         // console.log(orderId,amount,currency);
 
         // Generate hash value
@@ -81,47 +102,47 @@
             const hash = await generateHash(orderId, amount, currency);
             document.getElementById('hashInput').value = hash;
             console.log(hash);
-            if(accountNumber.length===10){
-                fetch('${pageContext.request.contextPath}/user/electricity/payment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        accountNumber: accountNumber,
-                        billId: billId,
-                        amount: amount
-                    })
-                }).then(response =>{
-                    if(!response.ok){
-                        throw new Error('Response was not ok');
-                    }
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert("Error while posting data");
-                });
-            }
+            <%--if(accountNumber.length===10){--%>
+            <%--    fetch('${pageContext.request.contextPath}/user/electricity/payment', {--%>
+            <%--        method: 'POST',--%>
+            <%--        headers: {--%>
+            <%--            'Content-Type': 'application/json'--%>
+            <%--        },--%>
+            <%--        body: JSON.stringify({--%>
+            <%--            accountNumber: accountNumber,--%>
+            <%--            // billId: billId,--%>
+            <%--            amount: amount--%>
+            <%--        })--%>
+            <%--    }).then(response =>{--%>
+            <%--        if(!response.ok){--%>
+            <%--            throw new Error('Response was not ok');--%>
+            <%--        }--%>
+            <%--    }).catch(error => {--%>
+            <%--        console.error('Error:', error);--%>
+            <%--        alert("Error while posting data");--%>
+            <%--    });--%>
+            <%--}--%>
 
-            else if(accountNumber.length===12){
-                fetch('${pageContext.request.contextPath}/user/water/payment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        accountNumber: accountNumber,
-                        billId: billId,
-                        amount: amount
-                    })
-                }).then(response =>{
-                    if(!response.ok){
-                        throw new Error('Response was not ok');
-                    }
-                }).catch(error => {
-                    console.error('Error:', error);
-                    alert("Error while posting data");
-                });
-            }
+            <%--else if(accountNumber.length===12){--%>
+            <%--    fetch('${pageContext.request.contextPath}/user/water/payment', {--%>
+            <%--        method: 'POST',--%>
+            <%--        headers: {--%>
+            <%--            'Content-Type': 'application/json'--%>
+            <%--        },--%>
+            <%--        body: JSON.stringify({--%>
+            <%--            accountNumber: accountNumber,--%>
+            <%--            // billId: billId,--%>
+            <%--            amount: amount--%>
+            <%--        })--%>
+            <%--    }).then(response =>{--%>
+            <%--        if(!response.ok){--%>
+            <%--            throw new Error('Response was not ok');--%>
+            <%--        }--%>
+            <%--    }).catch(error => {--%>
+            <%--        console.error('Error:', error);--%>
+            <%--        alert("Error while posting data");--%>
+            <%--    });--%>
+            <%--}--%>
             document.getElementById('payhereForm').submit();
         } catch (error) {
             console.error("Error generating and setting hash:", error);

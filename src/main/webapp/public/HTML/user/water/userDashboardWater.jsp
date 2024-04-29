@@ -11,6 +11,8 @@
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
+
     <link rel="stylesheet" href="<%=request.getContextPath()%>/public/CSS/dashboards/waterdash.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -59,7 +61,7 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
@@ -85,29 +87,6 @@
             <img src="<%= request.getContextPath() %>/public/images/Water/Water-dashboard.png" alt="Water Dashboard">
         </div>
     </section>
-
-<%--    <section class="plan2 water" id="plan2">--%>
-<%--        <ul class="plan2__items">--%>
-<%--            <li>--%>
-<%--                <div class="plan2__item">--%>
-<%--                    <a href="<%= request.getContextPath() %>/user/water-connection"><img src="<%= request.getContextPath() %>/public/images/four-point-connection.svg" alt="New Connection"></a>--%>
-<%--                </div>--%>
-<%--                <p class="plan2__para">New Connections</p>--%>
-<%--            </li>--%>
-<%--            <li>--%>
-<%--                <div class="plan2__item">--%>
-<%--                    <a href="<%= request.getContextPath() %>/user/water-public-complaint"><img src="<%= request.getContextPath() %>/public/images/history-query.svg" alt="Public Complaints"></a>--%>
-<%--                </div>--%>
-<%--                <p class="plan2__para">Public Complaints</p>--%>
-<%--            </li>--%>
-<%--            <li>--%>
-<%--                <div class="plan2__item">--%>
-<%--                    <a href="<%= request.getContextPath() %>/public/HTML/user/water/waterAnalysis.jsp"><img src="<%= request.getContextPath() %>/public/images/analysis.svg" alt="Analysis"></a>--%>
-<%--                </div>--%>
-<%--                <p class="plan2__para">Analysis</p>--%>
-<%--            </li>--%>
-<%--        </ul>--%>
-<%--    </section>--%>
 
     <section class="features" id="features">
         <h1 class="heading">Main Water Serivices</h1>

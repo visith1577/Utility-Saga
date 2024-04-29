@@ -331,5 +331,38 @@ public class UserBillPaymentDAO implements DAO.impl.UserBillPaymentImpl {
         return rowsAffected;
     }
 
+    public List<BillModel> getEBillsbyAccNum(String account_number, String billId) throws SQLException {
+        Connection connection = Connectdb.getConnection();
+        List<BillModel> billIdlist = new ArrayList<>();
+
+        try {
+//            String tableName = selectTable(account_number);
+//            System.out.println("Hell");
+//            System.out.println(tableName);
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT  billId FROM " + "electricity_bill" + " WHERE account_number = ?"
+            );
+
+            statement.setString(1, account_number);
+            System.out.println(account_number);
+
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    BillModel billmodel = new BillModel();
+                    billmodel.setBillId(result.getString("billId"));
+
+                    billIdlist.add(billmodel);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            Connectdb.closeConnection(connection);
+        }
+        return billIdlist;
+    }
+
 
 }

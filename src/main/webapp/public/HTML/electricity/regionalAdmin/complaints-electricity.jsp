@@ -24,6 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/regionalAdminElectricity.css" rel="stylesheet">
     <script src="<%= request.getContextPath() %>/public/JS/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -185,32 +186,42 @@
                         </thead>
                         <tbody>
 
-                    <c:if test="${empty requestScope.electricityRegionalComplaints}">
-                        <tr>
-                            <td colspan="12">No complaints found</td>
-                        </tr>
-                    </c:if>
-                    <c:if test="${not empty requestScope.electricityRegionalComplaints}">
-                        <c:forEach items="${requestScope.electricityRegionalComplaints}" var="complaint">
+<%--                    <c:if test="${empty requestScope.electricityRegionalComplaints}">--%>
+<%--                        <tr>--%>
+<%--                            <td colspan="12">No complaints found</td>--%>
+<%--                        </tr>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${not empty requestScope.electricityRegionalComplaints}">--%>
+<%--                        <c:forEach items="${requestScope.electricityRegionalComplaints}" var="complaint">--%>
+
+<%--                        <tr>--%>
+<%--                            <td>${complaint.complaintNo}</td>--%>
+<%--                            <td>${complaint.complaintCategory}</td>--%>
+<%--                            <td>${complaint.complaintType}</td>--%>
+<%--                            <td>${complaint.nic}</td>--%>
+<%--                            <td>${complaint.accountNumber}</td>--%>
+<%--                            <td>${complaint.mobile}</td>--%>
+<%--                            <td>${complaint.complaintStatus}</td>--%>
+<%--                            <td><select name="complaintStatus">--%>
+<%--                                <option  value="ACTIVE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" }>Active</option>--%>
+<%--                                <option  value="PENDING" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" }>Pending</option>--%>
+<%--                                <option  value="DONE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" }>Done</option>--%>
+<%--                            </select></td>--%>
+<%--                            <td>${complaint.complaintDescription}</td>--%>
+<%--                            <td><button class="submit-btn" id="${complaint.complaintNo}" >Submit</button></td>--%>
+<%--                        </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                    </c:if>--%>
 
                         <tr>
-                            <td>${complaint.complaintNo}</td>
-                            <td>${complaint.complaintCategory}</td>
-                            <td>${complaint.complaintType}</td>
-                            <td>${complaint.nic}</td>
-                            <td>${complaint.accountNumber}</td>
-                            <td>${complaint.mobile}</td>
-                            <td>${complaint.complaintStatus}</td>
-                            <td><select name="complaintStatus">
-                                <option  value="ACTIVE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" }>Active</option>
-                                <option  value="PENDING" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" }>Pending</option>
-                                <option  value="DONE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" }>Done</option>
-                            </select></td>
-                            <td>${complaint.complaintDescription}</td>
-                            <td><button class="submit-btn" id="${complaint.complaintNo}" >Submit</button></td>
+                            <td>Complaint1</td>
+                            <td>Bill Issues</td>
+                            <td>20013200078</td>
+                            <td>212152155</td>
+                            <td>Mobile</td>
+                            <td>pending</td>
+                            <td>BLaaaaaaaaaaaaaaaa blaaaaaaaaaaaaaaa blaaaaaaaaaaaaaaaaaaaa</td>
                         </tr>
-                        </c:forEach>
-                    </c:if>
                         </tbody>
                     </table>
                 </div>

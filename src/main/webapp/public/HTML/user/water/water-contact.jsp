@@ -7,6 +7,7 @@
     <title>Contact us-Water</title>
     <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
     <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/contact.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
     <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
 </head>
@@ -51,7 +52,7 @@
                             </button>
                             <div class="dropdown-content">
                                 <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                                <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                                <a href="<%= request.getContextPath() %>/user/billpayment"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                                 <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                             </div>
                         </a>

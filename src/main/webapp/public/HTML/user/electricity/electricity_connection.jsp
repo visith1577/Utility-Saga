@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
   <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
   <script type="module" src="<%= request.getContextPath() %>/public/JS/connection.js" defer></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -53,7 +54,7 @@
               </button>
               <div class="dropdown-content">
                 <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                 <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
               </div>
             </a>

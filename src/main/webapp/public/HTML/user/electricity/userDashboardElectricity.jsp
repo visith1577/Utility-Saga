@@ -11,6 +11,7 @@
     <head>
         <title>Dashboard</title>
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
         <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/electricitydash.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -58,7 +59,7 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/public/HTML/user/payments.jsp"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/billpayment"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>
