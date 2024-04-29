@@ -73,7 +73,7 @@ public class AnalyticDao implements Analytics {
         try {
             String tableName = account + "_meter";
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT date, MIN(time) as time, MIN(data) as data FROM " + tableName +
+                    "SELECT date, MIN(time) as time, MAX(data) as data FROM " + tableName +
                             " WHERE MONTH(date) = MONTH(CURDATE()) AND YEAR(date) = YEAR(CURDATE())" +
                             " GROUP BY date"
             );
