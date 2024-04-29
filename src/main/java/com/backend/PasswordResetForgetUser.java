@@ -11,7 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.io.*;
 import java.sql.SQLException;
 
-@WebServlet("/user/reset-password")
+@WebServlet("/reset-password/user")
 public class PasswordResetForgetUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/user/validate-otp")
+@WebServlet("/validate-otp")
 public class ValidateOtp extends HttpServlet {
 
     @Override

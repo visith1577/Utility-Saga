@@ -116,7 +116,7 @@ public class ElectricityAdminDAO implements ElectricityAdminImpl {
         Connection connection = Connectdb.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE electricity_admin SET  pasword = ? WHERE email = ?"
+                    "UPDATE electricity_admin SET  password = ? WHERE email = ?"
             );
 
             statement.setString(1, admin.getPassword());
