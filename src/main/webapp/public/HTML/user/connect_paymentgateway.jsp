@@ -56,7 +56,7 @@
         <label>Value: </label>
         <input type="text" name="amount" id="amount" required>
         <hr>
-        <label>Your Name: </label>
+        <label>First Name: </label>
         <input type="text" name="first_name">
         <label>Last Name: </label>
         <input type="text" name="last_name">
