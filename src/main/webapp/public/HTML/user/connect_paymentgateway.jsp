@@ -72,7 +72,7 @@
         <input type="hidden" name="address" value="No.1, Galle Road">
         <input type="hidden" name="city" value="Colombo">
         <input type="hidden" name="country" value="Sri Lanka">
-        <input type="hidden" name="hash" id="hashInput"> <!-- HashValue from js  -->
+        <input type="hidden" name="hash" id="hashInput">
         <div class="btnbox">
             <button type="button" onclick="submitPayHereForm()">Pay Now</button>
         </div>
@@ -94,6 +94,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
+
 
         var accountNumber = getQueryParam("accountNumber");
 
