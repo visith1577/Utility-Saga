@@ -26,7 +26,7 @@
             const spinner = document.getElementById("spinner");
             spinner.style.display = "block";
 
-            fetch('${pageContext.request.contextPath}/user/forget-password', {
+            fetch('${pageContext.request.contextPath}/forget-password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -56,7 +56,7 @@
             var email = document.getElementById("email").value;
 
             try {
-                const response = await fetch('${pageContext.request.contextPath}/user/validate-otp', {
+                const response = await fetch('${pageContext.request.contextPath}/validate-otp', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -65,6 +65,7 @@
                 });
 
                 const result = await response.text();
+                console.log(result)
                 if (result === 'valid') {
                     console.log("valid");
                     document.getElementById("otpForm").style.display = "none";

@@ -77,7 +77,7 @@ public class WaterAdminDAO implements WaterAdminImpl {
         Connection connection = Connectdb.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE water_admin SET  pasword = ? WHERE email = ?"
+                    "UPDATE water_admin SET  password = ? WHERE email = ?"
             );
 
             statement.setString(1, admin.getPassword());

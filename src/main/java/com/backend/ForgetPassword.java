@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet({"/user/forget-password"})
+@WebServlet({"/forget-password"})
 public class ForgetPassword extends HttpServlet {
 
     private final Dotenv dotenv = Dotenv.load();

@@ -26,7 +26,7 @@
             const spinner = document.getElementById("spinner");
             spinner.style.display = "block";
 
-            fetch('${pageContext.request.contextPath}/user/forget-password', {
+            fetch('${pageContext.request.contextPath}/forget-password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -56,7 +56,7 @@
             var email = document.getElementById("email").value;
 
             try {
-                const response = await fetch('${pageContext.request.contextPath}/user/validate-otp', {
+                const response = await fetch('${pageContext.request.contextPath}/validate-otp', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -205,7 +205,7 @@
 
 <div class="container" id="passwordForm" style="display: none;">
     <h2>Reset Password</h2>
-    <form action="${pageContext.request.contextPath}/user/reset-password" id="resetPasswordForm" method="post">
+    <form action="${pageContext.request.contextPath}/reset-password/user" id="resetPasswordForm" method="post">
         <div class="form-group">
             <label for="newPassword">New Password:</label>
             <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required>

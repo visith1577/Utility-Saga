@@ -185,43 +185,32 @@
                         </tr>
                         </thead>
                         <tbody>
-
-<%--                    <c:if test="${empty requestScope.electricityRegionalComplaints}">--%>
-<%--                        <tr>--%>
-<%--                            <td colspan="12">No complaints found</td>--%>
-<%--                        </tr>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${not empty requestScope.electricityRegionalComplaints}">--%>
-<%--                        <c:forEach items="${requestScope.electricityRegionalComplaints}" var="complaint">--%>
-
-<%--                        <tr>--%>
-<%--                            <td>${complaint.complaintNo}</td>--%>
-<%--                            <td>${complaint.complaintCategory}</td>--%>
-<%--                            <td>${complaint.complaintType}</td>--%>
-<%--                            <td>${complaint.nic}</td>--%>
-<%--                            <td>${complaint.accountNumber}</td>--%>
-<%--                            <td>${complaint.mobile}</td>--%>
-<%--                            <td>${complaint.complaintStatus}</td>--%>
-<%--                            <td><select name="complaintStatus">--%>
-<%--                                <option  value="ACTIVE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" }>Active</option>--%>
-<%--                                <option  value="PENDING" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" }>Pending</option>--%>
-<%--                                <option  value="DONE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" }>Done</option>--%>
-<%--                            </select></td>--%>
-<%--                            <td>${complaint.complaintDescription}</td>--%>
-<%--                            <td><button class="submit-btn" id="${complaint.complaintNo}" >Submit</button></td>--%>
-<%--                        </tr>--%>
-<%--                        </c:forEach>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${empty requestScope.electricityRegionalComplaints}">
+                        <tr>
+                            <td colspan="12">No complaints found</td>
+                        </tr>
+                    </c:if>
+                    <c:if test="${not empty requestScope.electricityRegionalComplaints}">
+                        <c:forEach items="${requestScope.electricityRegionalComplaints}" var="complaint">
 
                         <tr>
-                            <td>Complaint1</td>
-                            <td>Bill Issues</td>
-                            <td>20013200078</td>
-                            <td>212152155</td>
-                            <td>Mobile</td>
-                            <td>pending</td>
-                            <td>BLaaaaaaaaaaaaaaaa blaaaaaaaaaaaaaaa blaaaaaaaaaaaaaaaaaaaa</td>
+                            <td>${complaint.complaintNo}</td>
+                            <td>${complaint.complaintCategory}</td>
+                            <td>${complaint.complaintType}</td>
+                            <td>${complaint.nic}</td>
+                            <td>${complaint.accountNumber}</td>
+                            <td>${complaint.mobile}</td>
+                            <td>${complaint.complaintStatus}</td>
+                            <td><select name="complaintStatus">
+                                <option  value="ACTIVE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.ACTIVE ? "selected" : "" }>Active</option>
+                                <option  value="PENDING" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.PENDING ? "selected" : "" }>Pending</option>
+                                <option  value="DONE" ${ complaint.complaintStatus == ComplaintModel.ComplaintStatus.DONE ? "selected" : "" }>Done</option>
+                            </select></td>
+                            <td>${complaint.complaintDescription}</td>
+                            <td><button class="submit-btn" id="${complaint.complaintNo}" >Submit</button></td>
                         </tr>
+                        </c:forEach>
+                    </c:if>
                         </tbody>
                     </table>
                 </div>

@@ -76,7 +76,7 @@ public class ElectricityPublicComplaint extends HttpServlet {
         UserDetails user = new UserDetailsDao();
         try {
             List<String> account_elist = dao.getUserAccountsWithStatus(
-                    (String) session.getAttribute("NIC"), "WATER", "ACTIVE"
+                    (String) session.getAttribute("NIC"), "ELECTRICITY", "ACTIVE"
             );
             UserModel model = user.getUserFullNameByNic((String) session.getAttribute("NIC"));
 
