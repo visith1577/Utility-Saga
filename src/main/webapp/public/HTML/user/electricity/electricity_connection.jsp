@@ -10,6 +10,8 @@
   <script type="module" src="<%= request.getContextPath() %>/public/JS/connection.js" defer></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <title>Form</title>
 </head>
 <body>
@@ -25,9 +27,13 @@
           <span class="line line3"></span>
         </div>
         <ul class="menu-items">
-          <li class="menu-items-li"><a href="#">Home</a></li>
-          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
-          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
+          <li class="menu-items-li"><a href="<%=request.getContextPath()%>/user/electricity-dashboard">Home</a></li>
+          <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/electricity/electricity-contact.jsp">Contact Us</a></li>
+          <li class="menu-items-li">
+            <a href="<%= request.getContextPath() %>/user/electricity-notification">
+              <span class="material-icons">notifications</span>
+            </a>
+          </li>
           <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
           <script>
             function toggle() {
@@ -67,7 +73,7 @@
   <!-- main content -->
   <div class="formbox electricity_form--complain">
     <form id="connection-form" method="post" action="<%= request.getContextPath() %>/user/electricity-connection">
-      <h2>Electricity Services - New Connection Request</h2>
+      <h2 class="h2electricity">Electricity Services - New Connection Request</h2>
       <div class="formbody">
         <div class="forminput">
           <select name="Title" id="Title" required>
@@ -166,7 +172,7 @@
 
       </div>
       <div class="formbtn">
-        <button type="submit" id="submit-btn" class="submitbtn electricitybtn">Submit</button>
+        <button type="submit" id="submit-btn" class="elecsubmitbtn">Submit</button>
       </div>
     </form>
   </div>

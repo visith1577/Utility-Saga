@@ -23,7 +23,7 @@
     <form id="payhereForm" method="POST" action="https://sandbox.payhere.lk/pay/checkout">
         <input type="hidden" name="merchant_id" value="1226570">
         <input type="hidden" name="return_url"
-               value="http://localhost:8080/UtilitySaga_war_exploded/public/HTML/user/user.jsp">
+               value="http://localhost:8080/UtilitySaga_war_exploded/user/user-profile">
         <input type="hidden" name="cancel_url"
                value="http://localhost:8080/UtilitySaga_war_exploded/public/HTML/user/connect_paymentgateway.jsp">
         <input type="hidden" name="notify_url"
@@ -56,7 +56,7 @@
         <label>Value: </label>
         <input type="text" name="amount" id="amount" required>
         <hr>
-        <label>Your Name: </label>
+        <label>First Name: </label>
         <input type="text" name="first_name">
         <label>Last Name: </label>
         <input type="text" name="last_name">

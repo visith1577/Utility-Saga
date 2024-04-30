@@ -10,6 +10,8 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
   <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <title>Electricity-Complaints</title>
 </head>
 <body>
@@ -24,9 +26,13 @@
         <span class="line line3"></span>
       </div>
       <ul class="menu-items">
-        <li class="menu-items-li"><a href="#">Home</a></li>
-        <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
+        <li class="menu-items-li"><a href="<%=request.getContextPath()%>/user/electricity-dashboard">Home</a></li>
         <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
+        <li class="menu-items-li">
+          <a href="<%= request.getContextPath() %>/user/electricity-notification">
+            <span class="material-icons">notifications</span>
+          </a>
+        </li>
         <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
         <script>
           function toggle() {
@@ -65,7 +71,7 @@
 </div>
 <div class="formbox electricity_form--complaint">
     <form id="complaint_form" method="post" action="${pageContext.request.contextPath}/user/electricity-public-complaint">
-      <h2>Electricity Services - Public complaints</h2>
+      <h2 class="h2electricity">Electricity Services - Public complaints</h2>
       <div class="formbody">
         <div class="forminput">
           <select name="Category" id="Category" required>
@@ -132,7 +138,7 @@
         </div>
       </div>
       <div class="formbtn">
-        <button type="submit" id="submit-btn" class="submitbtn electricitybtn">Submit</button>
+        <button type="submit" id="submit-btn" class="elecsubmitbtn">Submit</button>
       </div>
     </form>
   </div>
