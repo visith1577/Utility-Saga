@@ -24,6 +24,11 @@ selected.addEventListener("click", () => {
     }
 });
 
+let ch1 = null;
+let ch2 = null;
+let ch3 = null;
+let ch4 = null;
+
 optionsList.forEach((o) => {
     o.addEventListener("click", () => {
         const selectedAccount = o.querySelector("label").innerHTML;
@@ -32,6 +37,20 @@ optionsList.forEach((o) => {
         if(!isActive) {
             swal("Account Disconnected", "Please select an active account to view analytics", "warning");
             return;
+        }
+
+        if (ch1 !== null) {
+            ch1.destroy();
+        }
+        if (ch2 !== null) {
+            ch2.destroy();
+        }
+        if (ch3 !== null) {
+            ch3.destroy();
+        }
+
+        if (ch4 !== null) {
+            ch4.destroy();
         }
 
         selected.innerHTML = selectedAccount;
@@ -47,7 +66,7 @@ optionsList.forEach((o) => {
             .then(data => {
                 // Handle the response data here
 
-                new Chart(bills, {
+                ch1 = new Chart(bills, {
                     type: "bar",
                     data: {
                         labels: data.data_list_monthly.map(d => d.date),
@@ -83,7 +102,7 @@ optionsList.forEach((o) => {
 
                 let sortedObject = Object.fromEntries(arr);
 
-                new Chart(bud_act, {
+                ch2 = new Chart(bud_act, {
                     type: "bar",
                     data: {
                         labels: Object.keys(sortedObject),
@@ -127,7 +146,7 @@ optionsList.forEach((o) => {
                     }
                 });
 
-                new Chart(dailycons, {
+                ch3 = new Chart(dailycons, {
                     type: "line",
                     data: {
                         labels:  data.data_list_daily.map(d => d.date),
@@ -167,7 +186,7 @@ optionsList.forEach((o) => {
                     }
                 });
 
-                new Chart(monthcons, {
+                ch4 = new Chart(monthcons, {
                     type: "bar",
                     data: {
                         labels: data.data_list_monthly.slice(1).map(d => d.date),
