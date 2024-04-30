@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href=".<%=request.getContextPath()%>/public/CSS/forms.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <style>
         .item {
             display: none;
@@ -35,15 +37,20 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
+                <li class="menu-items-li"><a href="<%=request.getContextPath()%>/user/water-dashboard">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a></li>
-                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
+                <li class="menu-items-li">
+                    <a href="<%= request.getContextPath() %>/user/water-notification">
+                        <span class="material-icons">notifications</span>
+                    </a>
+                </li>
+                <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboard</button></li>
                 <script>
                     function toggle() {
                         window.location.href = "<%= request.getContextPath() %>/user/water-dashboard"
                     }
                 </script>
+
                 <li class="img_user dropdown">
                     <a href="<%= request.getContextPath() %>/user/user-profile">
                         <button class="user-profile">
@@ -64,7 +71,7 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>
-                            <a href="<%= request.getContextPath() %>/user/billpayment"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
+                            <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Payments </b>'}" escapeXml="false"/></a>
                             <a id="logout" href="<%= request.getContextPath() %>/logout">LogOut</a>
                         </div>
                     </a>

@@ -36,7 +36,6 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="#">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
                 <script>
@@ -44,29 +43,16 @@
                     const water = "<%=session.getAttribute("water") != null%>"
                     function toggle() {
                         if (electricity === 'true'){
-                            window.location.href = "<%= request.getContextPath() %>/user/electricity-dashboard";
+                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/electricity/userDashboardElectricity.jsp";
                         } else if(water === 'true') {
-                            window.location.href = "<%= request.getContextPath() %>/user/water-dashboard";
+                            window.location.href = "<%= request.getContextPath() %>/public/HTML/user/water/userDashboardWater.jsp";
                         }
                     }
                 </script>
                 <li class="img_user dropdown">
-                    <a href="<%= request.getContextPath() %>/user/user-profile">
+                    <a href="<%= request.getContextPath() %>/public/HTML/user/user.jsp">
                         <button class="user-profile">
-                            <%
-                                // Retrieve the Image attribute from the session
-                                Object image = session.getAttribute("IMAGE");
-
-                                if (image == null) {
-                            %>
                             <img alt="User" src="<%= request.getContextPath() %>/public/images/user.svg" style="width: 4vh; height: 4vh">
-                            <%
-                            } else {
-                            %>
-                            <img class="image-profile" src="data:image/jpeg;base64,<%= image %>" alt="image" style="width: 5vh; height: 5vh">
-                            <%
-                                }
-                            %>
                         </button>
                         <div class="dropdown-content">
                             <a href="<%= request.getContextPath() %>/user/user-settings"><c:out value="${'<b> Settings </b>'}" escapeXml="false"/></a>

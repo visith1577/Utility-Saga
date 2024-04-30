@@ -1,29 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: NETHMI LIYANAGE
-  Date: 4/20/2024
-  Time: 6:55 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String contextPath = request.getContextPath();
-%>
-<%@ page import="DAO.dao.sendNotificationDao" %>
-<%@ page import="java.util.List" %>
-<%@ page import="model.SendNotificationModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>User-Notification</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
-    <link href="<%= request.getContextPath() %>/public/CSS/dashboards/Admin/adminnotification.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us-Electricity</title>
+    <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/forms.css">
+    <link  type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/contact.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/navbar.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/public/CSS/dashboards/dashboard.css">
+    <script type="module" src="<%= request.getContextPath() %>/public/JS/complaints.js" defer></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
 <body>
 <div class="navv">
@@ -84,37 +71,42 @@
         </div>
     </header>
 </div>
-<div class="GetNotification-box">
-    <h2>Notifications from the Electricity Board</h2>
-    <table>
-        <thead>
-        <tr>
-            <th class="electricityth">Title</th>
-            <th class="electricityth">Date</th>
-            <th class="electricityth">Subject</th>
-            <th class="electricityth">Message</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:if test="${empty requestScope.notifications}">
-            <tr>
-                <td colspan="4">No notifications found</td>
-            </tr>
-        </c:if>
-        <c:if test="${not empty requestScope.notifications}">
-            <c:forEach items="${requestScope.notifications}" var="notification">
-                <tr>
-                    <td>${notification.title}</td>
-                    <td>${notification.date}</td>
-                    <td>${notification.subject}</td>
-                    <td>${notification.message}</td>
-                </tr>
-            </c:forEach>
-        </c:if>
-        </tbody>
-    </table>
-
-</div>
-
+    <section>
+        <div class="contact-contaiter">
+            <div class="detail-container">
+                <h2>Contact us</h2>
+                <p>Visit our office or simply email us anytime you want.
+                    If you have any questions, please feel free to contact us.
+                </p>
+            </br><div class="Detail"><strong>Address:</strong></br>50, Sir Chittampalam A Gardiner Mawatha,</br> Ratmalana,</br>
+                    Sri Lanka 
+                </div>
+            </br><div class="Detail">
+                    <strong>Telephone number:</strong> </br>+94 112 324 472
+                </br>+94 11 2611589
+                </div>
+            </br><div class="Detail">
+                <strong>Fax number:</strong></br>+94 11 2636449
+            </div>
+        </br><div class="Detail">
+            <strong>Website: </strong> </br>info@ceb.lk
+        </div>
+            </div>
+            
+            <div class="form-container">
+            <h3>Message us</h3>
+            <form method="post" action="${pageContext.request.contextPath}/user/electricity-contact-us" class="contact-form">
+                <input name="Sender-name" type="text" placeholder="Name" required>
+                <input name="Sender-email" type="email" placeholder="Email" required>
+                <input name="Sender-telephone" type="tel" placeholder="Telephone Number" required>
+                <textarea name="Sender-message" id="" cols="30" rows="10" placeholder="Write message here" required></textarea>
+                <input type="submit" value="Send" class="esend-button">
+            </form>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.302658560217!2d79.85996919775368!3d6.911437889407523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2599c3537e903%3A0xfc72042010747ed3!2sCeylon%20Electricity%20Board!5e0!3m2!1sen!2slk!4v1714393795050!5m2!1sen!2slk" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

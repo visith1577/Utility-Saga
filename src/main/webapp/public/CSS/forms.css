@@ -44,8 +44,13 @@
     text-transform: uppercase;
   }
 
-  .electricity h2{
+  .h2electricity{
     color: var(--electricity-color);
+    text-align: center;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
   }  
   .formbox .formbody{
     padding: 10px 20px 10px 20px;
@@ -173,6 +178,34 @@
   .formbox .formbtn .waterbtn:hover{
     background-color: var(--water-color);
   }
+
+.elecsubmitbtn{
+  background-color: var(--electricity-color3);
+  width: 30%;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 15px;
+  /* background: var(--water-color); */
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.elecsubmitbtn:hover{
+  background-color: var(--electricity-color2);
+  width: 30%;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 15px;
+  /* background: var(--water-color); */
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+}
 
   .button-error {
     background-color: #ff3860;
