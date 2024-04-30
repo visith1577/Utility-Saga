@@ -37,10 +37,9 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About Us</a></li>
+                <li class="menu-items-li"><a href="<%=request.getContextPath()%>/user/electricity-dashboard">Home</a></li>
                 <li class="menu-items-li"><a
-                        href="<%= request.getContextPath() %>/public/HTML/user/water/water-contact.jsp">Contact Us</a>
+                        href="<%= request.getContextPath() %>/public/HTML/user/electricity/electricity-contact.jsp">Contact Us</a>
                 </li>
                 <li class="menu-items-li">
                     <a href="<%= request.getContextPath() %>/user/electricity-notification">

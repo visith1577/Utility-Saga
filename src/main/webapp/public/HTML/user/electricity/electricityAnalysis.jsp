@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href=".<%=request.getContextPath()%>/public/CSS/forms.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <style>
         .item {
             display: none;
@@ -34,9 +36,13 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li class="menu-items-li"><a href="#">Home</a></li>
-                <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/pages/aboutUs.jsp">About</a></li>
+                <li class="menu-items-li"><a href="<%=request.getContextPath()%>/user/electricity-dashboard">Home</a></li>
                 <li class="menu-items-li"><a href="<%= request.getContextPath() %>/public/HTML/user/electricity/electricity-contact.jsp">Contact Us</a></li>
+                <li class="menu-items-li">
+                    <a href="<%= request.getContextPath() %>/user/electricity-notification">
+                        <span class="material-icons">notifications</span>
+                    </a>
+                </li>
                 <li class="nxt-page water"><button class="button-17" type="button" onclick="toggle()">Dashboards</button></li>
                 <script>
                     function toggle() {
